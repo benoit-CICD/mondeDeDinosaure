@@ -68,7 +68,6 @@ export function pageAccueil() {
 <section class="heros">
   <div class="conteneur heros__contenu">
     <div>
-      /* <p class="pastille" style="margin-bottom:1rem">🦕 Site éducatif gratuit · 7–12 ans</p> */
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
       <p class="heros__accroche">Explore ${dinos.length} créatures géantes, remonte le temps sur ${Math.round(periodes[0].debut - periodes[2].fin)} millions d’années et amuse-toi avec 5 jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
