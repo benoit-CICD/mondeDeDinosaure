@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Illustration de Mosasaurus" style="--peau:#2f6f8f">
+<title>Mosasaurus</title>
+<style>
+  .corps, .queue-g { transform-box: fill-box; transform-origin: 70% 60%; }
+  .queue-g { animation: respire 4.4s ease-in-out infinite; }
+  .paupiere { animation: cligne 6s ease-in-out infinite; }
+  .bras { transform-box: fill-box; transform-origin: 0% 0%; animation: salue 3.6s ease-in-out infinite; }
+  .aile-gauche, .aile-droite, .aile, .aile2 { transform-box: fill-box; transform-origin: 90% 50%; animation: bat 2.6s ease-in-out infinite; }
+  .aile-droite, .aile2 { transform-origin: 10% 50%; animation-delay: -.2s; }
+  .massue { transform-box: fill-box; transform-origin: 50% 50%; animation: balance 3.2s ease-in-out infinite; }
+  @keyframes respire { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.012,1.022); } }
+  @keyframes cligne { 0%,92%,100% { fill: transparent; } 95% { fill: var(--peau); } }
+  @keyframes salue { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
+  @keyframes bat { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+  @keyframes balance { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<defs>
+    <linearGradient id="d-mosasaurus" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8fc9e0"/>
+      <stop offset="70%" stop-color="#fdf3e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#d-mosasaurus)"/>
+  <circle cx="330" cy="54" r="30" fill="#ffc861"/>
+  <circle cx="330" cy="54" r="42" fill="#ffc861" opacity=".28"/>
+  <ellipse cx="86" cy="46" rx="36" ry="14" fill="#fff" opacity=".8"/>
+  <ellipse cx="112" cy="38" rx="24" ry="16" fill="#fff" opacity=".8"/>
+  <ellipse cx="236" cy="30" rx="28" ry="11" fill="#fff" opacity=".55"/>
+  <path d="M0 176 L74 108 L120 158 L168 112 L248 176 Z" fill="#164252" opacity=".35"/>
+  <path d="M256 176 L318 100 L380 176 Z" fill="#164252" opacity=".5"/>
+  <path d="M0 234 Q90 216 190 232 T400 226 L400 280 L0 280 Z" fill="#164252" opacity=".22"/>
+  <path d="M0 256 Q110 242 220 254 T400 248 L400 280 L0 280 Z" fill="#164252" opacity=".38"/>
+  <g fill="#164252" opacity=".6">
+    <path d="M22 274 q-12 -32 3 -52 q7 22 15 30 q3 -22 12 -33 q7 24 4 55 Z"/>
+    <path d="M362 274 q-13 -30 0 -49 q9 19 16 25 q2 -19 10 -30 q8 22 5 54 Z"/>
+  </g><ellipse cx="205" cy="256" rx="150" ry="13" fill="#164252" opacity=".16"/><g>
+    <path class="nageoire-arriere" d="M64 130 Q34 92 20 70 Q56 92 78 118 Z" fill="#8fc9e0" stroke="#164252" stroke-width="5.5" stroke-linejoin="round"/>
+    <path d="M62 136 Q30 160 14 186 Q52 168 80 146 Z" fill="#8fc9e0" stroke="#164252" stroke-width="5.5" stroke-linejoin="round"/>
+    <g class="queue-g">
+      <path class="corps" d="M70 134 Q118 96 186 92 Q252 88 300 106 Q336 120 366 122
+            Q388 124 394 132 Q388 142 366 144 Q336 146 300 160 Q252 178 186 174 Q118 170 70 134 Z"
+            fill="#2f6f8f" stroke="#164252" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M110 148 Q170 174 246 172 Q302 170 344 150 Q300 176 226 180 Q152 180 110 148 Z" fill="#8fc9e0" opacity=".55"/>
+      <path class="aileron" d="M198 92 Q206 58 230 52 Q236 74 234 94 Z" fill="#2f6f8f" stroke="#164252" stroke-width="5.5" stroke-linejoin="round"/>
+      <path d="M331.1666666666667 137.83333333333334 L334.1666666666667 144.83333333333334 L337.1666666666667 137.83333333333334 Z" fill="#fffdf6"/><path d="M339.5 137.5 L342.5 144.5 L345.5 137.5 Z" fill="#fffdf6"/><path d="M347.8333333333333 137.16666666666666 L350.8333333333333 144.16666666666666 L353.8333333333333 137.16666666666666 Z" fill="#fffdf6"/><path d="M356.1666666666667 136.83333333333334 L359.1666666666667 143.83333333333334 L362.1666666666667 136.83333333333334 Z" fill="#fffdf6"/><path d="M364.5 136.5 L367.5 143.5 L370.5 136.5 Z" fill="#fffdf6"/><path d="M372.8333333333333 136.16666666666666 L375.8333333333333 143.16666666666666 L378.8333333333333 136.16666666666666 Z" fill="#fffdf6"/>
+      <g class="oeil">
+      <circle cx="324" cy="122" r="8.5" fill="#fffdf6" stroke="#164252" stroke-width="2.5"/>
+      <circle class="pupille" cx="325.53" cy="122" r="4.42" fill="#2a1f1a"/>
+      <circle cx="328.25" cy="118.43" r="1.87" fill="#fff"/>
+      <ellipse class="paupiere" cx="324" cy="122" rx="10.1" ry="10.1" fill="transparent"/>
+    </g>
+      <ellipse cx="312" cy="136" rx="6" ry="3.7199999999999998" fill="#ff8f9c" opacity=".45"/>
+      <path class="nageoire-avant" d="M216 160 Q232 194 268 200 Q258 172 246 158 Z" fill="#2f6f8f" stroke="#164252" stroke-width="5.5" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

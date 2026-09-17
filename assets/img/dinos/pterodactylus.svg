@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Illustration de Pterodactylus" style="--peau:#e08a3c">
+<title>Pterodactylus</title>
+<style>
+  .corps, .queue-g { transform-box: fill-box; transform-origin: 70% 60%; }
+  .queue-g { animation: respire 4.4s ease-in-out infinite; }
+  .paupiere { animation: cligne 6s ease-in-out infinite; }
+  .bras { transform-box: fill-box; transform-origin: 0% 0%; animation: salue 3.6s ease-in-out infinite; }
+  .aile-gauche, .aile-droite, .aile, .aile2 { transform-box: fill-box; transform-origin: 90% 50%; animation: bat 2.6s ease-in-out infinite; }
+  .aile-droite, .aile2 { transform-origin: 10% 50%; animation-delay: -.2s; }
+  .massue { transform-box: fill-box; transform-origin: 50% 50%; animation: balance 3.2s ease-in-out infinite; }
+  @keyframes respire { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.012,1.022); } }
+  @keyframes cligne { 0%,92%,100% { fill: transparent; } 95% { fill: var(--peau); } }
+  @keyframes salue { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
+  @keyframes bat { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+  @keyframes balance { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<path d="M0 252 Q60 242 130 250 T270 250 T400 246 L400 280 L0 280 Z" fill="#7d4413" opacity=".10"/><ellipse cx="205" cy="256" rx="150" ry="13" fill="#7d4413" opacity=".16"/><g>
+    <path class="aile-gauche" d="M196 116 Q120 96 34 128 Q96 158 168 150 Q196 146 208 132 Z"
+          fill="#fbd39a" stroke="#7d4413" stroke-width="5.5" stroke-linejoin="round"/>
+    <path d="M60 128 Q116 126 176 138 M88 142 Q134 138 182 146" fill="none" stroke="#7d4413" stroke-width="3" opacity=".4"/>
+    <g class="queue-g">
+      <path class="corps" d="M186 118 Q214 104 244 100 Q272 96 292 80 Q308 68 330 70 L374 76
+            Q386 84 374 94 L336 98 Q312 102 300 116 Q284 134 250 142 Q212 148 188 140 Q176 128 186 118 Z"
+            fill="#e08a3c" stroke="#7d4413" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M318 64 q18 -16 34 -12 q-14 8 -18 18 Z" fill="#fbd39a" stroke="#7d4413" stroke-width="4" stroke-linejoin="round"/>
+      <g class="oeil">
+      <circle cx="330" cy="84" r="8" fill="#fffdf6" stroke="#7d4413" stroke-width="2.5"/>
+      <circle class="pupille" cx="331.44" cy="84" r="4.16" fill="#2a1f1a"/>
+      <circle cx="334" cy="80.64" r="1.76" fill="#fff"/>
+      <ellipse class="paupiere" cx="330" cy="84" rx="9.6" ry="9.6" fill="transparent"/>
+    </g>
+      <ellipse cx="318" cy="96" rx="6" ry="3.7199999999999998" fill="#ff8f9c" opacity=".45"/>
+      <path class="" d="M214 140 q-4 26 -16 40" fill="none" stroke="#7d4413" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M214 140 q-4 26 -16 40" fill="none" stroke="#e08a3c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="" d="M240 140 q6 26 -2 42" fill="none" stroke="#7d4413" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M240 140 q6 26 -2 42" fill="none" stroke="#e08a3c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path class="aile-droite" d="M214 120 Q268 132 320 170 Q262 184 214 160 Q196 148 198 132 Z"
+          fill="#e08a3c" stroke="#7d4413" stroke-width="5.5" stroke-linejoin="round" opacity=".95"/>
+    <path d="M232 134 Q266 148 300 168" fill="none" stroke="#7d4413" stroke-width="3" opacity=".4"/>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Illustration de Spinosaurus" style="--peau:#2f6fa8">
+<title>Spinosaurus</title>
+<style>
+  .corps, .queue-g { transform-box: fill-box; transform-origin: 70% 60%; }
+  .queue-g { animation: respire 4.4s ease-in-out infinite; }
+  .paupiere { animation: cligne 6s ease-in-out infinite; }
+  .bras { transform-box: fill-box; transform-origin: 0% 0%; animation: salue 3.6s ease-in-out infinite; }
+  .aile-gauche, .aile-droite, .aile, .aile2 { transform-box: fill-box; transform-origin: 90% 50%; animation: bat 2.6s ease-in-out infinite; }
+  .aile-droite, .aile2 { transform-origin: 10% 50%; animation-delay: -.2s; }
+  .massue { transform-box: fill-box; transform-origin: 50% 50%; animation: balance 3.2s ease-in-out infinite; }
+  @keyframes respire { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.012,1.022); } }
+  @keyframes cligne { 0%,92%,100% { fill: transparent; } 95% { fill: var(--peau); } }
+  @keyframes salue { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
+  @keyframes bat { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+  @keyframes balance { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<defs>
+    <linearGradient id="d-spinosaurus" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8cc7ec"/>
+      <stop offset="70%" stop-color="#fdf3e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#d-spinosaurus)"/>
+  <circle cx="330" cy="54" r="30" fill="#ffc861"/>
+  <circle cx="330" cy="54" r="42" fill="#ffc861" opacity=".28"/>
+  <ellipse cx="86" cy="46" rx="36" ry="14" fill="#fff" opacity=".8"/>
+  <ellipse cx="112" cy="38" rx="24" ry="16" fill="#fff" opacity=".8"/>
+  <ellipse cx="236" cy="30" rx="28" ry="11" fill="#fff" opacity=".55"/>
+  <path d="M0 176 L74 108 L120 158 L168 112 L248 176 Z" fill="#164160" opacity=".35"/>
+  <path d="M256 176 L318 100 L380 176 Z" fill="#164160" opacity=".5"/>
+  <path d="M0 234 Q90 216 190 232 T400 226 L400 280 L0 280 Z" fill="#164160" opacity=".22"/>
+  <path d="M0 256 Q110 242 220 254 T400 248 L400 280 L0 280 Z" fill="#164160" opacity=".38"/>
+  <g fill="#164160" opacity=".6">
+    <path d="M22 274 q-12 -32 3 -52 q7 22 15 30 q3 -22 12 -33 q7 24 4 55 Z"/>
+    <path d="M362 274 q-13 -30 0 -49 q9 19 16 25 q2 -19 10 -30 q8 22 5 54 Z"/>
+  </g><ellipse cx="205" cy="256" rx="150" ry="13" fill="#164160" opacity=".16"/><g>
+    <path class="" d="M198 152 q-24 34 -12 60 q4 12 -14 16 l-24 4" fill="none" stroke="#164160" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M198 152 q-24 34 -12 60 q4 12 -14 16 l-24 4" fill="none" stroke="#164160" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="voile" d="M112 152 Q140 58 208 44 Q276 34 296 112 Q262 96 212 104 Q160 112 112 152 Z"
+          fill="#8cc7ec" stroke="#164160" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M150 128 Q186 74 226 66 M186 112 Q216 68 252 70 M222 104 Q252 76 276 92"
+          fill="none" stroke="#164160" stroke-width="3.5" opacity=".45" stroke-linecap="round"/>
+    <g class="queue-g">
+      <path class="corps" d="M24 190 Q86 186 140 164 Q186 146 214 126 Q244 106 278 106 Q300 106 316 92
+            Q332 78 356 80 L390 86 Q398 92 392 102 L352 110 Q326 114 316 126 Q304 142 278 152
+            Q244 166 208 170 Q140 178 84 186 Q50 190 24 190 Z"
+            fill="#2f6fa8" stroke="#164160" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M40 188 Q104 182 156 160 Q196 142 220 150 Q184 166 132 174 Q80 184 40 188 Z" fill="#8cc7ec" opacity=".5"/>
+      <path d="M331 99.83333333333333 L334 107.83333333333333 L337 99.83333333333333 Z" fill="#fffdf6"/><path d="M339 99.5 L342 107.5 L345 99.5 Z" fill="#fffdf6"/><path d="M347 99.16666666666667 L350 107.16666666666667 L353 99.16666666666667 Z" fill="#fffdf6"/><path d="M355 98.83333333333333 L358 106.83333333333333 L361 98.83333333333333 Z" fill="#fffdf6"/><path d="M363 98.5 L366 106.5 L369 98.5 Z" fill="#fffdf6"/><path d="M371 98.16666666666667 L374 106.16666666666667 L377 98.16666666666667 Z" fill="#fffdf6"/>
+      <g class="oeil">
+      <circle cx="340" cy="88" r="8" fill="#fffdf6" stroke="#164160" stroke-width="2.5"/>
+      <circle class="pupille" cx="341.44" cy="88" r="4.16" fill="#2a1f1a"/>
+      <circle cx="344" cy="84.64" r="1.76" fill="#fff"/>
+      <ellipse class="paupiere" cx="340" cy="88" rx="9.6" ry="9.6" fill="transparent"/>
+    </g>
+      <ellipse cx="324" cy="100" rx="7" ry="4.34" fill="#ff8f9c" opacity=".45"/>
+      <path class="bras" d="M288 132 q16 14 12 26" fill="none" stroke="#164160" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><path class="bras" d="M288 132 q16 14 12 26" fill="none" stroke="#2f6fa8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path class="" d="M226 150 q-22 36 -8 62 q6 12 -12 16 l-26 4" fill="none" stroke="#164160" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M226 150 q-22 36 -8 62 q6 12 -12 16 l-26 4" fill="none" stroke="#2f6fa8" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

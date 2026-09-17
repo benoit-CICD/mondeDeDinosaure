@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Illustration de Brachiosaurus" style="--peau:#9b8bc4">
+<title>Brachiosaurus</title>
+<style>
+  .corps, .queue-g { transform-box: fill-box; transform-origin: 70% 60%; }
+  .queue-g { animation: respire 4.4s ease-in-out infinite; }
+  .paupiere { animation: cligne 6s ease-in-out infinite; }
+  .bras { transform-box: fill-box; transform-origin: 0% 0%; animation: salue 3.6s ease-in-out infinite; }
+  .aile-gauche, .aile-droite, .aile, .aile2 { transform-box: fill-box; transform-origin: 90% 50%; animation: bat 2.6s ease-in-out infinite; }
+  .aile-droite, .aile2 { transform-origin: 10% 50%; animation-delay: -.2s; }
+  .massue { transform-box: fill-box; transform-origin: 50% 50%; animation: balance 3.2s ease-in-out infinite; }
+  @keyframes respire { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.012,1.022); } }
+  @keyframes cligne { 0%,92%,100% { fill: transparent; } 95% { fill: var(--peau); } }
+  @keyframes salue { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
+  @keyframes bat { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+  @keyframes balance { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<defs>
+    <linearGradient id="d-brachiosaurus" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d6cdf2"/>
+      <stop offset="70%" stop-color="#fdf3e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#d-brachiosaurus)"/>
+  <circle cx="330" cy="54" r="30" fill="#ffc861"/>
+  <circle cx="330" cy="54" r="42" fill="#ffc861" opacity=".28"/>
+  <ellipse cx="86" cy="46" rx="36" ry="14" fill="#fff" opacity=".8"/>
+  <ellipse cx="112" cy="38" rx="24" ry="16" fill="#fff" opacity=".8"/>
+  <ellipse cx="236" cy="30" rx="28" ry="11" fill="#fff" opacity=".55"/>
+  <path d="M0 176 L74 108 L120 158 L168 112 L248 176 Z" fill="#54497a" opacity=".35"/>
+  <path d="M256 176 L318 100 L380 176 Z" fill="#54497a" opacity=".5"/>
+  <path d="M0 234 Q90 216 190 232 T400 226 L400 280 L0 280 Z" fill="#54497a" opacity=".22"/>
+  <path d="M0 256 Q110 242 220 254 T400 248 L400 280 L0 280 Z" fill="#54497a" opacity=".38"/>
+  <g fill="#54497a" opacity=".6">
+    <path d="M22 274 q-12 -32 3 -52 q7 22 15 30 q3 -22 12 -33 q7 24 4 55 Z"/>
+    <path d="M362 274 q-13 -30 0 -49 q9 19 16 25 q2 -19 10 -30 q8 22 5 54 Z"/>
+  </g><ellipse cx="205" cy="256" rx="150" ry="13" fill="#54497a" opacity=".16"/><g>
+    <path class="" d="M148 196 l-5 46" fill="none" stroke="#54497a" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M148 196 l-5 46" fill="none" stroke="#54497a" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="" d="M262 186 l7 56" fill="none" stroke="#54497a" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M262 186 l7 56" fill="none" stroke="#54497a" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <g class="queue-g">
+      <path class="cou" d="M286 134 Q296 96 306 62 Q312 36 330 26 L350 18 Q363 22 358 36 L343 44 Q333 54 329 74 Q321 110 317 142 Z" fill="#9b8bc4" stroke="#54497a" stroke-width="6" stroke-linejoin="round"/>
+      <ellipse cx="349" cy="26" rx="17" ry="12" transform="rotate(-24 349 26)" fill="#9b8bc4" stroke="#54497a" stroke-width="5"/>
+       <g class="oeil">
+      <circle cx="348" cy="22" r="6.5" fill="#fffdf6" stroke="#54497a" stroke-width="2.5"/>
+      <circle class="pupille" cx="349.17" cy="22" r="3.38" fill="#2a1f1a"/>
+      <circle cx="351.25" cy="19.27" r="1.43" fill="#fff"/>
+      <ellipse class="paupiere" cx="348" cy="22" rx="8.1" ry="8.1" fill="transparent"/>
+    </g><ellipse cx="340" cy="34" rx="5.5" ry="3.41" fill="#ff8f9c" opacity=".45"/>
+      <path class="corps" d="M14 186 Q64 184 106 178 Q152 170 186 150 Q222 128 262 126 Q302 124 318 148 Q330 172 310 188 Q270 206 216 206 Q148 204 94 197 Q50 192 14 186 Z" fill="#9b8bc4" stroke="#54497a" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M70 188 Q140 196 210 198 Q268 198 306 184 Q262 210 196 208 Q122 204 70 188 Z" fill="#d6cdf2" opacity=".5"/>
+    </g>
+    <path class="" d="M176 198 l-7 48" fill="none" stroke="#54497a" stroke-width="33" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M176 198 l-7 48" fill="none" stroke="#9b8bc4" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="" d="M288 184 l10 60" fill="none" stroke="#54497a" stroke-width="33" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M288 184 l10 60" fill="none" stroke="#9b8bc4" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

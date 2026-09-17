@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La frise du temps | Le Monde des Dinosaures</title>
+<meta name="description" content="Une frise chronologique interactive des dinosaures : Trias, Jurassique, Crétacé et la grande extinction, avec chaque créature placée à son époque.">
+<meta name="author" content="Le Monde des Dinosaures">
+<meta name="theme-color" content="#1e4d3c">
+<meta property="og:title" content="La frise du temps">
+<meta property="og:description" content="Une frise chronologique interactive des dinosaures : Trias, Jurassique, Crétacé et la grande extinction, avec chaque créature placée à son époque.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Le Monde des Dinosaures">
+<link rel="stylesheet" href="assets/css/style.css?v=c17b3ee0">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+<script>window.BASE = "";</script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="entete__barre">
+    <a class="logo" href="index.html"><svg class="logo__empreinte" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <ellipse cx="20" cy="25" rx="9" ry="11" fill="#1e4d3c"/>
+  <ellipse cx="10" cy="13" rx="4" ry="5.5" fill="#1e4d3c" transform="rotate(-18 10 13)"/>
+  <ellipse cx="20" cy="9" rx="4" ry="5.5" fill="#1e4d3c"/>
+  <ellipse cx="30" cy="13" rx="4" ry="5.5" fill="#1e4d3c" transform="rotate(18 30 13)"/>
+</svg><span>Le Monde des<br>Dinosaures</span></a>
+    <button class="nav-bouton" type="button" aria-expanded="false" aria-controls="navigation-principale" aria-label="Menu">
+      <span class="nav-bouton__trait" aria-hidden="true"></span>
+      <span class="nav-bouton__trait" aria-hidden="true"></span>
+      <span class="nav-bouton__trait" aria-hidden="true"></span>
+    </button>
+    <nav class="nav" id="navigation-principale" data-ouvert="false" aria-label="Navigation principale">
+      <ul class="nav__liste">
+        <li><a class="nav__lien" href="index.html">🏠 Accueil</a></li>
+        <li><details class="nav__groupe">
+          <summary>🦕 Dinosaures</summary>
+          <ul class="nav__sous nav__sous--large">
+            <li><a href="dinosaures.html"><strong>📚 Tous les dinosaures</strong></a></li>
+            <li><a href="familles.html"><strong>🧬 Toutes les familles</strong></a></li>
+            <li class="nav__trait"></li>
+            <li><ul class="nav__familles"><li><a href="familles/theropodes.html">🦖 Théropodes</a></li><li><a href="familles/raptors.html">🪶 Raptors</a></li><li><a href="familles/sauropodes.html">🦕 Sauropodes</a></li><li><a href="familles/sauropodomorphes.html">🌱 Sauropodomorphes primitifs</a></li><li><a href="familles/thyreophores.html">🛡️ Dinosaures blindés</a></li><li><a href="familles/ceratopsiens.html">🐃 Cératopsiens</a></li><li><a href="familles/hadrosaures.html">🎺 Hadrosaures</a></li><li><a href="familles/pachycephalosaures.html">⛑️ Pachycéphalosaures</a></li><li><a href="familles/pterosaures.html">🪁 Ptérosaures</a></li><li><a href="familles/reptiles-marins.html">🌊 Reptiles marins</a></li></ul></li>
+          </ul>
+        </details></li>
+        <li><details class="nav__groupe">
+          <summary>⏳ Périodes</summary>
+          <ul class="nav__sous">
+            <li><a href="periodes.html"><strong>🌍 Les trois périodes</strong></a></li>
+            <li><a href="periodes/trias.html">🌋 Trias <small>(252 à 201 Ma)</small></a></li><li><a href="periodes/jurassique.html">🌿 Jurassique <small>(201 à 145 Ma)</small></a></li><li><a href="periodes/cretace.html">🌸 Crétacé <small>(145 à 66 Ma)</small></a></li>
+            <li><a href="frise.html">📏 La frise du temps</a></li>
+          </ul>
+        </details></li>
+        <li><a class="nav__lien" href="frise.html" aria-current="page">📏 Frise</a></li>
+        <li><details class="nav__groupe">
+          <summary>🎮 Jeux</summary>
+          <ul class="nav__sous">
+            <li><a href="jeux.html"><strong>🎯 Tous les jeux</strong></a></li>
+            <li><a href="jeux/quiz.html">❓ Le grand quiz</a></li>
+            <li><a href="jeux/vrai-ou-faux.html">⚖️ Vrai ou faux</a></li>
+            <li><a href="jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></li>
+            <li><a href="jeux/memory.html">🧠 Memory</a></li>
+            <li><a href="jeux/puzzle.html">🧩 Puzzle</a></li>
+          </ul>
+        </details></li>
+        <li><details class="nav__groupe">
+          <summary>📖 Comprendre</summary>
+          <ul class="nav__sous">
+            <li><a href="glossaire.html">🔤 Glossaire</a></li>
+            <li><a href="questions.html">💬 Questions fréquentes</a></li>
+            <li><a href="extinction.html">☄️ La grande extinction</a></li>
+            <li><a href="metier.html">⛏️ Le métier de paléontologue</a></li>
+            <li><a href="a-propos.html">ℹ️ À propos du site</a></li>
+          </ul>
+        </details></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<nav class="fil-ariane conteneur" aria-label="Fil d’Ariane"><ol><li><a href="index.html">Accueil</a></li><li><span aria-current="page">La frise du temps</span></li></ol></nav>
+<main id="contenu" tabindex="-1">
+
+<div class="conteneur section">
+  <h1>📏 La frise du temps</h1>
+  <p style="max-width:68ch">Remonte le temps sur 186 millions d’années ! Chaque créature est placée à l’époque où elle vivait.
+  Tu verras : certains dinosaures que l’on imagine ensemble ne se sont jamais rencontrés.</p>
+
+  <div class="regle-temps" style="margin:2rem 0">
+    <div class="regle-temps__piste">
+      <div class="regle-temps__bloc" style="background:#c86b3c;flex:51">
+        <span style="font-size:1.6rem" aria-hidden="true">🌋</span>
+        <strong>Trias</strong><small>252 à 201 Ma</small>
+      </div>
+      <div class="regle-temps__bloc" style="background:#3f8f6c;flex:56">
+        <span style="font-size:1.6rem" aria-hidden="true">🌿</span>
+        <strong>Jurassique</strong><small>201 à 145 Ma</small>
+      </div>
+      <div class="regle-temps__bloc" style="background:#9e4f8f;flex:79">
+        <span style="font-size:1.6rem" aria-hidden="true">🌸</span>
+        <strong>Crétacé</strong><small>145 à 66 Ma</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="encadre encadre--attention">
+    <h2 class="encadre__titre">🤯 Le grand écart</h2>
+    <p style="margin-bottom:0">Le <a href="dinosaures/stegosaurus.html">Stégosaure</a> a disparu il y a 145 millions d’années.
+    Le <a href="dinosaures/tyrannosaurus.html">T-rex</a> est apparu il y a 68 millions d’années.
+    Entre les deux : <strong>77 millions d’années</strong>. C’est plus que le temps qui nous sépare du T-rex (66 millions d’années) !</p>
+  </div>
+
+  <div class="frise" style="margin-top:2.5rem">
+    <div class="frise__jalon" data-anim style="--jalon-couleur:#c86b3c">
+    <span class="frise__point" aria-hidden="true"></span>
+    <div class="frise__periode">
+      <p class="frise__ages">🌋 de −252 à −201 millions d’années</p>
+      <h2 style="margin-bottom:.3rem"><a href="periodes/trias.html" style="color:inherit">Le Trias</a></h2>
+      <p>La Terre sort de la plus grande catastrophe de son histoire. Les premiers dinosaures apparaissent, encore petits et discrets.</p>
+      <p style="font-size:.93rem;color:var(--texte-doux);margin-bottom:0"><strong>Climat :</strong> Chaud et très sec, avec un immense désert au centre de la Pangée.</p>
+      <div class="frise__vignettes">
+        <a class="vignette" href="dinosaures/eoraptor.html">
+          <img src="assets/img/dinos/eoraptor.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Eoraptor <small style="color:var(--texte-doux);font-weight:600">−231 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/herrerasaurus.html">
+          <img src="assets/img/dinos/herrerasaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Herrerasaurus <small style="color:var(--texte-doux);font-weight:600">−231 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/coelophysis.html">
+          <img src="assets/img/dinos/coelophysis.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Coelophysis <small style="color:var(--texte-doux);font-weight:600">−216 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/plateosaurus.html">
+          <img src="assets/img/dinos/plateosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Plateosaurus <small style="color:var(--texte-doux);font-weight:600">−214 Ma</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+    <div class="frise__jalon" data-anim style="--jalon-couleur:#3f8f6c">
+    <span class="frise__point" aria-hidden="true"></span>
+    <div class="frise__periode">
+      <p class="frise__ages">🌿 de −201 à −145 millions d’années</p>
+      <h2 style="margin-bottom:.3rem"><a href="periodes/jurassique.html" style="color:inherit">Le Jurassique</a></h2>
+      <p>L’âge des géants. Les sauropodes atteignent des tailles folles et les premiers oiseaux prennent leur envol.</p>
+      <p style="font-size:.93rem;color:var(--texte-doux);margin-bottom:0"><strong>Climat :</strong> Chaud et humide, comme une serre tropicale géante.</p>
+      <div class="frise__vignettes">
+        <a class="vignette" href="dinosaures/ichthyosaurus.html">
+          <img src="assets/img/dinos/ichthyosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Ichthyosaurus <small style="color:var(--texte-doux);font-weight:600">−199 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/cryolophosaurus.html">
+          <img src="assets/img/dinos/cryolophosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Cryolophosaurus <small style="color:var(--texte-doux);font-weight:600">−194 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/dilophosaurus.html">
+          <img src="assets/img/dinos/dilophosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Dilophosaurus <small style="color:var(--texte-doux);font-weight:600">−193 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/allosaurus.html">
+          <img src="assets/img/dinos/allosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Allosaurus <small style="color:var(--texte-doux);font-weight:600">−155 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/stegosaurus.html">
+          <img src="assets/img/dinos/stegosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Stegosaurus <small style="color:var(--texte-doux);font-weight:600">−155 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/kentrosaurus.html">
+          <img src="assets/img/dinos/kentrosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Kentrosaurus <small style="color:var(--texte-doux);font-weight:600">−154 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/diplodocus.html">
+          <img src="assets/img/dinos/diplodocus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Diplodocus <small style="color:var(--texte-doux);font-weight:600">−154 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/brachiosaurus.html">
+          <img src="assets/img/dinos/brachiosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Brachiosaurus <small style="color:var(--texte-doux);font-weight:600">−154 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/ceratosaurus.html">
+          <img src="assets/img/dinos/ceratosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Ceratosaurus <small style="color:var(--texte-doux);font-weight:600">−153 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/apatosaurus.html">
+          <img src="assets/img/dinos/apatosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Apatosaurus <small style="color:var(--texte-doux);font-weight:600">−152 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/pterodactylus.html">
+          <img src="assets/img/dinos/pterodactylus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Pterodactylus <small style="color:var(--texte-doux);font-weight:600">−151 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/compsognathus.html">
+          <img src="assets/img/dinos/compsognathus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Compsognathus <small style="color:var(--texte-doux);font-weight:600">−150 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/archaeopteryx.html">
+          <img src="assets/img/dinos/archaeopteryx.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Archaeopteryx <small style="color:var(--texte-doux);font-weight:600">−150 Ma</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+    <div class="frise__jalon" data-anim style="--jalon-couleur:#9e4f8f">
+    <span class="frise__point" aria-hidden="true"></span>
+    <div class="frise__periode">
+      <p class="frise__ages">🌸 de −145 à −66 millions d’années</p>
+      <h2 style="margin-bottom:.3rem"><a href="periodes/cretace.html" style="color:inherit">Le Crétacé</a></h2>
+      <p>Les fleurs apparaissent, les dinosaures se diversifient comme jamais… puis une météorite met fin à leur règne.</p>
+      <p style="font-size:.93rem;color:var(--texte-doux);margin-bottom:0"><strong>Climat :</strong> Doux et chaud, avec des saisons marquées. Pas de glace aux pôles.</p>
+      <div class="frise__vignettes">
+        <a class="vignette" href="dinosaures/baryonyx.html">
+          <img src="assets/img/dinos/baryonyx.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Baryonyx <small style="color:var(--texte-doux);font-weight:600">−130 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/iguanodon.html">
+          <img src="assets/img/dinos/iguanodon.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Iguanodon <small style="color:var(--texte-doux);font-weight:600">−126 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/microraptor.html">
+          <img src="assets/img/dinos/microraptor.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Microraptor <small style="color:var(--texte-doux);font-weight:600">−125 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/deinonychus.html">
+          <img src="assets/img/dinos/deinonychus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Deinonychus <small style="color:var(--texte-doux);font-weight:600">−115 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/spinosaurus.html">
+          <img src="assets/img/dinos/spinosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Spinosaurus <small style="color:var(--texte-doux);font-weight:600">−99 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/giganotosaurus.html">
+          <img src="assets/img/dinos/giganotosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Giganotosaurus <small style="color:var(--texte-doux);font-weight:600">−99 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/argentinosaurus.html">
+          <img src="assets/img/dinos/argentinosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Argentinosaurus <small style="color:var(--texte-doux);font-weight:600">−96 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/parasaurolophus.html">
+          <img src="assets/img/dinos/parasaurolophus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Parasaurolophus <small style="color:var(--texte-doux);font-weight:600">−76 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/velociraptor.html">
+          <img src="assets/img/dinos/velociraptor.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Velociraptor <small style="color:var(--texte-doux);font-weight:600">−75 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/styracosaurus.html">
+          <img src="assets/img/dinos/styracosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Styracosaurus <small style="color:var(--texte-doux);font-weight:600">−75 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/carnotaurus.html">
+          <img src="assets/img/dinos/carnotaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Carnotaurus <small style="color:var(--texte-doux);font-weight:600">−72 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/pachycephalosaurus.html">
+          <img src="assets/img/dinos/pachycephalosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Pachycephalosaurus <small style="color:var(--texte-doux);font-weight:600">−70 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/therizinosaurus.html">
+          <img src="assets/img/dinos/therizinosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Therizinosaurus <small style="color:var(--texte-doux);font-weight:600">−70 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/gallimimus.html">
+          <img src="assets/img/dinos/gallimimus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Gallimimus <small style="color:var(--texte-doux);font-weight:600">−70 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/mosasaurus.html">
+          <img src="assets/img/dinos/mosasaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Mosasaurus <small style="color:var(--texte-doux);font-weight:600">−70 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/tyrannosaurus.html">
+          <img src="assets/img/dinos/tyrannosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>T-rex <small style="color:var(--texte-doux);font-weight:600">−68 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/triceratops.html">
+          <img src="assets/img/dinos/triceratops.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Triceratops <small style="color:var(--texte-doux);font-weight:600">−68 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/ankylosaurus.html">
+          <img src="assets/img/dinos/ankylosaurus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Ankylosaurus <small style="color:var(--texte-doux);font-weight:600">−68 Ma</small></span>
+        </a>
+        <a class="vignette" href="dinosaures/quetzalcoatlus.html">
+          <img src="assets/img/dinos/quetzalcoatlus.svg" alt="" loading="lazy" width="38" height="27">
+          <span>Quetzalcoatlus <small style="color:var(--texte-doux);font-weight:600">−68 Ma</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+    <div class="frise__jalon" data-anim style="--jalon-couleur:#c0392b">
+      <span class="frise__point" aria-hidden="true"></span>
+      <div class="frise__periode">
+        <p class="frise__ages">☄️ il y a 66 millions d’années</p>
+        <h2 style="margin-bottom:.3rem">La grande extinction</h2>
+        <p>Un astéroïde de 10 kilomètres frappe le Mexique. Trois espèces sur quatre disparaissent, dont tous les
+        dinosaures… sauf les oiseaux, qui vivent encore parmi nous aujourd’hui.</p>
+        <p style="margin-bottom:0"><a class="bouton bouton--petit" href="extinction.html">En savoir plus →</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied__grille">
+      <div>
+        <h2>Le Monde des Dinosaures</h2>
+        <p class="pied__mention">L’encyclopédie des dinosaures pour les explorateurs curieux.<br>
+        Un site éducatif gratuit, sans publicité, sans cookie et sans collecte de données.</p>
+        <p class="pied__mention">🦖 Découvre les dinosaures en t’amusant : fiches illustrées, frise du temps, quiz, puzzles et mini-jeux. Un site éducatif gratuit pour les enfants de 7 à 12 ans.</p>
+      </div>
+      <div>
+        <h2>Explorer</h2>
+        <ul>
+          <li><a href="dinosaures.html">Tous les dinosaures</a></li>
+          <li><a href="familles.html">Les familles</a></li>
+          <li><a href="periodes.html">Les périodes</a></li>
+          <li><a href="frise.html">La frise du temps</a></li>
+          <li><a href="extinction.html">La grande extinction</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>S’amuser</h2>
+        <ul>
+          <li><a href="jeux.html">Tous les jeux</a></li>
+          <li><a href="jeux/quiz.html">Le grand quiz</a></li>
+          <li><a href="jeux/vrai-ou-faux.html">Vrai ou faux</a></li>
+          <li><a href="jeux/qui-suis-je.html">Qui suis-je ?</a></li>
+          <li><a href="jeux/memory.html">Memory</a></li>
+          <li><a href="jeux/puzzle.html">Puzzle</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Informations</h2>
+        <ul>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="glossaire.html">Glossaire</a></li>
+          <li><a href="questions.html">Questions fréquentes</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="accessibilite.html">Accessibilité</a></li>
+          <li><a href="plan-du-site.html">Plan du site</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied__bas">
+      <p>© <span data-annee>2026</span> Le Monde des Dinosaures — Illustrations originales, réutilisation libre pour un usage pédagogique.</p>
+      <p><a href="#" data-haut>↑ Haut de page</a></p>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/site.js?v=79defcf0" defer></script>
+</body>
+</html>

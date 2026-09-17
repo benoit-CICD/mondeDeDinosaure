@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Illustration de Apatosaurus" style="--peau:#87694f">
+<title>Apatosaurus</title>
+<style>
+  .corps, .queue-g { transform-box: fill-box; transform-origin: 70% 60%; }
+  .queue-g { animation: respire 4.4s ease-in-out infinite; }
+  .paupiere { animation: cligne 6s ease-in-out infinite; }
+  .bras { transform-box: fill-box; transform-origin: 0% 0%; animation: salue 3.6s ease-in-out infinite; }
+  .aile-gauche, .aile-droite, .aile, .aile2 { transform-box: fill-box; transform-origin: 90% 50%; animation: bat 2.6s ease-in-out infinite; }
+  .aile-droite, .aile2 { transform-origin: 10% 50%; animation-delay: -.2s; }
+  .massue { transform-box: fill-box; transform-origin: 50% 50%; animation: balance 3.2s ease-in-out infinite; }
+  @keyframes respire { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.012,1.022); } }
+  @keyframes cligne { 0%,92%,100% { fill: transparent; } 95% { fill: var(--peau); } }
+  @keyframes salue { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
+  @keyframes bat { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+  @keyframes balance { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<path d="M0 252 Q60 242 130 250 T270 250 T400 246 L400 280 L0 280 Z" fill="#4b3628" opacity=".10"/><ellipse cx="205" cy="256" rx="150" ry="13" fill="#4b3628" opacity=".16"/><g>
+    <path class="" d="M144 186 l-5 58" fill="none" stroke="#4b3628" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M144 186 l-5 58" fill="none" stroke="#4b3628" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="" d="M258 182 l7 62" fill="none" stroke="#4b3628" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M258 182 l7 62" fill="none" stroke="#4b3628" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <g class="queue-g">
+      <path class="cou" d="M292 122 Q316 96 344 78 Q362 66 380 62 L392 60 Q401 66 392 77 L378 81 Q360 89 346 105 Q330 123 318 142 Z" fill="#87694f" stroke="#4b3628" stroke-width="6" stroke-linejoin="round"/>
+      <ellipse cx="386" cy="68" rx="17" ry="12" transform="rotate(-16 386 68)" fill="#87694f" stroke="#4b3628" stroke-width="5"/>
+       <g class="oeil">
+      <circle cx="388" cy="64" r="6.5" fill="#fffdf6" stroke="#4b3628" stroke-width="2.5"/>
+      <circle class="pupille" cx="389.17" cy="64" r="3.38" fill="#2a1f1a"/>
+      <circle cx="391.25" cy="61.27" r="1.43" fill="#fff"/>
+      <ellipse class="paupiere" cx="388" cy="64" rx="8.1" ry="8.1" fill="transparent"/>
+    </g><ellipse cx="378" cy="76" rx="5.5" ry="3.41" fill="#ff8f9c" opacity=".45"/>
+      <path class="corps" d="M10 150 Q60 148 100 144 Q150 136 190 120 Q230 106 268 112 Q302 118 312 144 Q320 170 298 186 Q258 202 208 200 Q148 196 98 178 Q52 162 10 150 Z" fill="#87694f" stroke="#4b3628" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M70 166 Q140 186 208 192 Q262 196 300 182 Q256 208 190 204 Q120 196 70 166 Z" fill="#c8a887" opacity=".5"/>
+    </g>
+    <path class="" d="M172 192 l-7 54" fill="none" stroke="#4b3628" stroke-width="33" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M172 192 l-7 54" fill="none" stroke="#87694f" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="" d="M284 184 l10 60" fill="none" stroke="#4b3628" stroke-width="33" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M284 184 l10 60" fill="none" stroke="#87694f" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

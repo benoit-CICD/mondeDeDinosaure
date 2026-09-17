@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="img" aria-label="Illustration de Triceratops" style="--peau:#c95a3c">
+<title>Triceratops</title>
+<style>
+  .corps, .queue-g { transform-box: fill-box; transform-origin: 70% 60%; }
+  .queue-g { animation: respire 4.4s ease-in-out infinite; }
+  .paupiere { animation: cligne 6s ease-in-out infinite; }
+  .bras { transform-box: fill-box; transform-origin: 0% 0%; animation: salue 3.6s ease-in-out infinite; }
+  .aile-gauche, .aile-droite, .aile, .aile2 { transform-box: fill-box; transform-origin: 90% 50%; animation: bat 2.6s ease-in-out infinite; }
+  .aile-droite, .aile2 { transform-origin: 10% 50%; animation-delay: -.2s; }
+  .massue { transform-box: fill-box; transform-origin: 50% 50%; animation: balance 3.2s ease-in-out infinite; }
+  @keyframes respire { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.012,1.022); } }
+  @keyframes cligne { 0%,92%,100% { fill: transparent; } 95% { fill: var(--peau); } }
+  @keyframes salue { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-11deg); } }
+  @keyframes bat { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+  @keyframes balance { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<path d="M0 252 Q60 242 130 250 T270 250 T400 246 L400 280 L0 280 Z" fill="#6b2716" opacity=".10"/><ellipse cx="205" cy="256" rx="150" ry="13" fill="#6b2716" opacity=".16"/><g>
+    <path class="" d="M160 174 l-6 48" fill="none" stroke="#6b2716" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M160 174 l-6 48" fill="none" stroke="#6b2716" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="" d="M258 172 l8 50" fill="none" stroke="#6b2716" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M258 172 l8 50" fill="none" stroke="#6b2716" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <g class="queue-g">
+      <path class="corps" d="M22 168 Q84 170 128 160 Q174 148 226 150 Q272 152 296 166
+            Q318 178 300 190 Q252 200 190 198 Q110 194 22 168 Z"
+            fill="#c95a3c" stroke="#6b2716" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M62 172 Q126 174 176 170 Q232 166 284 178 Q232 192 166 190 Q104 186 62 172 Z" fill="#f7a97f" opacity=".5"/>
+      <path class="collerette" d="M294 126 Q326 96 358 116 Q384 136 362 174 Q336 204 298 190 Q274 158 294 126 Z"
+            fill="#f7a97f" stroke="#6b2716" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M340 168 Q378 160 392 172 Q384 190 356 192 Q336 188 330 178 Z"
+            fill="#c95a3c" stroke="#6b2716" stroke-width="5.5" stroke-linejoin="round"/>
+      <path d="M332 140 q22 -46 48 -56 q-2 24 -22 64 Z" fill="#f7a97f" stroke="#6b2716" stroke-width="4.5" stroke-linejoin="round"/>
+       <path d="M352 146 q26 -42 54 -48 q-8 24 -30 62 Z" fill="#f7a97f" stroke="#6b2716" stroke-width="4.5" stroke-linejoin="round"/>
+       <path d="M374 168 q18 -20 32 -14 q-8 16 -22 26 Z" fill="#f7a97f" stroke="#6b2716" stroke-width="4.5" stroke-linejoin="round"/>
+      <g class="oeil">
+      <circle cx="344" cy="158" r="7.5" fill="#fffdf6" stroke="#6b2716" stroke-width="2.5"/>
+      <circle class="pupille" cx="345.35" cy="158" r="3.9000000000000004" fill="#2a1f1a"/>
+      <circle cx="347.75" cy="154.85" r="1.65" fill="#fff"/>
+      <ellipse class="paupiere" cx="344" cy="158" rx="9.1" ry="9.1" fill="transparent"/>
+    </g>
+      <ellipse cx="340" cy="176" rx="6" ry="3.7199999999999998" fill="#ff8f9c" opacity=".45"/>
+    </g>
+    <path class="" d="M188 170 l-8 52" fill="none" stroke="#6b2716" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M188 170 l-8 52" fill="none" stroke="#c95a3c" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="" d="M282 170 l10 52" fill="none" stroke="#6b2716" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/><path class="" d="M282 170 l10 52" fill="none" stroke="#c95a3c" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

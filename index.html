@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accueil | Le Monde des Dinosaures</title>
+<meta name="description" content="Découvre les dinosaures en t’amusant : fiches illustrées, frise du temps, quiz, puzzles et mini-jeux. Un site éducatif gratuit pour les enfants de 7 à 12 ans.">
+<meta name="author" content="Le Monde des Dinosaures">
+<meta name="theme-color" content="#1e4d3c">
+<meta property="og:title" content="Accueil">
+<meta property="og:description" content="Découvre les dinosaures en t’amusant : fiches illustrées, frise du temps, quiz, puzzles et mini-jeux. Un site éducatif gratuit pour les enfants de 7 à 12 ans.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Le Monde des Dinosaures">
+<link rel="stylesheet" href="assets/css/style.css?v=c17b3ee0">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+<script>window.BASE = "";</script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="entete__barre">
+    <a class="logo" href="index.html"><svg class="logo__empreinte" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+  <ellipse cx="20" cy="25" rx="9" ry="11" fill="#1e4d3c"/>
+  <ellipse cx="10" cy="13" rx="4" ry="5.5" fill="#1e4d3c" transform="rotate(-18 10 13)"/>
+  <ellipse cx="20" cy="9" rx="4" ry="5.5" fill="#1e4d3c"/>
+  <ellipse cx="30" cy="13" rx="4" ry="5.5" fill="#1e4d3c" transform="rotate(18 30 13)"/>
+</svg><span>Le Monde des<br>Dinosaures</span></a>
+    <button class="nav-bouton" type="button" aria-expanded="false" aria-controls="navigation-principale" aria-label="Menu">
+      <span class="nav-bouton__trait" aria-hidden="true"></span>
+      <span class="nav-bouton__trait" aria-hidden="true"></span>
+      <span class="nav-bouton__trait" aria-hidden="true"></span>
+    </button>
+    <nav class="nav" id="navigation-principale" data-ouvert="false" aria-label="Navigation principale">
+      <ul class="nav__liste">
+        <li><a class="nav__lien" href="index.html" aria-current="page">🏠 Accueil</a></li>
+        <li><details class="nav__groupe">
+          <summary>🦕 Dinosaures</summary>
+          <ul class="nav__sous nav__sous--large">
+            <li><a href="dinosaures.html"><strong>📚 Tous les dinosaures</strong></a></li>
+            <li><a href="familles.html"><strong>🧬 Toutes les familles</strong></a></li>
+            <li class="nav__trait"></li>
+            <li><ul class="nav__familles"><li><a href="familles/theropodes.html">🦖 Théropodes</a></li><li><a href="familles/raptors.html">🪶 Raptors</a></li><li><a href="familles/sauropodes.html">🦕 Sauropodes</a></li><li><a href="familles/sauropodomorphes.html">🌱 Sauropodomorphes primitifs</a></li><li><a href="familles/thyreophores.html">🛡️ Dinosaures blindés</a></li><li><a href="familles/ceratopsiens.html">🐃 Cératopsiens</a></li><li><a href="familles/hadrosaures.html">🎺 Hadrosaures</a></li><li><a href="familles/pachycephalosaures.html">⛑️ Pachycéphalosaures</a></li><li><a href="familles/pterosaures.html">🪁 Ptérosaures</a></li><li><a href="familles/reptiles-marins.html">🌊 Reptiles marins</a></li></ul></li>
+          </ul>
+        </details></li>
+        <li><details class="nav__groupe">
+          <summary>⏳ Périodes</summary>
+          <ul class="nav__sous">
+            <li><a href="periodes.html"><strong>🌍 Les trois périodes</strong></a></li>
+            <li><a href="periodes/trias.html">🌋 Trias <small>(252 à 201 Ma)</small></a></li><li><a href="periodes/jurassique.html">🌿 Jurassique <small>(201 à 145 Ma)</small></a></li><li><a href="periodes/cretace.html">🌸 Crétacé <small>(145 à 66 Ma)</small></a></li>
+            <li><a href="frise.html">📏 La frise du temps</a></li>
+          </ul>
+        </details></li>
+        <li><a class="nav__lien" href="frise.html">📏 Frise</a></li>
+        <li><details class="nav__groupe">
+          <summary>🎮 Jeux</summary>
+          <ul class="nav__sous">
+            <li><a href="jeux.html"><strong>🎯 Tous les jeux</strong></a></li>
+            <li><a href="jeux/quiz.html">❓ Le grand quiz</a></li>
+            <li><a href="jeux/vrai-ou-faux.html">⚖️ Vrai ou faux</a></li>
+            <li><a href="jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></li>
+            <li><a href="jeux/memory.html">🧠 Memory</a></li>
+            <li><a href="jeux/puzzle.html">🧩 Puzzle</a></li>
+          </ul>
+        </details></li>
+        <li><details class="nav__groupe">
+          <summary>📖 Comprendre</summary>
+          <ul class="nav__sous">
+            <li><a href="glossaire.html">🔤 Glossaire</a></li>
+            <li><a href="questions.html">💬 Questions fréquentes</a></li>
+            <li><a href="extinction.html">☄️ La grande extinction</a></li>
+            <li><a href="metier.html">⛏️ Le métier de paléontologue</a></li>
+            <li><a href="a-propos.html">ℹ️ À propos du site</a></li>
+          </ul>
+        </details></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" tabindex="-1">
+
+<section class="heros">
+  <div class="conteneur heros__contenu">
+    <div>
+      <p class="pastille" style="margin-bottom:1rem">🦕 Site éducatif gratuit · 7–12 ans</p>
+      <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
+      <p class="heros__accroche">Explore 36 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 5 jeux pour devenir un vrai paléontologue.</p>
+      <div class="heros__actions">
+        <a class="bouton" href="dinosaures.html">🔍 Explorer les dinosaures</a>
+        <a class="bouton bouton--ambre" href="jeux.html">🎮 Jouer maintenant</a>
+      </div>
+    </div>
+    <div class="heros__scene"><svg viewBox="0 0 520 380" role="img" aria-label="Paysage préhistorique avec un volcan, des fougères et un dinosaure" class="heros__scene-svg">
+  <defs>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd89b"/><stop offset="100%" stop-color="#fdf3e0"/>
+    </linearGradient>
+  </defs>
+  <circle class="soleil" cx="408" cy="86" r="46" fill="#ffc861"/>
+  <circle cx="408" cy="86" r="62" fill="#ffc861" opacity=".22"/>
+
+  <g class="nuage" opacity=".75">
+    <ellipse cx="96" cy="66" rx="40" ry="17" fill="#fff"/>
+    <ellipse cx="122" cy="58" rx="27" ry="19" fill="#fff"/>
+  </g>
+  <g class="nuage nuage--2" opacity=".6">
+    <ellipse cx="300" cy="40" rx="34" ry="13" fill="#fff"/>
+    <ellipse cx="322" cy="34" rx="22" ry="15" fill="#fff"/>
+  </g>
+
+  <path d="M0 250 L118 122 L176 186 L232 132 L340 250 Z" fill="#8a9a8f"/>
+  <path d="M118 122 L86 162 L150 162 Z" fill="#fdf8ee" opacity=".85"/>
+  <path d="M232 132 L206 168 L258 168 Z" fill="#fdf8ee" opacity=".85"/>
+
+  <path d="M360 250 L430 120 L500 250 Z" fill="#7a6a5e"/>
+  <path d="M430 120 L408 152 Q430 166 452 152 Z" fill="#c0392b"/>
+  <ellipse cx="430" cy="118" rx="26" ry="11" fill="#e06b47" opacity=".7" class="soleil"/>
+
+  <path d="M0 250 Q130 228 260 248 T520 244 L520 380 L0 380 Z" fill="#3f8f6c"/>
+  <path d="M0 282 Q140 264 280 282 T520 278 L520 380 L0 380 Z" fill="#2f6f56"/>
+
+  <g class="heros__dino">
+    <g transform="translate(46 150) scale(0.76)">
+      <path d="M34 158 Q104 150 156 136 Q192 126 208 110 Q228 90 258 84 Q280 80 294 66
+               Q306 54 330 52 L372 54 Q384 58 383 72 Q382 84 370 90 L340 92 Q318 94 308 108
+               Q298 124 272 136 Q240 150 206 156 Q166 164 122 162 Q76 160 34 158 Z"
+            fill="#3f7d5c" stroke="#1f4634" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M50 158 Q120 152 176 140 Q206 132 224 152 Q186 162 128 162 Q84 162 50 158 Z" fill="#8fd4a8" opacity=".55"/>
+      <path d="M212 146 q-24 36 -10 64 q6 12 -12 16 l-28 4" fill="none" stroke="#1f4634" stroke-width="29" stroke-linecap="round"/>
+      <path d="M212 146 q-24 36 -10 64 q6 12 -12 16 l-28 4" fill="none" stroke="#3f7d5c" stroke-width="22" stroke-linecap="round"/>
+      <path d="M336 78 L340 87 L344 78 M346 78 L350 87 L354 78 M356 77 L360 86 L364 77" fill="#fffdf6"/>
+      <circle cx="348" cy="66" r="9" fill="#fffdf6" stroke="#1f4634" stroke-width="2.5"/>
+      <circle cx="350" cy="66" r="4.7" fill="#2a1f1a"/>
+      <circle cx="352" cy="62" r="2" fill="#fff"/>
+      <ellipse cx="330" cy="78" rx="8" ry="5" fill="#ff8f9c" opacity=".45"/>
+    </g>
+  </g>
+
+  <g fill="#245a44">
+    <path d="M26 300 q-16 -44 4 -70 q10 30 20 40 q4 -30 16 -44 q10 32 6 74 Z"/>
+    <path d="M470 306 q-18 -40 0 -66 q12 26 22 34 q2 -26 14 -40 q10 30 6 72 Z"/>
+  </g>
+</svg></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <div class="chiffres">
+      <div class="chiffre" data-anim><span class="chiffre__valeur" data-compteur="36">0</span><span class="chiffre__libelle">fiches illustrées</span></div>
+      <div class="chiffre" data-anim data-delai="1"><span class="chiffre__valeur" data-compteur="186">0</span><span class="chiffre__libelle">millions d’années</span></div>
+      <div class="chiffre" data-anim data-delai="2"><span class="chiffre__valeur" data-compteur="34">0</span><span class="chiffre__libelle">questions de quiz</span></div>
+      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="5">0</span><span class="chiffre__libelle">mini-jeux</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--doux">
+  <div class="conteneur">
+    <h2 class="centre" data-anim>⭐ Les stars du Mésozoïque</h2>
+    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Les dinosaures les plus célèbres, ceux que tout le monde connaît. Clique sur une carte pour découvrir sa fiche complète.</p>
+    <div class="grille" style="margin-top:2rem">
+      <a class="carte" href="dinosaures/tyrannosaurus.html" data-slug="tyrannosaurus"
+  data-periode="cretace" data-famille="theropodes" data-regime="carnivore"
+  data-recherche="tyrannosaurus rex t-rex « le roi des lezards tyrans » theropodes cretace carnivore cretace superieur amerique du nord le plus celebre de tous : 12 metres, 8 tonnes et la morsure la plus puissante de l’histoire." data-anim data-delai="0">
+  <span class="carte__media" style="--carte-teinte:#8fd4a8">
+    <img src="assets/img/dinos/tyrannosaurus.svg" alt="Illustration de Tyrannosaurus rex" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Tyrannosaurus rex</span>
+    <span class="carte__texte">Le plus célèbre de tous : 12 mètres, 8 tonnes et la morsure la plus puissante de l’histoire.</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--carnivore">🥩 Carnivore</span>
+      
+    </span>
+  </span>
+</a>
+      <a class="carte" href="dinosaures/triceratops.html" data-slug="triceratops"
+  data-periode="cretace" data-famille="ceratopsiens" data-regime="herbivore"
+  data-recherche="triceratops  « la face a trois cornes » ceratopsiens cretace herbivore cretace superieur amerique du nord trois cornes, une collerette geante et un caractere bien trempe." data-anim data-delai="1">
+  <span class="carte__media" style="--carte-teinte:#f7a97f">
+    <img src="assets/img/dinos/triceratops.svg" alt="Illustration de Triceratops" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Triceratops</span>
+    <span class="carte__texte">Trois cornes, une collerette géante et un caractère bien trempé.</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--herbivore">🌿 Herbivore</span>
+      
+    </span>
+  </span>
+</a>
+      <a class="carte" href="dinosaures/velociraptor.html" data-slug="velociraptor"
+  data-periode="cretace" data-famille="raptors" data-regime="carnivore"
+  data-recherche="velociraptor  « le voleur rapide » raptors cretace carnivore cretace superieur asie attention : le vrai velociraptor avait la taille d’un dindon… et des plumes !" data-anim data-delai="2">
+  <span class="carte__media" style="--carte-teinte:#f8c48c">
+    <img src="assets/img/dinos/velociraptor.svg" alt="Illustration de Velociraptor" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Velociraptor</span>
+    <span class="carte__texte">Attention : le vrai Vélociraptor avait la taille d’un dindon… et des plumes !</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--carnivore">🥩 Carnivore</span>
+      
+    </span>
+  </span>
+</a>
+      <a class="carte" href="dinosaures/spinosaurus.html" data-slug="spinosaurus"
+  data-periode="cretace" data-famille="theropodes" data-regime="piscivore"
+  data-recherche="spinosaurus  « le lezard a epines » theropodes cretace piscivore cretace superieur afrique le plus grand carnivore terrestre de tous les temps… et il vivait dans l’eau !" data-anim data-delai="3">
+  <span class="carte__media" style="--carte-teinte:#8cc7ec">
+    <img src="assets/img/dinos/spinosaurus.svg" alt="Illustration de Spinosaurus" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Spinosaurus</span>
+    <span class="carte__texte">Le plus grand carnivore terrestre de tous les temps… et il vivait dans l’eau !</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--piscivore">🐟 Piscivore</span>
+      
+    </span>
+  </span>
+</a>
+      <a class="carte" href="dinosaures/ankylosaurus.html" data-slug="ankylosaurus"
+  data-periode="cretace" data-famille="thyreophores" data-regime="herbivore"
+  data-recherche="ankylosaurus  « le lezard soude » dinosaures blindes cretace herbivore cretace superieur amerique du nord un char d’assaut vivant, avec une massue au bout de la queue." data-anim data-delai="4">
+  <span class="carte__media" style="--carte-teinte:#c8dc8c">
+    <img src="assets/img/dinos/ankylosaurus.svg" alt="Illustration de Ankylosaurus" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Ankylosaurus</span>
+    <span class="carte__texte">Un char d’assaut vivant, avec une massue au bout de la queue.</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--herbivore">🌿 Herbivore</span>
+      
+    </span>
+  </span>
+</a>
+      <a class="carte" href="dinosaures/parasaurolophus.html" data-slug="parasaurolophus"
+  data-periode="cretace" data-famille="hadrosaures" data-regime="herbivore"
+  data-recherche="parasaurolophus  « pres du lezard a crete » hadrosaures cretace herbivore cretace superieur amerique du nord le trombone des dinosaures : sa crete servait de trompette !" data-anim data-delai="5">
+  <span class="carte__media" style="--carte-teinte:#fbcb8f">
+    <img src="assets/img/dinos/parasaurolophus.svg" alt="Illustration de Parasaurolophus" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Parasaurolophus</span>
+    <span class="carte__texte">Le trombone des dinosaures : sa crête servait de trompette !</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--herbivore">🌿 Herbivore</span>
+      
+    </span>
+  </span>
+</a>
+      <a class="carte" href="dinosaures/argentinosaurus.html" data-slug="argentinosaurus"
+  data-periode="cretace" data-famille="sauropodes" data-regime="herbivore"
+  data-recherche="argentinosaurus  « le lezard d’argentine » sauropodes cretace herbivore cretace superieur amerique du sud le plus grand animal terrestre de tous les temps : 35 metres et 70 tonnes !" data-anim data-delai="0">
+  <span class="carte__media" style="--carte-teinte:#aee0c4">
+    <img src="assets/img/dinos/argentinosaurus.svg" alt="Illustration de Argentinosaurus" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Argentinosaurus</span>
+    <span class="carte__texte">Le plus grand animal terrestre de tous les temps : 35 mètres et 70 tonnes !</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--herbivore">🌿 Herbivore</span>
+      
+    </span>
+  </span>
+</a>
+    </div>
+    <p class="centre" style="margin-top:2rem"><a class="bouton" href="dinosaures.html">Voir les 36 dinosaures →</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <h2 class="centre" data-anim>⏳ Voyage dans le temps</h2>
+    <p class="centre" data-anim style="max-width:62ch;margin-inline:auto">Les dinosaures n’ont pas tous vécu en même temps ! Il s’est écoulé plus de temps entre le Stégosaure et le T-rex qu’entre le T-rex et toi.</p>
+    <div class="grille grille--large" style="margin-top:2rem">
+      <a class="carte" href="periodes/trias.html" data-anim data-delai="0">
+        <span class="carte__media" style="--carte-teinte:#c86b3c33;padding:1.6rem;text-align:center;font-size:3rem" aria-hidden="true">🌋</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.3rem">Trias</span>
+          <span class="pastille pastille--trias">252 à 201 millions d’années</span>
+          <span class="carte__texte">La Terre sort de la plus grande catastrophe de son histoire. Les premiers dinosaures apparaissent, encore petits et discrets.</span>
+          <span class="carte__pastilles"><span class="pastille">4 créatures</span></span>
+        </span>
+      </a>
+      <a class="carte" href="periodes/jurassique.html" data-anim data-delai="1">
+        <span class="carte__media" style="--carte-teinte:#3f8f6c33;padding:1.6rem;text-align:center;font-size:3rem" aria-hidden="true">🌿</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.3rem">Jurassique</span>
+          <span class="pastille pastille--jurassique">201 à 145 millions d’années</span>
+          <span class="carte__texte">L’âge des géants. Les sauropodes atteignent des tailles folles et les premiers oiseaux prennent leur envol.</span>
+          <span class="carte__pastilles"><span class="pastille">13 créatures</span></span>
+        </span>
+      </a>
+      <a class="carte" href="periodes/cretace.html" data-anim data-delai="2">
+        <span class="carte__media" style="--carte-teinte:#9e4f8f33;padding:1.6rem;text-align:center;font-size:3rem" aria-hidden="true">🌸</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.3rem">Crétacé</span>
+          <span class="pastille pastille--cretace">145 à 66 millions d’années</span>
+          <span class="carte__texte">Les fleurs apparaissent, les dinosaures se diversifient comme jamais… puis une météorite met fin à leur règne.</span>
+          <span class="carte__pastilles"><span class="pastille">19 créatures</span></span>
+        </span>
+      </a>
+    </div>
+    <p class="centre" style="margin-top:2rem"><a class="bouton bouton--secondaire" href="frise.html">📏 Voir la frise du temps</a></p>
+  </div>
+</section>
+
+<section class="section section--doux">
+  <div class="conteneur">
+    <h2 class="centre" data-anim>🎮 Joue et apprends</h2>
+    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Cinq jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
+    <div class="grille" style="margin-top:2rem">
+      <a class="carte" href="jeux/quiz.html" data-anim data-delai="0">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">❓</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Le grand quiz</span>
+          <span class="carte__texte">10 questions tirées au hasard parmi 34. Trois niveaux de difficulté.</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/vrai-ou-faux.html" data-anim data-delai="1">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">⚖️</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Vrai ou faux</span>
+          <span class="carte__texte">Démêle le vrai du faux sur les dinosaures. Attention aux pièges !</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/qui-suis-je.html" data-anim data-delai="2">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🔍</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Qui suis-je ?</span>
+          <span class="carte__texte">Devine le dinosaure caché grâce à des indices. Moins tu en demandes, plus tu marques de points.</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/memory.html" data-anim data-delai="3">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🧠</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Memory</span>
+          <span class="carte__texte">Retrouve les 8 paires de dinosaures le plus vite possible.</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/puzzle.html" data-anim data-delai="4">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🧩</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Puzzle</span>
+          <span class="carte__texte">Reconstitue l’illustration d’un dinosaure, en 9 ou 16 morceaux.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <h2 class="centre" data-anim>🏆 Les records</h2>
+    <div class="grille grille--large" style="margin-top:2rem">
+      <a class="carte" href="dinosaures/argentinosaurus.html" data-anim>
+        <span class="carte__media" style="--carte-teinte:#aee0c4"><img src="assets/img/dinos/argentinosaurus.svg" alt="" width="400" height="280" loading="lazy"></span>
+        <span class="carte__corps"><span class="pastille">🥇 Le plus grand</span><span class="carte__titre" style="font-weight:800;font-size:1.16rem">Argentinosaurus</span><span class="carte__texte">35 mètres de long, soit aussi long qu’un terrain de basket.</span></span>
+      </a>
+      <a class="carte" href="dinosaures/archaeopteryx.html" data-anim data-delai="1">
+        <span class="carte__media" style="--carte-teinte:#8ad4e3"><img src="assets/img/dinos/archaeopteryx.svg" alt="" width="400" height="280" loading="lazy"></span>
+        <span class="carte__corps"><span class="pastille">🐁 Le plus petit</span><span class="carte__titre" style="font-weight:800;font-size:1.16rem">Archaeopteryx</span><span class="carte__texte">aussi grand qu’un corbeau : à peine 1 kilo !</span></span>
+      </a>
+      <a class="carte" href="dinosaures/quetzalcoatlus.html" data-anim data-delai="2">
+        <span class="carte__media" style="--carte-teinte:#f5a8b4"><img src="assets/img/dinos/quetzalcoatlus.svg" alt="" width="400" height="280" loading="lazy"></span>
+        <span class="carte__corps"><span class="pastille">💨 Le plus rapide</span><span class="carte__titre" style="font-weight:800;font-size:1.16rem">Quetzalcoatlus</span><span class="carte__texte">Jusqu’à 90 km/h en pointe.</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--doux">
+  <div class="conteneur">
+    <div class="encadre encadre--attention" data-anim style="max-width:70ch;margin-inline:auto">
+      <h2 class="encadre__titre">⚠️ Le piège le plus courant</h2>
+      <p>Le Ptérodactyle et le Mosasaure ne sont <strong>pas</strong> des dinosaures ! Ce sont des cousins : un reptile volant et un reptile marin. Sur ce site, 4 créatures portent l’étiquette « Pas un dinosaure » pour t’aider à ne plus te tromper.</p>
+      <p style="margin-bottom:0"><a class="bouton bouton--petit" href="familles.html">🧬 Comprendre les familles</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur centre">
+    <h2 data-anim>Prêt à devenir paléontologue ?</h2>
+    <p data-anim style="max-width:56ch;margin-inline:auto">Commence par le glossaire pour apprendre les mots des scientifiques, puis lance-toi dans le grand quiz.</p>
+    <p data-anim>
+      <a class="bouton" href="jeux/quiz.html">❓ Commencer le quiz</a>
+      <a class="bouton bouton--secondaire" href="glossaire.html">🔤 Voir le glossaire</a>
+    </p>
+  </div>
+</section>
+</main>
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied__grille">
+      <div>
+        <h2>Le Monde des Dinosaures</h2>
+        <p class="pied__mention">L’encyclopédie des dinosaures pour les explorateurs curieux.<br>
+        Un site éducatif gratuit, sans publicité, sans cookie et sans collecte de données.</p>
+        <p class="pied__mention">🦖 Découvre les dinosaures en t’amusant : fiches illustrées, frise du temps, quiz, puzzles et mini-jeux. Un site éducatif gratuit pour les enfants de 7 à 12 ans.</p>
+      </div>
+      <div>
+        <h2>Explorer</h2>
+        <ul>
+          <li><a href="dinosaures.html">Tous les dinosaures</a></li>
+          <li><a href="familles.html">Les familles</a></li>
+          <li><a href="periodes.html">Les périodes</a></li>
+          <li><a href="frise.html">La frise du temps</a></li>
+          <li><a href="extinction.html">La grande extinction</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>S’amuser</h2>
+        <ul>
+          <li><a href="jeux.html">Tous les jeux</a></li>
+          <li><a href="jeux/quiz.html">Le grand quiz</a></li>
+          <li><a href="jeux/vrai-ou-faux.html">Vrai ou faux</a></li>
+          <li><a href="jeux/qui-suis-je.html">Qui suis-je ?</a></li>
+          <li><a href="jeux/memory.html">Memory</a></li>
+          <li><a href="jeux/puzzle.html">Puzzle</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Informations</h2>
+        <ul>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="glossaire.html">Glossaire</a></li>
+          <li><a href="questions.html">Questions fréquentes</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="accessibilite.html">Accessibilité</a></li>
+          <li><a href="plan-du-site.html">Plan du site</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied__bas">
+      <p>© <span data-annee>2026</span> Le Monde des Dinosaures — Illustrations originales, réutilisation libre pour un usage pédagogique.</p>
+      <p><a href="#" data-haut>↑ Haut de page</a></p>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/site.js?v=79defcf0" defer></script>
+</body>
+</html>
