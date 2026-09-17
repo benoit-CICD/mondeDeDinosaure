@@ -150,10 +150,57 @@ hebergeur: "…",  // nom et adresse de l’hébergeur
 Certains libellés (adresse postale, directeur de la publication, dates) sont écrits directement
 dans `tools/pages/infos.mjs`.
 
-Penser également à remplacer `BASE_URL` dans `tools/build.mjs` — cette constante alimente
-`sitemap.xml` et `robots.txt`.
+L'hébergeur est déjà renseigné (GitHub, Inc.) : vérifier son adresse sur <https://github.com/contact>
+au moment de la publication, ces informations peuvent changer.
+
+L'adresse publique du site se règle avec `url` et `racine` dans le même fichier — voir
+*Déploiement sur GitHub Pages* plus bas.
 
 ---
+
+## Déploiement sur GitHub Pages
+
+Le site étant entièrement statique et les pages HTML versionnées, GitHub Pages n'a rien à construire :
+il sert les fichiers tels quels.
+
+1. **Settings → Pages**
+2. *Source* : **Deploy from a branch**
+3. *Branch* : `main`, dossier `/ (root)` → **Save**
+
+Environ une minute plus tard, le site est en ligne. Chaque `git push` sur `main` le republie.
+
+### Configuration liée à l'adresse
+
+Trois valeurs dans `tools/data/site.mjs` dépendent de l'endroit où le site est publié :
+
+```js
+url:    "https://benoit-cicd.github.io/mondeDeDinosaure",  // sitemap.xml, robots.txt
+racine: "/mondeDeDinosaure/",                              // chemins de la page 404
+```
+
+`racine` mérite une explication : GitHub Pages affiche `404.html` pour **n'importe quelle** URL
+inexistante, y compris dans un sous-dossier (`/dinosaures/xxx.html`). Des chemins relatifs y
+pointeraient à côté et la page s'afficherait sans feuille de style. Ses liens et ses ressources sont
+donc absolus, construits à partir de `racine`.
+
+En cas de changement d'adresse (domaine personnalisé, autre hébergeur), mettre `racine` à `"/"` et
+ajuster `url`, puis relancer le build. Le build vérifie que tous les chemins absolus partent bien de
+`racine` et visent un fichier existant.
+
+### Tester le sous-dossier en local
+
+Servir le dossier **parent** reproduit la structure de GitHub Pages :
+
+```bash
+cd .. && python3 -m http.server 4173
+```
+
+puis ouvrir `http://localhost:4173/mondeDeDinosaure/404.html`.
+
+### Le fichier .nojekyll
+
+Sa présence à la racine désactive le traitement Jekyll de GitHub, qui ignorerait sinon certains
+fichiers et ralentirait le déploiement. Ne pas le supprimer.
 
 ## Sources et exactitude
 

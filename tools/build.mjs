@@ -72,7 +72,7 @@ const pages = [
 pages.forEach((p) => ecrire(p.chemin, p.html));
 
 /* ---------- 4. Fichiers pour les moteurs de recherche ---------- */
-const BASE_URL = "https://exemple.fr"; // à remplacer par l'adresse réelle du site
+const BASE_URL = site.url.replace(/\/$/, "");
 const aujourdhui = new Date().toISOString().slice(0, 10);
 
 ecrire(
@@ -130,7 +130,20 @@ pages.forEach((p) => {
   const liens = [...p.html.matchAll(/(?:href|src)="([^"#][^"]*)"/g)].map((m) => m[1]);
 
   liens.forEach((lien) => {
-    if (/^(https?:|mailto:|data:|#|\/)/.test(lien)) return;
+    /* Les chemins absolus (page 404) doivent partir de site.racine et viser un
+       fichier réel : sans ce contrôle, une 404 cassée passerait inaperçue. */
+    if (lien.startsWith("/")) {
+      if (!lien.startsWith(site.racine)) {
+        erreurs.push(`${p.chemin} → chemin absolu hors de la racine « ${site.racine} » : ${lien}`);
+        return;
+      }
+      const relatif = lien.slice(site.racine.length).split("?")[0];
+      if (relatif && !fichiersGeneres.has(relatif) && !cheminsAssets.has(relatif)) {
+        erreurs.push(`${p.chemin} → chemin absolu cassé : ${lien}`);
+      }
+      return;
+    }
+    if (/^(https?:|mailto:|data:|#)/.test(lien)) return;
     const cible = lien.startsWith("../")
       ? lien.slice(3)
       : dossier + lien;

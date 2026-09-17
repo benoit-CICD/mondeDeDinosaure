@@ -6,7 +6,24 @@ export const site = {
   lang: "fr",
   auteur: "[À COMPLÉTER : nom de l’éditeur]",
   email: "[À COMPLÉTER : adresse e-mail de contact]",
-  hebergeur: "[À COMPLÉTER : nom et adresse de l’hébergeur]",
+
+  // Hébergeur, à faire figurer dans les mentions légales (obligation LCEN).
+  // Vérifier l'adresse sur https://github.com/contact au moment de la publication.
+  hebergeur: "GitHub, Inc.",
+  hebergeurAdresse: "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
+  hebergeurContact: "https://support.github.com",
+
+  // Adresse publique du site. Sert au sitemap et à robots.txt.
+  url: "https://benoit-cicd.github.io/mondeDeDinosaure",
+
+  // Chemin de base du site sur le serveur.
+  //   "/mondeDeDinosaure/" → GitHub Pages dans un sous-dossier (cas actuel)
+  //   "/"                  → site à la racine d'un domaine
+  // Utilisé uniquement par la page 404 : celle-ci peut être servie depuis
+  // n'importe quelle URL inexistante, y compris un sous-dossier, donc ses
+  // chemins (feuille de style, scripts, liens) doivent être absolus.
+  racine: "/mondeDeDinosaure/",
+
   anneeCreation: 2026,
 };
 

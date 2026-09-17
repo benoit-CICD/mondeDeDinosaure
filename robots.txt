@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://exemple.fr/sitemap.xml
+Sitemap: https://benoit-cicd.github.io/mondeDeDinosaure/sitemap.xml

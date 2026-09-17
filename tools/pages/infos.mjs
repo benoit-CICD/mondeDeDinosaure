@@ -287,10 +287,12 @@ export function pagesInfos() {
 
     <h2>2. Hébergement</h2>
     <p>
-      <strong>Hébergeur :</strong> ${aCompleter(site.hebergeur)}<br>
-      <strong>Adresse :</strong> ${aCompleter("[À COMPLÉTER : adresse de l’hébergeur]")}<br>
-      <strong>Téléphone :</strong> ${aCompleter("[À COMPLÉTER : téléphone de l’hébergeur]")}
+      <strong>Hébergeur :</strong> ${esc(site.hebergeur)}<br>
+      <strong>Adresse :</strong> ${esc(site.hebergeurAdresse)}<br>
+      <strong>Contact :</strong> <a href="${esc(site.hebergeurContact)}" rel="nofollow noopener" target="_blank">${esc(site.hebergeurContact)}</a>
     </p>
+    <p>Le site est hébergé sur GitHub Pages. Les données de connexion éventuellement conservées par
+    l’hébergeur relèvent de sa propre politique de confidentialité.</p>
 
     <h2>3. Propriété intellectuelle</h2>
     <p>Les <strong>textes</strong> et les <strong>illustrations vectorielles</strong> de ce site sont des créations
@@ -598,11 +600,17 @@ export function pagePlan() {
 
 /* ---------- Page 404 ---------- */
 export function page404() {
+  /* Cette page est affichée pour n'importe quelle URL inexistante, y compris
+     dans un sous-dossier (/dinosaures/xxx.html). Des chemins relatifs y
+     pointeraient à côté : feuille de style, scripts et liens sont donc absolus,
+     à partir de site.racine. */
+  const r = site.racine;
   return {
     chemin: "404.html",
     html: page({
       titre: "Page introuvable",
       description: "Cette page n’existe pas ou a disparu, comme les dinosaures il y a 66 millions d’années.",
+      base: r,
       corps: `
 <div class="conteneur section centre">
   <p style="font-size:5rem;margin:0" aria-hidden="true">🦴</p>
@@ -610,8 +618,9 @@ export function page404() {
   <p style="max-width:52ch;margin-inline:auto">Elle a sans doute été emportée par l’astéroïde, il y a 66 millions d’années.
   Mais rassure-toi : il reste ${dinos.length} créatures à explorer.</p>
   <p>
-    <a class="bouton" href="/index.html">🏠 Retour à l’accueil</a>
-    <a class="bouton bouton--secondaire" href="/dinosaures.html">🦕 Voir les dinosaures</a>
+    <a class="bouton" href="${r}index.html">🏠 Retour à l’accueil</a>
+    <a class="bouton bouton--secondaire" href="${r}dinosaures.html">🦕 Voir les dinosaures</a>
+    <a class="bouton bouton--secondaire" href="${r}plan-du-site.html">🗺️ Plan du site</a>
   </p>
 </div>`,
     }),
