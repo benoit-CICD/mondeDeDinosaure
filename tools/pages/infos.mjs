@@ -2,7 +2,8 @@
 
 import { dinos } from "../data/dinos.mjs";
 import { site, glossaire, faq, periodes, familles } from "../data/site.mjs";
-import { page, esc } from "../templates.mjs";
+import { page, esc, aUnePhoto } from "../templates.mjs";
+import { photos } from "../data/photos.mjs";
 
 /** Met en évidence les informations que l'éditeur doit renseigner. */
 const aCompleter = (valeur) =>
@@ -227,11 +228,15 @@ export function pagesInfos() {
     et des reptiles marins. Ils vivaient à la même époque et sont des cousins des dinosaures, mais ils n’en font pas partie.
     Cette confusion est tellement fréquente qu’il nous a semblé important de les présenter, justement pour l’éviter.</p>
 
-    <h2>Les illustrations</h2>
-    <p>Toutes les illustrations du site sont des dessins vectoriels originaux, créés spécialement pour ce projet.
-    Ce sont des représentations stylisées, pensées pour être jolies et reconnaissables : elles ne prétendent pas
-    être des reconstitutions scientifiques exactes.</p>
-    <p>Elles peuvent être réutilisées librement dans un cadre pédagogique (école, exposé, atelier).</p>
+    <h2>Les images</h2>
+    <p>Les fiches, le catalogue et les pages de famille sont illustrés par des <strong>reconstitutions
+    scientifiques et des photographies</strong> issues de <a href="https://commons.wikimedia.org" rel="nofollow noopener" target="_blank">Wikimedia Commons</a>,
+    toutes sous licence libre. Leurs auteurs sont crédités sur la <a href="credits.html">page des crédits</a>
+    ainsi que sous chaque image.</p>
+    <p>La page d’accueil et les mini-jeux utilisent des <strong>dessins vectoriels originaux</strong>, créés
+    spécialement pour ce projet. Ce sont des représentations stylisées, pensées pour être reconnaissables :
+    elles ne prétendent pas être des reconstitutions exactes. Elles peuvent être réutilisées librement dans un
+    cadre pédagogique (école, exposé, atelier).</p>
 
     <h2>Les sources</h2>
     <p>Les informations proviennent d’ouvrages de vulgarisation et de ressources de musées d’histoire naturelle.
@@ -288,11 +293,18 @@ export function pagesInfos() {
     </p>
 
     <h2>3. Propriété intellectuelle</h2>
-    <p>L’ensemble des textes et des illustrations de ce site est une création originale. Les illustrations vectorielles
-    ont été réalisées spécifiquement pour ce projet.</p>
-    <p>Les contenus de ce site peuvent être reproduits et réutilisés librement dans un <strong>cadre pédagogique
-    non commercial</strong> (école, exposé, atelier, médiathèque), à condition de citer le site comme source.</p>
-    <p>Toute réutilisation à des fins commerciales nécessite une autorisation écrite préalable de l’éditeur.</p>
+    <p>Les <strong>textes</strong> et les <strong>illustrations vectorielles</strong> de ce site sont des créations
+    originales réalisées spécifiquement pour ce projet. Ils peuvent être reproduits et réutilisés librement dans un
+    <strong>cadre pédagogique non commercial</strong> (école, exposé, atelier, médiathèque), à condition de citer le
+    site comme source. Toute réutilisation à des fins commerciales nécessite une autorisation écrite préalable de
+    l’éditeur.</p>
+    <p>Les <strong>photographies et reconstitutions</strong> qui illustrent les fiches proviennent de Wikimedia Commons
+    et restent la propriété de leurs auteurs respectifs. Elles sont diffusées sous licences libres (domaine public,
+    CC0, CC BY ou CC BY-SA) et chaque auteur est crédité sous l’image concernée ainsi que sur la page
+    <a href="credits.html">Crédits des images</a>. Leur réutilisation est soumise aux conditions de leur licence
+    d’origine, et non à celles du présent site.</p>
+    <p>Tout auteur souhaitant une correction d’attribution ou le retrait d’une image peut en faire la demande à
+    l’adresse de contact indiquée ci-dessous.</p>
 
     <h2>4. Contenu scientifique</h2>
     <p>Les informations publiées sont fournies à titre pédagogique et sont volontairement simplifiées pour un jeune public.
@@ -300,7 +312,10 @@ export function pagesInfos() {
     L’éditeur ne saurait garantir l’exactitude absolue ni l’exhaustivité de ces informations.</p>
 
     <h2>5. Liens externes</h2>
-    <p>Ce site ne contient aucun lien vers des sites tiers, ni aucune ressource chargée depuis un serveur externe.</p>
+    <p>Ce site ne charge aucune ressource depuis un serveur externe : les images sont hébergées avec le site.
+    Seules les pages de crédits, de mentions légales et « à propos » contiennent des liens sortants vers Wikimedia
+    Commons et vers les textes des licences Creative Commons, afin de respecter les obligations d’attribution.
+    Ces liens ne s’activent que si le visiteur clique dessus.</p>
 
     <h2>6. Responsabilité</h2>
     <p>L’éditeur s’efforce d’assurer l’exactitude des informations diffusées et la disponibilité du site,
@@ -355,9 +370,12 @@ export function pagesInfos() {
     rechargée ou fermée.</p>
 
     <h2>4. Aucune ressource tierce</h2>
-    <p>Toutes les ressources du site (feuilles de style, scripts, illustrations, polices) sont hébergées sur le même
-    serveur que les pages. Aucune police ni bibliothèque n’est appelée depuis un service externe, ce qui signifie
-    qu’aucune adresse IP n’est transmise à un tiers pendant la navigation.</p>
+    <p>Toutes les ressources du site (feuilles de style, scripts, images, polices) sont hébergées sur le même
+    serveur que les pages. Les photographies issues de Wikimedia Commons ont été <strong>copiées sur ce serveur</strong>
+    et ne sont pas appelées à distance. Aucune police ni bibliothèque n’est chargée depuis un service externe :
+    aucune adresse IP n’est donc transmise à un tiers pendant la navigation.</p>
+    <p>Les pages légales comportent des liens cliquables vers Wikimedia Commons, exigés par les licences des images.
+    Aucune donnée n’est transmise tant que le visiteur ne clique pas sur ces liens.</p>
 
     <h2>5. Journaux du serveur</h2>
     <p>Comme tout site web, l’hébergeur peut conserver des journaux techniques de connexion (adresse IP, date, page demandée)
@@ -398,6 +416,7 @@ export function pagesInfos() {
       <li>Une navigation entièrement utilisable au clavier, avec un indicateur de focus bien visible.</li>
       <li>Des zones tactiles d’au moins 44 × 44 pixels, adaptées aux doigts des enfants sur tablette.</li>
       <li>Des textes alternatifs sur toutes les illustrations informatives.</li>
+      <li>Les crédits d’image sont du texte sélectionnable, pas une image, et leurs liens sont explicites.</li>
       <li>Une structure de titres cohérente (un seul <code>h1</code> par page, puis h2 et h3).</li>
       <li>Des contrastes de couleurs conformes au niveau AA des règles WCAG 2.1.</li>
       <li>Le respect du réglage système « réduire les animations » : toutes les animations sont alors désactivées.</li>
@@ -424,6 +443,78 @@ export function pagesInfos() {
   </div>
 </div>`,
       filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Accessibilité" }],
+    }),
+  });
+
+  /* ---------- Crédits des images ---------- */
+  const lignes = dinos
+    .filter((d) => photos[d.slug])
+    .map((d) => {
+      const p = photos[d.slug];
+      const licence = p.licenceUrl
+        ? `<a href="${esc(p.licenceUrl)}" rel="license nofollow noopener" target="_blank">${esc(p.licence)}</a>`
+        : esc(p.licence);
+      return `<tr>
+      <td><a href="dinosaures/${d.slug}.html">${esc(d.nom)}</a></td>
+      <td><a href="${esc(p.page)}" rel="nofollow noopener" target="_blank">${esc(p.fichier)}</a></td>
+      <td>${esc(p.auteur)}</td>
+      <td>${licence}</td>
+    </tr>`;
+    })
+    .join("\n    ");
+
+  const parLicence = {};
+  Object.values(photos).forEach((p) => { parLicence[p.licence] = (parLicence[p.licence] || 0) + 1; });
+
+  pages.push({
+    chemin: "credits.html",
+    html: page({
+      titre: "Crédits des images",
+      description: "Auteurs, licences et sources de toutes les photographies et reconstitutions utilisées sur le site, conformément aux licences Creative Commons.",
+      corps: `
+<div class="conteneur section">
+  <h1>🖼️ Crédits des images</h1>
+  <div class="prose" style="max-width:74ch">
+    <p>Les <strong>reconstitutions et photographies</strong> qui illustrent les fiches, le catalogue et
+    les pages de famille proviennent de <strong>Wikimedia Commons</strong> et sont publiées sous licence libre.
+    Chaque auteur est crédité ci-dessous, comme leurs licences l’exigent.</p>
+
+    <p>Les <strong>illustrations vectorielles</strong> de la page d’accueil et des mini-jeux (memory, puzzle,
+    « qui suis-je ? ») sont en revanche des créations originales réalisées pour ce site.</p>
+
+    <div class="encadre">
+      <h2 class="encadre__titre">📋 Licences utilisées</h2>
+      <ul style="margin-bottom:0">
+        ${Object.entries(parLicence).sort((a, b) => b[1] - a[1])
+          .map(([l, n]) => `<li><strong>${esc(l)}</strong> — ${n} image${n > 1 ? "s" : ""}</li>`).join("\n        ")}
+      </ul>
+    </div>
+
+    <p>Les licences <em>CC BY</em> et <em>CC BY-SA</em> autorisent la réutilisation, y compris modifiée,
+    à condition de citer l’auteur et d’indiquer la licence. Les images ont été redimensionnées et converties
+    au format WebP pour alléger les pages ; aucune autre modification n’a été apportée.</p>
+
+    <p>Si vous êtes l’auteur d’une de ces images et souhaitez une correction d’attribution ou un retrait,
+    écrivez à ${aCompleter(site.email)}.</p>
+  </div>
+
+  <div style="overflow-x:auto;margin-top:2rem">
+    <table class="tableau-info" style="min-width:640px">
+      <thead>
+        <tr>
+          <th scope="col" style="width:auto">Créature</th>
+          <th scope="col" style="width:auto">Fichier source</th>
+          <th scope="col" style="width:auto">Auteur</th>
+          <th scope="col" style="width:auto">Licence</th>
+        </tr>
+      </thead>
+      <tbody>
+    ${lignes}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+      filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Crédits des images" }],
     }),
   });
 
@@ -470,6 +561,7 @@ export function pagePlan() {
         ${lien("mentions-legales.html", "Mentions légales")}
         ${lien("confidentialite.html", "Politique de confidentialité")}
         ${lien("accessibilite.html", "Accessibilité")}
+        ${lien("credits.html", "Crédits des images")}
         ${lien("plan-du-site.html", "Plan du site")}
       </ul>
     </div>

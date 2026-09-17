@@ -6,11 +6,12 @@
 // Aucune dépendance externe. Les fichiers produits sont versionnés :
 // le site fonctionne ensuite sans Node, en ouvrant simplement index.html.
 
-import { writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
+import { writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { dinos } from "./data/dinos.mjs";
+import { photos } from "./data/photos.mjs";
 import { site, periodes, familles } from "./data/site.mjs";
 import { illustration } from "./svg.mjs";
 import { pageAccueil } from "./pages/accueil.mjs";
@@ -121,6 +122,7 @@ const cheminsAssets = new Set([
   "assets/img/favicon.svg",
   ...dinos.map((d) => `assets/img/dinos/${d.slug}.svg`),
   ...dinos.map((d) => `assets/img/puzzle/${d.slug}.svg`),
+  ...Object.keys(photos).map((slug) => `assets/img/photos/${slug}.webp`),
 ]);
 
 pages.forEach((p) => {
@@ -145,6 +147,23 @@ pages.forEach((p) => {
   if (n !== 1) erreurs.push(`${p.chemin} → ${n} balise(s) h1 (il en faut exactement une)`);
 });
 
+/* Aucune photographie ne doit être publiée sans son crédit : les licences
+   CC BY et CC BY-SA imposent de nommer l'auteur. */
+const dossierPhotos = join(RACINE, "assets/img/photos");
+if (existsSync(dossierPhotos)) {
+  const surDisque = readdirSync(dossierPhotos).filter((f) => f.endsWith(".webp")).map((f) => f.replace(/\.webp$/, ""));
+  surDisque.forEach((slug) => {
+    if (!photos[slug]) erreurs.push(`assets/img/photos/${slug}.webp → aucun crédit dans data/photos.mjs`);
+  });
+  Object.keys(photos).forEach((slug) => {
+    if (!surDisque.includes(slug)) erreurs.push(`crédit sans image : ${slug}`);
+    else {
+      const p = photos[slug];
+      if (!p.auteur || !p.licence) erreurs.push(`crédit incomplet pour ${slug} (auteur ou licence manquant)`);
+    }
+  });
+}
+
 /* Toutes les images doivent avoir un attribut alt. */
 pages.forEach((p) => {
   [...p.html.matchAll(/<img\b[^>]*>/g)].forEach((m) => {
@@ -168,5 +187,5 @@ if (erreurs.length) {
   process.exit(1);
 }
 
-console.log("  ✅ Contrôles : liens internes, titres h1 et textes alternatifs");
+console.log("  ✅ Contrôles : liens internes, titres h1, textes alternatifs, crédits des images");
 console.log("");

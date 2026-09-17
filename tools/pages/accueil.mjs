@@ -68,7 +68,7 @@ export function pageAccueil() {
 <section class="heros">
   <div class="conteneur heros__contenu">
     <div>
-      <p class="pastille" style="margin-bottom:1rem">🦕 Site éducatif gratuit · 7–12 ans</p>
+      /* <p class="pastille" style="margin-bottom:1rem">🦕 Site éducatif gratuit · 7–12 ans</p> */
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
       <p class="heros__accroche">Explore ${dinos.length} créatures géantes, remonte le temps sur ${Math.round(periodes[0].debut - periodes[2].fin)} millions d’années et amuse-toi avec 5 jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
@@ -96,7 +96,7 @@ export function pageAccueil() {
     <h2 class="centre" data-anim>⭐ Les stars du Mésozoïque</h2>
     <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Les dinosaures les plus célèbres, ceux que tout le monde connaît. Clique sur une carte pour découvrir sa fiche complète.</p>
     <div class="grille" style="margin-top:2rem">
-      ${vedettes.map((d, i) => carteDino(d, "", { delai: i })).join("\n      ")}
+      ${vedettes.map((d, i) => carteDino(d, "", { delai: i, illustration: true })).join("\n      ")}
     </div>
     <p class="centre" style="margin-top:2rem"><a class="bouton" href="dinosaures.html">Voir les ${dinos.length} dinosaures →</a></p>
   </div>

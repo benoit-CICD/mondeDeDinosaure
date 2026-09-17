@@ -2,7 +2,7 @@
 
 import { dinos } from "../data/dinos.mjs";
 import { periodes, familles, regimes } from "../data/site.mjs";
-import { page, esc, carteDino, periodeDe, familleDe, fmtLongueur } from "../templates.mjs";
+import { page, esc, carteDino, periodeDe, familleDe, fmtLongueur, imageDoc } from "../templates.mjs";
 
 /* ---------------- Catalogue filtrable ---------------- */
 export function pageCatalogue() {
@@ -296,7 +296,7 @@ export function pageFrise() {
         ${habitants
           .map(
             (d) => `<a class="vignette" href="dinosaures/${d.slug}.html">
-          <img src="assets/img/dinos/${d.slug}.svg" alt="" loading="lazy" width="38" height="27">
+          <img src="${imageDoc(d, "").src}" alt="" loading="lazy" width="38" height="27">
           <span>${esc(d.surnom || d.nom)} <small style="color:var(--texte-doux);font-weight:600">−${d.ageDebut} Ma</small></span>
         </a>`
           )

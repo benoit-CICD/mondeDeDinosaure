@@ -2,6 +2,7 @@
 
 import { site, periodes, familles, regimes } from "./data/site.mjs";
 import { empreinte } from "./empreintes.mjs";
+import { photos } from "./data/photos.mjs";
 
 export const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -145,12 +146,13 @@ function pied(base) {
           <li><a href="${base}mentions-legales.html">Mentions légales</a></li>
           <li><a href="${base}confidentialite.html">Confidentialité</a></li>
           <li><a href="${base}accessibilite.html">Accessibilité</a></li>
+          <li><a href="${base}credits.html">Crédits des images</a></li>
           <li><a href="${base}plan-du-site.html">Plan du site</a></li>
         </ul>
       </div>
     </div>
     <div class="pied__bas">
-      <p>© <span data-annee>${site.anneeCreation}</span> ${esc(site.nom)} — Illustrations originales, réutilisation libre pour un usage pédagogique.</p>
+      <p>© <span data-annee>${site.anneeCreation}</span> ${esc(site.nom)} — Textes originaux, réutilisation libre pour un usage pédagogique. <a href="${base}credits.html">Crédits des images</a>.</p>
       <p><a href="#" data-haut>↑ Haut de page</a></p>
     </div>
   </div>
@@ -207,14 +209,40 @@ ${js}
 </html>`;
 }
 
+/* ---------- Images ----------
+   Les pages documentaires montrent une photographie ou une restauration
+   scientifique ; l'accueil et les jeux gardent les illustrations maison. */
+export const aUnePhoto = (slug) => Boolean(photos[slug]);
+
+export function imageDoc(d, base) {
+  return aUnePhoto(d.slug)
+    ? { src: `${base}assets/img/photos/${d.slug}.webp`, photo: true }
+    : { src: `${base}assets/img/dinos/${d.slug}.svg`, photo: false };
+}
+
+/** Ligne d'attribution exigée par les licences Creative Commons. */
+export function credit(slug, { court = false } = {}) {
+  const p = photos[slug];
+  if (!p) return "";
+  const auteur = esc(p.auteur);
+  const licence = p.licenceUrl
+    ? `<a href="${esc(p.licenceUrl)}" rel="license nofollow noopener" target="_blank">${esc(p.licence)}</a>`
+    : esc(p.licence);
+  if (court) return `${auteur} · ${licence}`;
+  return `Image : <a href="${esc(p.page)}" rel="nofollow noopener" target="_blank">${esc(p.fichier)}</a> — ${auteur}, via Wikimedia Commons, ${licence}.`;
+}
+
 /* ---------- Carte de dinosaure pour les listes ---------- */
-export function carteDino(d, base, { anim = true, delai = 0 } = {}) {
+export function carteDino(d, base, { anim = true, delai = 0, illustration = false } = {}) {
+  const img = illustration
+    ? { src: `${base}assets/img/dinos/${d.slug}.svg`, photo: false }
+    : imageDoc(d, base);
   const p = periodeDe(d.periode);
   return `<a class="carte" href="${base}dinosaures/${d.slug}.html" data-slug="${d.slug}"
   data-periode="${d.periode}" data-famille="${d.famille}" data-regime="${d.regime}"
   data-recherche="${esc(rechercheDe(d))}"${anim ? ` data-anim data-delai="${delai % 6}"` : ""}>
-  <span class="carte__media" style="--carte-teinte:${d.couleurs[1]}">
-    <img src="${base}assets/img/dinos/${d.slug}.svg" alt="Illustration de ${esc(d.nom)}" width="400" height="280" loading="lazy" decoding="async">
+  <span class="carte__media${img.photo ? " carte__media--photo" : ""}" style="--carte-teinte:${d.couleurs[1]}">
+    <img src="${img.src}" alt="${img.photo ? `${esc(d.nom)}, reconstitution` : `Illustration de ${esc(d.nom)}`}" width="400" height="280" loading="lazy" decoding="async">
   </span>
   <span class="carte__corps">
     <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">${esc(d.nom)}</span>

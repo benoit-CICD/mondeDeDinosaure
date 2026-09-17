@@ -28,8 +28,13 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 - **Aucune dépendance au moment de l’exécution.** Pas de framework, pas de CDN, pas de police Google.
   Tout est servi depuis le même domaine — c’est ce qui permet d’annoncer « aucune donnée transmise à un tiers ».
 - **Aucun cookie, aucun traceur, aucune publicité.** Les scores des jeux vivent en mémoire, le temps de la partie.
-- **Illustrations vectorielles originales**, générées par code (`tools/svg.mjs`), animées en CSS et
-  respectant `prefers-reduced-motion`.
+- **Deux jeux d'images complémentaires** :
+  - les pages documentaires (catalogue, fiches, familles, périodes, frise) affichent des
+    **reconstitutions scientifiques et photographies** issues de Wikimedia Commons, sous licence libre ;
+  - la page d'accueil et les mini-jeux utilisent des **illustrations vectorielles originales**,
+    générées par code (`tools/svg.mjs`), animées en CSS et respectant `prefers-reduced-motion`.
+- **Attribution des images** affichée sous chaque photo et récapitulée sur `credits.html`,
+  comme l'exigent les licences CC BY et CC BY-SA.
 - **Thème sombre automatique** selon le réglage du système.
 - Le contenu documentaire reste **lisible sans JavaScript** ; seuls les jeux et le filtrage en ont besoin.
 
@@ -49,8 +54,9 @@ assets/
   js/catalogue.js        filtres et recherche
   js/donnees.js          données des jeux (GÉNÉRÉ — ne pas modifier)
   js/jeux/*.js           les cinq mini-jeux
-  img/dinos/*.svg        illustrations (GÉNÉRÉES)
+  img/dinos/*.svg        illustrations maison (GÉNÉRÉES)
   img/puzzle/*.svg       variantes plein cadre pour le puzzle (GÉNÉRÉES)
+  img/photos/*.webp      reconstitutions Wikimedia Commons (TÉLÉCHARGÉES)
 
 tools/                   le générateur (Node, zéro dépendance)
   build.mjs              point d’entrée
@@ -58,12 +64,40 @@ tools/                   le générateur (Node, zéro dépendance)
   templates.mjs          en-tête, pied de page, gabarit de page
   empreintes.mjs         suffixe ?v= pour le cache
   data/                  contenu éditorial (dinosaures, périodes, quiz…)
+    photos.mjs           crédits des images (GÉNÉRÉ par photos.mjs)
+    photos-manuel.json   fichiers Commons choisis à la main
   pages/                 un module par type de page
 ```
 
 Les fichiers marqués **GÉNÉRÉ** sont écrasés à chaque build : modifier les sources dans `tools/`.
 
 ---
+
+## Les images des fiches
+
+Elles sont récupérées séparément du build, car cette étape nécessite le réseau :
+
+```bash
+node tools/photos.mjs          # complète ce qui manque
+node tools/photos.mjs --force  # retélécharge tout
+```
+
+Le script interroge Wikipédia et Wikimedia Commons, **écarte automatiquement les licences non libres**
+(non commercial, pas de modification), privilégie les reconstitutions d'animaux vivants plutôt que les os
+isolés, redimensionne à 900 px et convertit en WebP. Il écrit les crédits dans `tools/data/photos.mjs`.
+
+La sélection automatique se trompe parfois (un fémur, un schéma anatomique, une statue de parc).
+Dans ce cas, imposer le bon fichier dans `tools/data/photos-manuel.json` :
+
+```json
+{ "stegosaurus": "Stegosaurus stenops Life Reconstruction.png" }
+```
+
+puis supprimer `assets/img/photos/<slug>.webp` et relancer le script.
+
+> **Attention** : ces images appartiennent à leurs auteurs. Si vous en changez une, l'attribution suit
+> automatiquement — mais ne remplacez jamais un fichier à la main sans mettre à jour `photos.mjs`,
+> sinon le crédit affiché deviendrait faux.
 
 ## Régénérer le site
 
@@ -130,5 +164,8 @@ reconstitutions scientifiques.
 
 ## Licence
 
-Textes et illustrations : réutilisation libre dans un cadre **pédagogique non commercial**,
-avec mention de la source.
+- **Textes et illustrations vectorielles** (créations originales) : réutilisation libre dans un cadre
+  **pédagogique non commercial**, avec mention de la source.
+- **Photographies et reconstitutions** : propriété de leurs auteurs respectifs, sous licences libres
+  (domaine public, CC0, CC BY, CC BY-SA). Voir `credits.html` pour le détail par image. Leur réutilisation
+  est soumise aux conditions de leur licence d'origine.

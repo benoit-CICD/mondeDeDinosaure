@@ -304,6 +304,14 @@ a.carte:hover, a.carte:focus-visible {
   padding: .4rem;
 }
 .carte__media img { width: 100%; }
+/* Les reconstitutions sont souvent des profils très allongés : on les affiche
+   en entier plutôt que recadrées, sinon la tête sort du cadre. */
+.carte__media--photo img {
+  aspect-ratio: 10 / 7; object-fit: contain; border-radius: 14px;
+  /* Fond clair dans les deux thèmes : la plupart des reconstitutions sont
+     détourées sur blanc, un cadre sombre créerait un rectangle disgracieux. */
+  background: color-mix(in srgb, var(--carte-teinte, var(--sable)) 16%, #fffdf8);
+}
 a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,.64,1); }
 @keyframes sautille { 30% { transform: translateY(-9px) rotate(-1.5deg); } 60% { transform: translateY(0); } }
 .carte__corps { padding: .9rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
@@ -354,6 +362,15 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
   background: var(--fond-carte); border: var(--trait); border-radius: var(--radius-l);
   padding: .8rem; box-shadow: var(--ombre);
 }
+.fiche__illustration img {
+  width: 100%; aspect-ratio: 10 / 7; object-fit: contain;
+  border-radius: var(--radius); background: #fffdf8;
+}
+.fiche__credit {
+  margin-top: .6rem; font-size: .78rem; line-height: 1.45; color: var(--texte-doux);
+}
+.fiche__credit a { color: var(--texte-doux); }
+.fiche__credit a:hover { color: var(--jungle); }
 .fiche__pastilles { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
 .fiche__prononciation {
   font-size: .95rem; color: var(--texte-doux); font-style: italic;
@@ -482,7 +499,7 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
   transition: transform .16s, border-color .16s;
 }
 .vignette:hover { transform: translateY(-3px); border-color: var(--jungle); color: var(--texte); }
-.vignette img { width: 38px; height: 27px; object-fit: contain; }
+.vignette img { width: 38px; height: 27px; object-fit: contain; border-radius: 5px; background: #fffdf8; }
 
 /* Règle du temps, version graphique */
 .regle-temps { overflow-x: auto; padding-bottom: .6rem; -webkit-overflow-scrolling: touch; }

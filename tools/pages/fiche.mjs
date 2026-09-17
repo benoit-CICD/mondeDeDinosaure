@@ -5,6 +5,7 @@ import { site } from "../data/site.mjs";
 import {
   page, esc, carteDino, periodeDe, familleDe, regimeDe,
   fmtLongueur, fmtPoids, pastillePeriode, pastilleRegime,
+  imageDoc, aUnePhoto, credit,
 } from "../templates.mjs";
 
 const PLUS_LONG = Math.max(...dinos.map((d) => d.longueur));
@@ -87,8 +88,8 @@ export function pagesFiches() {
       <span hidden style="font-weight:900;font-size:1.2rem;color:${d.couleurs[2]}"> ${esc(d.cri)}</span></p>
     </div>
     <figure class="fiche__illustration" data-anim data-delai="1" style="margin:0">
-      <img src="../assets/img/dinos/${d.slug}.svg" alt="Illustration de ${esc(d.nom)}" width="400" height="280">
-      <figcaption class="visuellement-cache">Illustration originale de ${esc(d.nom)}</figcaption>
+      <img src="${imageDoc(d, "../").src}" alt="${aUnePhoto(d.slug) ? `Reconstitution de ${esc(d.nom)}` : `Illustration de ${esc(d.nom)}`}" width="400" height="280">
+      <figcaption class="fiche__credit">${aUnePhoto(d.slug) ? credit(d.slug) : "Illustration originale du site."}</figcaption>
     </figure>
   </div>
 
