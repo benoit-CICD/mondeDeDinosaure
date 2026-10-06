@@ -3,6 +3,7 @@
 import { site, periodes, familles, regimes } from "./data/site.mjs";
 import { empreinte } from "./empreintes.mjs";
 import { photos } from "./data/photos.mjs";
+import { listeJeux } from "./data/jeux.mjs";
 
 export const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -16,6 +17,12 @@ export function fmtPoids(kg) {
   return kg + " kg";
 }
 export const fmtAge = (ma) => "−" + ma + " Ma";
+
+/** Petits nombres en toutes lettres, pour les textes (« neuf jeux »). */
+const LETTRES = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix",
+  "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf", "vingt"];
+export const enLettres = (n) => LETTRES[n] ?? String(n);
+export const majuscule = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
 export const periodeDe = (slug) => periodes.find((p) => p.slug === slug);
 export const familleDe = (slug) => familles.find((f) => f.slug === slug);
@@ -83,11 +90,7 @@ function entete(base, actif) {
           <summary>🎮 Jeux</summary>
           <ul class="nav__sous">
             <li><a href="${base}jeux.html"><strong>🎯 Tous les jeux</strong></a></li>
-            <li><a href="${base}jeux/quiz.html">❓ Le grand quiz</a></li>
-            <li><a href="${base}jeux/vrai-ou-faux.html">⚖️ Vrai ou faux</a></li>
-            <li><a href="${base}jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></li>
-            <li><a href="${base}jeux/memory.html">🧠 Memory</a></li>
-            <li><a href="${base}jeux/puzzle.html">🧩 Puzzle</a></li>
+            ${listeJeux.map((j) => `<li><a href="${base}jeux/${j.slug}.html">${j.emoji} ${esc(j.nom)}</a></li>`).join("\n            ")}
           </ul>
         </details></li>
         <li><details class="nav__groupe">
@@ -96,6 +99,8 @@ function entete(base, actif) {
             <li><a href="${base}glossaire.html">🔤 Glossaire</a></li>
             <li><a href="${base}questions.html">💬 Questions fréquentes</a></li>
             <li><a href="${base}extinction.html">☄️ La grande extinction</a></li>
+            <li><a href="${base}oeufs.html">🥚 Œufs et bébés dinosaures</a></li>
+            <li><a href="${base}glaciations.html">🧊 Les dinosaures et l’ère glaciaire</a></li>
             <li><a href="${base}metier.html">⛏️ Le métier de paléontologue</a></li>
             <li><a href="${base}a-propos.html">ℹ️ À propos du site</a></li>
           </ul>
@@ -124,17 +129,15 @@ function pied(base) {
           <li><a href="${base}periodes.html">Les périodes</a></li>
           <li><a href="${base}frise.html">La frise du temps</a></li>
           <li><a href="${base}extinction.html">La grande extinction</a></li>
+          <li><a href="${base}oeufs.html">Œufs et bébés dinosaures</a></li>
+          <li><a href="${base}glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
         </ul>
       </div>
       <div>
         <h2>S’amuser</h2>
         <ul>
           <li><a href="${base}jeux.html">Tous les jeux</a></li>
-          <li><a href="${base}jeux/quiz.html">Le grand quiz</a></li>
-          <li><a href="${base}jeux/vrai-ou-faux.html">Vrai ou faux</a></li>
-          <li><a href="${base}jeux/qui-suis-je.html">Qui suis-je ?</a></li>
-          <li><a href="${base}jeux/memory.html">Memory</a></li>
-          <li><a href="${base}jeux/puzzle.html">Puzzle</a></li>
+          ${listeJeux.map((j) => `<li><a href="${base}jeux/${j.slug}.html">${esc(j.nom)}</a></li>`).join("\n          ")}
         </ul>
       </div>
       <div>

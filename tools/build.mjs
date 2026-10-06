@@ -14,11 +14,16 @@ import { dinos } from "./data/dinos.mjs";
 import { photos } from "./data/photos.mjs";
 import { site, periodes, familles } from "./data/site.mjs";
 import { illustration } from "./svg.mjs";
+import { oeufSvg, empreinteSvg } from "./svg-traces.mjs";
+import { oeufs } from "./data/oeufs.mjs";
+import { empreintes } from "./data/empreintes.mjs";
+import { listeJeux } from "./data/jeux.mjs";
 import { pageAccueil } from "./pages/accueil.mjs";
 import { pageCatalogue, pagesFamilles, pagesPeriodes, pageFrise } from "./pages/listes.mjs";
 import { pagesFiches } from "./pages/fiche.mjs";
 import { pagesJeux, fichierDonnees } from "./pages/jeux.mjs";
 import { pagesInfos, pagePlan, page404 } from "./pages/infos.mjs";
+import { pagesDossiers } from "./pages/dossiers.mjs";
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -39,6 +44,13 @@ dinos.forEach((d) => ecrire(`assets/img/dinos/${d.slug}.svg`, illustration(d)));
 const dossierPuzzle = join(RACINE, "assets/img/puzzle");
 if (existsSync(dossierPuzzle)) rmSync(dossierPuzzle, { recursive: true, force: true });
 dinos.forEach((d) => ecrire(`assets/img/puzzle/${d.slug}.svg`, illustration(d, { pleinCadre: true })));
+
+/* Œufs et empreintes : pour les jeux et les dossiers. */
+for (const dossier of ["assets/img/oeufs", "assets/img/empreintes"]) {
+  if (existsSync(join(RACINE, dossier))) rmSync(join(RACINE, dossier), { recursive: true, force: true });
+}
+oeufs.forEach((o) => ecrire(`assets/img/oeufs/${o.id}.svg`, oeufSvg(o)));
+empreintes.forEach((e) => ecrire(`assets/img/empreintes/${e.id}.svg`, empreinteSvg(e)));
 
 /* Favicon : une empreinte de dinosaure. */
 ecrire(
@@ -65,6 +77,7 @@ const pages = [
   pageFrise(),
   ...pagesJeux(),
   ...pagesInfos(),
+  ...pagesDossiers(),
   pagePlan(),
   page404(),
 ];
@@ -114,12 +127,10 @@ const cheminsAssets = new Set([
   "assets/js/catalogue.js",
   "assets/js/donnees.js",
   "assets/js/jeux/commun.js",
-  "assets/js/jeux/quiz.js",
-  "assets/js/jeux/vrai-faux.js",
-  "assets/js/jeux/memory.js",
-  "assets/js/jeux/puzzle.js",
-  "assets/js/jeux/qui-suis-je.js",
+  ...listeJeux.map((j) => `assets/js/jeux/${j.script}`),
   "assets/img/favicon.svg",
+  ...oeufs.map((o) => `assets/img/oeufs/${o.id}.svg`),
+  ...empreintes.map((e) => `assets/img/empreintes/${e.id}.svg`),
   ...dinos.map((d) => `assets/img/dinos/${d.slug}.svg`),
   ...dinos.map((d) => `assets/img/puzzle/${d.slug}.svg`),
   ...Object.keys(photos).map((slug) => `assets/img/photos/${slug}.webp`),
@@ -152,6 +163,11 @@ pages.forEach((p) => {
       erreurs.push(`${p.chemin} → lien cassé : ${lien} (résolu en ${propre})`);
     }
   });
+});
+
+/* Les scripts des jeux sont écrits à la main : chacun doit exister. */
+listeJeux.forEach((j) => {
+  if (!existsSync(join(RACINE, "assets/js/jeux", j.script))) erreurs.push(`assets/js/jeux/${j.script} → script de jeu introuvable`);
 });
 
 /* Une seule balise h1 par page. */

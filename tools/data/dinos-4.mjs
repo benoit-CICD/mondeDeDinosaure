@@ -67,6 +67,39 @@ export const dinos = [
   ]
 },
 {
+  slug: "maiasaura",
+  nom: "Maiasaura",
+  prononciation: "maï-a-so-ra",
+  sens: "« le lézard bonne mère »",
+  periode: "cretace",
+  epoque: "Crétacé supérieur",
+  ageDebut: 77, ageFin: 76,
+  famille: "hadrosaures",
+  archetype: "hadrosaure-bosse",
+  regime: "herbivore",
+  longueur: 9, hauteur: 3, poids: 3000, vitesse: 25,
+  lieux: ["Amérique du Nord"],
+  decouverte: { annee: 1978, par: "Marion Brandvold, puis Jack Horner et Bob Makela", lieu: "Choteau, Montana (États-Unis)" },
+  vraiDino: true,
+  couleurs: ["#7f9a4a", "#d3e3a4", "#3b4a1d"],
+  accroche: "La « bonne mère » : le premier dinosaure dont on a prouvé qu’il élevait ses petits.",
+  comparaison: "aussi long que deux voitures mises bout à bout",
+  cri: "Mhôôô… mhôôô !",
+  paragraphes: [
+    "Maiasaura est un dinosaure à bec de canard qui vivait il y a 77 millions d’années dans ce qui est aujourd’hui le Montana, aux États-Unis. C’était un gros herbivore paisible, long de 9 mètres, qui vivait en troupeau.",
+    "En 1978, des chercheurs découvrent au même endroit des nids remplis de coquilles brisées, de bébés et de jeunes de plusieurs tailles. C’est la première preuve que des dinosaures s’occupaient de leurs petits après la naissance. On lui donne alors un nom qui lui va bien : « le lézard bonne mère ».",
+    "Les mamans creusaient dans la terre un nid en forme de cratère, d’environ 2 mètres de large, et y pondaient 30 à 40 œufs de la taille d’un œuf d’autruche. Les nids étaient installés côte à côte, en colonie, comme chez certains oiseaux de mer aujourd’hui.",
+    "À la naissance, les bébés mesuraient environ 40 centimètres et leurs pattes étaient encore trop fragiles pour marcher loin. Les scientifiques pensent donc que les parents leur apportaient à manger au nid. Un an plus tard, les petits mesuraient déjà près d’un mètre et demi !"
+  ],
+  superPouvoir: { titre: "Maman attentionnée", texte: "Elle restait près du nid pour protéger et nourrir ses bébés, comme le font aujourd’hui beaucoup d’oiseaux." },
+  saviezVous: [
+    "En 1985, un morceau d’os et de coquille d’œuf de Maiasaura est parti dans l’espace avec un astronaute : c’est le premier dinosaure de l’espace !",
+    "Les nids étaient espacés d’environ 7 mètres, un peu moins que la longueur d’un adulte : chaque maman avait juste la place de s’occuper des siens.",
+    "Son nom se termine par « saura » et non par « saurus » : c’est un nom au féminin, en l’honneur des mamans.",
+    "C’est le fossile officiel de l’État du Montana."
+  ]
+},
+{
   slug: "iguanodon",
   nom: "Iguanodon",
   prononciation: "i-gwa-no-don",
@@ -225,6 +258,39 @@ export const dinos = [
   ]
 },
 {
+  slug: "oviraptor",
+  nom: "Oviraptor",
+  prononciation: "o-vi-rap-tor",
+  sens: "« le voleur d’œufs »… un nom injuste !",
+  periode: "cretace",
+  epoque: "Crétacé supérieur",
+  ageDebut: 75, ageFin: 71,
+  famille: "theropodes",
+  archetype: "theropode-oviraptor",
+  regime: "omnivore",
+  longueur: 1.6, hauteur: 0.8, poids: 30, vitesse: 40,
+  lieux: ["Asie"],
+  decouverte: { annee: 1923, par: "George Olsen, de l’expédition de Roy Chapman Andrews", lieu: "Flaming Cliffs, désert de Gobi (Mongolie)" },
+  vraiDino: true,
+  couleurs: ["#3f8a8c", "#acdcd5", "#1d4446"],
+  accroche: "Accusé pendant 70 ans de voler des œufs… alors qu’il couvait les siens !",
+  comparaison: "aussi long qu’un vélo",
+  cri: "Krouk-krouk !",
+  paragraphes: [
+    "En 1923, dans le désert de Gobi, en Mongolie, une expédition américaine fait une découverte qui fait le tour du monde : des nids remplis d’œufs de dinosaures, parmi les premiers jamais reconnus. Les chercheurs pensent qu’ils ont été pondus par le Protoceratops, un petit cousin du Tricératops très commun dans la région.",
+    "Juste au-dessus d’un de ces nids, ils trouvent le squelette d’un étrange dinosaure sans dents, avec un bec. Pour les savants de l’époque, l’affaire semble claire : il a été surpris en train de voler les œufs ! En 1924, on le baptise Oviraptor, « le voleur d’œufs ». Le scientifique qui lui donne ce nom prévient pourtant que ce n’est peut-être qu’une fausse piste.",
+    "Pendant 70 ans, Oviraptor garde sa réputation de voleur. Puis, en 1993, de nouvelles fouilles en Mongolie mettent au jour un œuf identique… avec un bébé fossilisé à l’intérieur. Surprise : ce n’est pas un bébé Protoceratops, mais un bébé de la famille d’Oviraptor ! Les œufs du nid de 1923 étaient donc très probablement les siens.",
+    "Mieux encore : on a retrouvé plusieurs squelettes de ses proches cousins assis sur leur nid, les bras écartés au-dessus des œufs, exactement comme une poule qui couve. Oviraptor n’était pas en train de voler : il protégeait sûrement ses propres œufs. Son nom, lui, ne peut plus être changé, car les règles des scientifiques l’interdisent."
+  ],
+  superPouvoir: { titre: "Le couveur", texte: "Comme les oiseaux d’aujourd’hui, il s’asseyait au milieu de son nid et couvrait les œufs de ses bras emplumés pour les protéger et les garder au chaud." },
+  saviezVous: [
+    "Son nom complet, Oviraptor philoceratops, veut dire « voleur d’œufs qui aime les cératopsiens » : deux erreurs en un seul nom !",
+    "Le plus célèbre squelette de couveur, un cousin appelé Citipati, a été surnommé « Big Mama » par les scientifiques.",
+    "Les œufs de sa famille étaient allongés, pondus deux par deux et disposés en cercle. Certains étaient même bleu-vert !",
+    "On ne sait pas encore exactement ce qu’il mangeait : des plantes, des coquillages, des petits animaux… sans doute un peu de tout."
+  ]
+},
+{
   slug: "argentinosaurus",
   nom: "Argentinosaurus",
   prononciation: "ar-jen-ti-no-so-russ",
@@ -247,14 +313,14 @@ export const dinos = [
   paragraphes: [
     "Argentinosaurus est le plus grand animal ayant jamais marché sur la Terre ferme. Il mesurait environ 35 mètres de long et pesait autant que 14 éléphants.",
     "Une seule de ses vertèbres atteint 1,60 mètre de hauteur : plus grand que la plupart des adultes humains ! Son tibia mesurait 1,55 mètre.",
-    "Il grandissait à une vitesse incroyable. Un bébé sortait d’un œuf de la taille d’un ballon de foot et devenait un géant de 70 tonnes en quelques dizaines d’années.",
+    "Il grandissait à une vitesse incroyable. Un bébé sortait d’un œuf à peine plus gros qu’un pamplemousse et devenait un géant de 70 tonnes en quelques dizaines d’années.",
     "Pour se nourrir, il devait avaler des centaines de kilos de plantes chaque jour, sans jamais mâcher."
   ],
   superPouvoir: { titre: "Le record absolu", texte: "Aucun animal terrestre connu n’a jamais dépassé sa masse : environ 70 tonnes." },
   saviezVous: [
     "Un fermier argentin a cru trouver un tronc d’arbre pétrifié : c’était en réalité son tibia !",
     "Son cœur devait peser plus de 300 kilos.",
-    "Il pondait des œufs à peine plus gros qu’un ballon, malgré sa taille adulte gigantesque."
+    "Il pondait des œufs à peine plus gros qu’un pamplemousse, malgré sa taille adulte gigantesque."
   ]
 },
 {

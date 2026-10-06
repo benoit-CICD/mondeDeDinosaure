@@ -2,8 +2,8 @@
 
 import { dinos } from "../data/dinos.mjs";
 import { periodes, familles, site } from "../data/site.mjs";
-import { quiz } from "../data/jeux.mjs";
-import { page, esc, carteDino } from "../templates.mjs";
+import { quiz, listeJeux } from "../data/jeux.mjs";
+import { page, esc, carteDino, enLettres, majuscule } from "../templates.mjs";
 
 const SCENE = `<svg viewBox="0 0 520 380" role="img" aria-label="Paysage préhistorique avec un volcan, des fougères et un dinosaure" class="heros__scene-svg">
   <defs>
@@ -69,7 +69,7 @@ export function pageAccueil() {
   <div class="conteneur heros__contenu">
     <div>
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
-      <p class="heros__accroche">Explore ${dinos.length} créatures géantes, remonte le temps sur ${Math.round(periodes[0].debut - periodes[2].fin)} millions d’années et amuse-toi avec 5 jeux pour devenir un vrai paléontologue.</p>
+      <p class="heros__accroche">Explore ${dinos.length} créatures géantes, remonte le temps sur ${Math.round(periodes[0].debut - periodes[2].fin)} millions d’années et amuse-toi avec ${listeJeux.length} jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
         <a class="bouton" href="dinosaures.html">🔍 Explorer les dinosaures</a>
         <a class="bouton bouton--ambre" href="jeux.html">🎮 Jouer maintenant</a>
@@ -85,7 +85,7 @@ export function pageAccueil() {
       <div class="chiffre" data-anim><span class="chiffre__valeur" data-compteur="${dinos.length}">0</span><span class="chiffre__libelle">fiches illustrées</span></div>
       <div class="chiffre" data-anim data-delai="1"><span class="chiffre__valeur" data-compteur="186">0</span><span class="chiffre__libelle">millions d’années</span></div>
       <div class="chiffre" data-anim data-delai="2"><span class="chiffre__valeur" data-compteur="${quiz.length}">0</span><span class="chiffre__libelle">questions de quiz</span></div>
-      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="5">0</span><span class="chiffre__libelle">mini-jeux</span></div>
+      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="${listeJeux.length}">0</span><span class="chiffre__libelle">mini-jeux</span></div>
     </div>
   </div>
 </section>
@@ -127,21 +127,15 @@ export function pageAccueil() {
 <section class="section section--doux">
   <div class="conteneur">
     <h2 class="centre" data-anim>🎮 Joue et apprends</h2>
-    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Cinq jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
+    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">${majuscule(enLettres(listeJeux.length))} jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
     <div class="grille" style="margin-top:2rem">
-      ${[
-        ["quiz", "❓", "Le grand quiz", "10 questions tirées au hasard parmi " + quiz.length + ". Trois niveaux de difficulté."],
-        ["vrai-ou-faux", "⚖️", "Vrai ou faux", "Démêle le vrai du faux sur les dinosaures. Attention aux pièges !"],
-        ["qui-suis-je", "🔍", "Qui suis-je ?", "Devine le dinosaure caché grâce à des indices. Moins tu en demandes, plus tu marques de points."],
-        ["memory", "🧠", "Memory", "Retrouve les 8 paires de dinosaures le plus vite possible."],
-        ["puzzle", "🧩", "Puzzle", "Reconstitue l’illustration d’un dinosaure, en 9 ou 16 morceaux."],
-      ]
+      ${listeJeux
         .map(
-          ([slug, emoji, nom, texte], i) => `<a class="carte" href="jeux/${slug}.html" data-anim data-delai="${i}">
-        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">${emoji}</span>
+          (j, i) => `<a class="carte" href="jeux/${j.slug}.html" data-anim data-delai="${i % 6}">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">${j.emoji}</span>
         <span class="carte__corps">
-          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">${nom}</span>
-          <span class="carte__texte">${texte}</span>
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">${esc(j.nom)}</span>
+          <span class="carte__texte">${esc(j.court)}</span>
         </span>
       </a>`
         )

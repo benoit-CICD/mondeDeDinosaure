@@ -11,15 +11,17 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 
 | Rubrique | Détail |
 |---|---|
-| **36 fiches** de créatures | Illustration, carte d’identité, textes, anecdotes, comparaison de taille |
+| **38 fiches** de créatures | Illustration, carte d’identité, textes, anecdotes, comparaison de taille |
 | **3 périodes** | Trias, Jurassique, Crétacé |
 | **10 familles** | Théropodes, sauropodes, cératopsiens… dont 2 groupes de *cousins* (ptérosaures, reptiles marins) |
 | **1 frise du temps** | 186 millions d’années, chaque créature placée à son époque |
-| **2 dossiers** | La grande extinction · Le métier de paléontologue |
-| **5 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle |
+| **4 dossiers** | La grande extinction · Le métier de paléontologue · Œufs et bébés dinosaures · L’ère glaciaire |
+| **9 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes |
 | **Pages légales** | Mentions légales, confidentialité, accessibilité, plan du site |
 
-**70 pages HTML** au total.
+**79 pages HTML** au total.
+
+Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont notées dans [`IDEES.md`](IDEES.md).
 
 ---
 
@@ -44,7 +46,7 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 
 ```
 index.html, dinosaures.html, frise.html, …   pages générées (à versionner)
-dinosaures/<slug>.html                       les 36 fiches
+dinosaures/<slug>.html                       les 38 fiches
 periodes/<slug>.html, familles/<slug>.html
 jeux/<slug>.html
 
@@ -53,20 +55,27 @@ assets/
   js/site.js             navigation, animations
   js/catalogue.js        filtres et recherche
   js/donnees.js          données des jeux (GÉNÉRÉ — ne pas modifier)
-  js/jeux/*.js           les cinq mini-jeux
+  js/jeux/commun.js      outils partagés par les jeux
+  js/jeux/*.js           un script par mini-jeu
   img/dinos/*.svg        illustrations maison (GÉNÉRÉES)
   img/puzzle/*.svg       variantes plein cadre pour le puzzle (GÉNÉRÉES)
+  img/oeufs/*.svg        œufs du jeu « Retrouve la maman » (GÉNÉRÉS)
+  img/empreintes/*.svg   empreintes du « Détective des empreintes » (GÉNÉRÉES)
   img/photos/*.webp      reconstitutions Wikimedia Commons (TÉLÉCHARGÉES)
 
 tools/                   le générateur (Node, zéro dépendance)
   build.mjs              point d’entrée
   svg.mjs                dessin des illustrations
+  svg-traces.mjs         dessin des œufs et des empreintes
   templates.mjs          en-tête, pied de page, gabarit de page
   empreintes.mjs         suffixe ?v= pour le cache
   data/                  contenu éditorial (dinosaures, périodes, quiz…)
+    jeux.mjs             questions, repères du temps, et listeJeux (la liste des mini-jeux)
+    oeufs.mjs            œufs par famille, et les intrus qui ne pondaient pas
+    empreintes.mjs       empreintes et suspects
     photos.mjs           crédits des images (GÉNÉRÉ par photos.mjs)
     photos-manuel.json   fichiers Commons choisis à la main
-  pages/                 un module par type de page
+  pages/                 un module par type de page (dossiers.mjs : les dossiers thématiques)
 ```
 
 Les fichiers marqués **GÉNÉRÉ** sont écrasés à chaque build : modifier les sources dans `tools/`.
@@ -133,6 +142,24 @@ python3 -m http.server 4173
 
 La fiche, l’illustration, les entrées du catalogue, de la frise, du plan du site
 et des jeux sont créées automatiquement.
+
+---
+
+## Ajouter un mini-jeu
+
+1. Ajouter une entrée dans `listeJeux` (`tools/data/jeux.mjs`) : slug, nom, emoji, script…
+   Le menu, le pied de page, l’accueil, la salle de jeux et le plan du site en dépendent : ils se mettent à jour seuls.
+2. Ajouter sa page dans `pagesJeux()` (`tools/pages/jeux.mjs`), avec la fonction `pageJeu()`.
+3. Écrire son script dans `assets/js/jeux/` ; `commun.js` fournit le mélange, les formats et l’écran de fin.
+4. Relancer le build : il signale un script manquant.
+
+### Œufs et empreintes : une question d’honnêteté
+
+Pour la plupart des dinosaures, **on ne sait pas à quoi ressemblaient leurs œufs** : pour attribuer un œuf,
+il faut un embryon à l’intérieur ou un adulte retrouvé sur le nid. Le jeu *Retrouve la maman* raisonne donc
+par **famille**, et ne dessine en couleur que les œufs dont la couleur a été retrouvée grâce aux pigments
+fossilisés. Il en va de même pour les empreintes : on les attribue à un groupe d’animaux, rarement à une espèce.
+Garder cette règle si vous ajoutez des œufs ou des empreintes.
 
 ---
 

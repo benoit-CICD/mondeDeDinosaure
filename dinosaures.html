@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tous les dinosaures | Le Monde des Dinosaures</title>
-<meta name="description" content="Le catalogue complet des 36 dinosaures du site, filtrable par période, par famille et par régime alimentaire. Fiches illustrées pour les enfants.">
+<meta name="description" content="Le catalogue complet des 38 dinosaures du site, filtrable par période, par famille et par régime alimentaire. Fiches illustrées pour les enfants.">
 <meta name="author" content="Le Monde des Dinosaures">
 <meta name="theme-color" content="#1e4d3c">
 <meta property="og:title" content="Tous les dinosaures">
-<meta property="og:description" content="Le catalogue complet des 36 dinosaures du site, filtrable par période, par famille et par régime alimentaire. Fiches illustrées pour les enfants.">
+<meta property="og:description" content="Le catalogue complet des 38 dinosaures du site, filtrable par période, par famille et par régime alimentaire. Fiches illustrées pour les enfants.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Monde des Dinosaures">
-<link rel="stylesheet" href="assets/css/style.css?v=20f27c07">
+<link rel="stylesheet" href="assets/css/style.css?v=452ba455">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
 <script>window.BASE = "";</script>
@@ -62,6 +62,10 @@
             <li><a href="jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></li>
             <li><a href="jeux/memory.html">🧠 Memory</a></li>
             <li><a href="jeux/puzzle.html">🧩 Puzzle</a></li>
+            <li><a href="jeux/retrouve-la-maman.html">🥚 Retrouve la maman</a></li>
+            <li><a href="jeux/plus-grand-ou-plus-petit.html">📏 Plus grand ou plus petit ?</a></li>
+            <li><a href="jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></li>
+            <li><a href="jeux/detective-des-empreintes.html">🐾 Détective des empreintes</a></li>
           </ul>
         </details></li>
         <li><details class="nav__groupe">
@@ -70,6 +74,8 @@
             <li><a href="glossaire.html">🔤 Glossaire</a></li>
             <li><a href="questions.html">💬 Questions fréquentes</a></li>
             <li><a href="extinction.html">☄️ La grande extinction</a></li>
+            <li><a href="oeufs.html">🥚 Œufs et bébés dinosaures</a></li>
+            <li><a href="glaciations.html">🧊 Les dinosaures et l’ère glaciaire</a></li>
             <li><a href="metier.html">⛏️ Le métier de paléontologue</a></li>
             <li><a href="a-propos.html">ℹ️ À propos du site</a></li>
           </ul>
@@ -83,7 +89,7 @@
 
 <div class="conteneur section" style="padding-bottom:0">
   <h1>🦕 Tous les dinosaures</h1>
-  <p style="max-width:65ch">Voici les 36 créatures du site, des plus minuscules aux plus gigantesques.
+  <p style="max-width:65ch">Voici les 38 créatures du site, des plus minuscules aux plus gigantesques.
   Utilise la recherche ou les filtres pour trouver celle qui t’intéresse.</p>
 </div>
 
@@ -123,7 +129,7 @@
 </div>
 
 <div class="conteneur" style="padding-bottom:3rem">
-  <p class="compteur-resultats" id="compteur-resultats" role="status">36 dinosaures trouvés</p>
+  <p class="compteur-resultats" id="compteur-resultats" role="status">38 dinosaures trouvés</p>
   <div class="grille" id="grille-dinos" style="margin-top:1rem">
     <a class="carte" href="dinosaures/eoraptor.html" data-slug="eoraptor"
   data-periode="trias" data-famille="theropodes" data-regime="omnivore"
@@ -573,9 +579,25 @@
     </span>
   </span>
 </a>
+    <a class="carte" href="dinosaures/maiasaura.html" data-slug="maiasaura"
+  data-periode="cretace" data-famille="hadrosaures" data-regime="herbivore"
+  data-recherche="maiasaura  « le lezard bonne mere » hadrosaures cretace herbivore cretace superieur amerique du nord la « bonne mere » : le premier dinosaure dont on a prouve qu’il elevait ses petits." data-anim data-delai="4">
+  <span class="carte__media carte__media--photo" style="--carte-teinte:#d3e3a4">
+    <img src="assets/img/photos/maiasaura.webp" alt="Maiasaura, reconstitution" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Maiasaura</span>
+    <span class="carte__texte">La « bonne mère » : le premier dinosaure dont on a prouvé qu’il élevait ses petits.</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--herbivore">🌿 Herbivore</span>
+      
+    </span>
+  </span>
+</a>
     <a class="carte" href="dinosaures/iguanodon.html" data-slug="iguanodon"
   data-periode="cretace" data-famille="hadrosaures" data-regime="herbivore"
-  data-recherche="iguanodon  « la dent d’iguane » hadrosaures cretace herbivore cretace inferieur europe l’un des tout premiers dinosaures decouverts… avec un pouce en forme de poignard." data-anim data-delai="4">
+  data-recherche="iguanodon  « la dent d’iguane » hadrosaures cretace herbivore cretace inferieur europe l’un des tout premiers dinosaures decouverts… avec un pouce en forme de poignard." data-anim data-delai="5">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#a5e0d0">
     <img src="assets/img/photos/iguanodon.webp" alt="Iguanodon, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -591,7 +613,7 @@
 </a>
     <a class="carte" href="dinosaures/pachycephalosaurus.html" data-slug="pachycephalosaurus"
   data-periode="cretace" data-famille="pachycephalosaures" data-regime="herbivore"
-  data-recherche="pachycephalosaurus  « le lezard a tete epaisse » pachycephalosaures cretace herbivore cretace superieur amerique du nord un casque en os de 25 cm d’epaisseur sur le crane !" data-anim data-delai="5">
+  data-recherche="pachycephalosaurus  « le lezard a tete epaisse » pachycephalosaures cretace herbivore cretace superieur amerique du nord un casque en os de 25 cm d’epaisseur sur le crane !" data-anim data-delai="0">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#efc68e">
     <img src="assets/img/photos/pachycephalosaurus.webp" alt="Pachycephalosaurus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -607,7 +629,7 @@
 </a>
     <a class="carte" href="dinosaures/styracosaurus.html" data-slug="styracosaurus"
   data-periode="cretace" data-famille="ceratopsiens" data-regime="herbivore"
-  data-recherche="styracosaurus  « le lezard a pointes » ceratopsiens cretace herbivore cretace superieur amerique du nord une couronne de six grandes pointes autour de la tete : un vrai soleil vivant." data-anim data-delai="0">
+  data-recherche="styracosaurus  « le lezard a pointes » ceratopsiens cretace herbivore cretace superieur amerique du nord une couronne de six grandes pointes autour de la tete : un vrai soleil vivant." data-anim data-delai="1">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#f8b58c">
     <img src="assets/img/photos/styracosaurus.webp" alt="Styracosaurus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -623,7 +645,7 @@
 </a>
     <a class="carte" href="dinosaures/therizinosaurus.html" data-slug="therizinosaurus"
   data-periode="cretace" data-famille="theropodes" data-regime="herbivore"
-  data-recherche="therizinosaurus  « le lezard faucheur » theropodes cretace herbivore cretace superieur asie les plus longues griffes de toute l’histoire : un metre de long !" data-anim data-delai="1">
+  data-recherche="therizinosaurus  « le lezard faucheur » theropodes cretace herbivore cretace superieur asie les plus longues griffes de toute l’histoire : un metre de long !" data-anim data-delai="2">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#e0d48c">
     <img src="assets/img/photos/therizinosaurus.webp" alt="Therizinosaurus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -639,7 +661,7 @@
 </a>
     <a class="carte" href="dinosaures/gallimimus.html" data-slug="gallimimus"
   data-periode="cretace" data-famille="theropodes" data-regime="omnivore"
-  data-recherche="gallimimus  « l’imitateur de poule » theropodes cretace omnivore cretace superieur asie l’autruche prehistorique : le sprinteur du monde des dinosaures." data-anim data-delai="2">
+  data-recherche="gallimimus  « l’imitateur de poule » theropodes cretace omnivore cretace superieur asie l’autruche prehistorique : le sprinteur du monde des dinosaures." data-anim data-delai="3">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#f2dcae">
     <img src="assets/img/photos/gallimimus.webp" alt="Gallimimus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -653,9 +675,25 @@
     </span>
   </span>
 </a>
+    <a class="carte" href="dinosaures/oviraptor.html" data-slug="oviraptor"
+  data-periode="cretace" data-famille="theropodes" data-regime="omnivore"
+  data-recherche="oviraptor  « le voleur d’œufs »… un nom injuste ! theropodes cretace omnivore cretace superieur asie accuse pendant 70 ans de voler des œufs… alors qu’il couvait les siens !" data-anim data-delai="4">
+  <span class="carte__media carte__media--photo" style="--carte-teinte:#acdcd5">
+    <img src="assets/img/photos/oviraptor.webp" alt="Oviraptor, reconstitution" width="400" height="280" loading="lazy" decoding="async">
+  </span>
+  <span class="carte__corps">
+    <span class="carte__titre h3" style="font-weight:800;font-size:1.16rem">Oviraptor</span>
+    <span class="carte__texte">Accusé pendant 70 ans de voler des œufs… alors qu’il couvait les siens !</span>
+    <span class="carte__pastilles">
+      <span class="pastille pastille--cretace">🌸 Crétacé</span>
+      <span class="pastille pastille--omnivore">🍽️ Omnivore</span>
+      
+    </span>
+  </span>
+</a>
     <a class="carte" href="dinosaures/argentinosaurus.html" data-slug="argentinosaurus"
   data-periode="cretace" data-famille="sauropodes" data-regime="herbivore"
-  data-recherche="argentinosaurus  « le lezard d’argentine » sauropodes cretace herbivore cretace superieur amerique du sud le plus grand animal terrestre de tous les temps : 35 metres et 70 tonnes !" data-anim data-delai="3">
+  data-recherche="argentinosaurus  « le lezard d’argentine » sauropodes cretace herbivore cretace superieur amerique du sud le plus grand animal terrestre de tous les temps : 35 metres et 70 tonnes !" data-anim data-delai="5">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#aee0c4">
     <img src="assets/img/photos/argentinosaurus.webp" alt="Argentinosaurus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -671,7 +709,7 @@
 </a>
     <a class="carte" href="dinosaures/quetzalcoatlus.html" data-slug="quetzalcoatlus"
   data-periode="cretace" data-famille="pterosaures" data-regime="carnivore"
-  data-recherche="quetzalcoatlus  « le serpent a plumes », d’apres un dieu azteque pterosaures cretace carnivore cretace superieur amerique du nord une envergure de 11 metres : le plus grand animal volant de tous les temps. (pas un dinosaure !)" data-anim data-delai="4">
+  data-recherche="quetzalcoatlus  « le serpent a plumes », d’apres un dieu azteque pterosaures cretace carnivore cretace superieur amerique du nord une envergure de 11 metres : le plus grand animal volant de tous les temps. (pas un dinosaure !)" data-anim data-delai="0">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#f5a8b4">
     <img src="assets/img/photos/quetzalcoatlus.webp" alt="Quetzalcoatlus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -687,7 +725,7 @@
 </a>
     <a class="carte" href="dinosaures/mosasaurus.html" data-slug="mosasaurus"
   data-periode="cretace" data-famille="reptiles-marins" data-regime="carnivore"
-  data-recherche="mosasaurus  « le lezard de la meuse » reptiles marins cretace carnivore cretace superieur europe amerique du nord le monstre des mers du cretace. (et non, ce n’est pas un dinosaure !)" data-anim data-delai="5">
+  data-recherche="mosasaurus  « le lezard de la meuse » reptiles marins cretace carnivore cretace superieur europe amerique du nord le monstre des mers du cretace. (et non, ce n’est pas un dinosaure !)" data-anim data-delai="1">
   <span class="carte__media carte__media--photo" style="--carte-teinte:#8fc9e0">
     <img src="assets/img/photos/mosasaurus.webp" alt="Mosasaurus, reconstitution" width="400" height="280" loading="lazy" decoding="async">
   </span>
@@ -725,6 +763,8 @@
           <li><a href="periodes.html">Les périodes</a></li>
           <li><a href="frise.html">La frise du temps</a></li>
           <li><a href="extinction.html">La grande extinction</a></li>
+          <li><a href="oeufs.html">Œufs et bébés dinosaures</a></li>
+          <li><a href="glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
         </ul>
       </div>
       <div>
@@ -736,6 +776,10 @@
           <li><a href="jeux/qui-suis-je.html">Qui suis-je ?</a></li>
           <li><a href="jeux/memory.html">Memory</a></li>
           <li><a href="jeux/puzzle.html">Puzzle</a></li>
+          <li><a href="jeux/retrouve-la-maman.html">Retrouve la maman</a></li>
+          <li><a href="jeux/plus-grand-ou-plus-petit.html">Plus grand ou plus petit ?</a></li>
+          <li><a href="jeux/machine-a-remonter-le-temps.html">La machine à remonter le temps</a></li>
+          <li><a href="jeux/detective-des-empreintes.html">Détective des empreintes</a></li>
         </ul>
       </div>
       <div>
