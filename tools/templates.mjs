@@ -99,9 +99,9 @@ function entete(base, actif) {
             <li><a href="${base}glossaire.html">🔤 Glossaire</a></li>
             <li><a href="${base}questions.html">💬 Questions fréquentes</a></li>
             <li><a href="${base}extinction.html">☄️ La grande extinction</a></li>
-            <li><a href="${base}metier.html">⛏️ Le métier de paléontologue</a></li>
             <li><a href="${base}oeufs.html">🥚 Œufs et bébés dinosaures</a></li>
             <li><a href="${base}glaciations.html">🧊 Les dinosaures et l’ère glaciaire</a></li>
+            <li><a href="${base}metier.html">⛏️ Le métier de paléontologue</a></li>
             <li><a href="${base}a-propos.html">ℹ️ À propos du site</a></li>
           </ul>
         </details></li>
