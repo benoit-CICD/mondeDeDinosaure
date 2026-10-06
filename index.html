@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Monde des Dinosaures">
-<link rel="stylesheet" href="assets/css/style.css?v=20f27c07">
+<link rel="stylesheet" href="assets/css/style.css?v=452ba455">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
 <script>window.BASE = "";</script>
@@ -62,6 +62,10 @@
             <li><a href="jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></li>
             <li><a href="jeux/memory.html">🧠 Memory</a></li>
             <li><a href="jeux/puzzle.html">🧩 Puzzle</a></li>
+            <li><a href="jeux/retrouve-la-maman.html">🥚 Retrouve la maman</a></li>
+            <li><a href="jeux/plus-grand-ou-plus-petit.html">📏 Plus grand ou plus petit ?</a></li>
+            <li><a href="jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></li>
+            <li><a href="jeux/detective-des-empreintes.html">🐾 Détective des empreintes</a></li>
           </ul>
         </details></li>
         <li><details class="nav__groupe">
@@ -71,6 +75,8 @@
             <li><a href="questions.html">💬 Questions fréquentes</a></li>
             <li><a href="extinction.html">☄️ La grande extinction</a></li>
             <li><a href="metier.html">⛏️ Le métier de paléontologue</a></li>
+            <li><a href="oeufs.html">🥚 Œufs et bébés dinosaures</a></li>
+            <li><a href="glaciations.html">🧊 Les dinosaures et l’ère glaciaire</a></li>
             <li><a href="a-propos.html">ℹ️ À propos du site</a></li>
           </ul>
         </details></li>
@@ -84,9 +90,8 @@
 <section class="heros">
   <div class="conteneur heros__contenu">
     <div>
-      <!-- <p class="pastille" style="margin-bottom:1rem">🦕 Site éducatif gratuit · 7–12 ans</p> -->
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
-      <p class="heros__accroche">Explore 36 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 5 jeux pour devenir un vrai paléontologue.</p>
+      <p class="heros__accroche">Explore 38 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 9 jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
         <a class="bouton" href="dinosaures.html">🔍 Explorer les dinosaures</a>
         <a class="bouton bouton--ambre" href="jeux.html">🎮 Jouer maintenant</a>
@@ -149,10 +154,10 @@
 <section class="section">
   <div class="conteneur">
     <div class="chiffres">
-      <div class="chiffre" data-anim><span class="chiffre__valeur" data-compteur="36">0</span><span class="chiffre__libelle">fiches illustrées</span></div>
+      <div class="chiffre" data-anim><span class="chiffre__valeur" data-compteur="38">0</span><span class="chiffre__libelle">fiches illustrées</span></div>
       <div class="chiffre" data-anim data-delai="1"><span class="chiffre__valeur" data-compteur="186">0</span><span class="chiffre__libelle">millions d’années</span></div>
-      <div class="chiffre" data-anim data-delai="2"><span class="chiffre__valeur" data-compteur="34">0</span><span class="chiffre__libelle">questions de quiz</span></div>
-      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="5">0</span><span class="chiffre__libelle">mini-jeux</span></div>
+      <div class="chiffre" data-anim data-delai="2"><span class="chiffre__valeur" data-compteur="43">0</span><span class="chiffre__libelle">questions de quiz</span></div>
+      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="9">0</span><span class="chiffre__libelle">mini-jeux</span></div>
     </div>
   </div>
 </section>
@@ -275,7 +280,7 @@
   </span>
 </a>
     </div>
-    <p class="centre" style="margin-top:2rem"><a class="bouton" href="dinosaures.html">Voir les 36 dinosaures →</a></p>
+    <p class="centre" style="margin-top:2rem"><a class="bouton" href="dinosaures.html">Voir les 38 dinosaures →</a></p>
   </div>
 </section>
 
@@ -308,7 +313,7 @@
           <span class="carte__titre" style="font-weight:800;font-size:1.3rem">Crétacé</span>
           <span class="pastille pastille--cretace">145 à 66 millions d’années</span>
           <span class="carte__texte">Les fleurs apparaissent, les dinosaures se diversifient comme jamais… puis une météorite met fin à leur règne.</span>
-          <span class="carte__pastilles"><span class="pastille">19 créatures</span></span>
+          <span class="carte__pastilles"><span class="pastille">21 créatures</span></span>
         </span>
       </a>
     </div>
@@ -319,34 +324,34 @@
 <section class="section section--doux">
   <div class="conteneur">
     <h2 class="centre" data-anim>🎮 Joue et apprends</h2>
-    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Cinq jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
+    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Neuf jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
     <div class="grille" style="margin-top:2rem">
       <a class="carte" href="jeux/quiz.html" data-anim data-delai="0">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">❓</span>
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Le grand quiz</span>
-          <span class="carte__texte">10 questions tirées au hasard parmi 34. Trois niveaux de difficulté.</span>
+          <span class="carte__texte">10 questions tirées au hasard parmi 43, réparties sur trois niveaux.</span>
         </span>
       </a>
       <a class="carte" href="jeux/vrai-ou-faux.html" data-anim data-delai="1">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">⚖️</span>
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Vrai ou faux</span>
-          <span class="carte__texte">Démêle le vrai du faux sur les dinosaures. Attention aux pièges !</span>
+          <span class="carte__texte">30 affirmations sur les dinosaures. Sauras-tu démêler le vrai du faux ?</span>
         </span>
       </a>
       <a class="carte" href="jeux/qui-suis-je.html" data-anim data-delai="2">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🔍</span>
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Qui suis-je ?</span>
-          <span class="carte__texte">Devine le dinosaure caché grâce à des indices. Moins tu en demandes, plus tu marques de points.</span>
+          <span class="carte__texte">Une silhouette mystère et des indices. Moins tu en demandes, plus tu marques de points.</span>
         </span>
       </a>
       <a class="carte" href="jeux/memory.html" data-anim data-delai="3">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🧠</span>
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Memory</span>
-          <span class="carte__texte">Retrouve les 8 paires de dinosaures le plus vite possible.</span>
+          <span class="carte__texte">Retrouve les 8 paires de dinosaures en un minimum de coups.</span>
         </span>
       </a>
       <a class="carte" href="jeux/puzzle.html" data-anim data-delai="4">
@@ -354,6 +359,34 @@
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Puzzle</span>
           <span class="carte__texte">Reconstitue l’illustration d’un dinosaure, en 9 ou 16 morceaux.</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/retrouve-la-maman.html" data-anim data-delai="5">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🥚</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Retrouve la maman</span>
+          <span class="carte__texte">Rends chaque œuf à ses parents… et méfie-toi des intrus qui ne pondaient pas !</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/plus-grand-ou-plus-petit.html" data-anim data-delai="0">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">📏</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Plus grand ou plus petit ?</span>
+          <span class="carte__texte">Deux créatures face à face : laquelle est la plus longue, la plus lourde ou la plus rapide ?</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/machine-a-remonter-le-temps.html" data-anim data-delai="1">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">⏳</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">La machine à remonter le temps</span>
+          <span class="carte__texte">Range les dinosaures du plus ancien au plus récent. Le T-rex et le Stégosaure se sont-ils croisés ?</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/detective-des-empreintes.html" data-anim data-delai="2">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🐾</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Détective des empreintes</span>
+          <span class="carte__texte">Une trace dans la roche : qui est passé par là ? Compte les doigts et mène l’enquête.</span>
         </span>
       </a>
     </div>
@@ -418,6 +451,8 @@
           <li><a href="periodes.html">Les périodes</a></li>
           <li><a href="frise.html">La frise du temps</a></li>
           <li><a href="extinction.html">La grande extinction</a></li>
+          <li><a href="oeufs.html">Œufs et bébés dinosaures</a></li>
+          <li><a href="glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
         </ul>
       </div>
       <div>
@@ -429,6 +464,10 @@
           <li><a href="jeux/qui-suis-je.html">Qui suis-je ?</a></li>
           <li><a href="jeux/memory.html">Memory</a></li>
           <li><a href="jeux/puzzle.html">Puzzle</a></li>
+          <li><a href="jeux/retrouve-la-maman.html">Retrouve la maman</a></li>
+          <li><a href="jeux/plus-grand-ou-plus-petit.html">Plus grand ou plus petit ?</a></li>
+          <li><a href="jeux/machine-a-remonter-le-temps.html">La machine à remonter le temps</a></li>
+          <li><a href="jeux/detective-des-empreintes.html">Détective des empreintes</a></li>
         </ul>
       </div>
       <div>

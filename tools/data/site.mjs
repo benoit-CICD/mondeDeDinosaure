@@ -142,6 +142,12 @@ export const glossaire = [
   { mot: "Mésozoïque", def: "L’ère des dinosaures, de −252 à −66 millions d’années. Elle contient le Trias, le Jurassique et le Crétacé." },
   { mot: "Espèce", def: "Groupe d’êtres vivants qui se ressemblent et peuvent avoir des petits ensemble." },
   { mot: "Coprolithe", def: "Crotte fossilisée ! Elle renseigne sur ce que l’animal mangeait." },
+  { mot: "Embryon", def: "Bébé qui se développe encore dans son œuf. On a retrouvé des embryons de dinosaures fossilisés dans leur coquille !" },
+  { mot: "Couver", def: "S’asseoir sur ses œufs pour les protéger et les garder au chaud, comme une poule." },
+  { mot: "Colonie", def: "Groupe d’animaux de la même espèce qui vivent ou font leurs nids les uns à côté des autres." },
+  { mot: "Glaciation", def: "Période très froide pendant laquelle les glaciers s’étendent sur une partie des continents." },
+  { mot: "Calotte glaciaire", def: "Immense couche de glace qui recouvre toute une région, comme l’Antarctique aujourd’hui." },
+  { mot: "Empreinte fossile", def: "Trace de pas laissée dans la boue ou le sable, puis transformée en pierre. Elle montre comment l’animal marchait." },
 ];
 
 export const faq = [
@@ -152,5 +158,7 @@ export const faq = [
   { q: "Les dinosaures avaient-ils des plumes ?", r: "Beaucoup en avaient, surtout les petits carnivores et les raptors. Les plumes servaient à tenir chaud et à parader bien avant de servir à voler." },
   { q: "Quelle couleur avaient les dinosaures ?", r: "On ne le sait que pour quelques-uns, comme Microraptor (noir irisé), grâce aux traces microscopiques de pigments dans leurs plumes fossilisées." },
   { q: "Peut-on recréer un dinosaure comme dans les films ?", r: "Non. L’ADN se détruit complètement en moins d’un million d’années, bien trop vite pour qu’il en reste après 66 millions d’années." },
+  { q: "Comment naissaient les bébés dinosaures ?", r: "Ils sortaient d’un œuf. Certains parents enterraient leurs œufs puis s’en allaient ; d’autres les couvaient et nourrissaient leurs petits, comme Maiasaura, « le lézard bonne mère »." },
+  { q: "Les dinosaures ont-ils connu l’ère glaciaire ?", r: "Non. Pendant leur règne, la Terre était plutôt chaude, sans grandes calottes de glace. La grande glaciation a eu lieu avant eux, et celle des mammouths bien après." },
   { q: "Le T-rex était-il le plus grand carnivore ?", r: "Non : Spinosaurus était plus long (15 m contre 12 m). Mais le T-rex restait le plus massif et le plus puissant mordeur." },
 ];

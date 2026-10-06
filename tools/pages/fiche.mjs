@@ -2,6 +2,7 @@
 
 import { dinos } from "../data/dinos.mjs";
 import { site } from "../data/site.mjs";
+import { oeufs } from "../data/oeufs.mjs";
 import {
   page, esc, carteDino, periodeDe, familleDe, regimeDe,
   fmtLongueur, fmtPoids, pastillePeriode, pastilleRegime,
@@ -153,6 +154,11 @@ export function pagesFiches() {
         <p>Teste tes connaissances sur ${esc(d.nom)} et les autres dinosaures !</p>
         <p><a class="bouton bouton--petit" href="../jeux/quiz.html">❓ Le grand quiz</a>
            <a class="bouton bouton--petit bouton--secondaire" href="../jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></p>
+        ${oeufs.some((o) => o.parent.img === d.slug)
+          ? `<p>On connaît les œufs de sa famille : sauras-tu les reconnaître ? Lis le dossier
+        <a href="../oeufs.html">Œufs et bébés dinosaures</a>, puis joue à
+        <a href="../jeux/retrouve-la-maman.html">Retrouve la maman</a> !</p>`
+          : ""}
       </div>
     </div>
   </div>
