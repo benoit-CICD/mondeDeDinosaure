@@ -2,421 +2,469 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/index.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/eoraptor.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/herrerasaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/plateosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/coelophysis.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/dilophosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/cryolophosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/allosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/ceratosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/stegosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/kentrosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/diplodocus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/apatosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/brachiosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/compsognathus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/archaeopteryx.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/pterodactylus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/ichthyosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/tyrannosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/triceratops.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/velociraptor.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/deinonychus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/microraptor.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/spinosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/baryonyx.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/giganotosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/carnotaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/ankylosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/parasaurolophus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/maiasaura.html</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/iguanodon.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/pachycephalosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/styracosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/therizinosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/gallimimus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/oviraptor.html</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/argentinosaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/quetzalcoatlus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/mosasaurus.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/theropodes.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/raptors.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/sauropodes.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/sauropodomorphes.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/thyreophores.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/ceratopsiens.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/hadrosaures.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/pachycephalosaures.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/pterosaures.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/reptiles-marins.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes/trias.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes/jurassique.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes/cretace.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/frise.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/quiz.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/vrai-ou-faux.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/qui-suis-je.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/memory.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/puzzle.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/retrouve-la-maman.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/plus-grand-ou-plus-petit.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/machine-a-remonter-le-temps.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/detective-des-empreintes.html</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/glossaire.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/questions.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/extinction.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/metier.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/a-propos.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/mentions-legales.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/confidentialite.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/accessibilite.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/credits.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/extinction.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/metier.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/oeufs.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/glaciations.html</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/plan-du-site.html</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

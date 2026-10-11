@@ -155,6 +155,13 @@ export const photos = {
     "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Kentrosaurus_aethiopicus.png"
   },
+  "maiasaura": {
+    "fichier": "Maiasaura peeblesorum.png",
+    "auteur": "Connor Ashbridge",
+    "licence": "CC BY-SA 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Maiasaura_peeblesorum.png"
+  },
   "microraptor": {
     "fichier": "Microraptor Restoration.png",
     "auteur": "Fred Wierum",
@@ -168,6 +175,13 @@ export const photos = {
     "licence": "CC BY-SA 4.0",
     "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Mosasaurus_hoffmanni_life.jpg"
+  },
+  "oviraptor": {
+    "fichier": "Oviraptor Restoration.png",
+    "auteur": "PaleoNeolitic",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Oviraptor_Restoration.png"
   },
   "pachycephalosaurus": {
     "fichier": "Pachycephalosaurus Reconstruction.jpg",

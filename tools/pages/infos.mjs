@@ -1,8 +1,10 @@
-// Pages éditoriales : glossaire, questions, dossiers, à propos, pages légales.
+// Pages éditoriales : glossaire, questions, à propos, pages légales.
+// Les dossiers thématiques sont dans dossiers.mjs.
 
 import { dinos } from "../data/dinos.mjs";
 import { site, glossaire, faq, periodes, familles } from "../data/site.mjs";
-import { page, esc, aUnePhoto } from "../templates.mjs";
+import { page, esc, aUnePhoto, enLettres } from "../templates.mjs";
+import { listeJeux } from "../data/jeux.mjs";
 import { photos } from "../data/photos.mjs";
 
 /** Met en évidence les informations que l'éditeur doit renseigner. */
@@ -65,134 +67,12 @@ export function pagesInfos() {
   <div class="encadre" style="margin-top:2rem">
     <h2 class="encadre__titre">🔎 Tu as une autre question ?</h2>
     <p style="margin-bottom:0">Cherche dans le <a href="glossaire.html">glossaire</a>, explore les
-    <a href="dinosaures.html">fiches des dinosaures</a> ou lis le dossier sur
-    <a href="extinction.html">la grande extinction</a>.</p>
+    <a href="dinosaures.html">fiches des dinosaures</a> ou lis les dossiers sur
+    <a href="extinction.html">la grande extinction</a>, <a href="oeufs.html">les œufs et les bébés</a>
+    et <a href="glaciations.html">l’ère glaciaire</a>.</p>
   </div>
 </div>`,
       filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Questions fréquentes" }],
-    }),
-  });
-
-  /* ---------- Dossier : l'extinction ---------- */
-  pages.push({
-    chemin: "extinction.html",
-    html: page({
-      titre: "La grande extinction",
-      description: "Il y a 66 millions d’années, un astéroïde a mis fin au règne des dinosaures. Voici ce qui s’est passé, expliqué simplement aux enfants.",
-      corps: `
-<div class="conteneur section">
-  <h1>☄️ La grande extinction</h1>
-  <p class="fiche__accroche" style="max-width:66ch">Il y a 66 millions d’années, en une seule journée, le monde des dinosaures a basculé.</p>
-
-  <div class="grille grille--deux" style="align-items:start;margin-top:2rem">
-    <div class="prose">
-      <h2>Le jour où tout a changé</h2>
-      <p>Un astéroïde d’environ 10 kilomètres de large — la hauteur du mont Everest — a percuté la Terre à l’endroit
-      où se trouve aujourd’hui la péninsule du Yucatán, au Mexique. Il filait à plus de 70 000 km/h.</p>
-      <p>L’impact a creusé un cratère de 180 kilomètres de large, appelé <strong>cratère de Chicxulub</strong>.
-      On peut encore le repérer aujourd’hui grâce à des mesures scientifiques, même s’il est enfoui sous la roche et la mer.</p>
-
-      <h2>Ce qui s’est passé ensuite</h2>
-      <p>Le choc a projeté dans le ciel une quantité énorme de poussière et de roches brûlantes. Pendant des mois,
-      la lumière du Soleil n’a presque plus atteint le sol.</p>
-      <p>Sans lumière, les plantes ne pouvaient plus pousser. Les herbivores, privés de nourriture, ont disparu les premiers.
-      Puis ce fut au tour des carnivores, qui n’avaient plus rien à chasser. C’est ce qu’on appelle une réaction en chaîne.</p>
-      <p>En quelques milliers d’années, environ <strong>trois espèces sur quatre</strong> ont disparu de la Terre :
-      les dinosaures, mais aussi les ptérosaures, les grands reptiles marins et d’innombrables plantes et insectes.</p>
-
-      <h2>Les survivants</h2>
-      <p>Tout n’a pas disparu. Les petits animaux capables de se cacher, de manger un peu de tout et de survivre avec peu
-      s’en sont mieux sortis : de petits mammifères, des crocodiles, des tortues, des grenouilles…</p>
-      <p>Et surtout : un groupe de petits dinosaures à plumes a survécu. Ce sont eux qui sont devenus
-      <strong>les oiseaux</strong>. Chaque fois que tu vois une mésange ou un pigeon, tu regardes un descendant direct
-      des dinosaures !</p>
-
-      <h2>Et après ?</h2>
-      <p>Une fois les dinosaures disparus, la place était libre. Les mammifères, jusque-là tout petits, se sont
-      diversifiés et ont grandi. Des millions d’années plus tard, c’est de cette lignée que sont nés les humains.</p>
-      <p>Autrement dit : sans cet astéroïde, tu ne serais probablement pas là pour lire cette page.</p>
-    </div>
-
-    <div>
-      <div class="encadre encadre--pouvoir">
-        <h2 class="encadre__titre">📊 L’extinction en chiffres</h2>
-        <table class="tableau-info"><tbody>
-          <tr><th scope="row">Date</th><td>Il y a 66 millions d’années</td></tr>
-          <tr><th scope="row">Taille de l’astéroïde</th><td>Environ 10 km de large</td></tr>
-          <tr><th scope="row">Lieu de l’impact</th><td>Chicxulub, Mexique</td></tr>
-          <tr><th scope="row">Cratère</th><td>180 km de diamètre</td></tr>
-          <tr><th scope="row">Espèces disparues</th><td>Environ 75 %</td></tr>
-          <tr><th scope="row">Survivants célèbres</th><td>Les oiseaux, les crocodiles, les tortues</td></tr>
-        </tbody></table>
-      </div>
-      <div class="encadre encadre--attention">
-        <h2 class="encadre__titre">🐦 11 000 espèces vivantes</h2>
-        <p style="margin-bottom:0">C’est le nombre d’espèces d’oiseaux qui existent aujourd’hui sur Terre.
-        Les dinosaures ne sont donc pas complètement éteints : ils chantent dans ton jardin !</p>
-      </div>
-      <div class="encadre">
-        <h2 class="encadre__titre">🎮 Et si on jouait ?</h2>
-        <p style="margin-bottom:0"><a class="bouton bouton--petit" href="jeux/vrai-ou-faux.html">⚖️ Vrai ou faux</a></p>
-      </div>
-    </div>
-  </div>
-</div>`,
-      filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "La grande extinction" }],
-    }),
-  });
-
-  /* ---------- Dossier : le métier ---------- */
-  pages.push({
-    chemin: "metier.html",
-    html: page({
-      titre: "Le métier de paléontologue",
-      description: "Comment fait-on pour découvrir un dinosaure ? Fouilles, dégagement, moulage, étude : le métier de paléontologue expliqué aux enfants.",
-      corps: `
-<div class="conteneur section">
-  <h1>⛏️ Comment découvre-t-on un dinosaure ?</h1>
-  <p class="fiche__accroche" style="max-width:66ch">Un squelette de dinosaure ne sort pas tout monté de la terre.
-  Voici les six étapes du travail des paléontologues.</p>
-
-  <div class="frise" style="margin-top:2.5rem">
-    ${[
-      ["🗺️", "Choisir un endroit", "Les paléontologues étudient des cartes géologiques pour repérer des roches du bon âge. Inutile de creuser dans une roche trop jeune ou trop vieille : il n’y aura rien."],
-      ["👀", "Chercher à pied", "On marche lentement, les yeux rivés au sol, à la recherche d’un éclat d’os qui dépasse. Beaucoup de grandes découvertes ont commencé par un simple caillou remarqué par hasard."],
-      ["🖌️", "Dégager avec patience", "On travaille au marteau, au burin, puis au pinceau. Dégager un seul os peut prendre plusieurs semaines. Il faut noter la position exacte de chaque pièce."],
-      ["🧊", "Protéger et transporter", "Les os fragiles sont enveloppés dans du plâtre, comme un bras cassé. Ces coques protègent les fossiles pendant le voyage jusqu’au laboratoire."],
-      ["🔬", "Étudier au laboratoire", "On nettoie, on mesure, on scanne. Les scanners permettent de voir l’intérieur des os et même la forme du cerveau, sans rien abîmer."],
-      ["🏛️", "Partager la découverte", "Les résultats sont publiés dans des revues scientifiques, puis le squelette est monté et exposé dans un musée pour que tout le monde puisse le voir."],
-    ]
-      .map(
-        ([emoji, titre, texte], i) => `<div class="frise__jalon" data-anim style="--jalon-couleur:${["#c86b3c", "#3f8f6c", "#2f6fa8", "#9e4f8f", "#e09a2c", "#c0392b"][i]}">
-      <span class="frise__point" aria-hidden="true"></span>
-      <div class="frise__periode">
-        <p class="frise__ages">Étape ${i + 1}</p>
-        <h2 style="margin-bottom:.3rem">${emoji} ${titre}</h2>
-        <p style="margin-bottom:0">${texte}</p>
-      </div>
-    </div>`
-      )
-      .join("\n    ")}
-  </div>
-
-  <div class="grille grille--deux" style="margin-top:2.5rem;align-items:start">
-    <div class="encadre">
-      <h2 class="encadre__titre">🧠 Comment sait-on tout ça ?</h2>
-      <p>Les paléontologues ne devinent pas : ils comparent. En observant les animaux d’aujourd’hui — oiseaux,
-      crocodiles, lézards — ils comprennent à quoi servaient les os et les muscles des dinosaures.</p>
-      <p style="margin-bottom:0">Certaines choses restent inconnues, comme la couleur de la plupart des espèces.
-      Quand les scientifiques ne savent pas, ils le disent : c’est ça, la démarche scientifique.</p>
-    </div>
-    <div class="encadre encadre--pouvoir">
-      <h2 class="encadre__titre">🌟 Une découverte célèbre</h2>
-      <p>En 1811, à Lyme Regis en Angleterre, une jeune fille de 12 ans nommée <strong>Mary Anning</strong> découvre
-      le premier crâne complet d’Ichthyosaure.</p>
-      <p style="margin-bottom:0">Elle deviendra l’une des plus grandes chasseuses de fossiles de l’histoire,
-      alors qu’à son époque les femmes n’avaient pas le droit d’entrer dans les sociétés savantes.</p>
-    </div>
-  </div>
-</div>`,
-      filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Le métier de paléontologue" }],
     }),
   });
 
@@ -218,9 +98,10 @@ export function pagesInfos() {
       <li><strong>${periodes.length} pages de période</strong> : Trias, Jurassique et Crétacé ;</li>
       <li><strong>${familles.length} pages de famille</strong>, des théropodes aux reptiles marins ;</li>
       <li>une <a href="frise.html">frise chronologique</a> sur 186 millions d’années ;</li>
-      <li>des dossiers sur <a href="extinction.html">la grande extinction</a> et
-      <a href="metier.html">le métier de paléontologue</a> ;</li>
-      <li><strong>5 mini-jeux</strong> pour réviser en s’amusant.</li>
+      <li>des dossiers sur <a href="extinction.html">la grande extinction</a>,
+      <a href="metier.html">le métier de paléontologue</a>, <a href="oeufs.html">les œufs et les bébés dinosaures</a>
+      et <a href="glaciations.html">l’ère glaciaire</a> ;</li>
+      <li><strong>${listeJeux.length} mini-jeux</strong> pour réviser en s’amusant.</li>
     </ul>
 
     <h2>Et les créatures qui ne sont pas des dinosaures ?</h2>
@@ -429,7 +310,7 @@ export function pagesInfos() {
 
     <h2>Limites connues</h2>
     <ul>
-      <li>Les cinq mini-jeux nécessitent JavaScript. Un message l’indique si celui-ci est désactivé ;
+      <li>Les ${enLettres(listeJeux.length)} mini-jeux nécessitent JavaScript. Un message l’indique si celui-ci est désactivé ;
       l’ensemble du contenu documentaire reste accessible sans JavaScript.</li>
       <li>Le jeu de puzzle repose sur une manipulation visuelle des images : il est difficilement utilisable
       avec un lecteur d’écran.</li>
@@ -482,7 +363,7 @@ export function pagesInfos() {
     Chaque auteur est crédité ci-dessous, comme leurs licences l’exigent.</p>
 
     <p>Les <strong>illustrations vectorielles</strong> de la page d’accueil et des mini-jeux (memory, puzzle,
-    « qui suis-je ? ») sont en revanche des créations originales réalisées pour ce site.</p>
+    « qui suis-je ? », œufs, empreintes…) sont en revanche des créations originales réalisées pour ce site.</p>
 
     <div class="encadre">
       <h2 class="encadre__titre">📋 Licences utilisées</h2>
@@ -543,6 +424,8 @@ export function pagePlan() {
         ${lien("frise.html", "La frise du temps")}
         ${lien("extinction.html", "La grande extinction")}
         ${lien("metier.html", "Le métier de paléontologue")}
+        ${lien("oeufs.html", "Œufs et bébés dinosaures")}
+        ${lien("glaciations.html", "Les dinosaures et l’ère glaciaire")}
         ${lien("glossaire.html", "Glossaire")}
         ${lien("questions.html", "Questions fréquentes")}
       </ul>
@@ -550,11 +433,7 @@ export function pagePlan() {
       <h2>Jouer</h2>
       <ul>
         ${lien("jeux.html", "Tous les jeux")}
-        ${lien("jeux/quiz.html", "Le grand quiz")}
-        ${lien("jeux/vrai-ou-faux.html", "Vrai ou faux")}
-        ${lien("jeux/qui-suis-je.html", "Qui suis-je ?")}
-        ${lien("jeux/memory.html", "Memory")}
-        ${lien("jeux/puzzle.html", "Puzzle")}
+        ${listeJeux.map((j) => lien(`jeux/${j.slug}.html`, j.nom)).join("\n        ")}
       </ul>
 
       <h2>Informations</h2>

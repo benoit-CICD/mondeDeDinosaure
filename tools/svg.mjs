@@ -65,6 +65,15 @@ function theropode(p, o = {}) {
        <path d="M348 50 q12 -28 28 -20 q-9 12 -10 22 Z" fill="${c2}" stroke="${c3}" stroke-width="4" stroke-linejoin="round"/>`
     : "";
 
+  /* Oviraptor : casque arrondi sur le crâne, bras et bout de queue emplumés. */
+  const casque = o.casque
+    ? `<path d="M334 56 Q338 16 368 22 Q382 26 378 40 Q374 52 364 60 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>`
+    : "";
+  const plumes = o.plumes
+    ? `<path d="M282 112 q34 4 38 40 q-24 0 -40 -20 Z" fill="${c2}" stroke="${c3}" stroke-width="4" stroke-linejoin="round"/>
+       <path d="M40 154 q-30 -18 -38 2 q8 16 38 6 Z" fill="${c2}" stroke="${c3}" stroke-width="4" stroke-linejoin="round"/>`
+    : "";
+
   const creteTravers = o.creteTravers
     ? `<path d="M332 50 q16 -22 40 -14 q-4 10 -2 18 Z" fill="${c2}" stroke="${c3}" stroke-width="4" stroke-linejoin="round"/>`
     : "";
@@ -75,7 +84,7 @@ function theropode(p, o = {}) {
     <g class="queue-g">
       <path class="corps" d="${corps}" fill="${c1}" stroke="${c3}" stroke-width="6" stroke-linejoin="round"/>
       <path d="M50 158 Q120 152 176 140 Q206 132 224 152 Q186 162 128 162 Q84 162 50 158 Z" fill="${c2}" opacity=".55"/>
-      ${museau}${cornes}${creteDouble}${creteTravers}
+      ${museau}${cornes}${creteDouble}${creteTravers}${casque}${plumes}
       ${o.museauBec ? "" : dents(336, 78, 372, 74, 5, 9)}
       ${oeil(348, 66, 9, c3)}
       ${joue(330, 78, 8)}
@@ -283,6 +292,10 @@ function hadrosaure(p, o = {}) {
     ? `<path d="M320 72 Q292 44 250 34 Q222 28 214 44 Q234 52 262 66 Q292 82 306 92 Z"
          fill="${c2}" stroke="${c3}" stroke-width="5.5" stroke-linejoin="round"/>`
     : "";
+  /* Petite crête osseuse au-dessus des yeux (Maiasaura). */
+  const bosse = o.bosse
+    ? `<path d="M318 74 Q324 52 342 60 Q334 64 332 72 Z" fill="${c2}" stroke="${c3}" stroke-width="4" stroke-linejoin="round"/>`
+    : "";
   return `<g>
     ${limb("M190 154 q-22 34 -10 60 q4 12 -14 14 l-24 4", 18, c3, c3)}
     <g class="queue-g">
@@ -291,7 +304,7 @@ function hadrosaure(p, o = {}) {
             Q300 132 272 144 Q234 158 200 164 Q112 174 16 160 Z"
             fill="${c1}" stroke="${c3}" stroke-width="6" stroke-linejoin="round"/>
       <path d="M40 160 Q108 158 158 144 Q196 132 216 140 Q180 158 130 166 Q78 170 40 160 Z" fill="${c2}" opacity=".5"/>
-      ${crete}
+      ${crete}${bosse}
       <path d="M344 66 L380 76 Q390 84 378 92 L344 94 Z" fill="${c1}" stroke="${c3}" stroke-width="5" stroke-linejoin="round"/>
       ${oeil(336, 80, 8, c3)}
       ${joue(326, 92, 7)}
@@ -424,6 +437,7 @@ const ARCHETYPES = {
   "theropode-autruche": (p) => theropode(p, { museauBec: true }),
   "theropode-crete": (p) => theropode(p, { creteDouble: true }),
   "theropode-crete-travers": (p) => theropode(p, { creteTravers: true }),
+  "theropode-oviraptor": (p) => theropode(p, { museauBec: true, casque: true, plumes: true }),
   "spinosaure": (p) => spinosaure(p),
   "raptor": (p) => raptor(p),
   "raptor-plume": (p) => raptor(p, { quatreAiles: true }),
@@ -436,6 +450,7 @@ const ARCHETYPES = {
   "ceratopsien-couronne": (p) => ceratopsien(p, { couronne: true }),
   "hadrosaure": (p) => hadrosaure(p),
   "hadrosaure-crete": (p) => hadrosaure(p, { crete: true }),
+  "hadrosaure-bosse": (p) => hadrosaure(p, { bosse: true }),
   "pachycephalosaure": (p) => pachycephalosaure(p),
   "therizinosaure": (p) => therizinosaure(p),
   "oiseau-primitif": (p) => oiseauPrimitif(p),

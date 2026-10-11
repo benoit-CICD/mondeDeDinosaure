@@ -1,16 +1,10 @@
-// Hub des jeux et les cinq mini-jeux.
+// Salle de jeux et pages des mini-jeux.
 
 import { dinos } from "../data/dinos.mjs";
-import { quiz, vraiFaux } from "../data/jeux.mjs";
-import { page, esc } from "../templates.mjs";
-
-const LISTE = [
-  { slug: "quiz", emoji: "❓", nom: "Le grand quiz", court: `10 questions tirées au hasard parmi ${quiz.length}, réparties sur trois niveaux.`, duree: "5 min" },
-  { slug: "vrai-ou-faux", emoji: "⚖️", nom: "Vrai ou faux", court: `${vraiFaux.length} affirmations sur les dinosaures. Sauras-tu démêler le vrai du faux ?`, duree: "4 min" },
-  { slug: "qui-suis-je", emoji: "🔍", nom: "Qui suis-je ?", court: "Une silhouette mystère et des indices. Moins tu en demandes, plus tu marques de points.", duree: "6 min" },
-  { slug: "memory", emoji: "🧠", nom: "Memory", court: "Retrouve les 8 paires de dinosaures en un minimum de coups.", duree: "3 min" },
-  { slug: "puzzle", emoji: "🧩", nom: "Puzzle", court: "Reconstitue l’illustration d’un dinosaure, en 9 ou 16 morceaux.", duree: "5 min" },
-];
+import { quiz, vraiFaux, reperes, listeJeux } from "../data/jeux.mjs";
+import { oeufs, sansOeuf } from "../data/oeufs.mjs";
+import { empreintes, traceurs } from "../data/empreintes.mjs";
+import { page, esc, enLettres, majuscule } from "../templates.mjs";
 
 const entetePartie = (id, libelleGauche) => `
   <div class="jeu__entete">
@@ -55,16 +49,16 @@ export function pagesJeux() {
     chemin: "jeux.html",
     html: page({
       titre: "Les jeux",
-      description: "Cinq mini-jeux gratuits sur les dinosaures : quiz, vrai ou faux, devinettes, memory et puzzle. Aucun compte, aucune donnée enregistrée.",
+      description: `${majuscule(enLettres(listeJeux.length))} mini-jeux gratuits sur les dinosaures : quiz, vrai ou faux, devinettes, memory, puzzle, œufs, tailles, frise du temps et empreintes. Aucun compte, aucune donnée enregistrée.`,
       actif: "jeux",
       corps: `
 <div class="conteneur section">
   <h1>🎮 La salle de jeux</h1>
-  <p style="max-width:68ch">Cinq jeux pour t’amuser tout en apprenant. Rien n’est enregistré et il n’y a pas de compte à créer :
+  <p style="max-width:68ch">${majuscule(enLettres(listeJeux.length))} jeux pour t’amuser tout en apprenant. Rien n’est enregistré et il n’y a pas de compte à créer :
   tu peux rejouer autant de fois que tu veux, les questions changent à chaque partie !</p>
 
   <div class="grille grille--large" style="margin-top:2rem">
-    ${LISTE.map(
+    ${listeJeux.map(
       (j, i) => `<a class="carte" href="jeux/${j.slug}.html" data-anim data-delai="${i}">
       <span class="carte__media" style="padding:1.8rem;text-align:center;font-size:3rem" aria-hidden="true">${j.emoji}</span>
       <span class="carte__corps">
@@ -231,6 +225,120 @@ export function pagesJeux() {
     })
   );
 
+  /* --- Retrouve la maman --- */
+  pages.push(
+    pageJeu({
+      slug: "retrouve-la-maman",
+      titre: "Retrouve la maman",
+      emoji: "🥚",
+      description: "Jeu éducatif gratuit : rends chaque œuf de dinosaure à ses parents grâce aux indices. Forme, taille, coquille, nid… et attention aux intrus !",
+      intro: `Des œufs ont été retrouvés dans un nid, mais à qui sont-ils ? Touche un œuf pour l’examiner, puis touche ses parents.
+      Attention : un intrus qui ne pondait pas d’œufs se cache parmi eux ! Besoin d’aide ? Lis le dossier
+      <a href="../oeufs.html">Œufs et bébés dinosaures</a>.`,
+      script: "oeufs.js",
+      corpsJeu: `
+  <div class="jeu" id="oeufs">
+    <div id="oeufs-jeu">
+      ${entetePartie("oeufs", "Manche 1 / 2")}
+      <h2 class="question">🪺 Le nid : touche un œuf</h2>
+      <div class="nid" id="oeufs-nid"></div>
+      <div class="fiche-oeuf" id="oeufs-fiche"><p style="margin:0">Touche un œuf du nid pour l’examiner.</p></div>
+      <h2 class="question">👪 À qui est cet œuf ?</h2>
+      <div class="choix-grille" id="oeufs-parents"></div>
+      <div class="retour" id="oeufs-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="oeufs-suivant" hidden>Manche suivante →</button></p>
+    </div>
+    <div id="oeufs-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire le dossier <a href="../oeufs.html">Œufs et bébés dinosaures</a> !</p></noscript>
+  </div>`,
+    })
+  );
+
+  /* --- Plus grand ou plus petit ? --- */
+  pages.push(
+    pageJeu({
+      slug: "plus-grand-ou-plus-petit",
+      titre: "Plus grand ou plus petit ?",
+      emoji: "📏",
+      description: "Jeu gratuit pour les enfants : deux dinosaures face à face, lequel était le plus long, le plus lourd ou le plus rapide ? Dix duels pour comparer les géants.",
+      intro: `Deux créatures s’affrontent. Laquelle était la plus longue, la plus lourde ou la plus rapide ? Touche la bonne carte !
+      Les chiffres viennent des fiches : ce sont des estimations de scientifiques.`,
+      script: "plus-grand.js",
+      corpsJeu: `
+  <div class="jeu" id="pg">
+    <div id="pg-jeu">
+      ${entetePartie("pg", "Duel 1 / 10")}
+      <h2 class="question" id="pg-question" tabindex="-1">Chargement…</h2>
+      <div class="duel" id="pg-duel"></div>
+      <div class="retour" id="pg-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="pg-suivant" hidden>Duel suivant →</button></p>
+    </div>
+    <div id="pg-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+  </div>`,
+    })
+  );
+
+  /* --- La machine à remonter le temps --- */
+  pages.push(
+    pageJeu({
+      slug: "machine-a-remonter-le-temps",
+      titre: "La machine à remonter le temps",
+      emoji: "⏳",
+      description: "Jeu éducatif gratuit : range les dinosaures du plus ancien au plus récent, avec quelques intrus comme le mammouth ou l’astéroïde. Pour comprendre la frise du temps.",
+      intro: `Oups, la machine à remonter le temps a tout mélangé ! Range les cartes de la plus ancienne à la plus récente.
+      Des intrus se glissent parfois dans le voyage : une glaciation, un astéroïde, un mammouth…
+      Pour réviser, jette un œil à la <a href="../frise.html">frise du temps</a>.`,
+      script: "machine-temps.js",
+      corpsJeu: `
+  <div class="jeu" id="mt">
+    <div id="mt-jeu">
+      ${entetePartie("mt", "Voyage 1 / 6")}
+      <h2 class="question" id="mt-question" tabindex="-1">Du plus ancien au plus récent</h2>
+      <p class="consigne">Touche les cartes dans l’ordre, en commençant par la plus ancienne. Touche une case remplie pour la vider.</p>
+      <ol class="cases" id="mt-cases"></ol>
+      <div class="choix-grille cartes-temps" id="mt-cartes"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="mt-verifier" disabled>⏳ Vérifier</button></p>
+      <div class="retour" id="mt-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="mt-suivant" hidden>Voyage suivant →</button></p>
+    </div>
+    <div id="mt-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même explorer la <a href="../frise.html">frise du temps</a> !</p></noscript>
+  </div>`,
+    })
+  );
+
+  /* --- Détective des empreintes --- */
+  pages.push(
+    pageJeu({
+      slug: "detective-des-empreintes",
+      titre: "Détective des empreintes",
+      emoji: "🐾",
+      description: "Jeu éducatif gratuit : une empreinte fossile dans la roche, qui l’a laissée ? Compte les doigts, observe les griffes et la taille pour trouver le coupable.",
+      intro: `Des paléontologues ont découvert une empreinte dans la roche. Compte les doigts, regarde s’ils ont des griffes,
+      vérifie la taille de la trace… puis désigne le suspect !`,
+      script: "empreintes.js",
+      corpsJeu: `
+  <div class="jeu" id="emp">
+    <div id="emp-jeu">
+      ${entetePartie("emp", "Empreinte 1 / ${empreintes.length}")}
+      <div class="empreinte-scene">
+        <img id="emp-image" alt="Empreinte fossile à identifier" width="240" height="240">
+        <p id="emp-taille"></p>
+      </div>
+      <h2 class="question" id="emp-question" tabindex="-1">Qui a laissé cette empreinte ?</h2>
+      <p><button type="button" class="bouton bouton--ambre bouton--petit" id="emp-indice">💡 Un indice</button></p>
+      <p class="indice-texte" id="emp-indice-texte" hidden></p>
+      <div class="choix-grille" id="emp-choix"></div>
+      <div class="retour" id="emp-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="emp-suivant" hidden>Empreinte suivante →</button></p>
+    </div>
+    <div id="emp-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+  </div>`,
+    })
+  );
+
   return pages;
 }
 
@@ -243,7 +351,10 @@ export function fichierDonnees() {
     famille: d.famille,
     regime: d.regime,
     longueur: d.longueur,
+    poids: d.poids,
+    vitesse: d.vitesse,
     ageDebut: d.ageDebut,
+    ageFin: d.ageFin,
     lieux: d.lieux,
     comparaison: d.comparaison,
     accroche: d.accroche,
@@ -258,5 +369,10 @@ export function fichierDonnees() {
 window.DINOS = ${JSON.stringify(legers)};
 window.QUIZ = ${JSON.stringify(quiz)};
 window.VRAIFAUX = ${JSON.stringify(vraiFaux)};
+window.OEUFS = ${JSON.stringify(oeufs.map(({ id, parent, indices, aide, explication }) => ({ id, parent, indices, aide, explication })))};
+window.SANS_OEUF = ${JSON.stringify(sansOeuf)};
+window.EMPREINTES = ${JSON.stringify(empreintes.map(({ id, auteur, taille, indice, explication }) => ({ id, auteur, taille, indice, explication })))};
+window.TRACEURS = ${JSON.stringify(traceurs)};
+window.REPERES = ${JSON.stringify(reperes)};
 `;
 }

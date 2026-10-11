@@ -11,6 +11,8 @@ export const quiz = [
   { n: 1, q: "Comment appelle-t-on un scientifique qui étudie les dinosaures ?", r: ["Un paléontologue", "Un astronome", "Un vétérinaire", "Un archéologue"], e: "L’archéologue étudie les humains du passé ; le paléontologue étudie les êtres vivants fossilisés." },
   { n: 1, q: "Combien de périodes compte l’ère des dinosaures ?", r: ["Trois", "Deux", "Cinq", "Une seule"], e: "Le Trias, le Jurassique et le Crétacé forment ensemble l’ère appelée Mésozoïque." },
   { n: 1, q: "Quel dinosaure avait une massue au bout de la queue ?", r: ["L’Ankylosaure", "Le Brachiosaure", "Le Parasaurolophus", "Le Ptéranodon"], e: "Une boule d’os assez lourde pour casser la patte d’un prédateur !" },
+  { n: 1, q: "Comment naissaient les bébés dinosaures ?", r: ["En sortant d’un œuf", "Vivants, comme les chiots", "Dans une poche, comme les kangourous", "Dans une graine géante"], e: "Tous les dinosaures pondaient des œufs. Même le géant Argentinosaurus sortait d’un œuf à peine plus gros qu’un pamplemousse !" },
+  { n: 1, q: "Les dinosaures ont-ils connu les mammouths ?", r: ["Non, jamais", "Oui, ils vivaient ensemble", "Oui, mais seulement au pôle Nord", "Seulement les plus gros dinosaures"], e: "Le mammouth laineux est apparu plus de 65 millions d’années après la disparition des dinosaures." },
   { n: 1, q: "Le Vélociraptor était à peu près de la taille…", r: ["d’un gros dindon", "d’un éléphant", "d’un autobus", "d’une souris"], e: "2 mètres de long dont la moitié en queue, 15 kilos, et couvert de plumes. Les films l’ont beaucoup agrandi !" },
 
   { n: 2, q: "Qu’est-ce qui a causé la disparition des dinosaures ?", r: ["La chute d’un astéroïde", "Une grande sécheresse", "Une épidémie", "Les chasseurs préhistoriques"], e: "Un astéroïde de 10 km est tombé au Mexique il y a 66 millions d’années. La poussière a masqué le Soleil pendant des mois." },
@@ -24,6 +26,10 @@ export const quiz = [
   { n: 2, q: "Quelle est la particularité du Thérizinosaurus ?", r: ["Il avait des griffes d’un mètre… et mangeait des plantes", "Il volait", "Il nageait sous l’eau", "Il n’avait pas de queue"], e: "Ses griffes géantes servaient à rabattre les branches, un peu comme un paresseux géant." },
   { n: 2, q: "Où vivait le Mosasaurus ?", r: ["Dans l’océan", "Dans le désert", "Dans les arbres", "Dans les montagnes"], e: "C’était un reptile marin géant, cousin des varans. Attention : ce n’est pas un dinosaure !" },
   { n: 2, q: "Qu’est-ce qu’un gastrolithe ?", r: ["Un caillou avalé pour broyer les plantes", "Un os de la patte", "Une écaille fossilisée", "Un œuf pétrifié"], e: "Les sauropodes ne mâchaient pas : ils avalaient des pierres qui écrasaient la nourriture dans l’estomac." },
+  { n: 2, q: "Que veut dire le nom « Maiasaura » ?", r: ["Le lézard bonne mère", "Le lézard qui court vite", "Le roi des marais", "La reine des œufs"], e: "On a retrouvé ses nids pleins de bébés : ses parents s’occupaient de leurs petits." },
+  { n: 2, q: "Pourquoi les sauropodes enterraient-ils leurs œufs au lieu de les couver ?", r: ["Ils étaient bien trop lourds pour s’asseoir dessus", "Ils avaient peur du noir", "Ils n’aimaient pas leurs bébés", "Pour les cacher des humains"], e: "Avec plusieurs dizaines de tonnes, impossible de couver sans tout écraser ! La chaleur du sol faisait le travail." },
+  { n: 2, q: "Combien de doigts touchent le sol dans une empreinte de raptor ?", r: ["Deux", "Trois", "Cinq", "Un seul"], e: "Leur grande griffe en faucille restait relevée pour ne pas s’user : seuls deux doigts laissaient une trace." },
+  { n: 2, q: "Y avait-il de grandes calottes de glace pendant le règne des dinosaures ?", r: ["Non, la Terre était plutôt chaude", "Oui, partout sur Terre", "Oui, au milieu des continents", "Seulement au Jurassique"], e: "Des forêts poussaient jusque près des pôles. La grande glaciation a eu lieu bien avant eux, et d’autres bien après." },
   { n: 2, q: "Quel dinosaure portait un casque en os épais de 25 cm ?", r: ["Le Pachycéphalosaure", "Le Diplodocus", "Le Gallimimus", "L’Iguanodon"], e: "Son crâne bombé encaissait des chocs violents lors des combats entre mâles." },
 
   { n: 3, q: "Combien de temps sépare le dernier T-rex du premier humain ?", r: ["Environ 66 millions d’années", "Environ 1 million d’années", "Environ 10 000 ans", "Ils ont vécu à la même époque"], e: "Les humains et les dinosaures non-aviens ne se sont jamais croisés, sauf dans les dessins animés !" },
@@ -37,6 +43,9 @@ export const quiz = [
   { n: 3, q: "Pourquoi le T-rex avait-il de si petits bras ?", r: ["Ils étaient courts mais très musclés, utiles pour maintenir une proie", "Ils ne servaient à rien du tout", "Ils repoussaient chaque année", "Ils servaient à voler"], e: "Chaque bras pouvait soulever plus de 200 kilos malgré sa petite taille." },
   { n: 3, q: "Quel animal volant a battu tous les records de taille ?", r: ["Le Quetzalcoatlus", "L’aigle royal", "L’Archaeopteryx", "Le Ptérodactyle"], e: "11 mètres d’envergure, soit la taille d’un petit avion. C’est un ptérosaure, pas un dinosaure." },
   { n: 3, q: "Qui a découvert le premier crâne complet d’Ichthyosaure ?", r: ["Mary Anning, à 12 ans", "Charles Darwin", "Barnum Brown", "Un ingénieur de la NASA"], e: "Cette jeune Anglaise est devenue l’une des plus grandes chasseuses de fossiles de l’histoire." },
+  { n: 3, q: "Pourquoi l’Oviraptor porte-t-il un nom injuste ?", r: ["On l’a accusé de voler des œufs… qui étaient les siens", "Il ne savait pas courir", "Il n’a jamais vécu en Mongolie", "Il mangeait seulement des fruits"], e: "En 1993, on a découvert un bébé de sa famille dans un œuf identique : il couvait ses propres œufs !" },
+  { n: 3, q: "De quelle couleur étaient les œufs du Deinonychus ?", r: ["Bleus avec des taches brunes", "Tout blancs", "Rouges et jaunes", "On n’en a aucune idée"], e: "Des traces de pigments retrouvées dans la coquille fossilisée ont révélé leur couleur, comme chez certains oiseaux." },
+  { n: 3, q: "Où se trouve la plus longue piste de sauropode connue au monde ?", r: ["À Plagne, dans l’Ain", "À Paris, sous la tour Eiffel", "Au Groenland", "En Antarctique"], e: "Un sauropode y a laissé 110 pas sur 155 mètres, il y a 150 millions d’années." },
   { n: 3, q: "Comment appelle-t-on les pointes au bout de la queue du Stégosaure ?", r: ["Le thagomizer", "Le tridactyle", "Le sacrum", "Le pterygoïde"], e: "Ce nom vient d’une bande dessinée humoristique… et les scientifiques l’ont vraiment adopté !" },
 ];
 
@@ -64,5 +73,39 @@ export const vraiFaux = [
   { a: "L’Ankylosaure pouvait casser la patte d’un T-rex.", v: true, e: "Sa massue de queue frappait assez fort pour briser un os. Un prédateur blessé était condamné." },
   { a: "Le Diplodocus mâchait longuement sa nourriture.", v: false, e: "Il ne mâchait pas du tout : il peignait les feuilles avec ses dents et avalait tout rond." },
   { a: "Les dinosaures vivaient tous sur le même continent.", v: false, e: "C’était vrai au Trias avec la Pangée, mais les continents se sont séparés ensuite." },
+  { a: "Les dinosaures ont vécu pendant une ère glaciaire, avec les mammouths.", v: false, e: "Il n’y avait pas de grandes calottes de glace pendant leur règne, et les mammouths sont apparus 65 millions d’années après eux." },
+  { a: "Certains dinosaures pondaient des œufs à coquille molle.", v: true, e: "C’était le cas du Protoceratops : sa coquille était souple comme celle des œufs de tortue." },
+  { a: "On connaît les œufs du T-rex.", v: false, e: "Aucun œuf n’a encore pu lui être attribué. Pour en être sûr, il faudrait trouver un bébé T-rex dans son œuf !" },
+  { a: "Des dinosaures vivaient près des pôles, avec des hivers sombres et enneigés.", v: true, e: "En Alaska, on a même retrouvé des bébés dinosaures : ils naissaient sur place, malgré l’hiver." },
+  { a: "L’Oviraptor volait les œufs des autres dinosaures.", v: false, e: "On l’a cru pendant 70 ans, mais les œufs sur lesquels on l’a trouvé étaient sûrement les siens : il les couvait !" },
+  { a: "Le Mosasaurus pondait ses œufs sur la plage, comme les tortues.", v: false, e: "Il donnait naissance à des bébés vivants, directement dans la mer." },
   { a: "Un dinosaure a été découvert en France.", v: true, e: "Plusieurs ! Le Compsognathus a notamment été trouvé dans le Var, et de nombreux œufs en Provence." },
+];
+
+/* Repères qui ne sont pas des dinosaures, mêlés aux créatures dans
+   « La machine à remonter le temps ». `age` sert au classement, en millions
+   d'années ; `ages` est le libellé affiché, `note` le commentaire après la manche. */
+export const reperes = [
+  { id: "glaciation", nom: "La grande glaciation d’avant les dinosaures", emoji: "🧊", age: 310, ages: "il y a 360 à 260 millions d’années", lien: "glaciations.html",
+    note: "La grande glaciation s’est terminée 30 millions d’années avant l’arrivée des premiers dinosaures." },
+  { id: "asteroide", nom: "La chute de l’astéroïde", emoji: "☄️", age: 66, ages: "il y a 66 millions d’années", lien: "extinction.html",
+    note: "L’astéroïde est tombé il y a 66 millions d’années : parmi les dinosaures, seuls les oiseaux ont survécu." },
+  { id: "antarctique", nom: "L’Antarctique se couvre de glace", emoji: "🏔️", age: 34, ages: "il y a 34 millions d’années", lien: "glaciations.html",
+    note: "La glace s’est installée au pôle Sud 32 millions d’années après la disparition des dinosaures." },
+  { id: "mammouth", nom: "Le mammouth laineux", emoji: "🦣", age: 0.5, ages: "il y a quelques centaines de milliers d’années", lien: "glaciations.html",
+    note: "Le mammouth laineux est arrivé plus de 65 millions d’années après les derniers dinosaures : ils ne se sont jamais croisés !" },
+];
+
+/* Tous les mini-jeux, dans l'ordre d'affichage. Ce tableau alimente le menu,
+   le pied de page, l'accueil, la salle de jeux, le plan du site et le build. */
+export const listeJeux = [
+  { slug: "quiz", script: "quiz.js", emoji: "❓", nom: "Le grand quiz", court: `10 questions tirées au hasard parmi ${quiz.length}, réparties sur trois niveaux.`, duree: "5 min" },
+  { slug: "vrai-ou-faux", script: "vrai-faux.js", emoji: "⚖️", nom: "Vrai ou faux", court: `${vraiFaux.length} affirmations sur les dinosaures. Sauras-tu démêler le vrai du faux ?`, duree: "4 min" },
+  { slug: "qui-suis-je", script: "qui-suis-je.js", emoji: "🔍", nom: "Qui suis-je ?", court: "Une silhouette mystère et des indices. Moins tu en demandes, plus tu marques de points.", duree: "6 min" },
+  { slug: "memory", script: "memory.js", emoji: "🧠", nom: "Memory", court: "Retrouve les 8 paires de dinosaures en un minimum de coups.", duree: "3 min" },
+  { slug: "puzzle", script: "puzzle.js", emoji: "🧩", nom: "Puzzle", court: "Reconstitue l’illustration d’un dinosaure, en 9 ou 16 morceaux.", duree: "5 min" },
+  { slug: "retrouve-la-maman", script: "oeufs.js", emoji: "🥚", nom: "Retrouve la maman", court: "Rends chaque œuf à ses parents… et méfie-toi des intrus qui ne pondaient pas !", duree: "5 min" },
+  { slug: "plus-grand-ou-plus-petit", script: "plus-grand.js", emoji: "📏", nom: "Plus grand ou plus petit ?", court: "Deux créatures face à face : laquelle est la plus longue, la plus lourde ou la plus rapide ?", duree: "3 min" },
+  { slug: "machine-a-remonter-le-temps", script: "machine-temps.js", emoji: "⏳", nom: "La machine à remonter le temps", court: "Range les dinosaures du plus ancien au plus récent. Le T-rex et le Stégosaure se sont-ils croisés ?", duree: "5 min" },
+  { slug: "detective-des-empreintes", script: "empreintes.js", emoji: "🐾", nom: "Détective des empreintes", court: "Une trace dans la roche : qui est passé par là ? Compte les doigts et mène l’enquête.", duree: "4 min" },
 ];

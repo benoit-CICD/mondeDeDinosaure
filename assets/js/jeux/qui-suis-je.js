@@ -28,13 +28,23 @@
     piscivore: "Je me nourris surtout de poissons.",
   };
 
+  function sansAccent(t) { return t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
+
+  /* Certaines anecdotes contiennent le nom de l'animal (« Plus de 60 squelettes
+     d'Allosaurus… ») : elles donneraient la réponse, on prend la première qui ne le cite pas. */
+  function anecdoteSansLeNom(d) {
+    var racine = sansAccent(d.nom).slice(0, 6);
+    return (d.saviezVous || []).filter(function (s) { return sansAccent(s).indexOf(racine) === -1; })[0];
+  }
+
   function construireIndices(d) {
     var liste = [];
     liste.push("J’ai vécu " + NOMS_PERIODE[d.periode] + ", il y a environ " + d.ageDebut + " millions d’années.");
     liste.push(NOMS_REGIME[d.regime] || "Mon régime est particulier.");
     liste.push("On a retrouvé mes fossiles ici : " + d.lieux.join(", ") + ".");
     liste.push("Je mesure environ " + d.longueur.toString().replace(".", ",") + " mètre" + (d.longueur > 1 ? "s" : "") + " de long — " + d.comparaison + ".");
-    if (d.saviezVous && d.saviezVous[0]) liste.push(d.saviezVous[0]);
+    var anecdote = anecdoteSansLeNom(d);
+    if (anecdote) liste.push(anecdote);
     return liste;
   }
 
