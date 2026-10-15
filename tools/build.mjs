@@ -129,6 +129,7 @@ const cheminsAssets = new Set([
   "assets/js/catalogue.js",
   "assets/js/donnees.js",
   "assets/js/jeux/commun.js",
+  ...(site.halloween ? ["assets/css/halloween.css", "assets/js/halloween.js"] : []),
   ...listeJeux.map((j) => `assets/js/jeux/${j.script}`),
   "assets/img/favicon.svg",
   ...oeufs.map((o) => `assets/img/oeufs/${o.id}.svg`),
@@ -166,6 +167,13 @@ pages.forEach((p) => {
     }
   });
 });
+
+/* Le thème d'Halloween est écrit à la main : ses deux fichiers doivent exister. */
+if (site.halloween) {
+  ["assets/css/halloween.css", "assets/js/halloween.js"].forEach((f) => {
+    if (!existsSync(join(RACINE, f))) erreurs.push(`${f} → fichier du thème d’Halloween introuvable`);
+  });
+}
 
 /* Les scripts des jeux sont écrits à la main : chacun doit exister. */
 listeJeux.forEach((j) => {

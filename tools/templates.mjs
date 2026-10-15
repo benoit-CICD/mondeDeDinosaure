@@ -186,12 +186,12 @@ export function page({ titre, description, base = "", corps, actif = "", scripts
         .join("")}</ol></nav>`
     : "";
 
-  const js = ["assets/js/site.js", ...scripts]
+  const js = ["assets/js/site.js", ...(site.halloween ? ["assets/js/halloween.js"] : []), ...scripts]
     .map((s) => `<script src="${base}${s}${empreinte(s)}" defer></script>`)
     .join("\n");
 
   return `<!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="fr" class="no-js${site.halloween ? " halloween" : ""}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -204,10 +204,15 @@ export function page({ titre, description, base = "", corps, actif = "", scripts
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="${esc(site.nom)}">
-<link rel="stylesheet" href="${base}assets/css/style.css${empreinte("assets/css/style.css")}">
+<link rel="stylesheet" href="${base}assets/css/style.css${empreinte("assets/css/style.css")}">${
+  site.halloween ? `\n<link rel="stylesheet" href="${base}assets/css/halloween.css${empreinte("assets/css/halloween.css")}">` : ""
+}
 <link rel="icon" href="${base}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${base}assets/img/favicon.svg">
-<script>window.BASE = "${base}";</script>
+<script>window.BASE = "${base}";${
+  /* Retiré avant l'affichage, pour ne pas voir le thème clignoter quand on l'a éteint. */
+  site.halloween ? 'try{if(sessionStorage.getItem("halloween:eteint")==="1")document.documentElement.classList.remove("halloween")}catch(e){}' : ""
+}</script>
 </head>
 <body>
 ${entete(base, actif)}

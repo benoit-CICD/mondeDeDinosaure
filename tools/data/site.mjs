@@ -25,6 +25,11 @@ export const site = {
   racine: "/mondeDeDinosaure/",
 
   anneeCreation: 2026,
+
+  // Thème d'Halloween : couleurs, araignée, citrouilles cachées, easter eggs.
+  // Passer à false (puis relancer le build) retire tout le thème du site :
+  // feuille de style, script, décor de l'accueil et paragraphe de confidentialité.
+  halloween: true,
 };
 
 export const periodes = [

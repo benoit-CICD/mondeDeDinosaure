@@ -53,9 +53,11 @@ cinema.html, cinema/<slug>.html                 la rubrique cinéma
 jeux/<slug>.html
 
 assets/
-  css/style.css          feuille de style unique
+  css/style.css          feuille de style principale
+  css/halloween.css      thème d’Halloween (chargé seulement si halloween: true)
   js/site.js             navigation, animations
   js/catalogue.js        filtres et recherche
+  js/halloween.js        araignée, bandeau, citrouilles cachées, easter eggs d’Halloween
   js/donnees.js          données des jeux (GÉNÉRÉ — ne pas modifier)
   js/jeux/commun.js      outils partagés par les jeux
   js/jeux/*.js           un script par mini-jeu
@@ -173,6 +175,30 @@ fossilisés. Il en va de même pour les empreintes : on les attribue à un group
 Garder cette règle si vous ajoutez des œufs ou des empreintes.
 
 ---
+
+## 🎃 Le thème d’Halloween
+
+Activé par **`halloween: true`** dans `tools/data/site.mjs`. Pour le retirer après Halloween : passer à `false`
+et relancer le build. La feuille `halloween.css`, le script `halloween.js`, le décor de nuit de l’accueil
+et le paragraphe correspondant de la page Confidentialité disparaissent alors d’un coup.
+
+Ce qu’il contient :
+
+- **Couleurs** orange et violet (clair et sombre), guirlande de fanions sous le menu, toiles dans le coin des encadrés,
+  cimetière « R.I.P. T-REX » au-dessus du pied de page, scène de nuit sur l’accueil (lune, chauves-souris, citrouilles).
+- **Un bandeau** sous le menu, avec le bouton **« Enlever le déguisement »** pour les enfants que ça impressionne.
+- **L’araignée**, en haut à droite de chaque page : on la tire au doigt ou à la souris, le fil s’allonge, et elle remonte
+  quand on la lâche. Un simple appui (ou Entrée au clavier) la fait descendre. Elle donne des anecdotes vraies sur les
+  araignées fossiles et des indices pour les easter eggs.
+- **Les easter eggs** :
+  - 5 **citrouilles cachées** (accueil, fiche du T-rex, frise, glossaire, salle de jeux), listées dans `CACHETTES` (`halloween.js`) ;
+  - taper **« bouh »** au clavier, ou toucher **5 fois le fantôme 👻** du bandeau : un T-rex fantôme traverse l’écran ;
+  - toucher **la lune** de l’accueil : une nuée de chauves-souris s’envole ;
+  - un **sans-faute** à un jeu (ou un memory / puzzle terminé) : pluie de bonbons.
+
+Le choix « thème éteint » et les citrouilles trouvées sont gardés dans `sessionStorage` le temps de la visite
+(jamais envoyés, effacés à la fermeture de l’onglet) : la page Confidentialité le précise tant que le thème est actif.
+Toutes les animations s’arrêtent avec le réglage « réduire les animations ».
 
 ## ⚠️ Avant la mise en ligne
 
