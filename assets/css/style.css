@@ -213,19 +213,22 @@ a:hover { color: var(--volcan); }
 .nav__familles { list-style: none; margin: 0; padding: 0; }
 .nav__trait { height: 1px; background: var(--bordure); margin: .45rem .3rem; }
 
-@media (min-width: 62rem) {
+/* Sept entrées de menu : en dessous de 68rem, elles ne tiennent plus sur une
+   ligne à côté du logo, on garde donc le menu « hamburger ». */
+@media (min-width: 68rem) {
   .nav-bouton { display: none; }
+  .logo { flex: none; }
   .nav {
     position: static; transform: none; visibility: visible;
     height: auto; inset: auto;
     padding: 0; overflow: visible; background: none;
   }
   .nav__liste { display: flex; align-items: center; gap: .15rem; }
-  .nav__lien { border: 0; padding: .5rem .8rem; border-radius: 10px; font-size: .97rem; }
+  .nav__lien { border: 0; padding: .5rem .7rem; border-radius: 10px; font-size: .97rem; white-space: nowrap; }
   .nav__lien:hover { background: var(--fond-doux); }
   .nav__lien[aria-current] { background: var(--jungle); color: var(--accent-contraste); }
   .nav__groupe { position: relative; }
-  .nav__groupe > summary { border: 0; padding: .5rem .8rem; border-radius: 10px; font-size: .97rem; }
+  .nav__groupe > summary { border: 0; padding: .5rem .7rem; border-radius: 10px; font-size: .97rem; white-space: nowrap; }
   .nav__groupe > summary:hover { background: var(--fond-doux); }
   .nav__groupe[open] > summary { background: var(--fond-doux); }
   .nav__sous {
@@ -720,6 +723,57 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
 .resultat { text-align: center; padding: 1.4rem .6rem; }
 .resultat__note { font-size: clamp(2.4rem, 2rem + 3vw, 3.6rem); font-weight: 900; color: var(--jungle); line-height: 1; }
 .resultat__medaille { font-size: 3.4rem; animation: sautille 1s ease; }
+
+/* Quiz du cinéma : choix du niveau */
+.niveaux__choix { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: 1rem; }
+.niveau {
+  display: flex; flex-direction: column; align-items: flex-start; gap: .45rem;
+  padding: 1.2rem 1.3rem; min-height: 54px;
+  font: inherit; text-align: left; color: var(--texte);
+  background: var(--fond-doux); border: var(--trait); border-top: 7px solid var(--jungle);
+  border-radius: var(--radius-l); cursor: pointer;
+  transition: transform .16s, border-color .16s;
+}
+.niveau--difficile { border-top-color: var(--volcan); }
+.niveau:hover { transform: translateY(-3px); border-color: var(--jungle); }
+.niveau--difficile:hover { border-color: var(--volcan); }
+.niveau__emoji { font-size: 2.4rem; line-height: 1; }
+.niveau__nom { font-size: 1.35rem; font-weight: 900; }
+.niveau__texte { font-weight: 600; color: var(--texte-doux); }
+
+/* ---------- Rubrique cinéma ---------- */
+/* Les onglets passent à la ligne plutôt que de défiler : sur un petit écran,
+   une rangée qui défile cacherait l'onglet du quiz sans qu'on le devine. */
+.onglets { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.4rem; }
+.onglet {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: .42em 1em; border-radius: 999px; border: var(--trait);
+  background: var(--fond-carte); color: var(--texte); font-weight: 800; font-size: .92rem; text-decoration: none;
+}
+.onglet:hover { border-color: var(--jungle); }
+.onglet[aria-current] { background: var(--jungle); border-color: var(--jungle); color: var(--accent-contraste); }
+.onglet--jeu { border-color: var(--ambre); }
+
+.frise--cinema::before { background: linear-gradient(180deg, var(--ambre), var(--volcan)); }
+
+.technique__emoji { font-size: 2.4rem; line-height: 1; margin: 0 0 .5rem; }
+.technique__exemple { font-size: .9rem; font-weight: 800; color: var(--texte-doux); }
+
+.mythes { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
+.mythe {
+  display: flex; flex-direction: column; margin: 0;
+  background: var(--fond-carte); border: var(--trait); border-radius: var(--radius-l);
+  border-top: 7px solid var(--volcan); box-shadow: var(--ombre); padding: 1.2rem 1.3rem;
+}
+.mythe--vrai { border-top-color: #4fa96f; }
+.mythe--doute { border-top-color: var(--ocean); }
+.mythe__film { font-weight: 800; }
+.mythe__etiquette {
+  display: block; margin-bottom: .2rem;
+  font-size: .8rem; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: var(--texte-doux);
+}
+.mythe__pied { margin: auto 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; font-weight: 700; }
+.mythe__pied a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ---------- 12. Divers ---------- */
 .fil-ariane { font-size: .87rem; color: var(--texte-doux); padding-block: .9rem; }

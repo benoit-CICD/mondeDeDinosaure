@@ -146,6 +146,20 @@ export function pageAccueil() {
 
 <section class="section">
   <div class="conteneur">
+    <div class="encadre encadre--pouvoir" data-anim style="max-width:70ch;margin-inline:auto">
+      <h2 class="encadre__titre">🎬 Les dinosaures font leur cinéma</h2>
+      <p>Du tout premier dessin animé en 1914 jusqu’à Jurassic World : découvre comment le cinéma fait bouger les dinosaures,
+      et toutes les erreurs que les films ont faites… Puis teste-toi avec le quiz du cinéma, en mode facile ou difficile !</p>
+      <p style="margin-bottom:0">
+        <a class="bouton bouton--petit" href="cinema.html">🎬 La rubrique cinéma</a>
+        <a class="bouton bouton--petit bouton--ambre" href="jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--doux">
+  <div class="conteneur">
     <h2 class="centre" data-anim>🏆 Les records</h2>
     <div class="grille grille--large" style="margin-top:2rem">
       <a class="carte" href="dinosaures/${plusGrand.slug}.html" data-anim>
@@ -164,7 +178,7 @@ export function pageAccueil() {
   </div>
 </section>
 
-<section class="section section--doux">
+<section class="section">
   <div class="conteneur">
     <div class="encadre encadre--attention" data-anim style="max-width:70ch;margin-inline:auto">
       <h2 class="encadre__titre">⚠️ Le piège le plus courant</h2>
@@ -174,7 +188,7 @@ export function pageAccueil() {
   </div>
 </section>
 
-<section class="section">
+<section class="section section--doux">
   <div class="conteneur centre">
     <h2 data-anim>Prêt à devenir paléontologue ?</h2>
     <p data-anim style="max-width:56ch;margin-inline:auto">Commence par le glossaire pour apprendre les mots des scientifiques, puis lance-toi dans le grand quiz.</p>

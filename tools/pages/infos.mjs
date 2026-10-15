@@ -6,6 +6,7 @@ import { site, glossaire, faq, periodes, familles } from "../data/site.mjs";
 import { page, esc, aUnePhoto, enLettres } from "../templates.mjs";
 import { listeJeux } from "../data/jeux.mjs";
 import { photos } from "../data/photos.mjs";
+import { pagesRubriqueCinema } from "../data/cinema.mjs";
 
 /** Met en évidence les informations que l'éditeur doit renseigner. */
 const aCompleter = (valeur) =>
@@ -101,6 +102,8 @@ export function pagesInfos() {
       <li>des dossiers sur <a href="extinction.html">la grande extinction</a>,
       <a href="metier.html">le métier de paléontologue</a>, <a href="oeufs.html">les œufs et les bébés dinosaures</a>
       et <a href="glaciations.html">l’ère glaciaire</a> ;</li>
+      <li>une rubrique sur <a href="cinema.html">les dinosaures au cinéma</a> : l’histoire des films, les effets spéciaux
+      et les erreurs du grand écran ;</li>
       <li><strong>${listeJeux.length} mini-jeux</strong> pour réviser en s’amusant.</li>
     </ul>
 
@@ -428,6 +431,11 @@ export function pagePlan() {
         ${lien("glaciations.html", "Les dinosaures et l’ère glaciaire")}
         ${lien("glossaire.html", "Glossaire")}
         ${lien("questions.html", "Questions fréquentes")}
+      </ul>
+
+      <h2>Cinéma</h2>
+      <ul>
+        ${pagesRubriqueCinema.map((p) => lien(p.chemin, p.nom)).join("\n        ")}
       </ul>
 
       <h2>Jouer</h2>

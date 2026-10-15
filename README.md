@@ -16,10 +16,11 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 | **10 familles** | Théropodes, sauropodes, cératopsiens… dont 2 groupes de *cousins* (ptérosaures, reptiles marins) |
 | **1 frise du temps** | 186 millions d’années, chaque créature placée à son époque |
 | **4 dossiers** | La grande extinction · Le métier de paléontologue · Œufs et bébés dinosaures · L’ère glaciaire |
-| **9 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes |
+| **1 rubrique Cinéma** | Un siècle de dinosaures à l’écran · Les effets spéciaux · Film ou réalité ? (les erreurs des films) |
+| **10 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes · Le quiz du cinéma (niveau facile ou difficile) |
 | **Pages légales** | Mentions légales, confidentialité, accessibilité, plan du site |
 
-**79 pages HTML** au total.
+**84 pages HTML** au total.
 
 Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont notées dans [`IDEES.md`](IDEES.md).
 
@@ -48,6 +49,7 @@ Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont no
 index.html, dinosaures.html, frise.html, …   pages générées (à versionner)
 dinosaures/<slug>.html                       les 38 fiches
 periodes/<slug>.html, familles/<slug>.html
+cinema.html, cinema/<slug>.html                 la rubrique cinéma
 jeux/<slug>.html
 
 assets/
@@ -73,9 +75,11 @@ tools/                   le générateur (Node, zéro dépendance)
     jeux.mjs             questions, repères du temps, et listeJeux (la liste des mini-jeux)
     oeufs.mjs            œufs par famille, et les intrus qui ne pondaient pas
     empreintes.mjs       empreintes et suspects
+    cinema.mjs           films, effets spéciaux, erreurs des films et questions du quiz du cinéma
     photos.mjs           crédits des images (GÉNÉRÉ par photos.mjs)
     photos-manuel.json   fichiers Commons choisis à la main
-  pages/                 un module par type de page (dossiers.mjs : les dossiers thématiques)
+  pages/                 un module par type de page (dossiers.mjs : les dossiers thématiques,
+                         cinema.mjs : la rubrique cinéma)
 ```
 
 Les fichiers marqués **GÉNÉRÉ** sont écrasés à chaque build : modifier les sources dans `tools/`.
@@ -152,6 +156,13 @@ et des jeux sont créées automatiquement.
 2. Ajouter sa page dans `pagesJeux()` (`tools/pages/jeux.mjs`), avec la fonction `pageJeu()`.
 3. Écrire son script dans `assets/js/jeux/` ; `commun.js` fournit le mélange, les formats et l’écran de fin.
 4. Relancer le build : il signale un script manquant.
+
+### Le quiz du cinéma : deux niveaux
+
+Les questions sont dans `quizCinema` (`tools/data/cinema.mjs`), rangées en `facile` et `difficile`.
+Le joueur choisit son niveau au départ, puis répond à **20 questions** tirées au hasard dans ce niveau :
+chaque niveau doit donc en compter au moins 20 (le build ne le vérifie pas). Comme pour le grand quiz,
+la bonne réponse est toujours écrite en premier ; le jeu mélange les propositions.
 
 ### Œufs et empreintes : une question d’honnêteté
 

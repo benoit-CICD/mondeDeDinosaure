@@ -4,6 +4,7 @@ import { dinos } from "../data/dinos.mjs";
 import { quiz, vraiFaux, reperes, listeJeux } from "../data/jeux.mjs";
 import { oeufs, sansOeuf } from "../data/oeufs.mjs";
 import { empreintes, traceurs } from "../data/empreintes.mjs";
+import { quizCinema } from "../data/cinema.mjs";
 import { page, esc, enLettres, majuscule } from "../templates.mjs";
 
 const entetePartie = (id, libelleGauche) => `
@@ -49,7 +50,7 @@ export function pagesJeux() {
     chemin: "jeux.html",
     html: page({
       titre: "Les jeux",
-      description: `${majuscule(enLettres(listeJeux.length))} mini-jeux gratuits sur les dinosaures : quiz, vrai ou faux, devinettes, memory, puzzle, œufs, tailles, frise du temps et empreintes. Aucun compte, aucune donnée enregistrée.`,
+      description: `${majuscule(enLettres(listeJeux.length))} mini-jeux gratuits sur les dinosaures : quiz, vrai ou faux, devinettes, memory, puzzle, œufs, tailles, frise du temps, empreintes et cinéma. Aucun compte, aucune donnée enregistrée.`,
       actif: "jeux",
       corps: `
 <div class="conteneur section">
@@ -339,6 +340,50 @@ export function pagesJeux() {
     })
   );
 
+  /* --- Le quiz du cinéma --- */
+  pages.push(
+    pageJeu({
+      slug: "quiz-du-cinema",
+      titre: "Le quiz du cinéma",
+      emoji: "🍿",
+      description: `Quiz gratuit sur les dinosaures au cinéma et dans les dessins animés : Jurassic Park, Toy Story, Le Petit Dinosaure… 20 questions, en mode facile ou difficile.`,
+      intro: `Jurassic Park, Toy Story, Le Petit Dinosaure, King Kong… Connais-tu les dinosaures des films ?
+      Choisis ton niveau, puis réponds à 20 questions. Les réponses se trouvent dans la rubrique
+      <a href="../cinema.html">Les dinosaures au cinéma</a>.`,
+      script: "quiz-cinema.js",
+      corpsJeu: `
+  <div class="jeu" id="qc">
+    <div id="qc-niveaux" class="niveaux">
+      <h2 class="question" id="qc-choix-titre" tabindex="-1">Choisis ton niveau</h2>
+      <div class="niveaux__choix">
+        <button type="button" class="niveau" data-niveau="facile">
+          <span class="niveau__emoji" aria-hidden="true">🍿</span>
+          <span class="niveau__nom">Facile</span>
+          <span class="niveau__texte">Dessins animés, Jurassic Park et les grandes erreurs des films. Pour commencer en douceur.</span>
+          <span class="pastille">${quizCinema.facile.length} questions possibles</span>
+        </button>
+        <button type="button" class="niveau niveau--difficile" data-niveau="difficile">
+          <span class="niveau__emoji" aria-hidden="true">🎬</span>
+          <span class="niveau__nom">Difficile</span>
+          <span class="niveau__texte">Vieux films, effets spéciaux, secrets de tournage et science. Pour les experts !</span>
+          <span class="pastille">${quizCinema.difficile.length} questions possibles</span>
+        </button>
+      </div>
+    </div>
+    <div id="qc-jeu" hidden>
+      ${entetePartie("qc", "Question 1 / 20")}
+      <p id="qc-niveau" class="consigne" style="margin:.6rem 0 0"></p>
+      <h2 class="question" id="qc-question" tabindex="-1">Chargement…</h2>
+      <div class="reponses" id="qc-reponses"></div>
+      <div class="retour" id="qc-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="qc-suivant" hidden>Suivant →</button></p>
+    </div>
+    <div id="qc-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire la rubrique <a href="../cinema.html">Les dinosaures au cinéma</a> !</p></noscript>
+  </div>`,
+    })
+  );
+
   return pages;
 }
 
@@ -374,5 +419,6 @@ window.SANS_OEUF = ${JSON.stringify(sansOeuf)};
 window.EMPREINTES = ${JSON.stringify(empreintes.map(({ id, auteur, taille, indice, explication }) => ({ id, auteur, taille, indice, explication })))};
 window.TRACEURS = ${JSON.stringify(traceurs)};
 window.REPERES = ${JSON.stringify(reperes)};
+window.QUIZ_CINEMA = ${JSON.stringify(quizCinema)};
 `;
 }

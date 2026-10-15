@@ -4,6 +4,7 @@ import { site, periodes, familles, regimes } from "./data/site.mjs";
 import { empreinte } from "./empreintes.mjs";
 import { photos } from "./data/photos.mjs";
 import { listeJeux } from "./data/jeux.mjs";
+import { pagesRubriqueCinema } from "./data/cinema.mjs";
 
 export const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -94,6 +95,13 @@ function entete(base, actif) {
           </ul>
         </details></li>
         <li><details class="nav__groupe">
+          <summary>🎬 Cinéma</summary>
+          <ul class="nav__sous">
+            ${pagesRubriqueCinema.map((p, i) => `<li><a href="${base}${p.chemin}">${i === 0 ? `<strong>${p.emoji} ${esc(p.nom)}</strong>` : `${p.emoji} ${esc(p.nom)}`}</a></li>`).join("\n            ")}
+            <li><a href="${base}jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a></li>
+          </ul>
+        </details></li>
+        <li><details class="nav__groupe">
           <summary>📖 Comprendre</summary>
           <ul class="nav__sous">
             <li><a href="${base}glossaire.html">🔤 Glossaire</a></li>
@@ -131,6 +139,7 @@ function pied(base) {
           <li><a href="${base}extinction.html">La grande extinction</a></li>
           <li><a href="${base}oeufs.html">Œufs et bébés dinosaures</a></li>
           <li><a href="${base}glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
+          <li><a href="${base}cinema.html">Les dinosaures au cinéma</a></li>
         </ul>
       </div>
       <div>
