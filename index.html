@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Monde des Dinosaures">
-<link rel="stylesheet" href="assets/css/style.css?v=452ba455">
+<link rel="stylesheet" href="assets/css/style.css?v=c15079a0">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
 <script>window.BASE = "";</script>
@@ -66,6 +66,17 @@
             <li><a href="jeux/plus-grand-ou-plus-petit.html">📏 Plus grand ou plus petit ?</a></li>
             <li><a href="jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></li>
             <li><a href="jeux/detective-des-empreintes.html">🐾 Détective des empreintes</a></li>
+            <li><a href="jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a></li>
+          </ul>
+        </details></li>
+        <li><details class="nav__groupe">
+          <summary>🎬 Cinéma</summary>
+          <ul class="nav__sous">
+            <li><a href="cinema.html"><strong>🎬 Les dinosaures au cinéma</strong></a></li>
+            <li><a href="cinema/histoire.html">🎞️ Un siècle de dinosaures à l’écran</a></li>
+            <li><a href="cinema/effets-speciaux.html">🤖 Comment fait-on bouger un dinosaure ?</a></li>
+            <li><a href="cinema/film-ou-realite.html">🔬 Film ou réalité ?</a></li>
+            <li><a href="jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a></li>
           </ul>
         </details></li>
         <li><details class="nav__groupe">
@@ -91,7 +102,7 @@
   <div class="conteneur heros__contenu">
     <div>
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
-      <p class="heros__accroche">Explore 38 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 9 jeux pour devenir un vrai paléontologue.</p>
+      <p class="heros__accroche">Explore 38 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 10 jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
         <a class="bouton" href="dinosaures.html">🔍 Explorer les dinosaures</a>
         <a class="bouton bouton--ambre" href="jeux.html">🎮 Jouer maintenant</a>
@@ -157,7 +168,7 @@
       <div class="chiffre" data-anim><span class="chiffre__valeur" data-compteur="38">0</span><span class="chiffre__libelle">fiches illustrées</span></div>
       <div class="chiffre" data-anim data-delai="1"><span class="chiffre__valeur" data-compteur="186">0</span><span class="chiffre__libelle">millions d’années</span></div>
       <div class="chiffre" data-anim data-delai="2"><span class="chiffre__valeur" data-compteur="43">0</span><span class="chiffre__libelle">questions de quiz</span></div>
-      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="9">0</span><span class="chiffre__libelle">mini-jeux</span></div>
+      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="10">0</span><span class="chiffre__libelle">mini-jeux</span></div>
     </div>
   </div>
 </section>
@@ -324,7 +335,7 @@
 <section class="section section--doux">
   <div class="conteneur">
     <h2 class="centre" data-anim>🎮 Joue et apprends</h2>
-    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Neuf jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
+    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Dix jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
     <div class="grille" style="margin-top:2rem">
       <a class="carte" href="jeux/quiz.html" data-anim data-delai="0">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">❓</span>
@@ -389,11 +400,32 @@
           <span class="carte__texte">Une trace dans la roche : qui est passé par là ? Compte les doigts et mène l’enquête.</span>
         </span>
       </a>
+      <a class="carte" href="jeux/quiz-du-cinema.html" data-anim data-delai="3">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🍿</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Le quiz du cinéma</span>
+          <span class="carte__texte">Les dinosaures des films et des dessins animés : 20 questions en mode facile (27) ou difficile (28).</span>
+        </span>
+      </a>
     </div>
   </div>
 </section>
 
 <section class="section">
+  <div class="conteneur">
+    <div class="encadre encadre--pouvoir" data-anim style="max-width:70ch;margin-inline:auto">
+      <h2 class="encadre__titre">🎬 Les dinosaures font leur cinéma</h2>
+      <p>Du tout premier dessin animé en 1914 jusqu’à Jurassic World : découvre comment le cinéma fait bouger les dinosaures,
+      et toutes les erreurs que les films ont faites… Puis teste-toi avec le quiz du cinéma, en mode facile ou difficile !</p>
+      <p style="margin-bottom:0">
+        <a class="bouton bouton--petit" href="cinema.html">🎬 La rubrique cinéma</a>
+        <a class="bouton bouton--petit bouton--ambre" href="jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--doux">
   <div class="conteneur">
     <h2 class="centre" data-anim>🏆 Les records</h2>
     <div class="grille grille--large" style="margin-top:2rem">
@@ -413,7 +445,7 @@
   </div>
 </section>
 
-<section class="section section--doux">
+<section class="section">
   <div class="conteneur">
     <div class="encadre encadre--attention" data-anim style="max-width:70ch;margin-inline:auto">
       <h2 class="encadre__titre">⚠️ Le piège le plus courant</h2>
@@ -423,7 +455,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section section--doux">
   <div class="conteneur centre">
     <h2 data-anim>Prêt à devenir paléontologue ?</h2>
     <p data-anim style="max-width:56ch;margin-inline:auto">Commence par le glossaire pour apprendre les mots des scientifiques, puis lance-toi dans le grand quiz.</p>
@@ -453,6 +485,7 @@
           <li><a href="extinction.html">La grande extinction</a></li>
           <li><a href="oeufs.html">Œufs et bébés dinosaures</a></li>
           <li><a href="glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
+          <li><a href="cinema.html">Les dinosaures au cinéma</a></li>
         </ul>
       </div>
       <div>
@@ -468,6 +501,7 @@
           <li><a href="jeux/plus-grand-ou-plus-petit.html">Plus grand ou plus petit ?</a></li>
           <li><a href="jeux/machine-a-remonter-le-temps.html">La machine à remonter le temps</a></li>
           <li><a href="jeux/detective-des-empreintes.html">Détective des empreintes</a></li>
+          <li><a href="jeux/quiz-du-cinema.html">Le quiz du cinéma</a></li>
         </ul>
       </div>
       <div>

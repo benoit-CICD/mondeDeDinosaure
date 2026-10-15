@@ -24,6 +24,7 @@ import { pagesFiches } from "./pages/fiche.mjs";
 import { pagesJeux, fichierDonnees } from "./pages/jeux.mjs";
 import { pagesInfos, pagePlan, page404 } from "./pages/infos.mjs";
 import { pagesDossiers } from "./pages/dossiers.mjs";
+import { pagesCinema } from "./pages/cinema.mjs";
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -78,6 +79,7 @@ const pages = [
   ...pagesJeux(),
   ...pagesInfos(),
   ...pagesDossiers(),
+  ...pagesCinema(),
   pagePlan(),
   page404(),
 ];

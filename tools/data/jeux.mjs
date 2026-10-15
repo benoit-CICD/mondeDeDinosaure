@@ -1,6 +1,8 @@
 // Questions des mini-jeux. La bonne réponse est toujours à l'index 0 :
 // le tirage les mélange au moment du jeu.
 
+import { quizCinema } from "./cinema.mjs";
+
 export const quiz = [
   { n: 1, q: "Quel dinosaure avait trois cornes sur la tête ?", r: ["Le Tricératops", "Le Stégosaure", "Le Diplodocus", "Le Ptérodactyle"], e: "Deux grandes cornes au-dessus des yeux et une plus petite sur le nez : c’est la signature du Tricératops !" },
   { n: 1, q: "Que mangeait le Tyrannosaurus rex ?", r: ["De la viande", "Des feuilles", "Des fleurs", "Du poisson uniquement"], e: "Le T-rex était un carnivore : il chassait d’autres dinosaures et mangeait aussi des animaux déjà morts." },
@@ -108,4 +110,5 @@ export const listeJeux = [
   { slug: "plus-grand-ou-plus-petit", script: "plus-grand.js", emoji: "📏", nom: "Plus grand ou plus petit ?", court: "Deux créatures face à face : laquelle est la plus longue, la plus lourde ou la plus rapide ?", duree: "3 min" },
   { slug: "machine-a-remonter-le-temps", script: "machine-temps.js", emoji: "⏳", nom: "La machine à remonter le temps", court: "Range les dinosaures du plus ancien au plus récent. Le T-rex et le Stégosaure se sont-ils croisés ?", duree: "5 min" },
   { slug: "detective-des-empreintes", script: "empreintes.js", emoji: "🐾", nom: "Détective des empreintes", court: "Une trace dans la roche : qui est passé par là ? Compte les doigts et mène l’enquête.", duree: "4 min" },
+  { slug: "quiz-du-cinema", script: "quiz-cinema.js", emoji: "🍿", nom: "Le quiz du cinéma", court: `Les dinosaures des films et des dessins animés : 20 questions en mode facile (${quizCinema.facile.length}) ou difficile (${quizCinema.difficile.length}).`, duree: "8 min" },
 ];
