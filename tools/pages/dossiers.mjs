@@ -360,7 +360,7 @@ export function pagesDossiers() {
         <p><a class="bouton bouton--petit" href="jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></p>
       </div>
       <div class="encadre encadre--attention">
-        <h2 class="encadre__titre">🌍 Le saviez-tu ?</h2>
+        <h2 class="encadre__titre">🌍 Le savais-tu ?</h2>
         <p>Le mot « glaciation » vient de « glace ». Pendant une glaciation, les glaciers des montagnes descendent
         jusque dans les vallées, puis reculent quand le climat se réchauffe.</p>
       </div>
