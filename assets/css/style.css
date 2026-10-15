@@ -742,15 +742,11 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
 .niveau__texte { font-weight: 600; color: var(--texte-doux); }
 
 /* ---------- Rubrique cinéma ---------- */
-.onglets {
-  display: flex; gap: .45rem; margin-top: 1.4rem;
-  flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  padding-bottom: .2rem;
-}
-.onglets::-webkit-scrollbar { display: none; }
-@media (min-width: 48rem) { .onglets { flex-wrap: wrap; overflow: visible; } }
+/* Les onglets passent à la ligne plutôt que de défiler : sur un petit écran,
+   une rangée qui défile cacherait l'onglet du quiz sans qu'on le devine. */
+.onglets { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.4rem; }
 .onglet {
-  flex: none; display: inline-flex; align-items: center; min-height: 40px;
+  display: inline-flex; align-items: center; min-height: 44px;
   padding: .42em 1em; border-radius: 999px; border: var(--trait);
   background: var(--fond-carte); color: var(--texte); font-weight: 800; font-size: .92rem; text-decoration: none;
 }
@@ -777,6 +773,7 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
   font-size: .8rem; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: var(--texte-doux);
 }
 .mythe__pied { margin: auto 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; font-weight: 700; }
+.mythe__pied a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ---------- 12. Divers ---------- */
 .fil-ariane { font-size: .87rem; color: var(--texte-doux); padding-block: .9rem; }
