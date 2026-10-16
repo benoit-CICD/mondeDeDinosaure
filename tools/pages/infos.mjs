@@ -7,6 +7,9 @@ import { page, esc, aUnePhoto, enLettres } from "../templates.mjs";
 import { listeJeux } from "../data/jeux.mjs";
 import { photos } from "../data/photos.mjs";
 import { pagesRubriqueCinema } from "../data/cinema.mjs";
+import { themeActif } from "../data/themes.mjs";
+
+const theme = themeActif(site);
 
 /** Met en évidence les informations que l'éditeur doit renseigner. */
 const aCompleter = (valeur) =>
@@ -248,12 +251,20 @@ export function pagesInfos() {
     <p>Le site ne dépose aucun cookie, ni technique ni publicitaire. Il n’utilise aucun outil de mesure d’audience
     (Google Analytics, Matomo ou équivalent), aucun bouton de réseau social et aucune régie publicitaire.</p>
     <p>Conformément à l’article 82 de la loi Informatique et Libertés, aucun bandeau de consentement n’est nécessaire
-    puisque aucune information n’est lue ou écrite dans votre terminal.</p>
+    puisque ${theme ? `les seules informations écrites dans votre terminal sont celles du thème ${theme.deNom} décrites ci-dessous, strictement nécessaires au jeu que vous avez demandé` : "aucune information n’est lue ou écrite dans votre terminal"}.</p>
 
     <h2>3. Les scores des jeux</h2>
     <p>Les scores obtenus dans les mini-jeux existent uniquement dans la mémoire vive de votre navigateur, le temps de la partie.
     Ils ne sont enregistrés nulle part, ni sur votre appareil, ni sur un serveur. Ils disparaissent dès que la page est
-    rechargée ou fermée.</p>
+    rechargée ou fermée.</p>${
+      theme
+        ? `
+    <p><strong>Pendant ${theme.nom}</strong>, ${theme.memoire ? "deux petites informations peuvent être gardées" : "une petite information peut être gardée"} le temps de la visite :
+    le choix d’éteindre le thème ${theme.deNom}${theme.memoire ? `, et ${theme.memoire}` : ""}. ${theme.memoire ? "Elles sont rangées" : "Elle est rangée"}
+    dans la mémoire de session du navigateur (<code>sessionStorage</code>), sur votre appareil uniquement.
+    ${theme.memoire ? "Elles ne sont jamais envoyées à un serveur et s’effacent" : "Elle n’est jamais envoyée à un serveur et s’efface"} dès que l’onglet est fermé.</p>`
+        : ""
+    }
 
     <h2>4. Aucune ressource tierce</h2>
     <p>Toutes les ressources du site (feuilles de style, scripts, images, polices) sont hébergées sur le même
@@ -305,7 +316,11 @@ export function pagesInfos() {
       <li>Les crédits d’image sont du texte sélectionnable, pas une image, et leurs liens sont explicites.</li>
       <li>Une structure de titres cohérente (un seul <code>h1</code> par page, puis h2 et h3).</li>
       <li>Des contrastes de couleurs conformes au niveau AA des règles WCAG 2.1.</li>
-      <li>Le respect du réglage système « réduire les animations » : toutes les animations sont alors désactivées.</li>
+      <li>Le respect du réglage système « réduire les animations » : toutes les animations sont alors désactivées.</li>${
+        theme
+          ? `\n      <li>Pendant ${theme.nom}, un bouton placé sous le menu retire tout le thème (couleurs, décor, animations).${theme.clavier ? `\n      ${theme.clavier}` : ""}</li>`
+          : ""
+      }
       <li>Un thème sombre automatique si votre appareil est réglé ainsi.</li>
       <li>Des textes redimensionnables jusqu’à 200 % sans perte d’information.</li>
       <li>Des messages annoncés aux lecteurs d’écran dans les jeux (bonne ou mauvaise réponse).</li>

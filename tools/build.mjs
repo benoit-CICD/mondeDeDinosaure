@@ -18,6 +18,7 @@ import { oeufSvg, empreinteSvg } from "./svg-traces.mjs";
 import { oeufs } from "./data/oeufs.mjs";
 import { empreintes } from "./data/empreintes.mjs";
 import { listeJeux } from "./data/jeux.mjs";
+import { themeActif } from "./data/themes.mjs";
 import { pageAccueil } from "./pages/accueil.mjs";
 import { pageCatalogue, pagesFamilles, pagesPeriodes, pageFrise } from "./pages/listes.mjs";
 import { pagesFiches } from "./pages/fiche.mjs";
@@ -27,6 +28,16 @@ import { pagesDossiers } from "./pages/dossiers.mjs";
 import { pagesCinema } from "./pages/cinema.mjs";
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
+
+/* Thème saisonnier : un identifiant inconnu arrête tout de suite le build. */
+const theme = themeActif(site);
+if (theme?.inconnu) {
+  console.error(`\n  ❌ Thème « ${theme.id} » inconnu : le déclarer dans tools/data/themes.mjs, ou mettre theme: null dans site.mjs.\n`);
+  process.exit(1);
+}
+const fichiersTheme = theme
+  ? ["assets/css/themes/commun.css", "assets/js/themes/commun.js", `assets/css/themes/${theme.id}.css`, `assets/js/themes/${theme.id}.js`]
+  : [];
 
 let compteFichiers = 0;
 function ecrire(chemin, contenu) {
@@ -129,6 +140,7 @@ const cheminsAssets = new Set([
   "assets/js/catalogue.js",
   "assets/js/donnees.js",
   "assets/js/jeux/commun.js",
+  ...fichiersTheme,
   ...listeJeux.map((j) => `assets/js/jeux/${j.script}`),
   "assets/img/favicon.svg",
   ...oeufs.map((o) => `assets/img/oeufs/${o.id}.svg`),
@@ -165,6 +177,11 @@ pages.forEach((p) => {
       erreurs.push(`${p.chemin} → lien cassé : ${lien} (résolu en ${propre})`);
     }
   });
+});
+
+/* Les fichiers du thème sont écrits à la main : chacun doit exister. */
+fichiersTheme.forEach((f) => {
+  if (!existsSync(join(RACINE, f))) erreurs.push(`${f} → fichier du thème « ${theme.id} » introuvable`);
 });
 
 /* Les scripts des jeux sont écrits à la main : chacun doit exister. */

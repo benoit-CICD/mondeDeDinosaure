@@ -1,0 +1,39 @@
+/* =========================================================================
+   Socle commun aux thèmes saisonniers : le bandeau sous le menu.
+   Chargé seulement quand un thème est choisi (`theme` dans site.mjs).
+
+   Le thème personnalise le bandeau avec trois variables, posées sous html.<id> :
+     --theme-bandeau-fond, --theme-bandeau-texte, --theme-accent
+   Quand le visiteur éteint le thème, html perd .theme-actif et .<id> :
+   le bandeau reprend les couleurs du site et ne garde que son bouton.
+   ========================================================================= */
+
+.bandeau-theme {
+  background: var(--theme-bandeau-fond, var(--fond-doux));
+  color: var(--theme-bandeau-texte, var(--texte));
+  font-size: .92rem; font-weight: 700;
+}
+.bandeau-theme__contenu {
+  width: min(100% - 2 * var(--gouttiere), var(--max)); margin-inline: auto;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .8rem;
+  padding: .45rem 0;
+}
+.bandeau-theme__zone { margin: 0; display: flex; align-items: center; gap: .1rem .5rem; flex-wrap: wrap; }
+/* Sur téléphone, le bandeau tient en deux lignes : les détails attendent les grands écrans. */
+.bandeau-theme__long { display: none; }
+@media (min-width: 48rem) { .bandeau-theme__long { display: inline; } }
+.bandeau-theme button {
+  font: inherit; cursor: pointer; color: inherit;
+  min-height: 44px; border-radius: 999px;
+}
+.bandeau-theme__interrupteur {
+  padding: .3em .95em; font-size: .86rem !important; background: transparent;
+  border: 2px solid color-mix(in srgb, var(--theme-accent, var(--bordure)) 70%, transparent);
+}
+.bandeau-theme__interrupteur:hover { background: color-mix(in srgb, var(--theme-accent, var(--bordure)) 15%, transparent); }
+
+/* Thème éteint : le bandeau ne garde que le bouton pour le rallumer. */
+html:not(.theme-actif) .bandeau-theme__contenu { justify-content: flex-end; }
+html:not(.theme-actif) .bandeau-theme__zone { display: none; }
+
+@media print { .bandeau-theme { display: none !important; } }

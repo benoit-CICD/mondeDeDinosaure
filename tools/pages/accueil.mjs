@@ -3,14 +3,62 @@
 import { dinos } from "../data/dinos.mjs";
 import { periodes, familles, site } from "../data/site.mjs";
 import { quiz, listeJeux } from "../data/jeux.mjs";
+
+const halloween = site.theme === "halloween";
 import { page, esc, carteDino, enLettres, majuscule } from "../templates.mjs";
+
+/* Décor d'Halloween de la scène d'accueil : ciel de nuit, lune, citrouilles
+   à dents de dinosaure et chauves-souris. Masqué par la feuille themes/halloween.css
+   quand le visiteur éteint le thème. */
+const HALLOWEEN_FOND = `
+  <g class="halloween-deco" aria-hidden="true">
+    <defs>
+      <linearGradient id="ciel-nuit" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1b1035"/><stop offset="55%" stop-color="#4a2a6e"/><stop offset="100%" stop-color="#f08a4b"/>
+      </linearGradient>
+    </defs>
+    <rect width="520" height="380" rx="28" fill="url(#ciel-nuit)"/>
+    <g class="etoiles" fill="#fff8dc">
+      <circle cx="40" cy="40" r="2"/><circle cx="150" cy="24" r="1.6"/><circle cx="230" cy="70" r="2.2"/>
+      <circle cx="300" cy="120" r="1.4"/><circle cx="480" cy="170" r="1.8"/><circle cx="190" cy="140" r="1.3"/>
+      <circle cx="350" cy="30" r="1.7"/><circle cx="80" cy="110" r="1.5"/>
+    </g>
+  </g>`;
+const HALLOWEEN_DEVANT = `
+  <g class="halloween-deco" aria-hidden="true">
+    <g fill="#d9d2b0" opacity=".8"><circle cx="394" cy="74" r="8"/><circle cx="421" cy="99" r="6"/><circle cx="420" cy="68" r="4"/><circle cx="398" cy="104" r="3.5"/></g>
+    <g transform="translate(118 322) scale(1)">
+      <ellipse rx="30" ry="24" fill="#f28c28"/>
+      <ellipse cx="-14" rx="14" ry="23" fill="#e87a17"/>
+      <ellipse cx="14" rx="14" ry="23" fill="#e87a17"/>
+      <ellipse rx="10" ry="24" fill="#f7a03c"/>
+      <path d="M-1 -22q1 -9 8 -12" stroke="#4a7a2c" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <g class="citrouille-lueur" fill="#ffd54a">
+        <path d="M-18 -6l7 -10 5 10z"/><path d="M18 -6l-7 -10 -5 10z"/>
+        <path d="M-19 5l5 5 4 -5 4 6 4 -6 4 6 4 -6 4 5 5 -5q-2 13 -19 13t-19 -13z"/>
+      </g>
+    </g>
+    <g transform="translate(446 334) scale(0.75)">
+      <ellipse rx="30" ry="24" fill="#f28c28"/>
+      <ellipse cx="-14" rx="14" ry="23" fill="#e87a17"/>
+      <ellipse cx="14" rx="14" ry="23" fill="#e87a17"/>
+      <ellipse rx="10" ry="24" fill="#f7a03c"/>
+      <path d="M-1 -22q1 -9 8 -12" stroke="#4a7a2c" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <g class="citrouille-lueur" fill="#ffd54a">
+        <path d="M-18 -6l7 -10 5 10z"/><path d="M18 -6l-7 -10 -5 10z"/>
+        <path d="M-19 5l5 5 4 -5 4 6 4 -6 4 6 4 -6 4 5 5 -5q-2 13 -19 13t-19 -13z"/>
+      </g>
+    </g>
+    <g class="chauve-souris chauve-souris--1"><path d="M0 -3C3 -7 6 -6 7 -3C10 -9 15 -9 18 -4C14 -4 12 -1 11 2C9 0 7 0 5 2C3 0 1 1 0 3C-1 1 -3 0 -5 2C-7 0 -9 0 -11 2C-12 -1 -14 -4 -18 -4C-15 -9 -10 -9 -7 -3C-6 -6 -3 -7 0 -3ZM-2 -4l-1 -4 2 2 2 -2 -1 4Z" fill="#22122e"/></g>
+    <g class="chauve-souris chauve-souris--2"><path d="M0 -3C3 -7 6 -6 7 -3C10 -9 15 -9 18 -4C14 -4 12 -1 11 2C9 0 7 0 5 2C3 0 1 1 0 3C-1 1 -3 0 -5 2C-7 0 -9 0 -11 2C-12 -1 -14 -4 -18 -4C-15 -9 -10 -9 -7 -3C-6 -6 -3 -7 0 -3ZM-2 -4l-1 -4 2 2 2 -2 -1 4Z" fill="#22122e"/></g>
+  </g>`;
 
 const SCENE = `<svg viewBox="0 0 520 380" role="img" aria-label="Paysage préhistorique avec un volcan, des fougères et un dinosaure" class="heros__scene-svg">
   <defs>
     <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffd89b"/><stop offset="100%" stop-color="#fdf3e0"/>
     </linearGradient>
-  </defs>
+  </defs>${halloween ? HALLOWEEN_FOND : ""}
   <circle class="soleil" cx="408" cy="86" r="46" fill="#ffc861"/>
   <circle cx="408" cy="86" r="62" fill="#ffc861" opacity=".22"/>
 
@@ -54,7 +102,7 @@ const SCENE = `<svg viewBox="0 0 520 380" role="img" aria-label="Paysage préhis
   <g fill="#245a44">
     <path d="M26 300 q-16 -44 4 -70 q10 30 20 40 q4 -30 16 -44 q10 32 6 74 Z"/>
     <path d="M470 306 q-18 -40 0 -66 q12 26 22 34 q2 -26 14 -40 q10 30 6 72 Z"/>
-  </g>
+  </g>${halloween ? HALLOWEEN_DEVANT : ""}
 </svg>`;
 
 export function pageAccueil() {
@@ -75,7 +123,11 @@ export function pageAccueil() {
         <a class="bouton bouton--ambre" href="jeux.html">🎮 Jouer maintenant</a>
       </div>
     </div>
-    <div class="heros__scene">${SCENE}</div>
+    <div class="heros__scene">${SCENE}${
+      halloween
+        ? `<button type="button" class="lune-bouton" aria-label="Touche la lune… qui sait ce qui va s’envoler ?"></button>`
+        : ""
+    }</div>
   </div>
 </section>
 
