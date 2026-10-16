@@ -5,6 +5,14 @@ import { empreinte } from "./empreintes.mjs";
 import { photos } from "./data/photos.mjs";
 import { listeJeux } from "./data/jeux.mjs";
 import { pagesRubriqueCinema } from "./data/cinema.mjs";
+import { themeActif } from "./data/themes.mjs";
+
+/* Thème saisonnier choisi dans site.mjs (null si aucun). */
+const theme = themeActif(site);
+const fichiersTheme = theme
+  ? { css: ["assets/css/themes/commun.css", `assets/css/themes/${theme.id}.css`],
+      js: ["assets/js/themes/commun.js", `assets/js/themes/${theme.id}.js`] }
+  : { css: [], js: [] };
 
 export const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -186,12 +194,12 @@ export function page({ titre, description, base = "", corps, actif = "", scripts
         .join("")}</ol></nav>`
     : "";
 
-  const js = ["assets/js/site.js", ...(site.halloween ? ["assets/js/halloween.js"] : []), ...scripts]
+  const js = ["assets/js/site.js", ...fichiersTheme.js, ...scripts]
     .map((s) => `<script src="${base}${s}${empreinte(s)}" defer></script>`)
     .join("\n");
 
   return `<!DOCTYPE html>
-<html lang="fr" class="no-js${site.halloween ? " halloween" : ""}">
+<html lang="fr" class="no-js${theme ? ` theme-actif ${theme.id}` : ""}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -204,15 +212,12 @@ export function page({ titre, description, base = "", corps, actif = "", scripts
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="${esc(site.nom)}">
-<link rel="stylesheet" href="${base}assets/css/style.css${empreinte("assets/css/style.css")}">${
-  site.halloween ? `\n<link rel="stylesheet" href="${base}assets/css/halloween.css${empreinte("assets/css/halloween.css")}">` : ""
-}
+${["assets/css/style.css", ...fichiersTheme.css]
+  .map((f) => `<link rel="stylesheet" href="${base}${f}${empreinte(f)}">`)
+  .join("\n")}
 <link rel="icon" href="${base}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${base}assets/img/favicon.svg">
-<script>window.BASE = "${base}";${
-  /* Retiré avant l'affichage, pour ne pas voir le thème clignoter quand on l'a éteint. */
-  site.halloween ? 'try{if(sessionStorage.getItem("halloween:eteint")==="1")document.documentElement.classList.remove("halloween")}catch(e){}' : ""
-}</script>
+<script>window.BASE = "${base}";${theme ? scriptTheme() : ""}</script>
 </head>
 <body>
 ${entete(base, actif)}
@@ -224,6 +229,15 @@ ${pied(base)}
 ${js}
 </body>
 </html>`;
+}
+
+/** Réglages du thème pour themes/commun.js. Le thème éteint par le visiteur
+    est retiré avant l'affichage, pour ne pas le voir clignoter. */
+function scriptTheme() {
+  const { id, nom, deNom, emoji, message, detail } = theme;
+  const config = JSON.stringify({ id, nom, deNom, emoji, message, detail }).replace(/</g, "\\u003c");
+  return `window.THEME = ${config};` +
+    `try{if(sessionStorage.getItem("theme:${id}:eteint")==="1")document.documentElement.classList.remove("theme-actif","${id}")}catch(e){}`;
 }
 
 /* ---------- Images ----------

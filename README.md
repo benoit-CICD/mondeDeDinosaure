@@ -54,10 +54,10 @@ jeux/<slug>.html
 
 assets/
   css/style.css          feuille de style principale
-  css/halloween.css      thème d’Halloween (chargé seulement si halloween: true)
+  css/themes/            thèmes saisonniers : commun.css + un fichier par thème
   js/site.js             navigation, animations
   js/catalogue.js        filtres et recherche
-  js/halloween.js        araignée, bandeau, citrouilles cachées, easter eggs d’Halloween
+  js/themes/             thèmes saisonniers : commun.js (bandeau, mémoire) + un script par thème
   js/donnees.js          données des jeux (GÉNÉRÉ — ne pas modifier)
   js/jeux/commun.js      outils partagés par les jeux
   js/jeux/*.js           un script par mini-jeu
@@ -78,6 +78,7 @@ tools/                   le générateur (Node, zéro dépendance)
     oeufs.mjs            œufs par famille, et les intrus qui ne pondaient pas
     empreintes.mjs       empreintes et suspects
     cinema.mjs           films, effets spéciaux, erreurs des films et questions du quiz du cinéma
+    themes.mjs           thèmes saisonniers disponibles (Halloween…)
     photos.mjs           crédits des images (GÉNÉRÉ par photos.mjs)
     photos-manuel.json   fichiers Commons choisis à la main
   pages/                 un module par type de page (dossiers.mjs : les dossiers thématiques,
@@ -176,29 +177,55 @@ Garder cette règle si vous ajoutez des œufs ou des empreintes.
 
 ---
 
-## 🎃 Le thème d’Halloween
+## 🎃 Les thèmes saisonniers
 
-Activé par **`halloween: true`** dans `tools/data/site.mjs`. Pour le retirer après Halloween : passer à `false`
-et relancer le build. La feuille `halloween.css`, le script `halloween.js`, le décor de nuit de l’accueil
-et le paragraphe correspondant de la page Confidentialité disparaissent alors d’un coup.
+Le site peut se « déguiser » pour une période de l’année. Le thème affiché se choisit avec **`theme`**
+dans `tools/data/site.mjs` :
 
-Ce qu’il contient :
+```js
+theme: "halloween",   // un thème de tools/data/themes.mjs, ou null pour aucun thème
+```
+
+Changer la valeur, puis relancer le build. Avec `null`, le site généré redevient exactement celui sans thème :
+aucune feuille de style, aucun script, aucun bandeau ni paragraphe en plus. Un nom inconnu arrête le build.
+
+### Ce qui est commun à tous les thèmes
+
+`assets/css/themes/commun.css` et `assets/js/themes/commun.js` fournissent :
+
+- le **bandeau** sous le menu, avec le bouton **« Enlever le déguisement »** pour les enfants que ça impressionne ;
+- la **mémoire de la visite** (`sessionStorage`, une clé par thème : `theme:<id>:…`), jamais envoyée,
+  effacée à la fermeture de l’onglet ;
+- `window.Theme`, sur lequel se branche le script du thème : `actif()`, `lire()`, `ecrire()`, `annoncer()`,
+  `zone` (le paragraphe du bandeau, pour y ajouter un compteur ou un bouton) et `surBascule()`.
+
+Les pages Confidentialité et Accessibilité s’adaptent toutes seules au thème choisi.
+
+### Ajouter un thème (par exemple Noël)
+
+1. Le déclarer dans `tools/data/themes.mjs` : nom, message du bandeau, ce qu’il garde en mémoire…
+2. Écrire `assets/css/themes/<id>.css` : couleurs et décor, rangés sous `html.<id>` ; les couleurs du bandeau
+   passent par `--theme-bandeau-fond`, `--theme-bandeau-texte` et `--theme-accent`.
+3. Écrire `assets/js/themes/<id>.js` : animations et surprises, en s’appuyant sur `window.Theme`.
+4. Mettre `theme: "<id>"` dans `site.mjs` et relancer le build : il signale un fichier manquant.
+
+Garder les règles d’Halloween : couper les animations avec « réduire les animations », masquer le décor
+à l’impression, et tout rendre utilisable au clavier.
+
+### Le thème d’Halloween
 
 - **Couleurs** orange et violet (clair et sombre), guirlande de fanions sous le menu, toiles dans le coin des encadrés,
   cimetière « R.I.P. T-REX » au-dessus du pied de page, scène de nuit sur l’accueil (lune, chauves-souris, citrouilles).
-- **Un bandeau** sous le menu, avec le bouton **« Enlever le déguisement »** pour les enfants que ça impressionne.
 - **L’araignée**, en haut à droite de chaque page : on la tire au doigt ou à la souris, le fil s’allonge, et elle remonte
   quand on la lâche. Un simple appui (ou Entrée au clavier) la fait descendre. Elle donne des anecdotes vraies sur les
   araignées fossiles et des indices pour les easter eggs.
 - **Les easter eggs** :
-  - 5 **citrouilles cachées** (accueil, fiche du T-rex, frise, glossaire, salle de jeux), listées dans `CACHETTES` (`halloween.js`) ;
+  - 5 **citrouilles cachées** (accueil, fiche du T-rex, frise, glossaire, salle de jeux), listées dans `CACHETTES`
+    (`assets/js/themes/halloween.js`) ;
   - taper **« bouh »** au clavier, ou toucher **5 fois le fantôme 👻** du bandeau : un T-rex fantôme traverse l’écran ;
   - toucher **la lune** de l’accueil : une nuée de chauves-souris s’envole ;
   - un **sans-faute** à un jeu (ou un memory / puzzle terminé) : pluie de bonbons.
-
-Le choix « thème éteint » et les citrouilles trouvées sont gardés dans `sessionStorage` le temps de la visite
-(jamais envoyés, effacés à la fermeture de l’onglet) : la page Confidentialité le précise tant que le thème est actif.
-Toutes les animations s’arrêtent avec le réglage « réduire les animations ».
+- Le décor de nuit de l’accueil est écrit dans `tools/pages/accueil.mjs` (affiché seulement avec `theme: "halloween"`).
 
 ## ⚠️ Avant la mise en ligne
 

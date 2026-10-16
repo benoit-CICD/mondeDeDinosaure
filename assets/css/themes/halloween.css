@@ -1,8 +1,8 @@
 /* =========================================================================
    Thème d'Halloween
-   Chargé seulement quand `halloween: true` dans tools/data/site.mjs.
-   Tout est rangé sous la classe html.halloween : le bouton « Enlever le
-   déguisement » la retire, et la page retrouve son apparence habituelle.
+   Chargé quand `theme: "halloween"` dans tools/data/site.mjs, après
+   themes/commun.css. Tout est rangé sous la classe html.halloween : le bouton
+   « Enlever le déguisement » la retire, et la page retrouve son apparence habituelle.
    ========================================================================= */
 
 /* ---------- 1. Couleurs ---------- */
@@ -53,40 +53,21 @@ html.halloween {
 }
 .halloween .logo__empreinte ellipse { fill: var(--citrouille); }
 
-/* ---------- 3. Bandeau d'Halloween (créé par halloween.js) ---------- */
-.halloween-bandeau {
-  background: var(--nuit); color: #fbeedd;
-  font-size: .92rem; font-weight: 700;
+/* ---------- 3. Bandeau (socle dans themes/commun.css) ---------- */
+html.halloween {
+  --theme-bandeau-fond: var(--nuit);
+  --theme-bandeau-texte: #fbeedd;
+  --theme-accent: #ffb15c;
 }
-.halloween-bandeau__contenu {
-  width: min(100% - 2 * var(--gouttiere), var(--max)); margin-inline: auto;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .8rem;
-  /* Place laissée à droite pour l'araignée, qui pend juste au-dessus. */
-  padding: 1rem 56px .45rem 0;
-}
-.halloween-bandeau p { margin: 0; display: flex; align-items: center; gap: .1rem .5rem; flex-wrap: wrap; }
-/* Sur téléphone, le bandeau tient en deux lignes : les détails attendent les grands écrans. */
-.halloween-bandeau__long { display: none; }
-@media (min-width: 48rem) { .halloween-bandeau__long { display: inline; } }
-.halloween-bandeau__compteur { color: #ffb15c; white-space: nowrap; }
-.halloween-bandeau button {
-  font: inherit; cursor: pointer; color: inherit;
-  min-height: 44px; border-radius: 999px;
-}
-.halloween-bandeau__interrupteur {
-  padding: .3em .95em; font-size: .86rem !important; background: transparent; border: 2px solid rgba(255, 177, 92, .7);
-}
-.halloween-bandeau__interrupteur:hover { background: rgba(255, 177, 92, .15); }
-.halloween-bandeau__fantome {
+/* Place pour la guirlande au-dessus, et pour l'araignée qui pend à droite. */
+.halloween .bandeau-theme__contenu { padding: 1rem 56px .45rem 0; }
+.compteur-citrouilles { color: var(--theme-accent, inherit); white-space: nowrap; }
+.compteur-citrouilles--bravo { color: #9df5b8; }
+html:not(.theme-actif) .compteur-citrouilles, html:not(.theme-actif) .bouton-fantome { display: none; }
+.bouton-fantome {
   min-width: 44px; padding: 0; background: none; border: 0; font-size: 1.35rem; line-height: 1;
 }
-.halloween-bandeau__fantome.frisson { animation: frisson .45s ease; }
-/* Thème éteint : le bandeau ne garde que le bouton pour le rallumer. */
-html:not(.halloween) .halloween-bandeau { background: var(--fond-doux); color: var(--texte); }
-html:not(.halloween) .halloween-bandeau__contenu { padding-top: .45rem; justify-content: flex-end; }
-html:not(.halloween) .halloween-bandeau p { display: none; }
-html:not(.halloween) .halloween-bandeau__interrupteur { border-color: var(--bordure); font-size: .85rem; }
-.halloween-bandeau--bravo .halloween-bandeau__compteur { color: #9df5b8; }
+.bouton-fantome.frisson { animation: frisson .45s ease; }
 
 /* ---------- 4. Petites animations un peu partout ---------- */
 .halloween .carte:hover { animation: frisson .5s ease; }
@@ -273,6 +254,6 @@ html:not(.halloween) .citrouille-cachee { display: none; }
   }
 }
 @media print {
-  .araignee, .halloween-bandeau, .citrouille-cachee, .lune-bouton,
+  .araignee, .citrouille-cachee, .lune-bouton,
   .halloween .entete::after, .halloween .pied::before, .halloween-deco { display: none !important; }
 }

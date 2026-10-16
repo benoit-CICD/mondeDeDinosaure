@@ -3,10 +3,12 @@
 import { dinos } from "../data/dinos.mjs";
 import { periodes, familles, site } from "../data/site.mjs";
 import { quiz, listeJeux } from "../data/jeux.mjs";
+
+const halloween = site.theme === "halloween";
 import { page, esc, carteDino, enLettres, majuscule } from "../templates.mjs";
 
 /* Décor d'Halloween de la scène d'accueil : ciel de nuit, lune, citrouilles
-   à dents de dinosaure et chauves-souris. Masqué par la feuille halloween.css
+   à dents de dinosaure et chauves-souris. Masqué par la feuille themes/halloween.css
    quand le visiteur éteint le thème. */
 const HALLOWEEN_FOND = `
   <g class="halloween-deco" aria-hidden="true">
@@ -56,7 +58,7 @@ const SCENE = `<svg viewBox="0 0 520 380" role="img" aria-label="Paysage préhis
     <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffd89b"/><stop offset="100%" stop-color="#fdf3e0"/>
     </linearGradient>
-  </defs>${site.halloween ? HALLOWEEN_FOND : ""}
+  </defs>${halloween ? HALLOWEEN_FOND : ""}
   <circle class="soleil" cx="408" cy="86" r="46" fill="#ffc861"/>
   <circle cx="408" cy="86" r="62" fill="#ffc861" opacity=".22"/>
 
@@ -100,7 +102,7 @@ const SCENE = `<svg viewBox="0 0 520 380" role="img" aria-label="Paysage préhis
   <g fill="#245a44">
     <path d="M26 300 q-16 -44 4 -70 q10 30 20 40 q4 -30 16 -44 q10 32 6 74 Z"/>
     <path d="M470 306 q-18 -40 0 -66 q12 26 22 34 q2 -26 14 -40 q10 30 6 72 Z"/>
-  </g>${site.halloween ? HALLOWEEN_DEVANT : ""}
+  </g>${halloween ? HALLOWEEN_DEVANT : ""}
 </svg>`;
 
 export function pageAccueil() {
@@ -122,7 +124,7 @@ export function pageAccueil() {
       </div>
     </div>
     <div class="heros__scene">${SCENE}${
-      site.halloween
+      halloween
         ? `<button type="button" class="lune-bouton" aria-label="Touche la lune… qui sait ce qui va s’envoler ?"></button>`
         : ""
     }</div>

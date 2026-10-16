@@ -26,10 +26,11 @@ export const site = {
 
   anneeCreation: 2026,
 
-  // Thème d'Halloween : couleurs, araignée, citrouilles cachées, easter eggs.
-  // Passer à false (puis relancer le build) retire tout le thème du site :
-  // feuille de style, script, décor de l'accueil et paragraphe de confidentialité.
-  halloween: true,
+  // Thème saisonnier affiché sur tout le site : un identifiant de tools/data/themes.mjs
+  // ("halloween"…), ou null pour aucun thème. Changer la valeur puis relancer le build :
+  // feuilles de style, scripts, bandeau, décor de l'accueil et paragraphes de
+  // confidentialité et d'accessibilité suivent automatiquement.
+  theme: "halloween",
 };
 
 export const periodes = [

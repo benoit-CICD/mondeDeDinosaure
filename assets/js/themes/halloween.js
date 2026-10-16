@@ -1,25 +1,23 @@
-/* Thème d'Halloween : bandeau, araignée, citrouilles cachées et easter eggs.
-   Chargé seulement quand `halloween: true` dans tools/data/site.mjs.
-
-   Les seules informations gardées sont le choix « thème éteint » et les
-   citrouilles trouvées, dans sessionStorage : sur l'appareil, jamais envoyées,
-   effacées à la fermeture de l'onglet (voir la page Confidentialité). */
+/* Thème d'Halloween : araignée, citrouilles cachées et easter eggs.
+   Chargé quand `theme: "halloween"` dans tools/data/site.mjs, après
+   themes/commun.js qui fournit le bandeau, l'interrupteur et la mémoire
+   de la visite (window.Theme). Ce thème retient en plus les citrouilles
+   trouvées (voir la page Confidentialité). */
 (function () {
   "use strict";
 
-  var racine = document.documentElement;
+  var Theme = window.Theme;
+  if (!Theme) return;
+
   var reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var BASE = window.BASE || "";
+  var actif = Theme.actif, annoncer = Theme.annoncer;
 
-  function actif() { return racine.classList.contains("halloween"); }
   function borne(v, min, max) { return Math.max(min, Math.min(max, v)); }
   function hasard(min, max) { return min + Math.random() * (max - min); }
 
-  /* ---- Mémoire de la visite ---- */
-  function lire(cle) { try { return sessionStorage.getItem(cle); } catch (e) { return null; } }
-  function ecrire(cle, valeur) { try { sessionStorage.setItem(cle, valeur); } catch (e) { /* navigation privée */ } }
   function trouvees() {
-    try { return JSON.parse(lire("halloween:citrouilles")) || []; } catch (e) { return []; }
+    try { return JSON.parse(Theme.lire("citrouilles")) || []; } catch (e) { return []; }
   }
 
   /* ---- Dessins ---- */
@@ -95,54 +93,26 @@
     "Fais un sans-faute à un jeu : il pleuvra des bonbons !",
   ];
 
-  /* ---------- Bandeau ---------- */
-  var bandeau, elCompteur, elInterrupteur, elAnnonce;
+  /* ---------- Dans le bandeau : le fantôme et le compteur de citrouilles ---------- */
+  var elCompteur;
 
-  function annoncer(message) {
-    if (!elAnnonce) return;
-    elAnnonce.textContent = "";
-    setTimeout(function () { elAnnonce.textContent = message; }, 60);
-  }
-
-  function majBandeau() {
+  function majCompteur() {
     var n = trouvees().length;
     elCompteur.innerHTML = n >= TOTAL
-      ? "🎉 " + TOTAL + " / " + TOTAL + '<span class="halloween-bandeau__long"> : bravo, tout est trouvé !</span>'
-      : '🎃 <span class="halloween-bandeau__long">Citrouilles cachées : </span>' + n + " / " + TOTAL;
-    bandeau.classList.toggle("halloween-bandeau--bravo", n >= TOTAL);
-    elInterrupteur.textContent = actif() ? "🦕 Enlever le déguisement" : "🎃 Remettre le déguisement d’Halloween";
+      ? "🎉 " + TOTAL + " / " + TOTAL + '<span class="bandeau-theme__long"> : bravo, tout est trouvé !</span>'
+      : '🎃 <span class="bandeau-theme__long">Citrouilles cachées : </span>' + n + " / " + TOTAL;
+    elCompteur.classList.toggle("compteur-citrouilles--bravo", n >= TOTAL);
   }
 
-  function creerBandeau() {
-    var entete = document.querySelector(".entete");
-    if (!entete) return;
-    bandeau = document.createElement("div");
-    bandeau.className = "halloween-bandeau";
-    bandeau.setAttribute("role", "region");
-    bandeau.setAttribute("aria-label", "Halloween");
-    bandeau.innerHTML =
-      '<div class="halloween-bandeau__contenu"><p>' +
-      '<button type="button" class="halloween-bandeau__fantome" aria-label="Petit fantôme">👻</button>' +
-      '<span>Joyeux Halloween !<span class="halloween-bandeau__long"> Le site s’est déguisé.</span></span>' +
-      '<span class="halloween-bandeau__compteur" tabindex="-1"></span></p>' +
-      '<button type="button" class="halloween-bandeau__interrupteur"></button>' +
-      '<span class="visuellement-cache" role="status" aria-live="polite"></span></div>';
-    entete.insertAdjacentElement("afterend", bandeau);
-
-    elCompteur = bandeau.querySelector(".halloween-bandeau__compteur");
-    elInterrupteur = bandeau.querySelector(".halloween-bandeau__interrupteur");
-    elAnnonce = bandeau.querySelector('[role="status"]');
-
-    elInterrupteur.addEventListener("click", function () {
-      racine.classList.toggle("halloween");
-      ecrire("halloween:eteint", actif() ? "0" : "1");
-      if (!actif()) taire();
-      majBandeau();
-      annoncer(actif() ? "Le thème d’Halloween est de retour !" : "Le thème d’Halloween est rangé.");
-    });
-
+  function completerBandeau() {
     /* Cinq petites tapes sur le fantôme : le T-rex fantôme apparaît. */
-    var fantomeBouton = bandeau.querySelector(".halloween-bandeau__fantome");
+    var fantomeBouton = document.createElement("button");
+    fantomeBouton.type = "button";
+    fantomeBouton.className = "bouton-fantome";
+    fantomeBouton.setAttribute("aria-label", "Petit fantôme");
+    fantomeBouton.textContent = "👻";
+    Theme.zone.insertBefore(fantomeBouton, Theme.zone.firstChild);
+
     var tapes = 0, minuterieTapes = 0;
     fantomeBouton.addEventListener("click", function () {
       fantomeBouton.classList.remove("frisson");
@@ -154,7 +124,13 @@
       if (tapes >= 5) { tapes = 0; fantome(); }
     });
 
-    majBandeau();
+    elCompteur = document.createElement("span");
+    elCompteur.className = "compteur-citrouilles";
+    elCompteur.tabIndex = -1;
+    Theme.zone.appendChild(elCompteur);
+    majCompteur();
+
+    Theme.surBascule(function (allume) { if (!allume) taire(); });
   }
 
   /* ---------- Le T-rex fantôme ---------- */
@@ -285,11 +261,11 @@
   function ramasser(cachette, bouton) {
     var liste = trouvees();
     if (liste.indexOf(cachette.id) === -1) liste.push(cachette.id);
-    ecrire("halloween:citrouilles", JSON.stringify(liste));
+    Theme.ecrire("citrouilles", JSON.stringify(liste));
     bouton.disabled = true;
     bouton.classList.add("citrouille-cachee--trouvee");
     setTimeout(function () { bouton.remove(); }, 650);
-    majBandeau();
+    majCompteur();
     if (elCompteur) elCompteur.focus({ preventScroll: true });
     if (liste.length >= TOTAL) {
       annoncer("Bravo ! Tu as trouvé les " + TOTAL + " citrouilles cachées !");
@@ -475,7 +451,7 @@
     corps.addEventListener("click", function (e) { if (e.detail === 0) descendre(); });
   }
 
-  creerBandeau();
+  completerBandeau();
   creerAraignee();
   cacherCitrouilles();
 })();
