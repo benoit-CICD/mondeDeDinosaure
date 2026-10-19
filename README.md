@@ -219,12 +219,25 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
 - **L’araignée**, en haut à droite de chaque page : on la tire au doigt ou à la souris, le fil s’allonge, et elle remonte
   quand on la lâche. Un simple appui (ou Entrée au clavier) la fait descendre. Elle donne des anecdotes vraies sur les
   araignées fossiles et des indices pour les easter eggs.
-- **Les easter eggs** :
-  - 5 **citrouilles cachées** (accueil, fiche du T-rex, frise, glossaire, salle de jeux), listées dans `CACHETTES`
-    (`assets/js/themes/halloween.js`) ;
+- **La chasse aux 10 citrouilles**, listées dans `CACHETTES` (`assets/js/themes/halloween.js`). Elles ne se montrent
+  jamais en entier : derrière un encadré (seul le haut dépasse), minuscules et pâles, dans un volet à déplier,
+  avec certains filtres du catalogue, ou coincées entre deux tombes. L’araignée donne des **devinettes**, pas des adresses.
+  - Cachettes : accueil, fiche du T-rex, fiche du Maiasaura, frise, glossaire, salle de jeux, Questions fréquentes,
+    puzzle, catalogue (Crétacé + Herbivore), cimetière de la page sur l’extinction.
+  - **La récompense** : à la 10ᵉ, une fenêtre propose le **diplôme de chasseur de citrouilles**, qui s’ouvre dans un nouvel
+    onglet (`diplome-citrouilles.html`, à imprimer). Le prénom se règle dans `tools/data/themes.mjs` (`diplome.prenom`).
+    La page n’est liée nulle part, absente du sitemap et marquée `noindex` ; sans les 10 citrouilles, elle reste « sous clé ».
+- **Les autres easter eggs** :
   - taper **« bouh »** au clavier, ou toucher **5 fois le fantôme 👻** du bandeau : un T-rex fantôme traverse l’écran ;
   - toucher **la lune** de l’accueil : une nuée de chauves-souris s’envole ;
-  - un **sans-faute** à un jeu (ou un memory / puzzle terminé) : pluie de bonbons.
+  - toucher **le volcan** de l’accueil : éruption, et une anecdote sur les volcans de la fin du Crétacé ;
+  - toucher **3 fois le dinosaure** de l’accueil : il rugit (en silence) et explique qu’on ne connaît pas le cri des dinosaures ;
+  - toucher **une tombe** du cimetière, en bas des pages : un petit fantôme en sort avec une anecdote sur l’extinction ;
+  - toucher **la chauve-souris** à côté des titres : elle s’envole à travers la page ;
+  - écrire **« citrouille »**, **« fantôme »**, **« araignée »** ou **« chauve-souris »** dans la recherche du catalogue ;
+  - **appui long** (ou double-clic, ou « radio » au clavier) sur l’image d’une fiche : effet « rayons X » ;
+  - un **sans-faute** à un jeu (ou un memory / puzzle terminé) : pluie de bonbons ;
+  - le **31 octobre**, des feux follets se promènent sur le site (pour tester un autre jour : ajouter `#31-octobre` à l’adresse).
 - Le décor de nuit de l’accueil est écrit dans `tools/pages/accueil.mjs` (affiché seulement avec `theme: "halloween"`).
 
 ## ⚠️ Avant la mise en ligne

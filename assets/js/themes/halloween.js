@@ -63,18 +63,45 @@
     return '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>';
   }
 
-  /* ---- Les cachettes des citrouilles ---- */
+  /* ---- Les cachettes des citrouilles ----
+     Chaque citrouille n'apparaît que sur sa page, et jamais en entier :
+       haut    seul le haut dépasse du bord d'un encadré, comme si elle était derrière ;
+       mini    toute petite et pâle, presque fondue dans le décor ;
+       dedans  dans un volet qu'il faut d'abord déplier ;
+       filtre  n'apparaît qu'avec certains filtres du catalogue ;
+       tombe   coincée entre deux tombes du cimetière, en bas de page.
+     L'araignée ne donne pas d'adresse, seulement des devinettes. */
+  function parTexte(selecteur, texte) {
+    return function () {
+      var liste = document.querySelectorAll(selecteur);
+      for (var i = 0; i < liste.length; i++) {
+        if (liste[i].textContent.indexOf(texte) !== -1) return liste[i];
+      }
+      return null;
+    };
+  }
+
   var CACHETTES = [
-    { id: "accueil", page: /\/(index\.html)?$/, cible: ".chiffres", style: "right:-4px;bottom:-34px",
-      indice: "Psst… une citrouille a roulé sous les grands chiffres de la page d’accueil." },
-    { id: "trex", page: /\/dinosaures\/tyrannosaurus\.html$/, cible: ".fiche__illustration", style: "left:14px;top:14px",
-      indice: "Le roi des lézards tyrans cache une citrouille sur sa fiche… tout près de son portrait !" },
-    { id: "frise", page: /\/frise\.html$/, cible: ".frise > .frise__jalon:last-of-type .frise__periode", style: "right:8px;top:8px",
-      indice: "Remonte la frise du temps jusqu’à l’astéroïde : une citrouille t’y attend." },
-    { id: "glossaire", page: /\/glossaire\.html$/, cible: ".glossaire__terme:nth-child(12)", style: "right:4px;top:4px",
-      indice: "Une citrouille s’est glissée entre les mots du glossaire." },
-    { id: "jeux", page: /\/jeux\.html$/, cible: ".encadre", style: "right:10px;bottom:10px",
-      indice: "Dans la salle de jeux, une citrouille écoute le conseil…" },
+    { id: "accueil", page: /\/(index\.html)?$/, cible: ".encadre--attention", variante: "haut", style: "right:16%",
+      indice: "Sur la page d’accueil, une citrouille est tombée dans « le piège le plus courant »…" },
+    { id: "trex", page: /\/dinosaures\/tyrannosaurus\.html$/, cible: ".fiche__illustration", variante: "mini", style: "right:20px;top:18px",
+      indice: "Le roi des lézards tyrans garde une toute petite citrouille dans son portrait. Ouvre grand les yeux !" },
+    { id: "maiasaura", page: /\/dinosaures\/maiasaura\.html$/, cible: ".savais-tu > li:first-child", variante: "haut", style: "left:28px",
+      indice: "Rends visite à la dinosaure qui était une « bonne mère » : une citrouille lit par-dessus son épaule." },
+    { id: "frise", page: /\/frise\.html$/, cible: ".frise > .frise__jalon:last-of-type .frise__periode", variante: "haut", style: "right:26px",
+      indice: "Remonte la frise du temps jusqu’au jour où le ciel est tombé sur la Terre." },
+    { id: "glossaire", page: /\/glossaire\.html$/, cible: parTexte(".glossaire__terme", "Coprolithe"), variante: "mini", style: "right:6px;bottom:2px",
+      indice: "Dans le glossaire, une citrouille se cache près du mot qui veut dire « crotte fossilisée ». Beurk !" },
+    { id: "jeux", page: /\/jeux\.html$/, cible: ".encadre", variante: "haut", style: "left:40%",
+      indice: "Dans la salle de jeux, une citrouille espionne le conseil, cachée juste derrière." },
+    { id: "questions", page: /\/questions\.html$/, cible: parTexte("details.accordeon", "Quelle couleur"), variante: "dedans", style: "right:10px;bottom:8px",
+      indice: "Une citrouille connaît la réponse à la question des couleurs, dans les Questions fréquentes. Encore faut-il l’ouvrir !" },
+    { id: "puzzle", page: /\/jeux\/puzzle\.html$/, cible: parTexte("details.accordeon", "image compl"), variante: "dedans", style: "right:10px;bottom:8px",
+      indice: "Au puzzle, une citrouille attend qu’on regarde l’image complète." },
+    { id: "catalogue", page: /\/dinosaures\.html$/, cible: "#compteur-resultats", variante: "filtre",
+      indice: "Dans le catalogue de tous les dinosaures, une citrouille se glisse parmi les herbivores du Crétacé." },
+    { id: "extinction", page: /\/extinction\.html$/, cible: ".cimetiere__rang", variante: "tombe",
+      indice: "Sur la page de la grande extinction, une citrouille se recueille au cimetière, tout en bas." },
   ];
   var TOTAL = CACHETTES.length;
 
@@ -91,6 +118,13 @@
     "Psst… tape « bouh » au clavier, ou touche 5 fois le petit fantôme 👻 du bandeau !",
     "Sur la page d’accueil, touche la lune… 🌕",
     "Fais un sans-faute à un jeu : il pleuvra des bonbons !",
+    "Le volcan de la page d’accueil fait la sieste. Et si tu le réveillais ? 🌋",
+    "Le dinosaure de la page d’accueil est très chatouilleux… surtout trois fois de suite !",
+    "Tout en bas des pages, les tombes du cimetière ont des histoires à raconter. 🪦",
+    "La petite chauve-souris à côté des titres adore qu’on la touche. 🦇",
+    "Dans la recherche du catalogue, essaie d’écrire « citrouille », « fantôme » ou « araignée »…",
+    "Sur une fiche de dinosaure, reste appuyé longtemps sur l’image. Ou tape « radio » au clavier ! 🩻",
+    "Le 31 octobre, le site te réserve une surprise… 🎃",
   ];
 
   /* ---------- Dans le bandeau : le fantôme et le compteur de citrouilles ---------- */
@@ -102,6 +136,17 @@
       ? "🎉 " + TOTAL + " / " + TOTAL + '<span class="bandeau-theme__long"> : bravo, tout est trouvé !</span>'
       : '🎃 <span class="bandeau-theme__long">Citrouilles cachées : </span>' + n + " / " + TOTAL;
     elCompteur.classList.toggle("compteur-citrouilles--bravo", n >= TOTAL);
+    /* Chasse terminée : le compteur laisse sa place au bouton du diplôme. */
+    if (n >= TOTAL && !Theme.zone.querySelector(".bouton-diplome")) {
+      var bouton = document.createElement("button");
+      bouton.type = "button";
+      bouton.className = "bouton-diplome";
+      bouton.setAttribute("aria-label", "Mon diplôme de chasseur de citrouilles");
+      bouton.innerHTML = '🎓 <span class="bandeau-theme__long">Mon </span>diplôme<span class="bandeau-theme__long"> : ' + TOTAL + " / " + TOTAL + " !</span>";
+      bouton.addEventListener("click", ouvrirDiplome);
+      Theme.zone.appendChild(bouton);
+      elCompteur.hidden = true;
+    }
   }
 
   function completerBandeau() {
@@ -162,13 +207,19 @@
     ], { duration: 5200, easing: "linear" }).onfinish = fin;
   }
 
-  /* « bouh » tapé au clavier, en dehors des champs de saisie */
+  /* Mots tapés au clavier, en dehors des champs de saisie :
+     « bouh » (T-rex fantôme) et « radio » (rayons X sur une fiche). */
   var tape = "";
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey || !e.key || e.key.length !== 1) return;
     if (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]")) return;
-    tape = (tape + e.key.toLowerCase()).slice(-4);
-    if (tape === "bouh") { tape = ""; fantome(); }
+    tape = (tape + e.key.toLowerCase()).slice(-5);
+    if (/bouh$/.test(tape)) { tape = ""; fantome(); }
+    else if (/radio$/.test(tape)) {
+      tape = "";
+      var figure = document.querySelector(".fiche__illustration");
+      if (figure) rayonsX(figure);
+    }
   });
 
   /* ---------- Pluie de bonbons ---------- */
@@ -266,11 +317,12 @@
     bouton.classList.add("citrouille-cachee--trouvee");
     setTimeout(function () { bouton.remove(); }, 650);
     majCompteur();
-    if (elCompteur) elCompteur.focus({ preventScroll: true });
+    (Theme.zone.querySelector(".bouton-diplome") || elCompteur).focus({ preventScroll: true });
     if (liste.length >= TOTAL) {
       annoncer("Bravo ! Tu as trouvé les " + TOTAL + " citrouilles cachées !");
       fantome();
       pluieDeBonbons();
+      setTimeout(proposerRecompense, reduit ? 300 : 1800);
     } else {
       var reste = TOTAL - liste.length;
       annoncer("Citrouille trouvée ! Encore " + reste + " à dénicher.");
@@ -281,16 +333,35 @@
     var deja = trouvees();
     CACHETTES.forEach(function (c) {
       if (!c.page.test(location.pathname) || deja.indexOf(c.id) !== -1) return;
-      var cible = document.querySelector(c.cible);
+      var cible = typeof c.cible === "function" ? c.cible() : document.querySelector(c.cible);
       if (!cible) return;
-      if (getComputedStyle(cible).position === "static") cible.style.position = "relative";
       var bouton = document.createElement("button");
       bouton.type = "button";
-      bouton.className = "citrouille-cachee";
-      bouton.style.cssText = c.style;
+      bouton.className = "citrouille-cachee citrouille-cachee--" + c.variante;
+      if (c.style) bouton.style.cssText = c.style;
       bouton.setAttribute("aria-label", "Une citrouille cachée ! Ramasse-la.");
       bouton.innerHTML = SVG_CITROUILLE;
       bouton.addEventListener("click", function () { ramasser(c, bouton); });
+
+      if (c.variante === "filtre") {
+        /* Visible seulement avec les filtres « Crétacé » et « Herbivore ». */
+        cible.insertAdjacentElement("afterend", bouton);
+        var verifier = function () {
+          var cretace = document.querySelector('.puce[data-valeur="cretace"][aria-pressed="true"]');
+          var herbivore = document.querySelector('.puce[data-valeur="herbivore"][aria-pressed="true"]');
+          bouton.hidden = !(cretace && herbivore);
+        };
+        new MutationObserver(verifier).observe(document.querySelector(".filtres") || document.body,
+          { subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
+        verifier();
+        return;
+      }
+      if (c.variante === "tombe") {
+        /* Entre la deuxième et la troisième tombe, qui la cachent en partie. */
+        cible.insertBefore(bouton, cible.children[2] || null);
+        return;
+      }
+      if (getComputedStyle(cible).position === "static") cible.style.position = "relative";
       cible.appendChild(bouton);
     });
   }
@@ -451,7 +522,363 @@
     corps.addEventListener("click", function (e) { if (e.detail === 0) descendre(); });
   }
 
+  /* ---------- Bulle des surprises ----------
+     Une petite bulle qui s'affiche près de ce qu'on vient de toucher. */
+  var bulleActive = null, minuterieSurprise = 0;
+  function bulleSurprise(element, texte, duree) {
+    if (bulleActive) bulleActive.remove();
+    clearTimeout(minuterieSurprise);
+    var b = document.createElement("div");
+    b.className = "bulle-surprise";
+    b.setAttribute("aria-hidden", "true");
+    b.textContent = texte;
+    document.body.appendChild(b);
+    var r = element.getBoundingClientRect();
+    var x = borne(r.left + r.width / 2 - b.offsetWidth / 2, 10, window.innerWidth - b.offsetWidth - 10);
+    var y = r.top - b.offsetHeight - 10;
+    if (y < 80) y = r.bottom + 10;
+    b.style.left = x + window.scrollX + "px";
+    b.style.top = y + window.scrollY + "px";
+    bulleActive = b;
+    annoncer(texte);
+    minuterieSurprise = setTimeout(function () {
+      if (bulleActive === b) { b.remove(); bulleActive = null; }
+    }, duree || 7000);
+  }
+
+  /** Compte les tapes rapprochées : f() est appelée à la n-ième. */
+  function apresTapes(n, f) {
+    var compte = 0, minuterieTapes = 0;
+    return function () {
+      compte++;
+      clearTimeout(minuterieTapes);
+      minuterieTapes = setTimeout(function () { compte = 0; }, 1600);
+      if (compte >= n) { compte = 0; f(); }
+    };
+  }
+
+  function secouer(element, classe) {
+    element.classList.remove(classe);
+    void element.getBoundingClientRect();
+    element.classList.add(classe);
+  }
+
+  /* ---------- Le cimetière du pied de page ---------- */
+  var TOMBES = [
+    { nom: "T-REX", rip: true, largeur: 40, etiquette: "Tombe du T-rex",
+      fait: "Le T-rex a vécu jusqu’à la toute fin du Crétacé. Il a disparu il y a 66 millions d’années." },
+    { nom: "TRICÉ", rip: true, largeur: 38, etiquette: "Tombe du Tricératops",
+      fait: "Le Tricératops et le T-rex vivaient à la même époque : ils ont disparu en même temps." },
+    { nom: "−66 Ma", rip: false, largeur: 34, etiquette: "Tombe de l’extinction",
+      fait: "Il y a 66 millions d’années, un astéroïde de 10 km est tombé au Mexique. Environ trois espèces sur quatre ont disparu… mais pas les oiseaux !" },
+  ];
+
+  function svgTombe(t) {
+    var w = t.largeur, h = 50, r = w / 2 - 2;
+    return '<svg viewBox="0 0 ' + w + " " + h + '" width="' + w + '" height="' + h + '" aria-hidden="true" focusable="false">' +
+      '<path d="M2 ' + h + "V" + (r + 2) + "a" + r + " " + r + " 0 0 1 " + 2 * r + " 0V" + h + 'z" class="cimetiere__pierre"/>' +
+      '<g class="cimetiere__gravure" text-anchor="middle" font-weight="800" font-family="system-ui, sans-serif">' +
+      (t.rip ? '<text x="' + w / 2 + '" y="' + (r + 6) + '" font-size="7">R.I.P.</text>' : "") +
+      '<text x="' + w / 2 + '" y="' + (r + (t.rip ? 17 : 12)) + '" font-size="6.5">' + t.nom + "</text></g></svg>";
+  }
+
+  function fantomeSort(depuis) {
+    if (reduit || !document.body.animate) return;
+    var r = depuis.getBoundingClientRect();
+    var f = document.createElement("div");
+    f.className = "petit-fantome";
+    f.setAttribute("aria-hidden", "true");
+    f.innerHTML = '<svg viewBox="0 0 30 34"><path d="M3 32V14a12 12 0 0 1 24 0v18l-4-3-4 3-4-3-4 3-4-3z" fill="#fdf5ec" fill-opacity=".9"/>' +
+      '<circle cx="11" cy="14" r="2.2" fill="#2a1d33"/><circle cx="19" cy="14" r="2.2" fill="#2a1d33"/></svg>';
+    f.style.left = r.left + r.width / 2 - 15 + window.scrollX + "px";
+    f.style.top = r.top + window.scrollY + "px";
+    document.body.appendChild(f);
+    f.animate([
+      { transform: "translate(0, 10px)", opacity: 0 },
+      { transform: "translate(-8px, -30px)", opacity: 1, offset: 0.35 },
+      { transform: "translate(8px, -60px)", opacity: 1, offset: 0.7 },
+      { transform: "translate(0, -90px)", opacity: 0 },
+    ], { duration: 2200, easing: "ease-out" }).onfinish = function () { f.remove(); };
+  }
+
+  function creerCimetiere() {
+    var pied = document.querySelector(".pied");
+    if (!pied) return;
+    var cimetiere = document.createElement("div");
+    cimetiere.className = "cimetiere";
+    var rang = document.createElement("div");
+    rang.className = "cimetiere__rang";
+    TOMBES.forEach(function (t) {
+      var tombe = document.createElement("button");
+      tombe.type = "button";
+      tombe.className = "cimetiere__tombe";
+      tombe.setAttribute("aria-label", t.etiquette);
+      tombe.innerHTML = svgTombe(t);
+      tombe.addEventListener("click", function () {
+        if (!actif()) return;
+        secouer(tombe, "frisson");
+        fantomeSort(tombe);
+        bulleSurprise(tombe, "👻 " + t.fait);
+      });
+      rang.appendChild(tombe);
+    });
+    cimetiere.appendChild(rang);
+    pied.insertBefore(cimetiere, pied.firstChild);
+  }
+
+  /* ---------- Accueil : le dinosaure chatouilleux et le volcan ---------- */
+  function brancherAccueil() {
+    var scene = document.querySelector(".heros__scene");
+    var dino = document.querySelector(".heros__dino");
+    var boutonDino = document.querySelector(".dino-bouton");
+    if (boutonDino && dino) {
+      boutonDino.addEventListener("click", apresTapes(3, function () {
+        if (!actif()) return;
+        secouer(dino, "rugit");
+        bulleSurprise(boutonDino, "ROAAAR ! En vrai, personne ne connaît le cri des dinosaures : les sons ne se fossilisent pas. " +
+          "Certains grondaient peut-être bouche fermée, comme les crocodiles.");
+      }));
+    }
+    var volcan = document.querySelector(".volcan-bouton");
+    if (volcan && scene) {
+      volcan.addEventListener("click", function () {
+        if (!actif()) return;
+        eruption(scene.querySelector("svg"));
+        bulleSurprise(volcan, "🌋 Boum ! À la fin du Crétacé, d’énormes volcans crachaient de la lave en Inde. " +
+          "Les scientifiques cherchent encore s’ils ont aidé l’astéroïde à faire disparaître les dinosaures.");
+      });
+    }
+  }
+
+  function eruption(svg) {
+    if (!svg || reduit || !document.body.animate) return;
+    var r = svg.getBoundingClientRect();
+    /* Le cratère est en (430, 118) dans le dessin de 520 × 380. */
+    var cx = r.left + (430 / 520) * r.width, cy = r.top + (118 / 380) * r.height;
+    var couleurs = ["#ff6a1a", "#ffb347", "#e8361c", "#ffd54a"];
+    for (var i = 0; i < 26; i++) {
+      var g = document.createElement("span");
+      g.className = "lave";
+      g.setAttribute("aria-hidden", "true");
+      g.style.background = couleurs[i % couleurs.length];
+      g.style.left = cx - 5 + window.scrollX + "px";
+      g.style.top = cy - 5 + window.scrollY + "px";
+      document.body.appendChild(g);
+      var dx = hasard(-110, 110), haut = hasard(70, 170), chute = hasard(40, 120);
+      g.animate([
+        { transform: "translate(0, 0) scale(.6)", opacity: 1 },
+        { transform: "translate(" + dx * 0.5 + "px," + -haut + "px) scale(1)", opacity: 1, offset: 0.45 },
+        { transform: "translate(" + dx + "px," + chute + "px) scale(.5)", opacity: 0 },
+      ], { duration: hasard(1100, 1700), delay: i * 25, easing: "cubic-bezier(.2,.6,.4,1)", fill: "backwards" })
+        .onfinish = (function (el) { return function () { el.remove(); }; })(g);
+    }
+  }
+
+  /* ---------- La chauve-souris des titres ---------- */
+  function brancherChauveSouris() {
+    var titre = document.querySelector(".heros__titre em") || document.querySelector("main h1");
+    if (!titre) return;
+    var bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "chauve-souris-titre";
+    bouton.setAttribute("aria-label", "Une chauve-souris : touche-la !");
+    bouton.textContent = "🦇";
+    titre.appendChild(bouton);
+    var enVol = false;
+    bouton.addEventListener("click", function () {
+      if (!actif() || enVol) return;
+      bulleSurprise(bouton, "🦇 Les plus anciennes chauves-souris fossiles ont environ 55 millions d’années : " +
+        "elles n’ont jamais croisé de dinosaure… à part les oiseaux !");
+      if (reduit || !document.body.animate) return;
+      enVol = true;
+      var r = bouton.getBoundingClientRect();
+      var vol = document.createElement("div");
+      vol.className = "volee-chauve-souris";
+      vol.setAttribute("aria-hidden", "true");
+      vol.innerHTML = '<svg viewBox="-19 -10 38 22"><path d="' + CHEMIN_CHAUVE_SOURIS + '" fill="#22122e"/></svg>';
+      vol.style.left = r.left + r.width / 2 - 19 + "px";
+      vol.style.top = r.top + r.height / 2 - 11 + "px";
+      document.body.appendChild(vol);
+      bouton.style.visibility = "hidden";
+      var w = window.innerWidth, h = window.innerHeight;
+      var depart = { x: r.left, y: r.top };
+      var point = function (fx, fy) {
+        return "translate(" + (fx * w - depart.x) + "px," + (fy * h - depart.y) + "px)";
+      };
+      vol.animate([
+        { transform: "translate(0, 0) scale(.8)" },
+        { transform: point(0.75, 0.2) + " scale(1.2)", offset: 0.25 },
+        { transform: point(0.85, 0.65) + " scale(1.2)", offset: 0.45 },
+        { transform: point(0.25, 0.75) + " scale(1.2) scaleX(-1)", offset: 0.7 },
+        { transform: "translate(0, 0) scale(.8)" },
+      ], { duration: 4200, easing: "ease-in-out" }).onfinish = function () {
+        vol.remove();
+        bouton.style.visibility = "";
+        enVol = false;
+      };
+    });
+  }
+
+  /* ---------- Les mots magiques de la recherche du catalogue ---------- */
+  function sansAccent(t) { return t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim(); }
+
+  function brancherRecherche() {
+    var recherche = document.getElementById("recherche-dino");
+    var vide = document.getElementById("aucun-resultat");
+    if (!recherche || !vide) return;
+    var message = document.createElement("div");
+    message.className = "encadre encadre--attention message-surprise";
+    message.hidden = true;
+    vide.parentNode.insertBefore(message, vide);
+
+    var montrer = function (titre, texte) {
+      message.innerHTML = '<h2 class="encadre__titre"></h2><p></p>';
+      message.querySelector("h2").textContent = titre;
+      message.querySelector("p").textContent = texte;
+      message.hidden = false;
+      annoncer(titre + " " + texte);
+    };
+
+    var dernier = "";
+    var verifier = function () {
+      var mot = sansAccent(recherche.value);
+      if (mot === dernier) return;
+      dernier = mot;
+      message.hidden = true;
+      if (!actif()) return;
+      if (/^(citrouilles?|potirons?)$/.test(mot)) {
+        var reste = CACHETTES.filter(function (c) { return trouvees().indexOf(c.id) === -1; });
+        montrer("🎃 Une citrouille ? Pas un dinosaure !",
+          reste.length ? "Petite devinette pour t’aider : " + reste[Math.floor(Math.random() * reste.length)].indice
+                       : "Tu as déjà trouvé toutes les citrouilles. Bravo, champion !");
+      } else if (/^(fantomes?|bouh|halloween)$/.test(mot)) {
+        montrer("👻 Bouh !", "Aucun dinosaure ne s’appelle comme ça… mais un T-rex fantôme vient de passer !");
+        fantome();
+      } else if (/^araignees?$/.test(mot)) {
+        montrer("🕷️ Tu m’as appelée ?", "Regarde en haut à droite de l’écran : je descends te dire bonjour !");
+        descendre();
+      } else if (/^chauves?[- ]?souris$/.test(mot)) {
+        montrer("🦇 Pas de chauve-souris ici",
+          "Les chauves-souris sont des mammifères. Elles sont apparues environ 10 millions d’années après la disparition des dinosaures.");
+      }
+    };
+    recherche.addEventListener("input", function () { setTimeout(verifier, 200); });
+    verifier();
+  }
+
+  /* ---------- Les rayons X des fiches ---------- */
+  var minuterieRadio = 0;
+  function rayonsX(figure) {
+    if (!actif()) return;
+    var allume = !figure.classList.contains("rayons-x");
+    figure.classList.toggle("rayons-x", allume);
+    clearTimeout(minuterieRadio);
+    if (!allume) return;
+    bulleSurprise(figure, "🩻 Rayons X… pour de faux ! En vrai, les paléontologues passent les fossiles au scanner " +
+      "pour voir l’intérieur des os sans les abîmer.");
+    minuterieRadio = setTimeout(function () { figure.classList.remove("rayons-x"); }, 9000);
+  }
+
+  function brancherRadio() {
+    var figure = document.querySelector(".fiche__illustration");
+    var image = figure && figure.querySelector("img");
+    if (!image) return;
+    /* Appui long au doigt ou à la souris, ou double-clic. */
+    var minuterieAppui = 0, appui = null, declenche = false;
+    var annuler = function () { clearTimeout(minuterieAppui); appui = null; };
+    image.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      declenche = false;
+      appui = { x: e.clientX, y: e.clientY };
+      minuterieAppui = setTimeout(function () { declenche = true; rayonsX(figure); }, 650);
+    });
+    image.addEventListener("pointermove", function (e) {
+      if (appui && Math.abs(e.clientX - appui.x) + Math.abs(e.clientY - appui.y) > 12) annuler();
+    });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (type) { image.addEventListener(type, annuler); });
+    /* Le menu « enregistrer l'image » ne doit pas gâcher la surprise. */
+    image.addEventListener("contextmenu", function (e) { if (appui || declenche) e.preventDefault(); });
+    image.addEventListener("dblclick", function () { rayonsX(figure); });
+  }
+
+  /* ---------- Le soir du 31 octobre ----------
+     Pour voir la surprise un autre jour : ajouter #31-octobre à l'adresse. */
+  function soirHalloween() {
+    var d = new Date();
+    if (!(d.getMonth() === 9 && d.getDate() === 31) && location.hash !== "#31-octobre") return;
+    document.documentElement.classList.add("soir-halloween");
+    var message = Theme.zone.querySelector(".bandeau-theme__message");
+    if (message) {
+      message.innerHTML = 'C’est le soir d’Halloween !<span class="bandeau-theme__long"> Des feux follets se promènent sur le site…</span>';
+    }
+    if (reduit) return;
+    var feux = document.createElement("div");
+    feux.className = "feux-follets";
+    feux.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < 9; i++) {
+      var f = document.createElement("span");
+      f.style.left = hasard(5, 92) + "%";
+      f.style.top = hasard(15, 90) + "%";
+      f.style.animationDuration = hasard(9, 16) + "s, " + hasard(2, 4) + "s";
+      f.style.animationDelay = -hasard(0, 10) + "s, " + -hasard(0, 3) + "s";
+      feux.appendChild(f);
+    }
+    document.body.appendChild(feux);
+  }
+
+  /* ---------- La récompense : le diplôme ---------- */
+  var ADRESSE_DIPLOME = "diplome-citrouilles.html";
+
+  function ouvrirDiplome() {
+    /* Le nouvel onglet reçoit en principe une copie de la mémoire de la visite ;
+       la marque #bravo sert de secours aux navigateurs qui ne la transmettent pas. */
+    var adresse = BASE + ADRESSE_DIPLOME + "#bravo";
+    var onglet = window.open(adresse, "_blank");
+    if (!onglet) location.href = adresse;
+  }
+
+  function proposerRecompense() {
+    if (!actif()) return;
+    var d = document.createElement("dialog");
+    d.className = "dialogue-diplome";
+    d.setAttribute("aria-labelledby", "dialogue-diplome-titre");
+    d.innerHTML =
+      '<p class="dialogue-diplome__emoji" aria-hidden="true">🏆</p>' +
+      '<h2 id="dialogue-diplome-titre">Les ' + TOTAL + " citrouilles sont trouvées !</h2>" +
+      "<p>Quelle chasse ! Une récompense t’attend : ton diplôme de chasseur de citrouilles.</p>" +
+      '<p class="dialogue-diplome__actions"><button type="button" class="bouton" data-diplome>🎓 Voir mon diplôme</button> ' +
+      '<button type="button" class="bouton bouton--secondaire" data-fermer>Plus tard</button></p>';
+    document.body.appendChild(d);
+    var fermer = function () { if (d.open) d.close(); d.remove(); };
+    d.querySelector("[data-diplome]").addEventListener("click", function () { ouvrirDiplome(); fermer(); });
+    d.querySelector("[data-fermer]").addEventListener("click", fermer);
+    d.addEventListener("cancel", function () { setTimeout(fermer, 0); });
+    if (typeof d.showModal === "function") d.showModal();
+    else d.setAttribute("open", "");
+  }
+
+  /* Sur la page du diplôme : le diplôme ne se montre qu'aux vrais chasseurs. */
+  function afficherDiplome() {
+    var diplome = document.getElementById("diplome");
+    var verrou = document.getElementById("diplome-verrou");
+    if (!diplome || !verrou) return;
+    var merite = trouvees().length >= TOTAL || location.hash === "#bravo";
+    diplome.hidden = !merite;
+    verrou.hidden = merite;
+    var date = document.getElementById("diplome-date");
+    if (date) date.textContent = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    var imprimer = document.getElementById("diplome-imprimer");
+    if (imprimer) imprimer.addEventListener("click", function () { window.print(); });
+  }
+
   completerBandeau();
   creerAraignee();
+  creerCimetiere();
   cacherCitrouilles();
+  brancherAccueil();
+  brancherChauveSouris();
+  brancherRecherche();
+  brancherRadio();
+  soirHalloween();
+  afficherDiplome();
 })();

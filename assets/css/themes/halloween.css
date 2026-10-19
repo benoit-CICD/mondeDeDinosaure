@@ -65,17 +65,22 @@ html.halloween {
 .compteur-citrouilles--bravo { color: #9df5b8; }
 html:not(.theme-actif) .compteur-citrouilles, html:not(.theme-actif) .bouton-fantome { display: none; }
 .bouton-fantome {
-  min-width: 44px; padding: 0; background: none; border: 0; font-size: 1.35rem; line-height: 1;
+  min-width: 40px; padding: 0; background: none; border: 0; font-size: 1.35rem; line-height: 1;
 }
 .bouton-fantome.frisson { animation: frisson .45s ease; }
 
 /* ---------- 4. Petites animations un peu partout ---------- */
 .halloween .carte:hover { animation: frisson .5s ease; }
 .halloween .bouton:hover { box-shadow: 0 0 0 4px color-mix(in srgb, var(--citrouille) 35%, transparent); }
-.halloween h1:not(.heros__titre)::after, .halloween .heros__titre em::after {
-  content: " 🦇"; content: " 🦇" / ""; display: inline-block; font-size: .55em; vertical-align: super;
+/* La chauve-souris des titres (ajoutée par le script, elle s'envole quand on la touche) */
+.chauve-souris-titre { display: none; }
+.halloween .chauve-souris-titre {
+  display: inline-block; font-size: .55em; vertical-align: super; line-height: 1;
+  padding: .45em; margin: -.45em -.45em -.45em -.15em;
+  background: none; border: 0; color: inherit; cursor: pointer;
   animation: voltige 3.2s ease-in-out infinite;
 }
+.chauve-souris-titre:focus-visible { outline: 3px solid var(--citrouille); outline-offset: -2px; border-radius: 50%; }
 @keyframes frisson {
   0%, 100% { transform: rotate(0); }
   20% { transform: rotate(-1.4deg); }
@@ -147,18 +152,59 @@ html:not(.theme-actif) .compteur-citrouilles, html:not(.theme-actif) .bouton-fan
 }
 .lune-bouton:focus-visible { outline: 3px solid var(--citrouille); outline-offset: 2px; }
 
+/* Le volcan et le dinosaure de la scène : des zones à toucher, invisibles */
+.volcan-bouton, .dino-bouton { display: none; }
+.halloween .volcan-bouton, .halloween .dino-bouton {
+  display: block; position: absolute; min-width: 44px; min-height: 44px;
+  background: none; border: 0; cursor: pointer;
+}
+.halloween .volcan-bouton { left: 74%; top: 38%; width: 18%; height: 26%; border-radius: 40% 40% 8px 8px; }
+.halloween .dino-bouton { left: 14%; top: 49%; width: 51%; height: 30%; border-radius: 40%; }
+.volcan-bouton:focus-visible, .dino-bouton:focus-visible { outline: 3px solid var(--citrouille); outline-offset: 2px; }
+.heros__dino.rugit { animation: rugit .75s ease; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes rugit {
+  0%, 100% { transform: none; }
+  15% { transform: translate(-4px, -8px) rotate(-3deg) scale(1.04); }
+  30% { transform: translate(5px, -10px) rotate(3deg) scale(1.06); }
+  45% { transform: translate(-4px, -6px) rotate(-2deg) scale(1.04); }
+  65% { transform: translate(3px, -3px) rotate(1deg); }
+}
+
 /* ---------- 6. Pied de page : le cimetière des dinosaures ---------- */
 .halloween .pied { position: relative; border-top-color: var(--citrouille); }
-.halloween .pied::before {
+/* Sans JavaScript, le cimetière n'est qu'un dessin ; avec, ses tombes se touchent (.cimetiere). */
+html.no-js.halloween .pied::before {
   content: ""; position: absolute; left: 0; right: 0; bottom: calc(100% + 6px); height: 54px;
   pointer-events: none;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='54'%3E%3Cg fill='%235b2a86'%3E%3Cpath d='M30 54V22a14 14 0 0 1 28 0v32z'/%3E%3Cpath d='M150 54V30a11 11 0 0 1 22 0v24z'/%3E%3Cpath d='M262 54V28a12 12 0 0 1 24 0v26z'/%3E%3C/g%3E%3Cg fill='%23fdf5ec' font-family='sans-serif' font-weight='700' text-anchor='middle'%3E%3Ctext x='44' y='34' font-size='7'%3ER.I.P.%3C/text%3E%3Ctext x='44' y='45' font-size='6'%3ET-REX%3C/text%3E%3Ctext x='161' y='44' font-size='6'%3E-66 Ma%3C/text%3E%3C/g%3E%3Cpath d='M210 30q8 -16 16 0v14l-4 -3-4 3-4-3-4 3z' fill='%23fdf5ec' fill-opacity='.8'/%3E%3Ccircle cx='215' cy='29' r='1.6'/%3E%3Ccircle cx='221' cy='29' r='1.6'/%3E%3C/svg%3E") repeat-x left bottom;
 }
 @media (prefers-color-scheme: dark) {
   .halloween .pied { background: #1d1329; }
-  .halloween .pied::before { filter: brightness(1.6); }
+  html.no-js.halloween .pied::before { filter: brightness(1.6); }
 }
 .halloween .pied { margin-top: calc(clamp(2.5rem, 6vw, 4.5rem) + 54px); }
+
+.cimetiere {
+  position: absolute; left: 0; right: 0; bottom: calc(100% + 6px); height: 54px;
+  pointer-events: none;
+}
+html:not(.theme-actif) .cimetiere { display: none; }
+.cimetiere__rang {
+  width: min(100% - 2 * var(--gouttiere), var(--max)); height: 100%; margin-inline: auto;
+  display: flex; align-items: flex-end; gap: 1.4rem; padding-left: .6rem;
+}
+.cimetiere__tombe {
+  position: relative; z-index: 2; pointer-events: auto;
+  display: flex; align-items: flex-end; justify-content: center;
+  height: 54px; padding: 0 2px;
+  background: none; border: 0; cursor: pointer;
+}
+.cimetiere__tombe svg { display: block; }
+.cimetiere__tombe.frisson { animation: frisson .45s ease; transform-origin: 50% 100%; }
+.cimetiere__tombe:focus-visible { outline: 3px solid var(--citrouille); outline-offset: 2px; border-radius: 8px; }
+.cimetiere__pierre { fill: #5b2a86; }
+.cimetiere__gravure { fill: #fdf5ec; }
+@media (prefers-color-scheme: dark) { .cimetiere__pierre { fill: #8a5cb8; } }
 
 /* ---------- 7. L'araignée (créée par halloween.js) ---------- */
 .araignee {
@@ -208,19 +254,138 @@ html:not(.halloween) .araignee { display: none; }
   position: absolute; z-index: 3;
   width: 44px; height: 44px; padding: 6px;
   background: none; border: 0; border-radius: 50%; cursor: pointer;
-  transform: rotate(-12deg); opacity: .9;
-  animation: coucou 6s ease-in-out infinite;
 }
 html:not(.halloween) .citrouille-cachee { display: none; }
+.citrouille-cachee[hidden] { display: none; }
 .citrouille-cachee svg { width: 100%; height: 100%; display: block; }
 .citrouille-cachee:focus-visible { outline: 3px solid var(--citrouille); outline-offset: 2px; }
+
+/* Derrière un encadré : seul le haut dépasse, et elle pointe le bout de sa tige de temps en temps. */
+.citrouille-cachee--haut { top: -24px; padding: 4px 6px 0; clip-path: inset(0 0 46% 0); border-radius: 0; }
+.citrouille-cachee--haut svg { transform: translateY(6px); animation: coucou 9s ease-in-out infinite; }
 @keyframes coucou {
-  0%, 82%, 100% { transform: rotate(-12deg) scale(1); }
-  88% { transform: rotate(8deg) scale(1.12); }
-  94% { transform: rotate(-16deg) scale(1); }
+  0%, 86%, 100% { transform: translateY(6px); }
+  90%, 95% { transform: translateY(-1px); }
 }
-.citrouille-cachee--trouvee { animation: ramassee .6s ease forwards; pointer-events: none; }
+/* Toute petite et pâle, presque fondue dans le décor. */
+.citrouille-cachee--mini { padding: 13px; opacity: .5; filter: saturate(.7); }
+/* Dans un volet déplié. */
+.citrouille-cachee--dedans { padding: 9px; opacity: .85; }
+details:not([open]) > .citrouille-cachee--dedans { display: none; }
+/* À côté du compteur du catalogue, avec les bons filtres. */
+.citrouille-cachee--filtre {
+  position: static; display: inline-flex; vertical-align: middle;
+  width: 40px; height: 40px; padding: 6px; margin: .2rem 0 0 -.2rem;
+}
+/* Coincée entre deux tombes, qui la cachent en partie. */
+.citrouille-cachee--tombe {
+  position: relative; z-index: 1; flex: none; pointer-events: auto;
+  width: 36px; height: 36px; padding: 3px; margin: 0 -42px 0 -10px; border-radius: 0;
+}
+
+.citrouille-cachee--trouvee { animation: ramassee .6s ease forwards !important; pointer-events: none; clip-path: none; }
+.citrouille-cachee--trouvee svg { transform: none; animation: none; }
 @keyframes ramassee { to { transform: translateY(-40px) scale(1.8) rotate(20deg); opacity: 0; } }
+
+/* La bulle des surprises */
+.bulle-surprise {
+  position: absolute; z-index: 115; pointer-events: none;
+  max-width: min(300px, calc(100vw - 20px)); padding: .75rem .95rem;
+  background: var(--fond-carte); color: var(--texte);
+  border: 2px solid var(--citrouille); border-radius: 16px; box-shadow: var(--ombre-forte);
+  font-size: .92rem; font-weight: 700; line-height: 1.4;
+  /* Pas de fondu : la bulle reste lisible même si l'animation ne démarre pas. */
+  animation: surgit .3s ease;
+}
+@keyframes surgit { from { transform: translateY(8px) scale(.96); } }
+.petit-fantome, .lave { position: absolute; z-index: 116; pointer-events: none; }
+.petit-fantome { width: 30px; height: 34px; }
+.petit-fantome svg { width: 100%; height: 100%; display: block; }
+.lave { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 10px 2px rgba(255, 120, 30, .6); }
+
+/* Les mots magiques de la recherche du catalogue */
+html:not(.theme-actif) .message-surprise { display: none; }
+.message-surprise:not([hidden]) + #aucun-resultat { display: none; }
+
+/* Les rayons X des fiches (pour de faux) */
+.halloween .fiche__illustration { position: relative; }
+.halloween .fiche__illustration img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; transition: filter .4s ease; }
+.halloween .rayons-x img { filter: grayscale(1) invert(1) sepia(.5) hue-rotate(170deg) saturate(3) contrast(1.25) brightness(.9); }
+.halloween .rayons-x::after {
+  content: "🩻 RAYONS X"; content: "🩻 RAYONS X" / "Rayons X";
+  position: absolute; left: 1.3rem; top: 1.3rem; padding: .2rem .65rem; border-radius: 999px;
+  background: #0b2a3a; color: #9fe8ff; font-weight: 900; font-size: .78rem; letter-spacing: .08em;
+}
+
+/* Le soir du 31 octobre : des feux follets */
+.feux-follets { position: fixed; inset: 0; z-index: 80; pointer-events: none; overflow: hidden; }
+html:not(.theme-actif) .feux-follets { display: none; }
+.feux-follets span {
+  position: absolute; width: 12px; height: 12px; border-radius: 50%;
+  background: radial-gradient(circle, #f6ffb0 0%, #b6ff7a 35%, rgba(120, 255, 140, 0) 70%);
+  box-shadow: 0 0 18px 6px rgba(170, 255, 120, .3);
+  animation-name: derive, luit; animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; animation-direction: alternate;
+}
+@keyframes derive {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(40px, -30px); }
+  66% { transform: translate(-30px, -60px); }
+  100% { transform: translate(20px, -90px); }
+}
+@keyframes luit { from { opacity: .15; } to { opacity: .9; } }
+
+/* La récompense : la fenêtre, le bouton du bandeau et le diplôme */
+.dialogue-diplome {
+  max-width: min(420px, calc(100vw - 32px)); padding: 1.6rem 1.4rem;
+  background: var(--fond-carte); color: var(--texte); text-align: center;
+  border: 3px solid var(--citrouille); border-radius: var(--radius-l); box-shadow: var(--ombre-forte);
+}
+.dialogue-diplome::backdrop { background: rgba(20, 10, 30, .65); }
+.dialogue-diplome__emoji { font-size: 3rem; margin: 0; line-height: 1.1; }
+.dialogue-diplome h2 { margin: .3rem 0 .6rem; }
+.dialogue-diplome__actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 0; }
+.bandeau-theme .bouton-diplome {
+  padding: .3em .95em; font-size: .86rem; font-weight: 800;
+  background: var(--theme-accent, var(--ambre)); color: #2a1d33; border: 0;
+}
+
+.diplome-page__titre { text-align: center; }
+.diplome-verrou { max-width: 62ch; margin-inline: auto; }
+.diplome {
+  position: relative; max-width: 900px; margin: 1.5rem auto 0;
+  padding: clamp(1.6rem, 5vw, 3.2rem) clamp(1rem, 5vw, 3.6rem);
+  text-align: center; color: #2a1d33; background: #fffaf0;
+  border: 10px double #5b2a86; border-radius: 10px;
+  outline: 3px solid #f28c28; outline-offset: -24px;
+  box-shadow: var(--ombre-forte);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%237a6a88' stroke-opacity='.5' stroke-width='1.2'%3E%3Cpath d='M0 0L80 80M0 0L52 0M0 0L0 52M0 0L36 70M0 0L70 36'/%3E%3Cpath d='M14 0q-2 8 4 10q-2 6 -4 14q-5 -2 -10 0q2 -8 -4 -10'/%3E%3Cpath d='M30 0q-4 14 6 18q-2 10 -8 22q-10 -6 -22 -2q4 -12 -6 -18'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%237a6a88' stroke-opacity='.5' stroke-width='1.2'%3E%3Cpath d='M80 0L0 80M80 0L28 0M80 0L80 52M80 0L44 70M80 0L10 36'/%3E%3Cpath d='M66 0q2 8 -4 10q2 6 4 14q5 -2 10 0q-2 -8 4 -10'/%3E%3Cpath d='M50 0q4 14 -6 18q2 10 8 22q10 -6 22 -2q-4 -12 6 -18'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: top left, top right; background-size: 90px 90px;
+}
+.diplome p { margin: .3rem 0; }
+.diplome__surtitre { text-transform: uppercase; letter-spacing: .2em; font-weight: 800; color: #7b4aa8; font-size: .85rem; }
+.diplome .diplome__titre { font-size: clamp(1.6rem, 1.1rem + 2.6vw, 2.8rem); font-weight: 900; color: #c2410c; line-height: 1.1; margin: .4rem 0 1rem; }
+.diplome__texte { font-size: clamp(1rem, .9rem + .5vw, 1.2rem); }
+.diplome .diplome__nom {
+  font-family: "Brush Script MT", "Segoe Script", "Comic Sans MS", cursive;
+  font-size: clamp(3rem, 2rem + 6vw, 5.5rem); color: #5b2a86; line-height: 1.15; margin: .2rem 0 .6rem;
+}
+.diplome__bas { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-top: 1.6rem; }
+.diplome .diplome__signe { flex: 1; margin: 0; font-size: .85rem; color: #5c4a66; }
+.diplome__signature {
+  display: block; margin-bottom: .3rem; padding-bottom: .2rem; border-bottom: 2px solid #c9b4dd;
+  font-family: "Brush Script MT", "Segoe Script", "Comic Sans MS", cursive; font-size: 1.5rem; color: #2a1d33;
+}
+.diplome__sceau { width: clamp(70px, 14vw, 110px); flex: none; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .2)); }
+.diplome__sceau svg { width: 100%; height: auto; display: block; }
+.diplome .diplome__date { margin-top: 1.2rem; font-size: .9rem; color: #5c4a66; }
+.diplome__actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-top: 1.4rem; }
+@media (max-width: 34rem) {
+  .diplome__bas { flex-direction: column; align-items: center; }
+  .diplome .diplome__signe { width: 100%; }
+}
 
 .fantome-dino {
   position: fixed; left: 0; top: 30vh; z-index: 120; pointer-events: none;
@@ -254,6 +419,7 @@ html:not(.halloween) .citrouille-cachee { display: none; }
   }
 }
 @media print {
-  .araignee, .citrouille-cachee, .lune-bouton,
+  .araignee, .citrouille-cachee, .lune-bouton, .volcan-bouton, .dino-bouton, .chauve-souris-titre,
+  .cimetiere, .bulle-surprise, .feux-follets, .message-surprise, .dialogue-diplome,
   .halloween .entete::after, .halloween .pied::before, .halloween-deco { display: none !important; }
 }
