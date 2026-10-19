@@ -259,8 +259,8 @@ export function pagesInfos() {
     rechargée ou fermée.</p>${
       theme
         ? `
-    <p><strong>Pendant ${theme.nom}</strong>, ${theme.memoire ? "deux petites informations peuvent être gardées" : "une petite information peut être gardée"} le temps de la visite :
-    le choix d’éteindre le thème ${theme.deNom}${theme.memoire ? `, et ${theme.memoire}` : ""}. ${theme.memoire ? "Elles sont rangées" : "Elle est rangée"}
+    <p><strong>Pendant ${theme.nom}</strong>, ${theme.memoire ? "quelques petites informations peuvent être gardées" : "une petite information peut être gardée"} le temps de la visite :
+    le choix d’éteindre le thème ${theme.deNom}${theme.memoire ? `, ${theme.memoire}` : ""}. ${theme.memoire ? "Elles sont rangées" : "Elle est rangée"}
     dans la mémoire de session du navigateur (<code>sessionStorage</code>), sur votre appareil uniquement.
     ${theme.memoire ? "Elles ne sont jamais envoyées à un serveur et s’effacent" : "Elle n’est jamais envoyée à un serveur et s’efface"} dès que l’onglet est fermé.</p>`
         : ""

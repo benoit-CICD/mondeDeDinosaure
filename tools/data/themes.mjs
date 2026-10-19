@@ -15,8 +15,8 @@ export const themes = {
     message: "Joyeux Halloween !",
     detail: "Le site s’est déguisé.", // masqué sur téléphone pour garder un bandeau court
     // Ce que le thème garde le temps de la visite, en plus du choix « thème éteint »
-    // (affiché sur la page Confidentialité).
-    memoire: "la liste des citrouilles cachées déjà trouvées",
+    // (fin d'énumération, avec son « et », affichée sur la page Confidentialité).
+    memoire: "la liste des citrouilles cachées déjà trouvées, et le fait d’avoir déjà lu l’annonce des nouveautés",
     // Ce qui se manipule au clavier (affiché sur la page Accessibilité).
     clavier: "L’araignée et les citrouilles cachées se manipulent aussi au clavier.",
     // La récompense des 10 citrouilles (tools/pages/halloween.mjs).

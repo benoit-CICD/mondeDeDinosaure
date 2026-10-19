@@ -227,6 +227,9 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   - **La récompense** : à la 10ᵉ, une fenêtre propose le **diplôme de chasseur de citrouilles**, qui s’ouvre dans un nouvel
     onglet (`diplome-citrouilles.html`, à imprimer). Le prénom se règle dans `tools/data/themes.mjs` (`diplome.prenom`).
     La page n’est liée nulle part, absente du sitemap et marquée `noindex` ; sans les 10 citrouilles, elle reste « sous clé ».
+- **L’annonce des nouveautés** : une petite fenêtre sur la page d’accueil annonce les 10 citrouilles et les nouvelles
+  surprises. Elle se ferme (bouton, croix, Échap ou clic à côté) et ne revient plus de la visite. Pour une prochaine
+  annonce, changer `CLE_ANNONCE` et son texte dans `assets/js/themes/halloween.js`.
 - **Les autres easter eggs** :
   - taper **« bouh »** au clavier, ou toucher **5 fois le fantôme 👻** du bandeau : un T-rex fantôme traverse l’écran ;
   - toucher **la lune** de l’accueil : une nuée de chauves-souris s’envole ;
