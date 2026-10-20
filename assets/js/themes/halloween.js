@@ -871,7 +871,7 @@
       '<button type="button" class="dialogue-halloween__fermer" aria-label="Fermer l’annonce" data-fermer>✕</button>' +
       '<p class="dialogue-halloween__emoji" aria-hidden="true">🎃</p>' +
       '<h2 id="annonce-titre">Du nouveau pour Halloween !</h2>' +
-      "<p><strong>" + TOTAL + " citrouilles</strong> sont maintenant cachées sur le site… et elles sont bien cachées !" +
+      "<p><strong>" + TOTAL + " nouvelles citrouilles</strong> sont maintenant cachées sur le site… et elles sont bien cachées !" +
       " Trouve-les toutes pour gagner ton <strong>diplôme</strong>.</p>" +
       '<ul class="dialogue-halloween__liste">' +
       "<li>🕷️ L’araignée, en haut à droite, te donne des devinettes.</li>" +

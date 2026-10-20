@@ -42,7 +42,7 @@ export function pagesHalloween() {
 
   <div id="diplome-verrou" class="encadre encadre--attention diplome-verrou">
     <h2 class="encadre__titre">🔒 Ce diplôme est encore sous clé</h2>
-    <p>Trouve d’abord les 10 citrouilles cachées sur le site. L’araignée, en haut à droite de chaque page,
+    <p>Trouve d’abord les 10 nouvelles citrouilles cachées sur le site. L’araignée, en haut à droite de chaque page,
     te donnera des devinettes pour t’aider !</p>
     <p><a class="bouton" href="index.html">🎃 Partir à la chasse</a></p>
   </div>
