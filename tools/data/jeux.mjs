@@ -111,6 +111,6 @@ export const listeJeux = [
   { slug: "machine-a-remonter-le-temps", script: "machine-temps.js", emoji: "⏳", nom: "La machine à remonter le temps", court: "Range les dinosaures du plus ancien au plus récent. Le T-rex et le Stégosaure se sont-ils croisés ?", duree: "5 min" },
   { slug: "detective-des-empreintes", script: "empreintes.js", emoji: "🐾", nom: "Détective des empreintes", court: "Une trace dans la roche : qui est passé par là ? Compte les doigts et mène l’enquête.", duree: "4 min" },
   { slug: "quiz-du-cinema", script: "quiz-cinema.js", emoji: "🍿", nom: "Le quiz du cinéma", court: `Les dinosaures des films et des dessins animés : 20 questions en mode facile (${quizCinema.facile.length}) ou difficile (${quizCinema.difficile.length}).`, duree: "8 min" },
-  { slug: "duel-de-dinosaures", script: "duel.js", emoji: "⚔️", nom: "Duel de dinosaures", court: "Deux dinosaures face à face : lequel gagne le combat ? Cinq duels, et une explication à chaque fois.", duree: "4 min" },
-  { slug: "le-roi-de-la-tour", script: "tour.js", emoji: "🏰", nom: "Le roi de la tour", court: "Un tournoi sur 10 étages : devine chaque vainqueur, garde tes 3 vies et découvre le roi de la tour !", duree: "8 min" },
+  { slug: "duel-de-dinosaures", rubrique: "affrontement", script: "duel.js", emoji: "⚔️", nom: "Duel de dinosaures", court: "Deux dinosaures face à face : lequel gagne le combat ? Cinq duels, et une explication à chaque fois.", duree: "4 min" },
+  { slug: "le-roi-de-la-tour", rubrique: "affrontement", script: "tour.js", emoji: "🏰", nom: "Le roi de la tour", court: "Un tournoi sur 10 étages : devine chaque vainqueur, garde tes 3 vies et découvre le roi de la tour !", duree: "8 min" },
 ];

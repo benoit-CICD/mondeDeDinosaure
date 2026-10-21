@@ -100,7 +100,7 @@ function entete(base, actif) {
           <ul class="nav__sous">
             <li><a href="${base}jeux.html"><strong>🎯 Tous les jeux</strong></a></li>
             <li><a href="${base}jeux/affrontement-de-dinos.html"><strong>⚔️ Affrontement de dinos</strong></a></li>
-            ${listeJeux.map((j) => `<li><a href="${base}jeux/${j.slug}.html">${j.emoji} ${esc(j.nom)}</a></li>`).join("\n            ")}
+            ${listeJeux.filter((j) => !j.rubrique).map((j) => `<li><a href="${base}jeux/${j.slug}.html">${j.emoji} ${esc(j.nom)}</a></li>`).join("\n            ")}
           </ul>
         </details></li>
         <li><details class="nav__groupe">
