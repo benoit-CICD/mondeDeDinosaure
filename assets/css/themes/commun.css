@@ -11,8 +11,9 @@
 .bandeau-theme {
   background: var(--theme-bandeau-fond, var(--fond-doux));
   color: var(--theme-bandeau-texte, var(--texte));
-  font-size: .92rem; font-weight: 700;
+  font-size: .86rem; font-weight: 700;
 }
+@media (min-width: 48rem) { .bandeau-theme { font-size: .92rem; } }
 .bandeau-theme__contenu {
   width: min(100% - 2 * var(--gouttiere), var(--max)); margin-inline: auto;
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .8rem;

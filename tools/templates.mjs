@@ -183,7 +183,7 @@ function pied(base) {
  * Enveloppe une page complète.
  * base : "" à la racine, "../" dans un sous-dossier.
  */
-export function page({ titre, description, base = "", corps, actif = "", scripts = [], filAriane = null, classeMain = "" }) {
+export function page({ titre, description, base = "", corps, actif = "", scripts = [], filAriane = null, classeMain = "", indexer = true }) {
   const fil = filAriane
     ? `<nav class="fil-ariane conteneur" aria-label="Fil d’Ariane"><ol>${filAriane
         .map((f, i) =>
@@ -204,7 +204,7 @@ export function page({ titre, description, base = "", corps, actif = "", scripts
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(titre)} | ${esc(site.nom)}</title>
-<meta name="description" content="${esc(description)}">
+<meta name="description" content="${esc(description)}">${indexer ? "" : '\n<meta name="robots" content="noindex">'}
 <meta name="author" content="${esc(site.nom)}">
 <meta name="theme-color" content="#1e4d3c">
 <meta property="og:title" content="${esc(titre)}">

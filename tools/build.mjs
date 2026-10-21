@@ -26,6 +26,7 @@ import { pagesJeux, fichierDonnees } from "./pages/jeux.mjs";
 import { pagesInfos, pagePlan, page404 } from "./pages/infos.mjs";
 import { pagesDossiers } from "./pages/dossiers.mjs";
 import { pagesCinema } from "./pages/cinema.mjs";
+import { pagesHalloween } from "./pages/halloween.mjs";
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -91,6 +92,7 @@ const pages = [
   ...pagesInfos(),
   ...pagesDossiers(),
   ...pagesCinema(),
+  ...(theme?.id === "halloween" ? pagesHalloween() : []),
   pagePlan(),
   page404(),
 ];
@@ -106,7 +108,7 @@ ecrire(
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
-  .filter((p) => p.chemin !== "404.html")
+  .filter((p) => p.chemin !== "404.html" && !p.horsPlan)
   .map(
     (p) => `  <url>
     <loc>${BASE_URL}/${p.chemin}</loc>

@@ -125,7 +125,9 @@ export function pageAccueil() {
     </div>
     <div class="heros__scene">${SCENE}${
       halloween
-        ? `<button type="button" class="lune-bouton" aria-label="Touche la lune… qui sait ce qui va s’envoler ?"></button>`
+        ? `<button type="button" class="lune-bouton" aria-label="Touche la lune… qui sait ce qui va s’envoler ?"></button>
+      <button type="button" class="volcan-bouton" aria-label="Le volcan endormi"></button>
+      <button type="button" class="dino-bouton" aria-label="Le dinosaure chatouilleux"></button>`
         : ""
     }</div>
   </div>
