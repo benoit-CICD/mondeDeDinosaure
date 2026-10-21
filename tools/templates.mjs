@@ -99,6 +99,7 @@ function entete(base, actif) {
           <summary>🎮 Jeux</summary>
           <ul class="nav__sous">
             <li><a href="${base}jeux.html"><strong>🎯 Tous les jeux</strong></a></li>
+            <li><a href="${base}jeux/affrontement-de-dinos.html"><strong>⚔️ Affrontement de dinos</strong></a></li>
             ${listeJeux.map((j) => `<li><a href="${base}jeux/${j.slug}.html">${j.emoji} ${esc(j.nom)}</a></li>`).join("\n            ")}
           </ul>
         </details></li>

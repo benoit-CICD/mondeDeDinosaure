@@ -92,7 +92,7 @@
       indice: "Remonte la frise du temps jusqu’au jour où le ciel est tombé sur la Terre." },
     { id: "glossaire", page: /\/glossaire\.html$/, cible: parTexte(".glossaire__terme", "Coprolithe"), variante: "mini", style: "right:6px;bottom:2px",
       indice: "Dans le glossaire, une citrouille se cache près du mot qui veut dire « crotte fossilisée ». Beurk !" },
-    { id: "jeux", page: /\/jeux\.html$/, cible: ".encadre", variante: "haut", style: "left:40%",
+    { id: "jeux", page: /\/jeux\.html$/, cible: parTexte(".encadre", "Un conseil"), variante: "haut", style: "left:40%",
       indice: "Dans la salle de jeux, une citrouille espionne le conseil, cachée juste derrière." },
     { id: "questions", page: /\/questions\.html$/, cible: parTexte("details.accordeon", "Quelle couleur"), variante: "dedans", style: "right:10px;bottom:8px",
       indice: "Une citrouille connaît la réponse à la question des couleurs, dans les Questions fréquentes. Encore faut-il l’ouvrir !" },

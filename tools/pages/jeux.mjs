@@ -5,6 +5,7 @@ import { quiz, vraiFaux, reperes, listeJeux } from "../data/jeux.mjs";
 import { oeufs, sansOeuf } from "../data/oeufs.mjs";
 import { empreintes, traceurs } from "../data/empreintes.mjs";
 import { quizCinema } from "../data/cinema.mjs";
+import { combattants, JEUX_AFFRONTEMENT } from "../data/affrontements.mjs";
 import { page, esc, enLettres, majuscule } from "../templates.mjs";
 
 const entetePartie = (id, libelleGauche) => `
@@ -15,13 +16,15 @@ const entetePartie = (id, libelleGauche) => `
   <div class="jeu__progression"><span id="${id}-progression"></span></div>
   <p id="${id}-annonce" class="visuellement-cache" role="status" aria-live="polite"></p>`;
 
-function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description }) {
+/* parent : rubrique intermédiaire dans le fil d'Ariane (ex. « Affrontement de dinos »).
+   scriptsEnPlus : scripts partagés, chargés avant celui du jeu. */
+function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description, parent = null, scriptsEnPlus = [] }) {
   const corps = `
 <div class="conteneur section">
   <h1>${emoji} ${esc(titre)}</h1>
   <p style="max-width:66ch">${intro}</p>
   ${corpsJeu}
-  <p style="margin-top:2rem"><a class="bouton bouton--secondaire" href="../jeux.html">← Tous les jeux</a></p>
+  <p style="margin-top:2rem">${parent ? `<a class="bouton bouton--secondaire" href="../${parent.href}">← ${esc(parent.nom)}</a> ` : ""}<a class="bouton bouton--secondaire" href="../jeux.html">← Tous les jeux</a></p>
 </div>`;
 
   return {
@@ -32,10 +35,11 @@ function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description }) {
       base: "../",
       actif: "jeux",
       corps,
-      scripts: ["assets/js/donnees.js", "assets/js/jeux/commun.js", `assets/js/jeux/${script}`],
+      scripts: ["assets/js/donnees.js", "assets/js/jeux/commun.js", ...scriptsEnPlus.map((s) => `assets/js/jeux/${s}`), `assets/js/jeux/${script}`],
       filAriane: [
         { nom: "Accueil", href: "index.html" },
         { nom: "Les jeux", href: "jeux.html" },
+        ...(parent ? [parent] : []),
         { nom: titre },
       ],
     }),
@@ -70,6 +74,14 @@ export function pagesJeux() {
     </a>`
     ).join("\n    ")}
   </div>
+
+  <a class="carte bandeau-rubrique" href="jeux/affrontement-de-dinos.html" style="margin-top:2rem">
+    <span class="bandeau-rubrique__emoji" aria-hidden="true">⚔️</span>
+    <span class="carte__corps">
+      <span class="carte__titre" style="font-weight:800;font-size:1.2rem">Affrontement de dinos</span>
+      <span class="carte__texte">Qui gagnerait un face-à-face ? Deux jeux de duels : le Duel de dinosaures et Le roi de la tour.</span>
+    </span>
+  </a>
 
   <div class="encadre" style="margin-top:2.5rem">
     <h2 class="encadre__titre">💡 Un conseil</h2>
@@ -384,6 +396,156 @@ export function pagesJeux() {
     })
   );
 
+  /* --- Affrontement de dinos : la rubrique et ses deux jeux --- */
+  const rubrique = { nom: "Affrontement de dinos", href: "jeux/affrontement-de-dinos.html" };
+  const [jeuDuel, jeuTour] = JEUX_AFFRONTEMENT.map((slug) => listeJeux.find((j) => j.slug === slug));
+  const classement = [...combattants].sort((a, b) => b.puissance - a.puissance);
+
+  pages.push({
+    chemin: rubrique.href,
+    html: page({
+      titre: "Affrontement de dinos",
+      description: "Qui gagnerait un face-à-face entre deux dinosaures ? Deux jeux gratuits pour les enfants : le Duel de dinosaures et Le roi de la tour, avec des explications scientifiques.",
+      base: "../",
+      actif: "jeux",
+      corps: `
+<div class="conteneur section">
+  <h1>⚔️ Affrontement de dinos</h1>
+  <p class="fiche__accroche" style="max-width:66ch">Et si deux dinosaures se retrouvaient face à face… lequel l’emporterait ?
+  Fais tes pronostics, regarde le combat, puis découvre pourquoi le vainqueur a gagné.</p>
+
+  <div class="grille grille--deux" style="margin-top:2rem">
+    ${[jeuDuel, jeuTour]
+      .map(
+        (j, i) => `<a class="carte carte-affrontement" href="${j.slug}.html" data-anim data-delai="${i}">
+      <span class="carte__media carte-affrontement__media" aria-hidden="true">${j.emoji}</span>
+      <span class="carte__corps">
+        <span class="carte__titre" style="font-weight:800;font-size:1.3rem">${esc(j.nom)}</span>
+        <span class="carte__texte">${esc(j.court)}</span>
+        <span class="carte__pastilles"><span class="pastille">⏱️ environ ${j.duree}</span></span>
+      </span>
+    </a>`
+      )
+      .join("\n    ")}
+  </div>
+
+  <div class="grille grille--deux" style="align-items:start;margin-top:2.5rem">
+    <div class="prose">
+      <h2>Comment sait-on qui gagne ?</h2>
+      <p>Personne n’a jamais vu deux dinosaures se battre ! Et beaucoup d’entre eux ne se sont jamais rencontrés : ils ont vécu
+      à des millions d’années d’écart, ou sur des continents différents. Ces duels sont donc <strong>imaginaires</strong>.</p>
+      <p>Pour désigner le vainqueur, le jeu compare ce que les fossiles nous apprennent :</p>
+      <ul>
+        <li><strong>le poids</strong>, le plus important : un géant a souvent l’avantage ;</li>
+        <li><strong>les armes</strong> : dents, griffes, cornes, massue de queue… ;</li>
+        <li><strong>les protections</strong> : armure, collerette osseuse, crâne épais… ;</li>
+        <li><strong>la vitesse</strong>, un petit bonus pour les plus rapides.</li>
+      </ul>
+      <p>Tout cela donne une note de <strong>puissance</strong>. Quand deux dinosaures sont très proches, le jeu annonce un
+      « duel serré » : là, même les paléontologues ne seraient pas d’accord entre eux !</p>
+    </div>
+    <div>
+      <div class="encadre encadre--attention">
+        <h2 class="encadre__titre">🦕 Seulement des dinosaures</h2>
+        <p style="margin-bottom:0">Les ptérosaures et les reptiles marins, comme le Mosasaure, ne participent pas :
+        ce ne sont pas des dinosaures, et ils vivaient dans les airs ou dans la mer, où le jeu ne saurait pas les comparer aux autres.</p>
+      </div>
+      <details class="accordeon">
+        <summary>📊 Voir le classement de puissance</summary>
+        <div>
+          <p style="margin-top:0">Attention, ça donne beaucoup de réponses !</p>
+          <table class="tableau-info classement-puissance">
+            <thead><tr><th scope="col">#</th><th scope="col">Dinosaure</th><th scope="col">Puissance</th></tr></thead>
+            <tbody>
+              ${classement
+                .map(
+                  (d, i) => `<tr><td>${i + 1}</td><td><a href="../dinosaures/${d.slug}.html">${esc(d.nom)}</a></td><td>${String(d.puissance).replace(".", ",")}</td></tr>`
+                )
+                .join("\n              ")}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>`,
+      filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Les jeux", href: "jeux.html" }, { nom: rubrique.nom }],
+    }),
+  });
+
+  pages.push(
+    pageJeu({
+      slug: jeuDuel.slug,
+      titre: jeuDuel.nom,
+      emoji: jeuDuel.emoji,
+      parent: rubrique,
+      scriptsEnPlus: ["affrontement.js"],
+      script: jeuDuel.script,
+      description: "Jeu gratuit pour les enfants : deux dinosaures face à face, lequel gagne ? Cinq duels avec des explications sur leurs armes, leur poids et leurs protections.",
+      intro: `Cinq duels, deux dinosaures à chaque fois. Touche celui qui, selon toi, gagnera le combat !
+      Ensuite, découvre sa puissance et pourquoi il l’emporte. Les combattants changent à chaque partie.`,
+      corpsJeu: `
+  <div class="jeu" id="duel">
+    <div id="duel-jeu">
+      ${entetePartie("duel", "Manche 1 / 5")}
+      <h2 class="question" id="duel-question" tabindex="-1">Qui gagne ce duel ?</h2>
+      <div id="duel-arene" class="arene"></div>
+      <div class="retour" id="duel-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="duel-suivant" hidden>Duel suivant →</button></p>
+    </div>
+    <div id="duel-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+  </div>`,
+    })
+  );
+
+  pages.push(
+    pageJeu({
+      slug: jeuTour.slug,
+      titre: jeuTour.nom,
+      emoji: jeuTour.emoji,
+      parent: rubrique,
+      scriptsEnPlus: ["affrontement.js"],
+      script: jeuTour.script,
+      description: "Jeu gratuit pour les enfants : un tournoi de dinosaures sur 10 étages. Devine le vainqueur de chaque duel et découvre le roi de la tour !",
+      intro: `Au pied de la tour, deux dinosaures s’affrontent. Le vainqueur monte d’un étage… où l’attend un challenger encore plus fort !`,
+      corpsJeu: `
+  <ol class="regles-tour">
+    <li>⚔️ Touche le dinosaure qui, selon toi, va gagner le duel.</li>
+    <li>⬆️ Le vrai vainqueur monte d’un étage et affronte un nouveau challenger.</li>
+    <li>❤️ Tu as 3 vies : chaque erreur t’en fait perdre une.</li>
+    <li>👑 Atteins le 10ᵉ étage pour découvrir le roi de la tour !</li>
+  </ol>
+  <div class="jeu" id="tour">
+    <div id="tour-jeu">
+      <div class="jeu__entete">
+        <p id="tour-numero" style="margin:0;font-weight:800">Étage 1 / 10</p>
+        <p class="jeu__score" style="margin:0"><span id="tour-vies" class="tour-vies" role="img" aria-label="3 vies">❤️❤️❤️</span> <span id="tour-score">⭐ 0</span></p>
+      </div>
+      <div class="jeu__progression"><span id="tour-progression"></span></div>
+      <p id="tour-annonce" class="visuellement-cache" role="status" aria-live="polite"></p>
+      <div class="tour-plateau">
+        <div class="tour" id="tour-tour" aria-hidden="true">
+          <ol class="tour__etages" id="tour-etages"></ol>
+          <div class="tour__sol">Départ</div>
+          <div class="tour__pion" id="tour-pion" hidden><img src="" alt="" width="60" height="60"></div>
+          <p class="tour__flash" id="tour-flash"></p>
+        </div>
+        <div class="tour-combat">
+          <p class="tour-etat" id="tour-etat"></p>
+          <h2 class="question" id="tour-question" tabindex="-1">Qui monte à l’étage 1 ?</h2>
+          <div id="tour-arene" class="arene"></div>
+          <div class="retour" id="tour-retour" hidden role="status"></div>
+          <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="tour-suivant" hidden>Étage suivant →</button></p>
+        </div>
+      </div>
+    </div>
+    <div id="tour-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+  </div>`,
+    })
+  );
+
   return pages;
 }
 
@@ -420,5 +582,6 @@ window.EMPREINTES = ${JSON.stringify(empreintes.map(({ id, auteur, taille, indic
 window.TRACEURS = ${JSON.stringify(traceurs)};
 window.REPERES = ${JSON.stringify(reperes)};
 window.QUIZ_CINEMA = ${JSON.stringify(quizCinema)};
+window.AFFRONTEMENTS = ${JSON.stringify(combattants)};
 `;
 }
