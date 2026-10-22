@@ -19,6 +19,7 @@ import { oeufs } from "./data/oeufs.mjs";
 import { empreintes } from "./data/empreintes.mjs";
 import { listeJeux } from "./data/jeux.mjs";
 import { themeActif } from "./data/themes.mjs";
+import { verifierBareme } from "./data/affrontements.mjs";
 import { pageAccueil } from "./pages/accueil.mjs";
 import { pageCatalogue, pagesFamilles, pagesPeriodes, pageFrise } from "./pages/listes.mjs";
 import { pagesFiches } from "./pages/fiche.mjs";
@@ -142,6 +143,7 @@ const cheminsAssets = new Set([
   "assets/js/catalogue.js",
   "assets/js/donnees.js",
   "assets/js/jeux/commun.js",
+  "assets/js/jeux/affrontement.js",
   ...fichiersTheme,
   ...listeJeux.map((j) => `assets/js/jeux/${j.script}`),
   "assets/img/favicon.svg",
@@ -185,6 +187,9 @@ pages.forEach((p) => {
 fichiersTheme.forEach((f) => {
   if (!existsSync(join(RACINE, f))) erreurs.push(`${f} → fichier du thème « ${theme.id} » introuvable`);
 });
+
+/* Le barème des duels : un vrai dinosaure par entrée, textes bien formés, pas d'égalité. */
+erreurs.push(...verifierBareme());
 
 /* Les scripts des jeux sont écrits à la main : chacun doit exister. */
 listeJeux.forEach((j) => {

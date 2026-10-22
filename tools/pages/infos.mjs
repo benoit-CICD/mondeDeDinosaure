@@ -120,10 +120,11 @@ export function pagesInfos() {
     scientifiques et des photographies</strong> issues de <a href="https://commons.wikimedia.org" rel="nofollow noopener" target="_blank">Wikimedia Commons</a>,
     toutes sous licence libre. Leurs auteurs sont crédités sur la <a href="credits.html">page des crédits</a>
     ainsi que sous chaque image.</p>
-    <p>La page d’accueil et les mini-jeux utilisent des <strong>dessins vectoriels originaux</strong>, créés
+    <p>La page d’accueil et la plupart des mini-jeux utilisent des <strong>dessins vectoriels originaux</strong>, créés
     spécialement pour ce projet. Ce sont des représentations stylisées, pensées pour être reconnaissables :
     elles ne prétendent pas être des reconstitutions exactes. Elles peuvent être réutilisées librement dans un
-    cadre pédagogique (école, exposé, atelier).</p>
+    cadre pédagogique (école, exposé, atelier). Seuls les jeux de la rubrique « Affrontement de dinos » montrent, eux,
+    les photographies et reconstitutions des fiches.</p>
 
     <h2>Les sources</h2>
     <p>Les informations proviennent d’ouvrages de vulgarisation et de ressources de musées d’histoire naturelle.
@@ -187,7 +188,7 @@ export function pagesInfos() {
     <strong>cadre pédagogique non commercial</strong> (école, exposé, atelier, médiathèque), à condition de citer le
     site comme source. Toute réutilisation à des fins commerciales nécessite une autorisation écrite préalable de
     l’éditeur.</p>
-    <p>Les <strong>photographies et reconstitutions</strong> qui illustrent les fiches proviennent de Wikimedia Commons
+    <p>Les <strong>photographies et reconstitutions</strong> qui illustrent les fiches et les jeux d’« Affrontement de dinos » proviennent de Wikimedia Commons
     et restent la propriété de leurs auteurs respectifs. Elles sont diffusées sous licences libres (domaine public,
     CC0, CC BY ou CC BY-SA) et chaque auteur est crédité sous l’image concernée ainsi que sur la page
     <a href="credits.html">Crédits des images</a>. Leur réutilisation est soumise aux conditions de leur licence
@@ -376,11 +377,11 @@ export function pagesInfos() {
 <div class="conteneur section">
   <h1>🖼️ Crédits des images</h1>
   <div class="prose" style="max-width:74ch">
-    <p>Les <strong>reconstitutions et photographies</strong> qui illustrent les fiches, le catalogue et
-    les pages de famille proviennent de <strong>Wikimedia Commons</strong> et sont publiées sous licence libre.
+    <p>Les <strong>reconstitutions et photographies</strong> qui illustrent les fiches, le catalogue, les pages de famille
+    et les jeux de la rubrique « Affrontement de dinos » proviennent de <strong>Wikimedia Commons</strong> et sont publiées sous licence libre.
     Chaque auteur est crédité ci-dessous, comme leurs licences l’exigent.</p>
 
-    <p>Les <strong>illustrations vectorielles</strong> de la page d’accueil et des mini-jeux (memory, puzzle,
+    <p>Les <strong>illustrations vectorielles</strong> de la page d’accueil et des autres mini-jeux (memory, puzzle,
     « qui suis-je ? », œufs, empreintes…) sont en revanche des créations originales réalisées pour ce site.</p>
 
     <div class="encadre">
@@ -456,6 +457,7 @@ export function pagePlan() {
       <h2>Jouer</h2>
       <ul>
         ${lien("jeux.html", "Tous les jeux")}
+        ${lien("jeux/affrontement-de-dinos.html", "Affrontement de dinos")}
         ${listeJeux.map((j) => lien(`jeux/${j.slug}.html`, j.nom)).join("\n        ")}
       </ul>
 

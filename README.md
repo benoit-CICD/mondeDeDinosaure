@@ -17,10 +17,11 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 | **1 frise du temps** | 186 millions d’années, chaque créature placée à son époque |
 | **4 dossiers** | La grande extinction · Le métier de paléontologue · Œufs et bébés dinosaures · L’ère glaciaire |
 | **1 rubrique Cinéma** | Un siècle de dinosaures à l’écran · Les effets spéciaux · Film ou réalité ? (les erreurs des films) |
-| **10 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes · Le quiz du cinéma (niveau facile ou difficile) |
+| **12 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes · Le quiz du cinéma (niveau facile ou difficile) · Duel de dinosaures · Le roi de la tour |
+| **1 rubrique Affrontement de dinos** | Les deux jeux de duels, et comment le jeu décide du vainqueur |
 | **Pages légales** | Mentions légales, confidentialité, accessibilité, plan du site |
 
-**84 pages HTML** au total.
+**88 pages HTML** au total (dont le diplôme d’Halloween, hors plan du site).
 
 Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont notées dans [`IDEES.md`](IDEES.md).
 
@@ -34,7 +35,8 @@ Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont no
 - **Deux jeux d'images complémentaires** :
   - les pages documentaires (catalogue, fiches, familles, périodes, frise) affichent des
     **reconstitutions scientifiques et photographies** issues de Wikimedia Commons, sous licence libre ;
-  - la page d'accueil et les mini-jeux utilisent des **illustrations vectorielles originales**,
+  - la page d'accueil et les mini-jeux (sauf « Affrontement de dinos », qui affiche les photos des fiches, crédits
+    sous chaque carte) utilisent des **illustrations vectorielles originales**,
     générées par code (`tools/svg.mjs`), animées en CSS et respectant `prefers-reduced-motion`.
 - **Attribution des images** affichée sous chaque photo et récapitulée sur `credits.html`,
   comme l'exigent les licences CC BY et CC BY-SA.
@@ -78,6 +80,8 @@ tools/                   le générateur (Node, zéro dépendance)
     oeufs.mjs            œufs par famille, et les intrus qui ne pondaient pas
     empreintes.mjs       empreintes et suspects
     cinema.mjs           films, effets spéciaux, erreurs des films et questions du quiz du cinéma
+    affrontements.mjs    calcul de la puissance des combattants (duels et tour)
+    bareme-affrontements.mjs  armes, protections et atouts vérifiés de chaque dinosaure
     themes.mjs           thèmes saisonniers disponibles (Halloween…)
     photos.mjs           crédits des images (GÉNÉRÉ par photos.mjs)
     photos-manuel.json   fichiers Commons choisis à la main
@@ -159,6 +163,29 @@ et des jeux sont créées automatiquement.
 2. Ajouter sa page dans `pagesJeux()` (`tools/pages/jeux.mjs`), avec la fonction `pageJeu()`.
 3. Écrire son script dans `assets/js/jeux/` ; `commun.js` fournit le mélange, les formats et l’écran de fin.
 4. Relancer le build : il signale un script manquant.
+
+### Affrontement de dinos : qui gagne le duel ?
+
+Deux jeux partagent le même moteur (`assets/js/jeux/affrontement.js`) :
+
+- **Duel de dinosaures** (`duel.js`) : 5 face-à-face tirés au hasard ; on touche celui qui gagne, puis le jeu montre
+  le combat, la jauge de puissance et l’explication.
+- **Le roi de la tour** (`tour.js`) : 10 étages, 3 vies. Le vrai vainqueur de chaque duel monte d’un étage et affronte
+  un challenger plus fort (le classement est découpé en 10 paliers, avec un palier d’écart possible pour varier les parties).
+
+Le vainqueur est celui qui a la plus grande **puissance**, calculée au build dans `tools/data/affrontements.mjs` :
+
+```
+puissance = 10 × log10(poids en kg) + attaque (0 à 15) + défense (0 à 12) + vitesse / 10 (5 au plus)
+```
+
+Les notes d’attaque et de défense, et les textes des explications, sont dans `tools/data/bareme-affrontements.mjs`.
+Ils ont été vérifiés un par un (sources en commentaire). Les textes `arme` et `protection` s’insèrent dans des phrases
+toutes faites : ils commencent par *sa*, *son* ou *ses*, sans point final. Le build le vérifie, et refuse deux puissances
+égales. Les duels sont présentés comme **imaginaires** : le jeu signale quand deux dinosaures ont vraiment pu se croiser,
+et annonce un « duel serré » quand l’écart est faible. Les ptérosaures et reptiles marins ne participent pas.
+
+Les jeux affichent les **photos** des fiches : chaque carte porte le crédit de son image (auteur et licence).
 
 ### Le quiz du cinéma : deux niveaux
 
