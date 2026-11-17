@@ -30,7 +30,7 @@ export const site = {
   // ("halloween"…), ou null pour aucun thème. Changer la valeur puis relancer le build :
   // feuilles de style, scripts, bandeau, décor de l'accueil et paragraphes de
   // confidentialité et d'accessibilité suivent automatiquement.
-  theme: "halloween",
+  theme: null,
 };
 
 export const periodes = [

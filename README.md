@@ -21,7 +21,7 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 | **1 rubrique Affrontement de dinos** | Les deux jeux de duels, et comment le jeu décide du vainqueur |
 | **Pages légales** | Mentions légales, confidentialité, accessibilité, plan du site |
 
-**88 pages HTML** au total (dont le diplôme d’Halloween, hors plan du site).
+**87 pages HTML** au total (88 avec le thème d’Halloween, qui ajoute son diplôme hors plan du site).
 
 Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont notées dans [`IDEES.md`](IDEES.md).
 
@@ -210,7 +210,7 @@ Le site peut se « déguiser » pour une période de l’année. Le thème affic
 dans `tools/data/site.mjs` :
 
 ```js
-theme: "halloween",   // un thème de tools/data/themes.mjs, ou null pour aucun thème
+theme: null,          // "halloween" (un thème de tools/data/themes.mjs), ou null pour aucun thème
 ```
 
 Changer la valeur, puis relancer le build. Avec `null`, le site généré redevient exactement celui sans thème :
