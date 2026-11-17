@@ -107,7 +107,7 @@
     elJeu.hidden = true;
     Jeu.resultat(elFin, score, serie.length, {
       rejouer: demarrer,
-      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'metier.html">⛏️ Le métier de paléontologue</a>',
+      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'comprendre/metier.html">⛏️ Le métier de paléontologue</a>',
     });
   }
 

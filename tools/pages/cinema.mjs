@@ -35,7 +35,7 @@ function encadreQuiz(base) {
 
 const filAriane = (titre) =>
   titre
-    ? [{ nom: "Accueil", href: "index.html" }, { nom: "Cinéma", href: "cinema.html" }, { nom: titre }]
+    ? [{ nom: "Accueil", href: "index.html" }, { nom: "Cinéma", href: "cinema/index.html" }, { nom: titre }]
     : [{ nom: "Accueil", href: "index.html" }, { nom: "Les dinosaures au cinéma" }];
 
 export function pagesCinema() {
@@ -43,8 +43,9 @@ export function pagesCinema() {
 
   /* ---------- Page d'accueil de la rubrique ---------- */
   pages.push({
-    chemin: "cinema.html",
+    chemin: "cinema/index.html",
     html: page({
+      base: "../",
       titre: "Les dinosaures au cinéma",
       description: "Des premiers dessins animés à Jurassic World : l’histoire des dinosaures au cinéma, les effets spéciaux, les erreurs des films et un quiz en deux niveaux, pour les enfants.",
       actif: "cinema",
@@ -53,13 +54,13 @@ export function pagesCinema() {
   <h1>🎬 Les dinosaures au cinéma</h1>
   <p class="fiche__accroche" style="max-width:66ch">Depuis plus de cent ans, les dinosaures sont des stars de l’écran.
   Mais les films disent-ils la vérité ? Installe-toi, la séance commence !</p>
-  ${ongletsCinema("", "cinema.html")}
+  ${ongletsCinema("../", "cinema/index.html")}
 
   <div class="grille grille--large" style="margin-top:2rem">
     ${pagesRubriqueCinema
       .slice(1)
       .map(
-        (p, i) => `<a class="carte" href="${p.chemin}" data-anim data-delai="${i}">
+        (p, i) => `<a class="carte" href="../${p.chemin}" data-anim data-delai="${i}">
       <span class="carte__media" style="padding:1.6rem;text-align:center;font-size:3rem" aria-hidden="true">${p.emoji}</span>
       <span class="carte__corps">
         <span class="carte__titre" style="font-weight:800;font-size:1.2rem">${esc(p.nom)}</span>
@@ -74,7 +75,7 @@ export function pagesCinema() {
     </a>`
       )
       .join("\n    ")}
-    <a class="carte" href="jeux/quiz-du-cinema.html" data-anim data-delai="3">
+    <a class="carte" href="../jeux/quiz-du-cinema.html" data-anim data-delai="3">
       <span class="carte__media" style="padding:1.6rem;text-align:center;font-size:3rem" aria-hidden="true">🍿</span>
       <span class="carte__corps">
         <span class="carte__titre" style="font-weight:800;font-size:1.2rem">Le quiz du cinéma</span>
@@ -115,7 +116,7 @@ export function pagesCinema() {
       <div class="encadre encadre--pouvoir">
         <h2 class="encadre__titre">🍿 Teste-toi</h2>
         <p>Deux niveaux au choix, ${quizCinema.facile.length + quizCinema.difficile.length} questions en tout.</p>
-        <p><a class="bouton bouton--petit" href="jeux/quiz-du-cinema.html">🎬 Le quiz du cinéma</a></p>
+        <p><a class="bouton bouton--petit" href="../jeux/quiz-du-cinema.html">🎬 Le quiz du cinéma</a></p>
       </div>
     </div>
   </div>
@@ -286,7 +287,7 @@ export function pagesCinema() {
     <h2 class="encadre__titre">🧠 Pourquoi les films se trompent-ils ?</h2>
     <p>Parfois, c’est voulu : un Vélociraptor de la taille d’une dinde ferait moins peur ! Parfois, la science a avancé
     depuis la sortie du film : en 1993, on commençait tout juste à comprendre que beaucoup de dinosaures avaient des plumes.</p>
-    <p style="margin-bottom:0">Le bon réflexe ? Profiter du film… puis vérifier dans les <a href="../dinosaures.html">fiches</a>
+    <p style="margin-bottom:0">Le bon réflexe ? Profiter du film… puis vérifier dans les <a href="../dinosaures/index.html">fiches</a>
     ce qu’en disent les scientifiques.</p>
   </div>
   ${encadreQuiz("../")}

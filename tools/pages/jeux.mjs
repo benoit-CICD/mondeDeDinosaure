@@ -24,7 +24,7 @@ function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description, par
   <h1>${emoji} ${esc(titre)}</h1>
   <p style="max-width:66ch">${intro}</p>
   ${corpsJeu}
-  <p style="margin-top:2rem">${parent ? `<a class="bouton bouton--secondaire" href="../${parent.href}">← ${esc(parent.nom)}</a> ` : ""}<a class="bouton bouton--secondaire" href="../jeux.html">← Tous les jeux</a></p>
+  <p style="margin-top:2rem">${parent ? `<a class="bouton bouton--secondaire" href="../${parent.href}">← ${esc(parent.nom)}</a> ` : ""}<a class="bouton bouton--secondaire" href="../jeux/index.html">← Tous les jeux</a></p>
 </div>`;
 
   return {
@@ -38,7 +38,7 @@ function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description, par
       scripts: ["assets/js/donnees.js", "assets/js/jeux/commun.js", ...scriptsEnPlus.map((s) => `assets/js/jeux/${s}`), `assets/js/jeux/${script}`],
       filAriane: [
         { nom: "Accueil", href: "index.html" },
-        { nom: "Les jeux", href: "jeux.html" },
+        { nom: "Les jeux", href: "jeux/index.html" },
         ...(parent ? [parent] : []),
         { nom: titre },
       ],
@@ -51,8 +51,9 @@ export function pagesJeux() {
 
   /* --- Hub --- */
   pages.push({
-    chemin: "jeux.html",
+    chemin: "jeux/index.html",
     html: page({
+      base: "../",
       titre: "Les jeux",
       description: `${majuscule(enLettres(listeJeux.length))} mini-jeux gratuits sur les dinosaures : quiz, vrai ou faux, devinettes, memory, puzzle, œufs, tailles, frise du temps, empreintes et cinéma. Aucun compte, aucune donnée enregistrée.`,
       actif: "jeux",
@@ -64,7 +65,7 @@ export function pagesJeux() {
 
   <div class="grille grille--large" style="margin-top:2rem">
     ${listeJeux.map(
-      (j, i) => `<a class="carte" href="jeux/${j.slug}.html" data-anim data-delai="${i}">
+      (j, i) => `<a class="carte" href="${j.slug}.html" data-anim data-delai="${i}">
       <span class="carte__media" style="padding:1.8rem;text-align:center;font-size:3rem" aria-hidden="true">${j.emoji}</span>
       <span class="carte__corps">
         <span class="carte__titre" style="font-weight:800;font-size:1.2rem">${esc(j.nom)}</span>
@@ -75,7 +76,7 @@ export function pagesJeux() {
     ).join("\n    ")}
   </div>
 
-  <a class="carte bandeau-rubrique" href="jeux/affrontement-de-dinos.html" style="margin-top:2rem">
+  <a class="carte bandeau-rubrique" href="affrontement-de-dinos.html" style="margin-top:2rem">
     <span class="bandeau-rubrique__emoji" aria-hidden="true">⚔️</span>
     <span class="carte__corps">
       <span class="carte__titre" style="font-weight:800;font-size:1.2rem">Affrontement de dinos</span>
@@ -85,8 +86,8 @@ export function pagesJeux() {
 
   <div class="encadre" style="margin-top:2.5rem">
     <h2 class="encadre__titre">💡 Un conseil</h2>
-    <p style="margin-bottom:0">Avant de jouer, va lire quelques <a href="dinosaures.html">fiches de dinosaures</a> :
-    tu y trouveras toutes les réponses ! Et si un mot compliqué te bloque, le <a href="glossaire.html">glossaire</a> est là pour ça.</p>
+    <p style="margin-bottom:0">Avant de jouer, va lire quelques <a href="../dinosaures/index.html">fiches de dinosaures</a> :
+    tu y trouveras toutes les réponses ! Et si un mot compliqué te bloque, le <a href="../comprendre/glossaire.html">glossaire</a> est là pour ça.</p>
   </div>
 </div>`,
       filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Les jeux" }],
@@ -113,7 +114,7 @@ export function pagesJeux() {
       <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="quiz-suivant" hidden>Suivant →</button></p>
     </div>
     <div id="quiz-fin" hidden></div>
-    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire toutes les <a href="../dinosaures.html">fiches des dinosaures</a> !</p></noscript>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire toutes les <a href="../dinosaures/index.html">fiches des dinosaures</a> !</p></noscript>
   </div>`,
     })
   );
@@ -247,7 +248,7 @@ export function pagesJeux() {
       description: "Jeu éducatif gratuit : rends chaque œuf de dinosaure à ses parents grâce aux indices. Forme, taille, coquille, nid… et attention aux intrus !",
       intro: `Des œufs ont été retrouvés dans un nid, mais à qui sont-ils ? Touche un œuf pour l’examiner, puis touche ses parents.
       Attention : un intrus qui ne pondait pas d’œufs se cache parmi eux ! Besoin d’aide ? Lis le dossier
-      <a href="../oeufs.html">Œufs et bébés dinosaures</a>.`,
+      <a href="../comprendre/oeufs.html">Œufs et bébés dinosaures</a>.`,
       script: "oeufs.js",
       corpsJeu: `
   <div class="jeu" id="oeufs">
@@ -262,7 +263,7 @@ export function pagesJeux() {
       <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="oeufs-suivant" hidden>Manche suivante →</button></p>
     </div>
     <div id="oeufs-fin" hidden></div>
-    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire le dossier <a href="../oeufs.html">Œufs et bébés dinosaures</a> !</p></noscript>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire le dossier <a href="../comprendre/oeufs.html">Œufs et bébés dinosaures</a> !</p></noscript>
   </div>`,
     })
   );
@@ -301,7 +302,7 @@ export function pagesJeux() {
       description: "Jeu éducatif gratuit : range les dinosaures du plus ancien au plus récent, avec quelques intrus comme le mammouth ou l’astéroïde. Pour comprendre la frise du temps.",
       intro: `Oups, la machine à remonter le temps a tout mélangé ! Range les cartes de la plus ancienne à la plus récente.
       Des intrus se glissent parfois dans le voyage : une glaciation, un astéroïde, un mammouth…
-      Pour réviser, jette un œil à la <a href="../frise.html">frise du temps</a>.`,
+      Pour réviser, jette un œil à la <a href="../periodes/frise.html">frise du temps</a>.`,
       script: "machine-temps.js",
       corpsJeu: `
   <div class="jeu" id="mt">
@@ -316,7 +317,7 @@ export function pagesJeux() {
       <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="mt-suivant" hidden>Voyage suivant →</button></p>
     </div>
     <div id="mt-fin" hidden></div>
-    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même explorer la <a href="../frise.html">frise du temps</a> !</p></noscript>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même explorer la <a href="../periodes/frise.html">frise du temps</a> !</p></noscript>
   </div>`,
     })
   );
@@ -361,7 +362,7 @@ export function pagesJeux() {
       description: `Quiz gratuit sur les dinosaures au cinéma et dans les dessins animés : Jurassic Park, Toy Story, Le Petit Dinosaure… 20 questions, en mode facile ou difficile.`,
       intro: `Jurassic Park, Toy Story, Le Petit Dinosaure, King Kong… Connais-tu les dinosaures des films ?
       Choisis ton niveau, puis réponds à 20 questions. Les réponses se trouvent dans la rubrique
-      <a href="../cinema.html">Les dinosaures au cinéma</a>.`,
+      <a href="../cinema/index.html">Les dinosaures au cinéma</a>.`,
       script: "quiz-cinema.js",
       corpsJeu: `
   <div class="jeu" id="qc">
@@ -391,7 +392,7 @@ export function pagesJeux() {
       <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="qc-suivant" hidden>Suivant →</button></p>
     </div>
     <div id="qc-fin" hidden></div>
-    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire la rubrique <a href="../cinema.html">Les dinosaures au cinéma</a> !</p></noscript>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire la rubrique <a href="../cinema/index.html">Les dinosaures au cinéma</a> !</p></noscript>
   </div>`,
     })
   );
@@ -469,7 +470,7 @@ export function pagesJeux() {
     </div>
   </div>
 </div>`,
-      filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Les jeux", href: "jeux.html" }, { nom: rubrique.nom }],
+      filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Les jeux", href: "jeux/index.html" }, { nom: rubrique.nom }],
     }),
   });
 

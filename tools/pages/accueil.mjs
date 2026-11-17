@@ -119,8 +119,8 @@ export function pageAccueil() {
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
       <p class="heros__accroche">Explore ${dinos.length} créatures géantes, remonte le temps sur ${Math.round(periodes[0].debut - periodes[2].fin)} millions d’années et amuse-toi avec ${listeJeux.length} jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
-        <a class="bouton" href="dinosaures.html">🔍 Explorer les dinosaures</a>
-        <a class="bouton bouton--ambre" href="jeux.html">🎮 Jouer maintenant</a>
+        <a class="bouton" href="dinosaures/index.html">🔍 Explorer les dinosaures</a>
+        <a class="bouton bouton--ambre" href="jeux/index.html">🎮 Jouer maintenant</a>
       </div>
     </div>
     <div class="heros__scene">${SCENE}${
@@ -151,7 +151,7 @@ export function pageAccueil() {
     <div class="grille" style="margin-top:2rem">
       ${vedettes.map((d, i) => carteDino(d, "", { delai: i, illustration: true })).join("\n      ")}
     </div>
-    <p class="centre" style="margin-top:2rem"><a class="bouton" href="dinosaures.html">Voir les ${dinos.length} dinosaures →</a></p>
+    <p class="centre" style="margin-top:2rem"><a class="bouton" href="dinosaures/index.html">Voir les ${dinos.length} dinosaures →</a></p>
   </div>
 </section>
 
@@ -174,7 +174,7 @@ export function pageAccueil() {
         )
         .join("\n      ")}
     </div>
-    <p class="centre" style="margin-top:2rem"><a class="bouton bouton--secondaire" href="frise.html">📏 Voir la frise du temps</a></p>
+    <p class="centre" style="margin-top:2rem"><a class="bouton bouton--secondaire" href="periodes/frise.html">📏 Voir la frise du temps</a></p>
   </div>
 </section>
 
@@ -205,7 +205,7 @@ export function pageAccueil() {
       <p>Du tout premier dessin animé en 1914 jusqu’à Jurassic World : découvre comment le cinéma fait bouger les dinosaures,
       et toutes les erreurs que les films ont faites… Puis teste-toi avec le quiz du cinéma, en mode facile ou difficile !</p>
       <p style="margin-bottom:0">
-        <a class="bouton bouton--petit" href="cinema.html">🎬 La rubrique cinéma</a>
+        <a class="bouton bouton--petit" href="cinema/index.html">🎬 La rubrique cinéma</a>
         <a class="bouton bouton--petit bouton--ambre" href="jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a>
       </p>
     </div>
@@ -237,7 +237,7 @@ export function pageAccueil() {
     <div class="encadre encadre--attention" data-anim style="max-width:70ch;margin-inline:auto">
       <h2 class="encadre__titre">⚠️ Le piège le plus courant</h2>
       <p>Le Ptérodactyle et le Mosasaure ne sont <strong>pas</strong> des dinosaures ! Ce sont des cousins : un reptile volant et un reptile marin. Sur ce site, ${cousins.length} créatures portent l’étiquette « Pas un dinosaure » pour t’aider à ne plus te tromper.</p>
-      <p style="margin-bottom:0"><a class="bouton bouton--petit" href="familles.html">🧬 Comprendre les familles</a></p>
+      <p style="margin-bottom:0"><a class="bouton bouton--petit" href="familles/index.html">🧬 Comprendre les familles</a></p>
     </div>
   </div>
 </section>
@@ -248,7 +248,7 @@ export function pageAccueil() {
     <p data-anim style="max-width:56ch;margin-inline:auto">Commence par le glossaire pour apprendre les mots des scientifiques, puis lance-toi dans le grand quiz.</p>
     <p data-anim>
       <a class="bouton" href="jeux/quiz.html">❓ Commencer le quiz</a>
-      <a class="bouton bouton--secondaire" href="glossaire.html">🔤 Voir le glossaire</a>
+      <a class="bouton bouton--secondaire" href="comprendre/glossaire.html">🔤 Voir le glossaire</a>
     </p>
   </div>
 </section>`;

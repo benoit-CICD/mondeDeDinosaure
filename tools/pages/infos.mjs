@@ -22,8 +22,9 @@ export function pagesInfos() {
 
   /* ---------- Glossaire ---------- */
   pages.push({
-    chemin: "glossaire.html",
+    chemin: "comprendre/glossaire.html",
     html: page({
+      base: "../",
       titre: "Glossaire",
       description: "Tous les mots compliqués des dinosaures expliqués simplement : fossile, paléontologue, théropode, gastrolithe, coprolithe…",
       corps: `
@@ -42,7 +43,7 @@ export function pagesInfos() {
       )
       .join("\n    ")}
   </dl>
-  <p style="margin-top:2rem"><a class="bouton" href="jeux/quiz.html">❓ Tester mes connaissances</a></p>
+  <p style="margin-top:2rem"><a class="bouton" href="../jeux/quiz.html">❓ Tester mes connaissances</a></p>
 </div>`,
       filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Glossaire" }],
     }),
@@ -50,8 +51,9 @@ export function pagesInfos() {
 
   /* ---------- Questions fréquentes ---------- */
   pages.push({
-    chemin: "questions.html",
+    chemin: "comprendre/questions.html",
     html: page({
+      base: "../",
       titre: "Questions fréquentes",
       description: "Pourquoi les dinosaures ont-ils disparu ? Avaient-ils des plumes ? Peut-on les recréer ? Les réponses aux questions que se posent les enfants.",
       corps: `
@@ -71,7 +73,7 @@ export function pagesInfos() {
   <div class="encadre" style="margin-top:2rem">
     <h2 class="encadre__titre">🔎 Tu as une autre question ?</h2>
     <p style="margin-bottom:0">Cherche dans le <a href="glossaire.html">glossaire</a>, explore les
-    <a href="dinosaures.html">fiches des dinosaures</a> ou lis les dossiers sur
+    <a href="../dinosaures/index.html">fiches des dinosaures</a> ou lis les dossiers sur
     <a href="extinction.html">la grande extinction</a>, <a href="oeufs.html">les œufs et les bébés</a>
     et <a href="glaciations.html">l’ère glaciaire</a>.</p>
   </div>
@@ -94,18 +96,18 @@ export function pagesInfos() {
     <p>Ce site s’adresse aux enfants curieux, de 7 à 12 ans environ, ainsi qu’aux parents et aux enseignants
     qui cherchent une ressource claire et fiable sur les dinosaures.</p>
     <p>Les textes sont volontairement courts, avec une idée par phrase et un vocabulaire simple.
-    Les mots difficiles sont expliqués dans le <a href="glossaire.html">glossaire</a>.</p>
+    Les mots difficiles sont expliqués dans le <a href="comprendre/glossaire.html">glossaire</a>.</p>
 
     <h2>Ce que contient le site</h2>
     <ul>
       <li><strong>${dinos.length} fiches illustrées</strong> de créatures préhistoriques ;</li>
       <li><strong>${periodes.length} pages de période</strong> : Trias, Jurassique et Crétacé ;</li>
       <li><strong>${familles.length} pages de famille</strong>, des théropodes aux reptiles marins ;</li>
-      <li>une <a href="frise.html">frise chronologique</a> sur 186 millions d’années ;</li>
-      <li>des dossiers sur <a href="extinction.html">la grande extinction</a>,
-      <a href="metier.html">le métier de paléontologue</a>, <a href="oeufs.html">les œufs et les bébés dinosaures</a>
-      et <a href="glaciations.html">l’ère glaciaire</a> ;</li>
-      <li>une rubrique sur <a href="cinema.html">les dinosaures au cinéma</a> : l’histoire des films, les effets spéciaux
+      <li>une <a href="periodes/frise.html">frise chronologique</a> sur 186 millions d’années ;</li>
+      <li>des dossiers sur <a href="comprendre/extinction.html">la grande extinction</a>,
+      <a href="comprendre/metier.html">le métier de paléontologue</a>, <a href="comprendre/oeufs.html">les œufs et les bébés dinosaures</a>
+      et <a href="comprendre/glaciations.html">l’ère glaciaire</a> ;</li>
+      <li>une rubrique sur <a href="cinema/index.html">les dinosaures au cinéma</a> : l’histoire des films, les effets spéciaux
       et les erreurs du grand écran ;</li>
       <li><strong>${listeJeux.length} mini-jeux</strong> pour réviser en s’amusant.</li>
     </ul>
@@ -437,16 +439,16 @@ export function pagePlan() {
       <h2>Découvrir</h2>
       <ul>
         ${lien("index.html", "Accueil")}
-        ${lien("dinosaures.html", `Tous les dinosaures (${dinos.length})`)}
-        ${lien("familles.html", "Les familles")}
-        ${lien("periodes.html", "Les périodes")}
-        ${lien("frise.html", "La frise du temps")}
-        ${lien("extinction.html", "La grande extinction")}
-        ${lien("metier.html", "Le métier de paléontologue")}
-        ${lien("oeufs.html", "Œufs et bébés dinosaures")}
-        ${lien("glaciations.html", "Les dinosaures et l’ère glaciaire")}
-        ${lien("glossaire.html", "Glossaire")}
-        ${lien("questions.html", "Questions fréquentes")}
+        ${lien("dinosaures/index.html", `Tous les dinosaures (${dinos.length})`)}
+        ${lien("familles/index.html", "Les familles")}
+        ${lien("periodes/index.html", "Les périodes")}
+        ${lien("periodes/frise.html", "La frise du temps")}
+        ${lien("comprendre/extinction.html", "La grande extinction")}
+        ${lien("comprendre/metier.html", "Le métier de paléontologue")}
+        ${lien("comprendre/oeufs.html", "Œufs et bébés dinosaures")}
+        ${lien("comprendre/glaciations.html", "Les dinosaures et l’ère glaciaire")}
+        ${lien("comprendre/glossaire.html", "Glossaire")}
+        ${lien("comprendre/questions.html", "Questions fréquentes")}
       </ul>
 
       <h2>Cinéma</h2>
@@ -456,7 +458,7 @@ export function pagePlan() {
 
       <h2>Jouer</h2>
       <ul>
-        ${lien("jeux.html", "Tous les jeux")}
+        ${lien("jeux/index.html", "Tous les jeux")}
         ${lien("jeux/affrontement-de-dinos.html", "Affrontement de dinos")}
         ${listeJeux.map((j) => lien(`jeux/${j.slug}.html`, j.nom)).join("\n        ")}
       </ul>
@@ -523,7 +525,7 @@ export function page404() {
   Mais rassure-toi : il reste ${dinos.length} créatures à explorer.</p>
   <p>
     <a class="bouton" href="${r}index.html">🏠 Retour à l’accueil</a>
-    <a class="bouton bouton--secondaire" href="${r}dinosaures.html">🦕 Voir les dinosaures</a>
+    <a class="bouton bouton--secondaire" href="${r}dinosaures/index.html">🦕 Voir les dinosaures</a>
     <a class="bouton bouton--secondaire" href="${r}plan-du-site.html">🗺️ Plan du site</a>
   </p>
 </div>`,

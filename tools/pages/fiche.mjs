@@ -156,7 +156,7 @@ export function pagesFiches() {
            <a class="bouton bouton--petit bouton--secondaire" href="../jeux/qui-suis-je.html">🔍 Qui suis-je ?</a></p>
         ${oeufs.some((o) => o.parent.img === d.slug)
           ? `<p>On connaît les œufs de sa famille : sauras-tu les reconnaître ? Lis le dossier
-        <a href="../oeufs.html">Œufs et bébés dinosaures</a>, puis joue à
+        <a href="../comprendre/oeufs.html">Œufs et bébés dinosaures</a>, puis joue à
         <a href="../jeux/retrouve-la-maman.html">Retrouve la maman</a> !</p>`
           : ""}
       </div>
@@ -185,7 +185,7 @@ export function pagesFiches() {
         corps,
         filAriane: [
           { nom: "Accueil", href: "index.html" },
-          { nom: "Dinosaures", href: "dinosaures.html" },
+          { nom: "Dinosaures", href: "dinosaures/index.html" },
           { nom: d.nom },
         ],
       }),

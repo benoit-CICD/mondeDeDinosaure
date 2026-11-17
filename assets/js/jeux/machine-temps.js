@@ -202,7 +202,7 @@
     Jeu.resultat(elFin, score, VOYAGES * CARTES, {
       rejouer: demarrer,
       texte: "Un point par carte bien placée. " + Jeu.bilan(score, VOYAGES * CARTES).texte,
-      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'frise.html">📏 Voir la frise du temps</a>',
+      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'periodes/frise.html">📏 Voir la frise du temps</a>',
     });
   }
 

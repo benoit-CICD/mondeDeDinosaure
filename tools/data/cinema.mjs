@@ -8,7 +8,7 @@
 /* Les pages de la rubrique, dans l'ordre du menu. Le menu de l'en-tête,
    le plan du site et la navigation interne en dépendent. */
 export const pagesRubriqueCinema = [
-  { chemin: "cinema.html", emoji: "🎬", nom: "Les dinosaures au cinéma", court: "La rubrique" },
+  { chemin: "cinema/index.html", emoji: "🎬", nom: "Les dinosaures au cinéma", court: "La rubrique" },
   { chemin: "cinema/histoire.html", emoji: "🎞️", nom: "Un siècle de dinosaures à l’écran", court: "L’histoire" },
   { chemin: "cinema/effets-speciaux.html", emoji: "🤖", nom: "Comment fait-on bouger un dinosaure ?", court: "Les effets spéciaux" },
   { chemin: "cinema/film-ou-realite.html", emoji: "🔬", nom: "Film ou réalité ?", court: "Les erreurs des films" },
@@ -74,9 +74,9 @@ export const mythes = [
     vrai: "Un chercheur a étudié la forme de son crâne : ses yeux regardaient vers l’avant et il voyait en relief, sans doute mieux qu’un faucon. Rester immobile ne t’aurait pas sauvé !" },
   { film: "On peut recréer des dinosaures avec l’ADN trouvé dans un moustique pris dans l’ambre.", verdict: "faux",
     vrai: "L’ADN se détruit complètement en moins d’un million d’années. Après 66 millions d’années, il n’en reste plus rien, même dans l’ambre." },
-  { film: "Des hommes préhistoriques chassent les dinosaures.", verdict: "faux", lien: "frise.html",
+  { film: "Des hommes préhistoriques chassent les dinosaures.", verdict: "faux", lien: "periodes/frise.html",
     vrai: "Environ 66 millions d’années séparent les derniers dinosaures (sauf les oiseaux) des premiers humains. Ils ne se sont jamais rencontrés." },
-  { film: "Les mammouths et les dinosaures vivent ensemble.", verdict: "faux", lien: "glaciations.html",
+  { film: "Les mammouths et les dinosaures vivent ensemble.", verdict: "faux", lien: "comprendre/glaciations.html",
     vrai: "Le mammouth laineux est apparu plus de 65 millions d’années après la disparition des dinosaures." },
   { film: "Le T-rex se bat contre un Stégosaure (Fantasia) ou contre un Spinosaurus (Jurassic Park III).", verdict: "faux",
     vrai: "Le Stégosaure a disparu plus de 75 millions d’années avant l’arrivée du T-rex. Et le Spinosaurus vivait en Afrique, environ 25 millions d’années avant lui." },
@@ -90,7 +90,7 @@ export const mythes = [
     vrai: "Les sons ne se fossilisent pas : personne ne connaît leur cri. Certains scientifiques pensent qu’ils grondaient bouche fermée, un peu comme les crocodiles ou les autruches." },
   { film: "Le T-rex est énorme, lourd et a de toutes petites mains.", verdict: "vrai", lien: "dinosaures/tyrannosaurus.html",
     vrai: "Là, le cinéma a raison ! 12 mètres de long, environ 8 tonnes et des bras courts mais très musclés." },
-  { film: "Les oiseaux sont les descendants des dinosaures.", verdict: "vrai", lien: "extinction.html",
+  { film: "Les oiseaux sont les descendants des dinosaures.", verdict: "vrai", lien: "comprendre/extinction.html",
     vrai: "Le héros de Jurassic Park l’explique déjà en 1993, et c’est exact : les oiseaux sont des dinosaures, les seuls à avoir survécu à l’astéroïde." },
 ];
 

@@ -40,7 +40,7 @@ export function pageCatalogue() {
 <div class="conteneur" style="padding-bottom:3rem">
   <p class="compteur-resultats" id="compteur-resultats" role="status">${dinos.length} dinosaures trouvés</p>
   <div class="grille" id="grille-dinos" style="margin-top:1rem">
-    ${dinos.map((d, i) => carteDino(d, "", { delai: i })).join("\n    ")}
+    ${dinos.map((d, i) => carteDino(d, "../", { delai: i })).join("\n    ")}
   </div>
   <div id="aucun-resultat" hidden class="encadre" style="text-align:center">
     <h2 class="encadre__titre" style="justify-content:center">🔍 Aucun dinosaure ne correspond</h2>
@@ -49,8 +49,9 @@ export function pageCatalogue() {
 </div>`;
 
   return {
-    chemin: "dinosaures.html",
+    chemin: "dinosaures/index.html",
     html: page({
+      base: "../",
       titre: "Tous les dinosaures",
       description: `Le catalogue complet des ${dinos.length} dinosaures du site, filtrable par période, par famille et par régime alimentaire. Fiches illustrées pour les enfants.`,
       actif: "dinosaures",
@@ -76,7 +77,7 @@ export function pagesFamilles() {
     ${familles
       .map((f, i) => {
         const n = dinos.filter((d) => d.famille === f.slug).length;
-        return `<a class="carte" href="familles/${f.slug}.html" data-anim data-delai="${i % 6}">
+        return `<a class="carte" href="${f.slug}.html" data-anim data-delai="${i % 6}">
       <span class="carte__media" style="--carte-teinte:${f.couleur}33;padding:1.5rem;text-align:center;font-size:2.8rem" aria-hidden="true">${f.emoji}</span>
       <span class="carte__corps">
         <span class="carte__titre" style="font-weight:800;font-size:1.2rem">${esc(f.nom)}</span>
@@ -93,8 +94,9 @@ export function pagesFamilles() {
 </div>`;
 
   pages.push({
-    chemin: "familles.html",
+    chemin: "familles/index.html",
     html: page({
+      base: "../",
       titre: "Les familles de dinosaures",
       description: "Théropodes, sauropodes, cératopsiens, raptors, dinosaures blindés… Découvre comment les scientifiques classent les dinosaures en familles.",
       actif: "dinosaures",
@@ -139,7 +141,7 @@ export function pagesFamilles() {
         corps,
         filAriane: [
           { nom: "Accueil", href: "index.html" },
-          { nom: "Les familles", href: "familles.html" },
+          { nom: "Les familles", href: "familles/index.html" },
           { nom: f.nom },
         ],
       }),
@@ -180,7 +182,7 @@ export function pagesPeriodes() {
   <div class="grille grille--large" style="margin-top:2rem">
     ${periodes
       .map(
-        (p, i) => `<a class="carte" href="periodes/${p.slug}.html" data-anim data-delai="${i}">
+        (p, i) => `<a class="carte" href="${p.slug}.html" data-anim data-delai="${i}">
       <span class="carte__media" style="--carte-teinte:${p.couleur}33;padding:1.8rem;text-align:center;font-size:3rem" aria-hidden="true">${p.emoji}</span>
       <span class="carte__corps">
         <span class="carte__titre" style="font-weight:800;font-size:1.3rem">${esc(p.nom)}</span>
@@ -202,8 +204,9 @@ export function pagesPeriodes() {
 </div>`;
 
   pages.push({
-    chemin: "periodes.html",
+    chemin: "periodes/index.html",
     html: page({
+      base: "../",
       titre: "Les périodes",
       description: "Trias, Jurassique, Crétacé : découvre les trois périodes de l’ère des dinosaures, leur climat, leurs paysages et leurs habitants.",
       actif: "periodes",
@@ -271,7 +274,7 @@ export function pagesPeriodes() {
         corps,
         filAriane: [
           { nom: "Accueil", href: "index.html" },
-          { nom: "Les périodes", href: "periodes.html" },
+          { nom: "Les périodes", href: "periodes/index.html" },
           { nom: p.nom },
         ],
       }),
@@ -289,14 +292,14 @@ export function pageFrise() {
     <span class="frise__point" aria-hidden="true"></span>
     <div class="frise__periode">
       <p class="frise__ages">${p.emoji} de −${p.debut} à −${p.fin} millions d’années</p>
-      <h2 style="margin-bottom:.3rem"><a href="periodes/${p.slug}.html" style="color:inherit">Le ${esc(p.nom)}</a></h2>
+      <h2 style="margin-bottom:.3rem"><a href="${p.slug}.html" style="color:inherit">Le ${esc(p.nom)}</a></h2>
       <p>${esc(p.resume)}</p>
       <p style="font-size:.93rem;color:var(--texte-doux);margin-bottom:0"><strong>Climat :</strong> ${esc(p.climat)}</p>
       <div class="frise__vignettes">
         ${habitants
           .map(
-            (d) => `<a class="vignette" href="dinosaures/${d.slug}.html">
-          <img src="${imageDoc(d, "").src}" alt="" loading="lazy" width="38" height="27">
+            (d) => `<a class="vignette" href="../dinosaures/${d.slug}.html">
+          <img src="${imageDoc(d, "../").src}" alt="" loading="lazy" width="38" height="27">
           <span>${esc(d.surnom || d.nom)} <small style="color:var(--texte-doux);font-weight:600">−${d.ageDebut} Ma</small></span>
         </a>`
           )
@@ -327,8 +330,8 @@ export function pageFrise() {
 
   <div class="encadre encadre--attention">
     <h2 class="encadre__titre">🤯 Le grand écart</h2>
-    <p style="margin-bottom:0">Le <a href="dinosaures/stegosaurus.html">Stégosaure</a> a disparu il y a 145 millions d’années.
-    Le <a href="dinosaures/tyrannosaurus.html">T-rex</a> est apparu il y a 68 millions d’années.
+    <p style="margin-bottom:0">Le <a href="../dinosaures/stegosaurus.html">Stégosaure</a> a disparu il y a 145 millions d’années.
+    Le <a href="../dinosaures/tyrannosaurus.html">T-rex</a> est apparu il y a 68 millions d’années.
     Entre les deux : <strong>77 millions d’années</strong>. C’est plus que le temps qui nous sépare du T-rex (66 millions d’années) !</p>
   </div>
 
@@ -341,15 +344,16 @@ export function pageFrise() {
         <h2 style="margin-bottom:.3rem">La grande extinction</h2>
         <p>Un astéroïde de 10 kilomètres frappe le Mexique. Trois espèces sur quatre disparaissent, dont tous les
         dinosaures… sauf les oiseaux, qui vivent encore parmi nous aujourd’hui.</p>
-        <p style="margin-bottom:0"><a class="bouton bouton--petit" href="extinction.html">En savoir plus →</a></p>
+        <p style="margin-bottom:0"><a class="bouton bouton--petit" href="../comprendre/extinction.html">En savoir plus →</a></p>
       </div>
     </div>
   </div>
 </div>`;
 
   return {
-    chemin: "frise.html",
+    chemin: "periodes/frise.html",
     html: page({
+      base: "../",
       titre: "La frise du temps",
       description: "Une frise chronologique interactive des dinosaures : Trias, Jurassique, Crétacé et la grande extinction, avec chaque créature placée à son époque.",
       actif: "frise",

@@ -21,7 +21,7 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 | **1 rubrique Affrontement de dinos** | Les deux jeux de duels, et comment le jeu décide du vainqueur |
 | **Pages légales** | Mentions légales, confidentialité, accessibilité, plan du site |
 
-**87 pages HTML** au total (88 avec le thème d’Halloween, qui ajoute son diplôme hors plan du site).
+**87 pages HTML** au total (88 avec le thème d’Halloween, qui ajoute son diplôme hors plan du site), plus 12 petites pages qui redirigent les anciennes adresses.
 
 Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont notées dans [`IDEES.md`](IDEES.md).
 
@@ -48,11 +48,22 @@ Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont no
 ## Structure
 
 ```
-index.html, dinosaures.html, frise.html, …   pages générées (à versionner)
-dinosaures/<slug>.html                       les 38 fiches
-periodes/<slug>.html, familles/<slug>.html
-cinema.html, cinema/<slug>.html                 la rubrique cinéma
-jeux/<slug>.html
+Toutes les pages sont générées (et à versionner). Chaque rubrique a son dossier,
+dont la page d'entrée s'appelle index.html :
+
+index.html                                   l'accueil
+404.html, a-propos.html, mentions-legales.html, confidentialite.html,
+accessibilite.html, credits.html, plan-du-site.html
+                                             pages pratiques, restées à la racine
+dinosaures/index.html, dinosaures/<slug>.html   le catalogue et les 38 fiches
+familles/index.html, familles/<slug>.html
+periodes/index.html, periodes/<slug>.html, periodes/frise.html
+jeux/index.html, jeux/<slug>.html            la salle de jeux et les mini-jeux
+cinema/index.html, cinema/<slug>.html        la rubrique cinéma
+comprendre/<slug>.html                       glossaire, questions et dossiers
+                                             (extinction, œufs, ère glaciaire, métier)
+dinosaures.html, jeux.html, oeufs.html, …    redirections vers les nouvelles adresses
+                                             (liste dans tools/build.mjs, hors plan du site)
 
 assets/
   css/style.css          feuille de style principale

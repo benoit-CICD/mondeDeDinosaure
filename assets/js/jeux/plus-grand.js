@@ -162,7 +162,7 @@
     elJeu.hidden = true;
     Jeu.resultat(elFin, score, duels.length, {
       rejouer: demarrer,
-      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'dinosaures.html">📚 Comparer les fiches</a>',
+      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'dinosaures/index.html">📚 Comparer les fiches</a>',
     });
   }
 

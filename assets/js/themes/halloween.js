@@ -11,6 +11,8 @@
 
   var reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var BASE = window.BASE || "";
+  /* L'accueil : index.html à la racine du site, pas celui d'une rubrique (jeux/index.html…). */
+  var ACCUEIL = { test: function (chemin) { return BASE === "" && /\/(index\.html)?$/.test(chemin); } };
   var actif = Theme.actif, annoncer = Theme.annoncer;
 
   function borne(v, min, max) { return Math.max(min, Math.min(max, v)); }
@@ -82,7 +84,7 @@
   }
 
   var CACHETTES = [
-    { id: "accueil", page: /\/(index\.html)?$/, cible: ".encadre--attention", variante: "haut", style: "right:16%",
+    { id: "accueil", page: ACCUEIL, cible: ".encadre--attention", variante: "haut", style: "right:16%",
       indice: "Sur la page d’accueil, une citrouille est tombée dans « le piège le plus courant »…" },
     { id: "trex", page: /\/dinosaures\/tyrannosaurus\.html$/, cible: ".fiche__illustration", variante: "mini", style: "right:20px;top:18px",
       indice: "Le roi des lézards tyrans garde une toute petite citrouille dans son portrait. Ouvre grand les yeux !" },
@@ -92,13 +94,13 @@
       indice: "Remonte la frise du temps jusqu’au jour où le ciel est tombé sur la Terre." },
     { id: "glossaire", page: /\/glossaire\.html$/, cible: parTexte(".glossaire__terme", "Coprolithe"), variante: "mini", style: "right:6px;bottom:2px",
       indice: "Dans le glossaire, une citrouille se cache près du mot qui veut dire « crotte fossilisée ». Beurk !" },
-    { id: "jeux", page: /\/jeux\.html$/, cible: parTexte(".encadre", "Un conseil"), variante: "haut", style: "left:40%",
+    { id: "jeux", page: /\/jeux\/(index\.html)?$/, cible: parTexte(".encadre", "Un conseil"), variante: "haut", style: "left:40%",
       indice: "Dans la salle de jeux, une citrouille espionne le conseil, cachée juste derrière." },
     { id: "questions", page: /\/questions\.html$/, cible: parTexte("details.accordeon", "Quelle couleur"), variante: "dedans", style: "right:10px;bottom:8px",
       indice: "Une citrouille connaît la réponse à la question des couleurs, dans les Questions fréquentes. Encore faut-il l’ouvrir !" },
     { id: "puzzle", page: /\/jeux\/puzzle\.html$/, cible: parTexte("details.accordeon", "image compl"), variante: "dedans", style: "right:10px;bottom:8px",
       indice: "Au puzzle, une citrouille attend qu’on regarde l’image complète." },
-    { id: "catalogue", page: /\/dinosaures\.html$/, cible: "#compteur-resultats", variante: "filtre",
+    { id: "catalogue", page: /\/dinosaures\/(index\.html)?$/, cible: "#compteur-resultats", variante: "filtre",
       indice: "Dans le catalogue de tous les dinosaures, une citrouille se glisse parmi les herbivores du Crétacé." },
     { id: "extinction", page: /\/extinction\.html$/, cible: ".cimetiere__rang", variante: "tombe",
       indice: "Sur la page de la grande extinction, une citrouille se recueille au cimetière, tout en bas." },
@@ -863,7 +865,7 @@
   var CLE_ANNONCE = "annonce-chasse-10-citrouilles";
 
   function annoncerNouveautes() {
-    if (!actif() || !/\/(index\.html)?$/.test(location.pathname) || Theme.lire(CLE_ANNONCE) === "vue") return;
+    if (!actif() || !ACCUEIL.test(location.pathname) || Theme.lire(CLE_ANNONCE) === "vue") return;
     var d = document.createElement("dialog");
     d.className = "dialogue-halloween";
     d.setAttribute("aria-labelledby", "annonce-titre");

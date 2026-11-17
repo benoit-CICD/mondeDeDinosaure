@@ -80,8 +80,8 @@ function entete(base, actif) {
         <li><details class="nav__groupe">
           <summary>🦕 Dinosaures</summary>
           <ul class="nav__sous nav__sous--large">
-            <li><a href="${base}dinosaures.html"><strong>📚 Tous les dinosaures</strong></a></li>
-            <li><a href="${base}familles.html"><strong>🧬 Toutes les familles</strong></a></li>
+            <li><a href="${base}dinosaures/index.html"><strong>📚 Tous les dinosaures</strong></a></li>
+            <li><a href="${base}familles/index.html"><strong>🧬 Toutes les familles</strong></a></li>
             <li class="nav__trait"></li>
             <li><ul class="nav__familles">${sousFamilles}</ul></li>
           </ul>
@@ -89,16 +89,16 @@ function entete(base, actif) {
         <li><details class="nav__groupe">
           <summary>⏳ Périodes</summary>
           <ul class="nav__sous">
-            <li><a href="${base}periodes.html"><strong>🌍 Les trois périodes</strong></a></li>
+            <li><a href="${base}periodes/index.html"><strong>🌍 Les trois périodes</strong></a></li>
             ${sousPeriodes}
-            <li><a href="${base}frise.html">📏 La frise du temps</a></li>
+            <li><a href="${base}periodes/frise.html">📏 La frise du temps</a></li>
           </ul>
         </details></li>
-        ${lien("frise.html", "📏 Frise", "frise")}
+        ${lien("periodes/frise.html", "📏 Frise", "frise")}
         <li><details class="nav__groupe">
           <summary>🎮 Jeux</summary>
           <ul class="nav__sous">
-            <li><a href="${base}jeux.html"><strong>🎯 Tous les jeux</strong></a></li>
+            <li><a href="${base}jeux/index.html"><strong>🎯 Tous les jeux</strong></a></li>
             <li><a href="${base}jeux/affrontement-de-dinos.html"><strong>⚔️ Affrontement de dinos</strong></a></li>
             ${listeJeux.filter((j) => !j.rubrique).map((j) => `<li><a href="${base}jeux/${j.slug}.html">${j.emoji} ${esc(j.nom)}</a></li>`).join("\n            ")}
           </ul>
@@ -113,12 +113,12 @@ function entete(base, actif) {
         <li><details class="nav__groupe">
           <summary>📖 Comprendre</summary>
           <ul class="nav__sous">
-            <li><a href="${base}glossaire.html">🔤 Glossaire</a></li>
-            <li><a href="${base}questions.html">💬 Questions fréquentes</a></li>
-            <li><a href="${base}extinction.html">☄️ La grande extinction</a></li>
-            <li><a href="${base}oeufs.html">🥚 Œufs et bébés dinosaures</a></li>
-            <li><a href="${base}glaciations.html">🧊 Les dinosaures et l’ère glaciaire</a></li>
-            <li><a href="${base}metier.html">⛏️ Le métier de paléontologue</a></li>
+            <li><a href="${base}comprendre/glossaire.html">🔤 Glossaire</a></li>
+            <li><a href="${base}comprendre/questions.html">💬 Questions fréquentes</a></li>
+            <li><a href="${base}comprendre/extinction.html">☄️ La grande extinction</a></li>
+            <li><a href="${base}comprendre/oeufs.html">🥚 Œufs et bébés dinosaures</a></li>
+            <li><a href="${base}comprendre/glaciations.html">🧊 Les dinosaures et l’ère glaciaire</a></li>
+            <li><a href="${base}comprendre/metier.html">⛏️ Le métier de paléontologue</a></li>
             <li><a href="${base}a-propos.html">ℹ️ À propos du site</a></li>
           </ul>
         </details></li>
@@ -141,20 +141,20 @@ function pied(base) {
       <div>
         <h2>Explorer</h2>
         <ul>
-          <li><a href="${base}dinosaures.html">Tous les dinosaures</a></li>
-          <li><a href="${base}familles.html">Les familles</a></li>
-          <li><a href="${base}periodes.html">Les périodes</a></li>
-          <li><a href="${base}frise.html">La frise du temps</a></li>
-          <li><a href="${base}extinction.html">La grande extinction</a></li>
-          <li><a href="${base}oeufs.html">Œufs et bébés dinosaures</a></li>
-          <li><a href="${base}glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
-          <li><a href="${base}cinema.html">Les dinosaures au cinéma</a></li>
+          <li><a href="${base}dinosaures/index.html">Tous les dinosaures</a></li>
+          <li><a href="${base}familles/index.html">Les familles</a></li>
+          <li><a href="${base}periodes/index.html">Les périodes</a></li>
+          <li><a href="${base}periodes/frise.html">La frise du temps</a></li>
+          <li><a href="${base}comprendre/extinction.html">La grande extinction</a></li>
+          <li><a href="${base}comprendre/oeufs.html">Œufs et bébés dinosaures</a></li>
+          <li><a href="${base}comprendre/glaciations.html">Les dinosaures et l’ère glaciaire</a></li>
+          <li><a href="${base}cinema/index.html">Les dinosaures au cinéma</a></li>
         </ul>
       </div>
       <div>
         <h2>S’amuser</h2>
         <ul>
-          <li><a href="${base}jeux.html">Tous les jeux</a></li>
+          <li><a href="${base}jeux/index.html">Tous les jeux</a></li>
           ${listeJeux.map((j) => `<li><a href="${base}jeux/${j.slug}.html">${esc(j.nom)}</a></li>`).join("\n          ")}
         </ul>
       </div>
@@ -162,8 +162,8 @@ function pied(base) {
         <h2>Informations</h2>
         <ul>
           <li><a href="${base}a-propos.html">À propos</a></li>
-          <li><a href="${base}glossaire.html">Glossaire</a></li>
-          <li><a href="${base}questions.html">Questions fréquentes</a></li>
+          <li><a href="${base}comprendre/glossaire.html">Glossaire</a></li>
+          <li><a href="${base}comprendre/questions.html">Questions fréquentes</a></li>
           <li><a href="${base}mentions-legales.html">Mentions légales</a></li>
           <li><a href="${base}confidentialite.html">Confidentialité</a></li>
           <li><a href="${base}accessibilite.html">Accessibilité</a></li>

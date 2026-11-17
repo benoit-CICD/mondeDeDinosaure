@@ -88,13 +88,13 @@ export const vraiFaux = [
    « La machine à remonter le temps ». `age` sert au classement, en millions
    d'années ; `ages` est le libellé affiché, `note` le commentaire après la manche. */
 export const reperes = [
-  { id: "glaciation", nom: "La grande glaciation d’avant les dinosaures", emoji: "🧊", age: 310, ages: "il y a 360 à 260 millions d’années", lien: "glaciations.html",
+  { id: "glaciation", nom: "La grande glaciation d’avant les dinosaures", emoji: "🧊", age: 310, ages: "il y a 360 à 260 millions d’années", lien: "comprendre/glaciations.html",
     note: "La grande glaciation s’est terminée 30 millions d’années avant l’arrivée des premiers dinosaures." },
-  { id: "asteroide", nom: "La chute de l’astéroïde", emoji: "☄️", age: 66, ages: "il y a 66 millions d’années", lien: "extinction.html",
+  { id: "asteroide", nom: "La chute de l’astéroïde", emoji: "☄️", age: 66, ages: "il y a 66 millions d’années", lien: "comprendre/extinction.html",
     note: "L’astéroïde est tombé il y a 66 millions d’années : parmi les dinosaures, seuls les oiseaux ont survécu." },
-  { id: "antarctique", nom: "L’Antarctique se couvre de glace", emoji: "🏔️", age: 34, ages: "il y a 34 millions d’années", lien: "glaciations.html",
+  { id: "antarctique", nom: "L’Antarctique se couvre de glace", emoji: "🏔️", age: 34, ages: "il y a 34 millions d’années", lien: "comprendre/glaciations.html",
     note: "La glace s’est installée au pôle Sud 32 millions d’années après la disparition des dinosaures." },
-  { id: "mammouth", nom: "Le mammouth laineux", emoji: "🦣", age: 0.5, ages: "il y a quelques centaines de milliers d’années", lien: "glaciations.html",
+  { id: "mammouth", nom: "Le mammouth laineux", emoji: "🦣", age: 0.5, ages: "il y a quelques centaines de milliers d’années", lien: "comprendre/glaciations.html",
     note: "Le mammouth laineux est arrivé plus de 65 millions d’années après les derniers dinosaures : ils ne se sont jamais croisés !" },
 ];
 
