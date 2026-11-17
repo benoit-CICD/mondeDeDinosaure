@@ -195,7 +195,7 @@
     Jeu.resultat(elFin, score, total, {
       rejouer: demarrer,
       texte: "Un point par œuf rendu à ses parents du premier coup. " + Jeu.bilan(score, total).texte,
-      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'oeufs.html">📖 Lire le dossier sur les œufs</a>',
+      lien: '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'comprendre/oeufs.html">📖 Lire le dossier sur les œufs</a>',
     });
   }
 

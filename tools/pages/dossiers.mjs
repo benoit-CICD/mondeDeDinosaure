@@ -9,8 +9,9 @@ export function pagesDossiers() {
 
   /* ---------- Dossier : l'extinction ---------- */
   pages.push({
-    chemin: "extinction.html",
+    chemin: "comprendre/extinction.html",
     html: page({
+      base: "../",
       titre: "La grande extinction",
       description: "Il y a 66 millions d’années, un astéroïde a mis fin au règne des dinosaures. Voici ce qui s’est passé, expliqué simplement aux enfants.",
       corps: `
@@ -66,7 +67,7 @@ export function pagesDossiers() {
       </div>
       <div class="encadre">
         <h2 class="encadre__titre">🎮 Et si on jouait ?</h2>
-        <p style="margin-bottom:0"><a class="bouton bouton--petit" href="jeux/vrai-ou-faux.html">⚖️ Vrai ou faux</a></p>
+        <p style="margin-bottom:0"><a class="bouton bouton--petit" href="../jeux/vrai-ou-faux.html">⚖️ Vrai ou faux</a></p>
       </div>
     </div>
   </div>
@@ -77,8 +78,9 @@ export function pagesDossiers() {
 
   /* ---------- Dossier : le métier ---------- */
   pages.push({
-    chemin: "metier.html",
+    chemin: "comprendre/metier.html",
     html: page({
+      base: "../",
       titre: "Le métier de paléontologue",
       description: "Comment fait-on pour découvrir un dinosaure ? Fouilles, dégagement, moulage, étude : le métier de paléontologue expliqué aux enfants.",
       corps: `
@@ -140,8 +142,9 @@ export function pagesDossiers() {
   ].map(([id, legende]) => ({ oeuf: oeufs.find((o) => o.id === id), legende }));
 
   pages.push({
-    chemin: "oeufs.html",
+    chemin: "comprendre/oeufs.html",
     html: page({
+      base: "../",
       titre: "Œufs et bébés dinosaures",
       description: "Comment les dinosaures pondaient-ils ? Œufs ronds ou allongés, durs ou mous, nids enterrés ou couvés, bébés et parents : le dossier expliqué aux enfants.",
       corps: `
@@ -154,7 +157,7 @@ export function pagesDossiers() {
     <div class="prose">
       <h2>Tous les dinosaures pondaient des œufs</h2>
       <p>Comme les oiseaux, les crocodiles et les tortues, tous les dinosaures pondaient des œufs. Même les plus grands !
-      Le géant <a href="dinosaures/argentinosaurus.html">Argentinosaurus</a>, qui pesait 70 tonnes, sortait d’un œuf
+      Le géant <a href="../dinosaures/argentinosaurus.html">Argentinosaurus</a>, qui pesait 70 tonnes, sortait d’un œuf
       à peine plus gros qu’un pamplemousse.</p>
       <p>Pourquoi si petit ? Le bébé respire à travers sa coquille. Un œuf géant aurait eu une coquille si épaisse
       que l’air n’aurait presque plus pu passer.</p>
@@ -163,7 +166,7 @@ export function pagesDossiers() {
       <ul class="oeufs-exemples" role="list">
         ${exemples
           .map(
-            ({ oeuf, legende }) => `<li><img src="assets/img/oeufs/${oeuf.id}.svg" alt="" width="120" height="150" loading="lazy"><span>${legende}</span></li>`
+            ({ oeuf, legende }) => `<li><img src="../assets/img/oeufs/${oeuf.id}.svg" alt="" width="120" height="150" loading="lazy"><span>${legende}</span></li>`
           )
           .join("\n        ")}
       </ul>
@@ -191,9 +194,9 @@ export function pagesDossiers() {
       <h2>Des parents attentionnés ?</h2>
       <p>Pendant longtemps, on a imaginé les dinosaures comme de mauvais parents, qui pondaient puis disparaissaient.
       Deux découvertes ont tout changé.</p>
-      <p>En 1978, dans le Montana, on découvre des nids de <a href="dinosaures/maiasaura.html">Maiasaura</a> remplis de
+      <p>En 1978, dans le Montana, on découvre des nids de <a href="../dinosaures/maiasaura.html">Maiasaura</a> remplis de
       bébés de plusieurs tailles : les petits restaient au nid, et leurs parents les nourrissaient sûrement.
-      Puis, en 1993, on comprend que l’<a href="dinosaures/oviraptor.html">Oviraptor</a>, accusé de voler des œufs,
+      Puis, en 1993, on comprend que l’<a href="../dinosaures/oviraptor.html">Oviraptor</a>, accusé de voler des œufs,
       couvait en réalité les siens.</p>
       <p>Mais tous les dinosaures n’étaient pas aussi attentionnés : beaucoup de bébés devaient se débrouiller seuls
       dès leur sortie de l’œuf.</p>
@@ -243,7 +246,7 @@ export function pagesDossiers() {
           <li>Une coquille molle comme du cuir ? Son propriétaire enterrait ses œufs dans le sable, comme une tortue.</li>
           <li>N’oublie pas que les oiseaux sont des dinosaures…</li>
         </ul>
-        <p><a class="bouton bouton--petit" href="jeux/retrouve-la-maman.html">🥚 Jouer à Retrouve la maman</a></p>
+        <p><a class="bouton bouton--petit" href="../jeux/retrouve-la-maman.html">🥚 Jouer à Retrouve la maman</a></p>
       </div>
       <div class="encadre encadre--attention">
         <h2 class="encadre__titre">⚠️ Attention aux intrus</h2>
@@ -255,7 +258,7 @@ export function pagesDossiers() {
 
   <h2 style="margin-top:2.5rem">Les héros de ce dossier</h2>
   <div class="grille">
-    ${["maiasaura", "oviraptor", "argentinosaurus"].map((slug, i) => carteDino(parSlug[slug], "", { delai: i })).join("\n    ")}
+    ${["maiasaura", "oviraptor", "argentinosaurus"].map((slug, i) => carteDino(parSlug[slug], "../", { delai: i })).join("\n    ")}
   </div>
 </div>`,
       filAriane: [{ nom: "Accueil", href: "index.html" }, { nom: "Œufs et bébés dinosaures" }],
@@ -264,8 +267,9 @@ export function pagesDossiers() {
 
   /* ---------- Dossier : l'ère glaciaire ---------- */
   pages.push({
-    chemin: "glaciations.html",
+    chemin: "comprendre/glaciations.html",
     html: page({
+      base: "../",
       titre: "Les dinosaures ont-ils connu l’ère glaciaire ?",
       description: "Les dinosaures ont-ils vécu avec les mammouths et la glace ? Les grandes glaciations d’avant et d’après les dinosaures, expliquées aux enfants.",
       corps: `
@@ -307,7 +311,7 @@ export function pagesDossiers() {
       <h2>Pendant les dinosaures : chaud… mais pas partout</h2>
       <p>Du Trias à la fin du Crétacé, la Terre était bien plus chaude qu’aujourd’hui. Il n’y avait pas de grande calotte
       de glace aux pôles, et des forêts poussaient jusque près du pôle Nord et du pôle Sud. Le
-      <a href="dinosaures/cryolophosaurus.html">Cryolophosaurus</a> vivait ainsi dans une forêt… en Antarctique !</p>
+      <a href="../dinosaures/cryolophosaurus.html">Cryolophosaurus</a> vivait ainsi dans une forêt… en Antarctique !</p>
       <p>Mais près des pôles, l’hiver restait rude. Le Soleil disparaissait pendant des semaines, parfois des mois,
       et il pouvait geler ou neiger. Des dinosaures vivaient pourtant là toute l’année : on les appelle les
       <strong>dinosaures polaires</strong>.</p>
@@ -357,7 +361,7 @@ export function pagesDossiers() {
       <div class="encadre">
         <h2 class="encadre__titre">🎮 Et si on jouait ?</h2>
         <p>Glaciation, astéroïde, mammouth et dinosaures : sauras-tu tout remettre dans l’ordre ?</p>
-        <p><a class="bouton bouton--petit" href="jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></p>
+        <p><a class="bouton bouton--petit" href="../jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></p>
       </div>
       <div class="encadre encadre--attention">
         <h2 class="encadre__titre">🌍 Le savais-tu ?</h2>

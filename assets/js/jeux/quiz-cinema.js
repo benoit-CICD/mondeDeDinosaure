@@ -118,7 +118,7 @@
       "<p>" + NOMS[niveau] + " · " + conseil + "</p>" +
       '<p><button type="button" class="bouton" data-action="rejouer">🔄 Rejouer</button> ' +
       '<button type="button" class="bouton bouton--ambre" data-action="autre">' + NOMS[autre] + "</button> " +
-      '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'cinema.html">🎬 Revoir la rubrique</a></p>' +
+      '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'cinema/index.html">🎬 Revoir la rubrique</a></p>' +
       "</div>";
     elFin.querySelector('[data-action="rejouer"]').addEventListener("click", function () { demarrer(niveau); });
     elFin.querySelector('[data-action="autre"]').addEventListener("click", function () { demarrer(autre); });

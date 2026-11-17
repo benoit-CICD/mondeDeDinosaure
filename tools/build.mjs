@@ -100,9 +100,54 @@ const pages = [
 
 pages.forEach((p) => ecrire(p.chemin, p.html));
 
+/* Anciennes adresses : ces pages étaient à la racine avant d'être rangées dans
+   des dossiers. Une petite page envoie vers la nouvelle adresse, pour que les
+   favoris et les liens déjà partagés continuent de marcher. */
+const redirections = {
+  "dinosaures.html": "dinosaures/index.html",
+  "familles.html": "familles/index.html",
+  "periodes.html": "periodes/index.html",
+  "frise.html": "periodes/frise.html",
+  "jeux.html": "jeux/index.html",
+  "cinema.html": "cinema/index.html",
+  "glossaire.html": "comprendre/glossaire.html",
+  "questions.html": "comprendre/questions.html",
+  "extinction.html": "comprendre/extinction.html",
+  "oeufs.html": "comprendre/oeufs.html",
+  "glaciations.html": "comprendre/glaciations.html",
+  "metier.html": "comprendre/metier.html",
+};
+Object.entries(redirections).forEach(([ancien, nouveau]) =>
+  ecrire(
+    ancien,
+    `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Cette page a déménagé | ${site.nom}</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${site.url.replace(/\/$/, "")}/${nouveau}">
+<meta http-equiv="refresh" content="0; url=${nouveau}">
+<script>location.replace("${nouveau}" + location.search + location.hash);</script>
+</head>
+<body>
+<p>Cette page a déménagé : <a href="${nouveau}">aller à la nouvelle adresse</a>.</p>
+</body>
+</html>
+`
+  )
+);
+
 /* ---------- 4. Fichiers pour les moteurs de recherche ---------- */
 const BASE_URL = site.url.replace(/\/$/, "");
 const aujourdhui = new Date().toISOString().slice(0, 10);
+
+/* L'accueil d'abord, puis les pages de rubrique (dossier/index.html), les dossiers
+   de « Comprendre », la frise et les pages de la racine ; enfin les fiches et les jeux. */
+const priorite = (chemin) =>
+  chemin === "index.html" ? "1.0"
+  : !chemin.includes("/") || chemin.endsWith("/index.html") || chemin.startsWith("comprendre/") || chemin === "periodes/frise.html" ? "0.8"
+  : "0.6";
 
 ecrire(
   "sitemap.xml",
@@ -115,7 +160,7 @@ ${pages
     <loc>${BASE_URL}/${p.chemin}</loc>
     <lastmod>${aujourdhui}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>${p.chemin === "index.html" ? "1.0" : p.chemin.includes("/") ? "0.6" : "0.8"}</priority>
+    <priority>${priorite(p.chemin)}</priority>
   </url>`
   )
   .join("\n")}
@@ -190,6 +235,12 @@ fichiersTheme.forEach((f) => {
 
 /* Le barème des duels : un vrai dinosaure par entrée, textes bien formés, pas d'égalité. */
 erreurs.push(...verifierBareme());
+
+/* Chaque ancienne adresse doit viser une vraie page, et ne pas en écraser une. */
+Object.entries(redirections).forEach(([ancien, nouveau]) => {
+  if (fichiersGeneres.has(ancien)) erreurs.push(`${ancien} → redirection qui écrase une page du site`);
+  if (!fichiersGeneres.has(nouveau)) erreurs.push(`${ancien} → redirection vers une page introuvable : ${nouveau}`);
+});
 
 /* Les scripts des jeux sont écrits à la main : chacun doit exister. */
 listeJeux.forEach((j) => {

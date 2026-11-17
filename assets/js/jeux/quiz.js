@@ -116,7 +116,7 @@
       '<p class="resultat__note">' + score + " / " + questions.length + "</p>" +
       "<p>" + b.texte + "</p>" +
       '<p><button type="button" class="bouton" id="quiz-rejouer">🔄 Rejouer</button> ' +
-      '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'dinosaures.html">📚 Réviser les fiches</a></p>' +
+      '<a class="bouton bouton--secondaire" href="' + Jeu.base() + 'dinosaures/index.html">📚 Réviser les fiches</a></p>' +
       "</div>";
     document.getElementById("quiz-rejouer").addEventListener("click", demarrer);
     elFin.querySelector("h2").focus();

@@ -14,7 +14,7 @@ Le joueur dégage un fossile enfoui, puis l'identifie.
   Quand assez d'os apparaissent, on devine de quelle créature il s'agit.
 - **Score** : moins on utilise de coups de pinceau, plus on marque de points.
 - **Variante** : un outil « plâtre » pour protéger les os fragiles avant de les transporter.
-- **Lien pédagogique** : prolonge le dossier *Le métier de paléontologue* (`metier.html`), qui décrit déjà
+- **Lien pédagogique** : prolonge le dossier *Le métier de paléontologue* (`comprendre/metier.html`), qui décrit déjà
   les étapes de la fouille.
 - **Pistes techniques** :
   - une grille de boutons plutôt qu'un `<canvas>`, pour que le jeu reste jouable au clavier et au lecteur d'écran ;

@@ -7,7 +7,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/index.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -241,7 +241,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/index.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -307,7 +307,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes/index.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -331,13 +331,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/frise.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/periodes/frise.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/index.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -421,13 +421,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/glossaire.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/comprendre/glossaire.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/questions.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/comprendre/questions.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -463,31 +463,31 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/extinction.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/comprendre/extinction.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/metier.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/comprendre/metier.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/oeufs.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/comprendre/oeufs.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/glaciations.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/comprendre/glaciations.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/cinema.html</loc>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/cinema/index.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
