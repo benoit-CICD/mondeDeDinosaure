@@ -11,8 +11,8 @@
 
   var reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var BASE = window.BASE || "";
-  /* L'accueil : index.html à la racine du site, pas celui d'une rubrique (jeux/index.html…). */
-  var ACCUEIL = { test: function (chemin) { return BASE === "" && /\/(index\.html)?$/.test(chemin); } };
+  /* L'accueil (pour la cachette de l'accueil) : voir Theme.surAccueil dans themes/commun/commun.js. */
+  var ACCUEIL = { test: function () { return Theme.surAccueil(); } };
   var actif = Theme.actif, annoncer = Theme.annoncer;
 
   function borne(v, min, max) { return Math.max(min, Math.min(max, v)); }
@@ -842,13 +842,13 @@
   function proposerRecompense() {
     if (!actif()) return;
     var d = document.createElement("dialog");
-    d.className = "dialogue-halloween";
-    d.setAttribute("aria-labelledby", "dialogue-halloween-titre");
+    d.className = "dialogue-theme";
+    d.setAttribute("aria-labelledby", "dialogue-theme-titre");
     d.innerHTML =
-      '<p class="dialogue-halloween__emoji" aria-hidden="true">🏆</p>' +
-      '<h2 id="dialogue-halloween-titre">Les ' + TOTAL + " citrouilles sont trouvées !</h2>" +
+      '<p class="dialogue-theme__emoji" aria-hidden="true">🏆</p>' +
+      '<h2 id="dialogue-theme-titre">Les ' + TOTAL + " citrouilles sont trouvées !</h2>" +
       "<p>Quelle chasse ! Une récompense t’attend : ton diplôme de chasseur de citrouilles.</p>" +
-      '<p class="dialogue-halloween__actions"><button type="button" class="bouton" data-diplome>🎓 Voir mon diplôme</button> ' +
+      '<p class="dialogue-theme__actions"><button type="button" class="bouton" data-diplome>🎓 Voir mon diplôme</button> ' +
       '<button type="button" class="bouton bouton--secondaire" data-fermer>Plus tard</button></p>';
     document.body.appendChild(d);
     var fermer = function () { if (d.open) d.close(); d.remove(); };
@@ -857,48 +857,6 @@
     d.addEventListener("cancel", function () { setTimeout(fermer, 0); });
     if (typeof d.showModal === "function") d.showModal();
     else d.setAttribute("open", "");
-  }
-
-  /* ---------- L'annonce des nouveautés, sur la page d'accueil ----------
-     Une seule fois par visite : la fermer (bouton, croix ou Échap) la range
-     dans la mémoire de la visite. Changer la clé pour une prochaine annonce. */
-  var CLE_ANNONCE = "annonce-chasse-10-citrouilles";
-
-  function annoncerNouveautes() {
-    if (!actif() || !ACCUEIL.test(location.pathname) || Theme.lire(CLE_ANNONCE) === "vue") return;
-    var d = document.createElement("dialog");
-    d.className = "dialogue-halloween";
-    d.setAttribute("aria-labelledby", "annonce-titre");
-    d.innerHTML =
-      '<button type="button" class="dialogue-halloween__fermer" aria-label="Fermer l’annonce" data-fermer>✕</button>' +
-      '<p class="dialogue-halloween__emoji" aria-hidden="true">🎃</p>' +
-      '<h2 id="annonce-titre">Du nouveau pour Halloween !</h2>' +
-      "<p><strong>" + TOTAL + " nouvelles citrouilles</strong> sont maintenant cachées sur le site… et elles sont bien cachées !" +
-      " Trouve-les toutes pour gagner ton <strong>diplôme</strong>.</p>" +
-      '<ul class="dialogue-halloween__liste">' +
-      "<li>🕷️ L’araignée, en haut à droite, te donne des devinettes.</li>" +
-      "<li>🌋 De nouvelles surprises se cachent aussi un peu partout : touche, appuie, cherche…</li></ul>" +
-      '<p class="dialogue-halloween__actions"><button type="button" class="bouton" data-fermer>🎃 C’est parti !</button></p>';
-    document.body.appendChild(d);
-    var fermer = function () {
-      Theme.ecrire(CLE_ANNONCE, "vue");
-      if (d.open) d.close();
-      d.remove();
-    };
-    Array.prototype.forEach.call(d.querySelectorAll("[data-fermer]"), function (b) { b.addEventListener("click", fermer); });
-    d.addEventListener("cancel", function (e) { e.preventDefault(); fermer(); });
-    /* Clic sur le fond sombre, autour de la fenêtre : on ferme aussi. */
-    d.addEventListener("click", function (e) {
-      if (e.target !== d) return;
-      var r = d.getBoundingClientRect();
-      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) fermer();
-    });
-    setTimeout(function () {
-      if (!actif()) { d.remove(); return; }
-      if (typeof d.showModal === "function") d.showModal();
-      else d.setAttribute("open", "");
-      d.querySelector(".bouton").focus();
-    }, 700);
   }
 
   /* Sur la page du diplôme : le diplôme ne se montre qu'aux vrais chasseurs. */
@@ -925,5 +883,5 @@
   brancherRadio();
   soirHalloween();
   afficherDiplome();
-  annoncerNouveautes();
+  /* L'annonce des nouveautés est réglée dans theme.mjs et montrée par themes/commun/commun.js. */
 })();

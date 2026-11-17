@@ -1,0 +1,149 @@
+/* =========================================================================
+   Thème d'hiver
+   Chargé quand `theme: "hiver"` dans tools/data/site.mjs, après
+   themes/commun/commun.css. Tout est rangé sous la classe html.hiver : le bouton
+   « Enlever le déguisement » la retire, et la page retrouve son apparence habituelle.
+   La touche de Noël, en décembre, est rangée sous html.hiver.noel (hiver.js).
+   ========================================================================= */
+
+/* ---------- 1. Couleurs ---------- */
+html.hiver {
+  --jungle: #1d4f7a;
+  --jungle-clair: #2f6fa8;
+  --ambre: #2675ad;
+  --ambre-clair: #8fc9ee;
+  --creme: #f4f8fc;
+  --sable: #e4eef7;
+  --sable-fonce: #c6d7e7;
+  --encre: #17293a;
+  --encre-douce: #4a5d70;
+  --givre: #9cc9ec;
+  --nuit-hiver: #12324f;
+}
+@media (prefers-color-scheme: dark) {
+  html.hiver {
+    --fond: #0e1621;
+    --fond-carte: #152131;
+    --fond-doux: #1b2a3d;
+    --texte: #eef5fc;
+    --texte-doux: #b3c4d6;
+    --bordure: #2a3d54;
+    --accent: #8cc8f0;
+    --accent-contraste: #0b1824;
+    --jungle: #8cc8f0;
+    --jungle-clair: #b0dbf7;
+    --ambre: #7cc4f0;
+    --ambre-clair: #b7e0f8;
+    --volcan: #ff8f80;
+    --givre: #4d7aa3;
+    --nuit-hiver: #0a1a2b;
+  }
+}
+/* Le bouton ambre devient bleu glacier : texte blanc (sombre en mode sombre). */
+.hiver .bouton--ambre, .hiver .bouton--ambre:hover { color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .hiver .bouton--ambre, .hiver .bouton--ambre:hover { color: #0b2338; }
+}
+html.hiver.noel { --volcan: #c62828; }
+@media (prefers-color-scheme: dark) { html.hiver.noel { --volcan: #ff8f80; } }
+
+/* ---------- 2. En-tête : givre, et guirlande lumineuse à Noël ---------- */
+.hiver .entete { border-bottom-color: var(--givre); }
+.hiver .logo__empreinte ellipse { fill: var(--jungle-clair); }
+.hiver.noel .logo__empreinte ellipse { fill: #c62828; }
+.hiver.noel .entete::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='14'%3E%3Cpath d='M0 2Q18 8 36 2Q54 8 72 2' fill='none' stroke='%232d4a3a' stroke-width='1.5'/%3E%3Cellipse cx='12' cy='9' rx='3' ry='4' fill='%23e53935'/%3E%3Cellipse cx='36' cy='7' rx='3' ry='4' fill='%23fdd835'/%3E%3Cellipse cx='60' cy='9' rx='3' ry='4' fill='%231e88e5'/%3E%3C/svg%3E") repeat-x;
+  animation: guirlande 2.4s ease-in-out infinite alternate;
+}
+@keyframes guirlande { from { opacity: .7; } to { opacity: 1; } }
+
+/* ---------- 3. Bandeau et fenêtres (socle dans themes/commun/commun.css) ---------- */
+html.hiver {
+  --theme-bandeau-fond: var(--nuit-hiver);
+  --theme-bandeau-texte: #eef6ff;
+  --theme-accent: #a9dcff;
+  --theme-cadre: #6fb3e3;
+}
+html.hiver.noel {
+  --theme-bandeau-fond: #8f1d24;
+  --theme-bandeau-texte: #fff6ea;
+  --theme-accent: #ffd56b;
+  --theme-cadre: #c62828;
+}
+/* Place pour la guirlande, au-dessus du bandeau. */
+.hiver.noel .bandeau-theme__contenu { padding-top: 1rem; }
+.dialogue-theme::backdrop { background: rgba(8, 24, 42, .6); }
+
+/* ---------- 4. Accueil : paysage enneigé ---------- */
+.hiver-deco { display: none; }
+.hiver .hiver-deco { display: inline; }
+.hiver:not(.noel) .hiver-noel { display: none; }
+
+.hiver .heros { background: linear-gradient(175deg, #d4e8f7 0%, var(--creme) 62%); }
+@media (prefers-color-scheme: dark) {
+  .hiver .heros { background: linear-gradient(175deg, #13293f 0%, var(--fond) 62%); }
+}
+.hiver .heros__scene-svg circle[fill="#ffc861"] { fill: #fff3c4; }       /* soleil d'hiver, pâle */
+.hiver .heros__scene-svg path[fill="#8a9a8f"] { fill: #9db3c9; }         /* montagnes */
+.hiver .heros__scene-svg path[fill="#fdf8ee"] { fill: #fff; opacity: 1; } /* leurs sommets */
+.hiver .heros__scene-svg path[fill="#7a6a5e"] { fill: #6e6878; }         /* volcan */
+.hiver .heros__scene-svg path[fill="#3f8f6c"] { fill: #eef5fb; }         /* sol enneigé */
+.hiver .heros__scene-svg path[fill="#2f6f56"] { fill: #dde9f4; }
+@media (prefers-color-scheme: dark) {
+  .hiver .ciel-hiver-1 { stop-color: #1a3550; }
+  .hiver .ciel-hiver-2 { stop-color: #2a4d6e; }
+  .hiver .ciel-hiver-3 { stop-color: #4d7398; }
+  .hiver .heros__scene-svg path[fill="#3f8f6c"] { fill: #c9d8e6; }
+  .hiver .heros__scene-svg path[fill="#2f6f56"] { fill: #b4c6d8; }
+}
+
+/* Le sapin de Noël scintille doucement. */
+.sapin__boules circle { animation: scintille 1.8s ease-in-out infinite alternate; }
+.sapin__boules circle:nth-child(3n + 1) { animation-delay: .6s; }
+.sapin__boules circle:nth-child(3n + 2) { animation-delay: 1.2s; }
+.sapin__etoile { transform-box: fill-box; transform-origin: center; animation: etoile 3s ease-in-out infinite; }
+@keyframes scintille { from { opacity: .55; } to { opacity: 1; } }
+@keyframes etoile { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+
+/* ---------- 5. La neige et la pelle (neige.js) ---------- */
+.neige {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 90; pointer-events: none; /* sous le menu (100), devant la page */
+}
+.neige-zone {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 91;
+  touch-action: none; cursor: none;
+}
+.pelle-bouton {
+  position: fixed; z-index: 92;
+  right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; gap: .45rem;
+  min-height: 44px; padding: .4em 1.05em .4em .8em;
+  font: inherit; font-size: .9rem; font-weight: 800; line-height: 1.2;
+  color: #12324f; background: #fff; border: 2px solid #8dbfe6; border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(18, 50, 79, .28); cursor: pointer;
+}
+.pelle-bouton svg { width: 22px; height: 22px; flex: none; }
+.pelle-bouton:hover { border-color: var(--jungle); }
+.pelle-bouton[aria-pressed="true"] { color: #fff; background: #1d4f7a; border-color: #1d4f7a; }
+.pelle-bouton:focus-visible { outline: 3px solid var(--ambre); outline-offset: 3px; }
+@media (prefers-color-scheme: dark) {
+  .pelle-bouton { color: var(--texte); background: var(--fond-carte); border-color: #4d7aa3; }
+  .pelle-bouton[aria-pressed="true"] { color: #0b1824; background: #8cc8f0; border-color: #8cc8f0; }
+}
+html:not(.theme-actif) .neige, html:not(.theme-actif) .neige-zone, html:not(.theme-actif) .pelle-bouton { display: none !important; }
+
+/* La page gagne en bas une marge de la hauteur de la neige : on peut toujours
+   faire défiler le texte au-dessus, rien ne reste caché dessous. */
+html.hiver body { padding-bottom: var(--neige-hauteur, 0px); }
+
+/* ---------- 6. Réduire les animations, impression ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hiver *, .hiver *::before, .hiver *::after { animation: none !important; }
+}
+@media print {
+  .neige, .neige-zone, .pelle-bouton, .hiver-deco, .hiver.noel .entete::after { display: none !important; }
+  html.hiver body { padding-bottom: 0; }
+}

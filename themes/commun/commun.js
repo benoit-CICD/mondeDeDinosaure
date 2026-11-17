@@ -1,14 +1,20 @@
 /* Socle commun aux thèmes saisonniers : bandeau, bouton « Enlever le
-   déguisement » et mémoire de la visite. Chargé seulement quand un thème est
-   choisi (`theme` dans tools/data/site.mjs), juste avant le script du thème.
+   déguisement », mémoire et fenêtre des nouveautés. Chargé seulement quand un
+   thème est choisi (`theme` dans tools/data/site.mjs), juste avant le script du thème.
 
    Le gabarit écrit dans la page :
      <html class="theme-actif <id>">  et  window.THEME = { id, message, … }
-   Le script du thème se branche ensuite sur window.Theme.
+   (les réglages de themes/<id>/theme.mjs). Le script du thème se branche
+   ensuite sur window.Theme.
 
-   Seules informations gardées : le choix « thème éteint » et ce que le thème
-   décide de retenir, dans sessionStorage (sur l'appareil, jamais envoyé,
-   effacé à la fermeture de l'onglet). */
+   La mémoire reste toujours sur l'appareil et n'est jamais envoyée :
+   - la mémoire de la visite (sessionStorage), effacée à la fermeture de
+     l'onglet : le choix « thème éteint » et ce que le thème retient le temps
+     de la visite ;
+   - la mémoire durable (localStorage), gardée d'une visite à l'autre,
+     seulement pour un thème qui la déclare dans theme.mjs (memoireDurable) :
+     la page Confidentialité la décrit alors. Sans cette déclaration,
+     lireDurable et ecrireDurable retombent sur la mémoire de la visite. */
 window.Theme = (function () {
   "use strict";
 
@@ -18,17 +24,31 @@ window.Theme = (function () {
 
   var racine = document.documentElement;
   var auditeurs = [];
+  var prefixe = "theme:" + config.id + ":";
 
   function actif() { return racine.classList.contains("theme-actif"); }
 
-  /* Les clés sont rangées par thème : éteindre Halloween n'éteindra pas Noël. */
-  function lire(cle) {
-    try { return sessionStorage.getItem("theme:" + config.id + ":" + cle); } catch (e) { return null; }
-  }
-  function ecrire(cle, valeur) {
-    try { sessionStorage.setItem("theme:" + config.id + ":" + cle, valeur); } catch (e) { /* navigation privée */ }
+  /* L'accueil : index.html à la racine du site, pas celui d'une rubrique (jeux/index.html…). */
+  function surAccueil() {
+    return (window.BASE || "") === "" && /\/(index\.html)?$/.test(location.pathname);
   }
 
+  /* ---------- Mémoire ----------
+     Les clés sont rangées par thème : éteindre Halloween n'éteindra pas l'hiver. */
+  function memoire(durable) {
+    try { return durable && config.durable ? window.localStorage : window.sessionStorage; } catch (e) { return null; }
+  }
+  function lireDans(durable, cle) {
+    try { return memoire(durable).getItem(prefixe + cle); } catch (e) { return null; }
+  }
+  function ecrireDans(durable, cle, valeur) {
+    try { memoire(durable).setItem(prefixe + cle, valeur); } catch (e) { /* navigation privée, mémoire pleine */ }
+  }
+  function effacerDans(durable, cle) {
+    try { memoire(durable).removeItem(prefixe + cle); } catch (e) { /* rien à effacer */ }
+  }
+
+  /* ---------- Le bandeau sous le menu ---------- */
   var bandeau = document.createElement("div");
   bandeau.className = "bandeau-theme";
   bandeau.setAttribute("role", "region");
@@ -68,18 +88,69 @@ window.Theme = (function () {
     var allumer = !actif();
     racine.classList.toggle("theme-actif", allumer);
     racine.classList.toggle(config.id, allumer);
-    ecrire("eteint", allumer ? "0" : "1");
+    ecrireDans(false, "eteint", allumer ? "0" : "1");
     majInterrupteur();
     annoncer(allumer ? "Le thème " + config.deNom + " est de retour !" : "Le thème " + config.deNom + " est rangé.");
     auditeurs.forEach(function (f) { f(allumer); });
   });
   majInterrupteur();
 
+  /* ---------- L'annonce des nouveautés ----------
+     Réglée dans theme.mjs (annonce : cle, emoji, titre, texte, liste, bouton).
+     Une seule fois, sur l'accueil : la fermer (bouton, croix, Échap ou clic à
+     côté) la range dans la mémoire, durable si le thème en a une. Pour annoncer
+     de nouvelles nouveautés, changer la clé dans theme.mjs. */
+  function annoncerNouveautes() {
+    var a = config.annonce;
+    if (!a || !actif() || !surAccueil() || lireDans(true, a.cle) === "vue") return;
+    var d = document.createElement("dialog");
+    d.className = "dialogue-theme";
+    d.setAttribute("aria-labelledby", "annonce-titre");
+    d.innerHTML =
+      '<button type="button" class="dialogue-theme__fermer" aria-label="Fermer l’annonce" data-fermer>✕</button>' +
+      '<p class="dialogue-theme__emoji" aria-hidden="true">' + a.emoji + "</p>" +
+      '<h2 id="annonce-titre">' + a.titre + "</h2>" +
+      "<p>" + a.texte + "</p>" +
+      (a.liste && a.liste.length
+        ? '<ul class="dialogue-theme__liste">' + a.liste.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul>"
+        : "") +
+      '<p class="dialogue-theme__actions"><button type="button" class="bouton" data-fermer>' + a.bouton + "</button></p>";
+    document.body.appendChild(d);
+    var fermer = function () {
+      ecrireDans(true, a.cle, "vue");
+      if (d.open) d.close();
+      d.remove();
+    };
+    Array.prototype.forEach.call(d.querySelectorAll("[data-fermer]"), function (b) { b.addEventListener("click", fermer); });
+    d.addEventListener("cancel", function (e) { e.preventDefault(); fermer(); });
+    /* Clic sur le fond sombre, autour de la fenêtre : on ferme aussi. */
+    d.addEventListener("click", function (e) {
+      if (e.target !== d) return;
+      var r = d.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) fermer();
+    });
+    setTimeout(function () {
+      if (!actif()) { d.remove(); return; }
+      if (typeof d.showModal === "function") d.showModal();
+      else d.setAttribute("open", "");
+      d.querySelector(".bouton").focus();
+    }, 700);
+  }
+  annoncerNouveautes();
+
   return {
     id: config.id,
     actif: actif,
-    lire: lire,
-    ecrire: ecrire,
+    surAccueil: surAccueil,
+    /** Les réglages propres au thème (`reglages` dans theme.mjs). */
+    reglages: config.reglages || {},
+    /** Mémoire de la visite. */
+    lire: function (cle) { return lireDans(false, cle); },
+    ecrire: function (cle, valeur) { ecrireDans(false, cle, valeur); },
+    /** Mémoire durable, si le thème la déclare (sinon : mémoire de la visite). */
+    lireDurable: function (cle) { return lireDans(true, cle); },
+    ecrireDurable: function (cle, valeur) { ecrireDans(true, cle, valeur); },
+    effacerDurable: function (cle) { effacerDans(true, cle); },
     annoncer: annoncer,
     /** Le paragraphe du bandeau, où le thème peut ajouter ses boutons et compteurs. */
     zone: zone,
