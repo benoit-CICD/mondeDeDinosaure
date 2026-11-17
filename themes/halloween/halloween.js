@@ -1,6 +1,6 @@
 /* Thème d'Halloween : araignée, citrouilles cachées et easter eggs.
    Chargé quand `theme: "halloween"` dans tools/data/site.mjs, après
-   themes/commun.js qui fournit le bandeau, l'interrupteur et la mémoire
+   themes/commun/commun.js qui fournit le bandeau, l'interrupteur et la mémoire
    de la visite (window.Theme). Ce thème retient en plus les citrouilles
    trouvées (voir la page Confidentialité). */
 (function () {
@@ -829,7 +829,7 @@
   }
 
   /* ---------- La récompense : le diplôme ---------- */
-  var ADRESSE_DIPLOME = "diplome-citrouilles.html";
+  var ADRESSE_DIPLOME = window.THEME.diplome; // réglé dans theme.mjs, depuis la racine du site
 
   function ouvrirDiplome() {
     /* Le nouvel onglet reçoit en principe une copie de la mémoire de la visite ;

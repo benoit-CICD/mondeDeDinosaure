@@ -26,7 +26,7 @@ export const site = {
 
   anneeCreation: 2026,
 
-  // Thème saisonnier affiché sur tout le site : un identifiant de tools/data/themes.mjs
+  // Thème saisonnier affiché sur tout le site : le nom d'un dossier de themes/
   // ("halloween"…), ou null pour aucun thème. Changer la valeur puis relancer le build :
   // feuilles de style, scripts, bandeau, décor de l'accueil et paragraphes de
   // confidentialité et d'accessibilité suivent automatiquement.
