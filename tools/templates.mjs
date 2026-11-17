@@ -5,14 +5,11 @@ import { empreinte } from "./empreintes.mjs";
 import { photos } from "./data/photos.mjs";
 import { listeJeux } from "./data/jeux.mjs";
 import { pagesRubriqueCinema } from "./data/cinema.mjs";
-import { themeActif } from "./data/themes.mjs";
+import { themeActif, fichiersDuTheme } from "../themes/themes.mjs";
 
-/* Thème saisonnier choisi dans site.mjs (null si aucun). */
+/* Thème saisonnier choisi dans site.mjs (null si aucun), rangé dans themes/<id>/. */
 const theme = themeActif(site);
-const fichiersTheme = theme
-  ? { css: ["assets/css/themes/commun.css", `assets/css/themes/${theme.id}.css`],
-      js: ["assets/js/themes/commun.js", `assets/js/themes/${theme.id}.js`] }
-  : { css: [], js: [] };
+const fichiersTheme = fichiersDuTheme(theme);
 
 export const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -236,7 +233,8 @@ ${js}
     est retiré avant l'affichage, pour ne pas le voir clignoter. */
 function scriptTheme() {
   const { id, nom, deNom, emoji, message, detail } = theme;
-  const config = JSON.stringify({ id, nom, deNom, emoji, message, detail }).replace(/</g, "\\u003c");
+  const diplome = theme.diplome?.chemin; // absent si le thème n'a pas de diplôme
+  const config = JSON.stringify({ id, nom, deNom, emoji, message, detail, diplome }).replace(/</g, "\\u003c");
   return `window.THEME = ${config};` +
     `try{if(sessionStorage.getItem("theme:${id}:eteint")==="1")document.documentElement.classList.remove("theme-actif","${id}")}catch(e){}`;
 }

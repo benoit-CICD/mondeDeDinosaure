@@ -1,9 +1,6 @@
-// Pages propres au thème d'Halloween : le diplôme des chasseurs de citrouilles.
-// Générées seulement quand `theme: "halloween"` dans site.mjs.
-
-import { site } from "../data/site.mjs";
-import { themes } from "../data/themes.mjs";
-import { page, esc } from "../templates.mjs";
+// La page du diplôme des chasseurs de citrouilles, générée seulement quand
+// `theme: "halloween"` dans tools/data/site.mjs (voir theme.mjs).
+// Les outils du générateur arrivent en paramètre : ce dossier n'importe rien de tools/.
 
 const CITROUILLE = `<svg viewBox="-32 -37 64 64" aria-hidden="true" focusable="false">
   <ellipse rx="30" ry="24" fill="#f28c28"/><ellipse cx="-14" rx="14" ry="23" fill="#e87a17"/>
@@ -13,20 +10,21 @@ const CITROUILLE = `<svg viewBox="-32 -37 64 64" aria-hidden="true" focusable="f
   <path d="M-19 5l5 5 4 -5 4 6 4 -6 4 6 4 -6 4 5 5 -5q-2 13 -19 13t-19 -13z"/></g>
 </svg>`;
 
-export function pagesHalloween() {
-  const { prenom, fichier } = themes.halloween.diplome;
+export function pageDiplome({ page, esc, site }, { prenom, chemin }) {
+  /* Le diplôme est rangé dans themes/halloween/ : deux dossiers sous la racine. */
+  const base = "../../";
 
   /* La page n'est liée nulle part : on l'ouvre depuis la récompense des 10 citrouilles.
-     Le diplôme reste sous clé tant que la chasse n'est pas terminée (assets/js/themes/halloween.js). */
-  return [
-    {
-      chemin: fichier,
-      horsPlan: true,
-      html: page({
-        titre: "Diplôme de chasseur de citrouilles",
-        description: `La récompense des chasseurs de citrouilles du site ${site.nom}.`,
-        indexer: false,
-        corps: `
+     Le diplôme reste sous clé tant que la chasse n'est pas terminée (halloween.js). */
+  return {
+    chemin,
+    horsPlan: true,
+    html: page({
+      base,
+      titre: "Diplôme de chasseur de citrouilles",
+      description: `La récompense des chasseurs de citrouilles du site ${site.nom}.`,
+      indexer: false,
+      corps: `
 <style>
   /* Seul le diplôme s'imprime, sur une page A4 à l'italienne. */
   @page { size: A4 landscape; margin: 10mm; }
@@ -44,7 +42,7 @@ export function pagesHalloween() {
     <h2 class="encadre__titre">🔒 Ce diplôme est encore sous clé</h2>
     <p>Trouve d’abord les 10 nouvelles citrouilles cachées sur le site. L’araignée, en haut à droite de chaque page,
     te donnera des devinettes pour t’aider !</p>
-    <p><a class="bouton" href="index.html">🎃 Partir à la chasse</a></p>
+    <p><a class="bouton" href="${base}index.html">🎃 Partir à la chasse</a></p>
   </div>
 
   <div id="diplome" hidden>
@@ -64,12 +62,11 @@ export function pagesHalloween() {
     </div>
     <p class="diplome__actions">
       <button type="button" class="bouton" id="diplome-imprimer">🖨️ Imprimer mon diplôme</button>
-      <a class="bouton bouton--secondaire" href="index.html">🏠 Retour au site</a>
+      <a class="bouton bouton--secondaire" href="${base}index.html">🏠 Retour au site</a>
     </p>
   </div>
   <noscript><p class="encadre">Pour voir ton diplôme, il faut activer JavaScript.</p></noscript>
 </div>`,
-      }),
-    },
-  ];
+    }),
+  };
 }

@@ -67,10 +67,8 @@ dinosaures.html, jeux.html, oeufs.html, …    redirections vers les nouvelles a
 
 assets/
   css/style.css          feuille de style principale
-  css/themes/            thèmes saisonniers : commun.css + un fichier par thème
   js/site.js             navigation, animations
   js/catalogue.js        filtres et recherche
-  js/themes/             thèmes saisonniers : commun.js (bandeau, mémoire) + un script par thème
   js/donnees.js          données des jeux (GÉNÉRÉ — ne pas modifier)
   js/jeux/commun.js      outils partagés par les jeux
   js/jeux/*.js           un script par mini-jeu
@@ -79,6 +77,11 @@ assets/
   img/oeufs/*.svg        œufs du jeu « Retrouve la maman » (GÉNÉRÉS)
   img/empreintes/*.svg   empreintes du « Détective des empreintes » (GÉNÉRÉES)
   img/photos/*.webp      reconstitutions Wikimedia Commons (TÉLÉCHARGÉES)
+
+themes/                  les thèmes saisonniers, un dossier par thème (voir plus bas)
+  themes.mjs             la liste des thèmes
+  commun/                bandeau, bouton « Enlever le déguisement », mémoire de la visite
+  halloween/             tout le thème d’Halloween : réglages, CSS, JS, décor, diplôme
 
 tools/                   le générateur (Node, zéro dépendance)
   build.mjs              point d’entrée
@@ -93,7 +96,6 @@ tools/                   le générateur (Node, zéro dépendance)
     cinema.mjs           films, effets spéciaux, erreurs des films et questions du quiz du cinéma
     affrontements.mjs    calcul de la puissance des combattants (duels et tour)
     bareme-affrontements.mjs  armes, protections et atouts vérifiés de chaque dinosaure
-    themes.mjs           thèmes saisonniers disponibles (Halloween…)
     photos.mjs           crédits des images (GÉNÉRÉ par photos.mjs)
     photos-manuel.json   fichiers Commons choisis à la main
   pages/                 un module par type de page (dossiers.mjs : les dossiers thématiques,
@@ -221,15 +223,36 @@ Le site peut se « déguiser » pour une période de l’année. Le thème affic
 dans `tools/data/site.mjs` :
 
 ```js
-theme: null,          // "halloween" (un thème de tools/data/themes.mjs), ou null pour aucun thème
+theme: null,          // "halloween" (le nom d’un dossier de themes/), ou null pour aucun thème
 ```
 
 Changer la valeur, puis relancer le build. Avec `null`, le site généré redevient exactement celui sans thème :
-aucune feuille de style, aucun script, aucun bandeau ni paragraphe en plus. Un nom inconnu arrête le build.
+aucune feuille de style, aucun script, aucun bandeau ni paragraphe en plus, et les pages propres aux thèmes
+(comme le diplôme d’Halloween) sont effacées. Un nom inconnu arrête le build.
+
+### Le dossier `themes/`
+
+Tout ce qui appartient à un thème est rangé dans **son dossier**, `themes/<id>/` : le site normal (`tools/`, `assets/`)
+ne contient aucune ligne propre à un thème.
+
+```
+themes/
+  themes.mjs             la liste des thèmes (à compléter quand on en ajoute un)
+  commun/
+    commun.css           le bandeau sous le menu
+    commun.js            le bandeau, le bouton, la mémoire de la visite (window.Theme)
+  halloween/
+    theme.mjs            les réglages : nom, message du bandeau, fichiers, décor, diplôme…
+    halloween.css        couleurs et décor, rangés sous html.halloween
+    halloween.js         animations, citrouilles cachées et autres surprises
+    accueil.mjs          décor de la scène de l’accueil (ciel de nuit, citrouilles…)
+    diplome.mjs          la page du diplôme
+    diplome-citrouilles.html   cette page (GÉNÉRÉE seulement quand le thème est actif)
+```
 
 ### Ce qui est commun à tous les thèmes
 
-`assets/css/themes/commun.css` et `assets/js/themes/commun.js` fournissent :
+`themes/commun/commun.css` et `themes/commun/commun.js` fournissent :
 
 - le **bandeau** sous le menu, avec le bouton **« Enlever le déguisement »** pour les enfants que ça impressionne ;
 - la **mémoire de la visite** (`sessionStorage`, une clé par thème : `theme:<id>:…`), jamais envoyée,
@@ -239,13 +262,19 @@ aucune feuille de style, aucun script, aucun bandeau ni paragraphe en plus. Un n
 
 Les pages Confidentialité et Accessibilité s’adaptent toutes seules au thème choisi.
 
-### Ajouter un thème (par exemple Noël)
+### Ajouter un thème (par exemple l’hiver)
 
-1. Le déclarer dans `tools/data/themes.mjs` : nom, message du bandeau, ce qu’il garde en mémoire…
-2. Écrire `assets/css/themes/<id>.css` : couleurs et décor, rangés sous `html.<id>` ; les couleurs du bandeau
+1. Créer le dossier `themes/<id>/` et y écrire `theme.mjs`, sur le modèle de `themes/halloween/theme.mjs` :
+   nom, message du bandeau, ce qu’il garde en mémoire, feuilles de style et scripts (`css`, `js`), et si besoin
+   le décor de l’accueil (`accueil`), un diplôme (`diplome`) et des pages en plus (`pages`).
+2. Écrire sa feuille de style : couleurs et décor, rangés sous `html.<id>` ; les couleurs du bandeau
    passent par `--theme-bandeau-fond`, `--theme-bandeau-texte` et `--theme-accent`.
-3. Écrire `assets/js/themes/<id>.js` : animations et surprises, en s’appuyant sur `window.Theme`.
-4. Mettre `theme: "<id>"` dans `site.mjs` et relancer le build : il signale un fichier manquant.
+3. Écrire son script : animations et surprises, en s’appuyant sur `window.Theme`.
+4. Le déclarer dans `themes/themes.mjs`.
+5. Mettre `theme: "<id>"` dans `site.mjs` et relancer le build : il signale un fichier manquant.
+
+Les pages d’un thème reçoivent du générateur les outils `page`, `esc` et `site` : un dossier de thème
+n’importe rien de `tools/`.
 
 Garder les règles d’Halloween : couper les animations avec « réduire les animations », masquer le décor
 à l’impression, et tout rendre utilisable au clavier.
@@ -257,17 +286,18 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
 - **L’araignée**, en haut à droite de chaque page : on la tire au doigt ou à la souris, le fil s’allonge, et elle remonte
   quand on la lâche. Un simple appui (ou Entrée au clavier) la fait descendre. Elle donne des anecdotes vraies sur les
   araignées fossiles et des indices pour les easter eggs.
-- **La chasse aux 10 citrouilles**, listées dans `CACHETTES` (`assets/js/themes/halloween.js`). Elles ne se montrent
+- **La chasse aux 10 citrouilles**, listées dans `CACHETTES` (`themes/halloween/halloween.js`). Elles ne se montrent
   jamais en entier : derrière un encadré (seul le haut dépasse), minuscules et pâles, dans un volet à déplier,
   avec certains filtres du catalogue, ou coincées entre deux tombes. L’araignée donne des **devinettes**, pas des adresses.
   - Cachettes : accueil, fiche du T-rex, fiche du Maiasaura, frise, glossaire, salle de jeux, Questions fréquentes,
     puzzle, catalogue (Crétacé + Herbivore), cimetière de la page sur l’extinction.
   - **La récompense** : à la 10ᵉ, une fenêtre propose le **diplôme de chasseur de citrouilles**, qui s’ouvre dans un nouvel
-    onglet (`diplome-citrouilles.html`, à imprimer). Le prénom se règle dans `tools/data/themes.mjs` (`diplome.prenom`).
+    onglet (`themes/halloween/diplome-citrouilles.html`, à imprimer). Le prénom se règle dans
+    `themes/halloween/theme.mjs` (`diplome.prenom`).
     La page n’est liée nulle part, absente du sitemap et marquée `noindex` ; sans les 10 citrouilles, elle reste « sous clé ».
 - **L’annonce des nouveautés** : une petite fenêtre sur la page d’accueil annonce les 10 citrouilles et les nouvelles
   surprises. Elle se ferme (bouton, croix, Échap ou clic à côté) et ne revient plus de la visite. Pour une prochaine
-  annonce, changer `CLE_ANNONCE` et son texte dans `assets/js/themes/halloween.js`.
+  annonce, changer `CLE_ANNONCE` et son texte dans `themes/halloween/halloween.js`.
 - **Les autres easter eggs** :
   - taper **« bouh »** au clavier, ou toucher **5 fois le fantôme 👻** du bandeau : un T-rex fantôme traverse l’écran ;
   - toucher **la lune** de l’accueil : une nuée de chauves-souris s’envole ;
@@ -279,7 +309,7 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   - **appui long** (ou double-clic, ou « radio » au clavier) sur l’image d’une fiche : effet « rayons X » ;
   - un **sans-faute** à un jeu (ou un memory / puzzle terminé) : pluie de bonbons ;
   - le **31 octobre**, des feux follets se promènent sur le site (pour tester un autre jour : ajouter `#31-octobre` à l’adresse).
-- Le décor de nuit de l’accueil est écrit dans `tools/pages/accueil.mjs` (affiché seulement avec `theme: "halloween"`).
+- Le décor de nuit de l’accueil est écrit dans `themes/halloween/accueil.mjs` (affiché seulement avec `theme: "halloween"`).
 
 ## ⚠️ Avant la mise en ligne
 

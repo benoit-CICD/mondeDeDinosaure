@@ -7,7 +7,7 @@
 // le site fonctionne ensuite sans Node, en ouvrant simplement index.html.
 
 import { writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, posix } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { dinos } from "./data/dinos.mjs";
@@ -18,7 +18,7 @@ import { oeufSvg, empreinteSvg } from "./svg-traces.mjs";
 import { oeufs } from "./data/oeufs.mjs";
 import { empreintes } from "./data/empreintes.mjs";
 import { listeJeux } from "./data/jeux.mjs";
-import { themeActif } from "./data/themes.mjs";
+import { themes, themeActif, fichiersDuTheme } from "../themes/themes.mjs";
 import { verifierBareme } from "./data/affrontements.mjs";
 import { pageAccueil } from "./pages/accueil.mjs";
 import { pageCatalogue, pagesFamilles, pagesPeriodes, pageFrise } from "./pages/listes.mjs";
@@ -27,19 +27,21 @@ import { pagesJeux, fichierDonnees } from "./pages/jeux.mjs";
 import { pagesInfos, pagePlan, page404 } from "./pages/infos.mjs";
 import { pagesDossiers } from "./pages/dossiers.mjs";
 import { pagesCinema } from "./pages/cinema.mjs";
-import { pagesHalloween } from "./pages/halloween.mjs";
+import { page, esc } from "./templates.mjs";
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 /* Thème saisonnier : un identifiant inconnu arrête tout de suite le build. */
 const theme = themeActif(site);
 if (theme?.inconnu) {
-  console.error(`\n  ❌ Thème « ${theme.id} » inconnu : le déclarer dans tools/data/themes.mjs, ou mettre theme: null dans site.mjs.\n`);
+  console.error(`\n  ❌ Thème « ${theme.id} » inconnu (thèmes disponibles : ${Object.keys(themes).join(", ")}) : le déclarer dans themes/themes.mjs, ou mettre theme: null dans site.mjs.\n`);
   process.exit(1);
 }
-const fichiersTheme = theme
-  ? ["assets/css/themes/commun.css", "assets/js/themes/commun.js", `assets/css/themes/${theme.id}.css`, `assets/js/themes/${theme.id}.js`]
-  : [];
+const { css: cssTheme, js: jsTheme } = fichiersDuTheme(theme);
+const fichiersTheme = [...cssTheme, ...jsTheme];
+
+/* Ce que le générateur prête aux pages des thèmes (themes/<id>/theme.mjs). */
+const outilsTheme = { page, esc, site };
 
 let compteFichiers = 0;
 function ecrire(chemin, contenu) {
@@ -93,12 +95,19 @@ const pages = [
   ...pagesInfos(),
   ...pagesDossiers(),
   ...pagesCinema(),
-  ...(theme?.id === "halloween" ? pagesHalloween() : []),
+  ...(theme?.pages?.(outilsTheme) ?? []),
   pagePlan(),
   page404(),
 ];
 
 pages.forEach((p) => ecrire(p.chemin, p.html));
+
+/* Les pages des thèmes éteints (le diplôme d'Halloween…) sont effacées :
+   elles ne restent pas en ligne hors saison. */
+Object.entries(themes)
+  .filter(([id, t]) => id !== theme?.id && t.pages)
+  .flatMap(([, t]) => t.pages(outilsTheme))
+  .forEach((p) => rmSync(join(RACINE, p.chemin), { force: true }));
 
 /* Anciennes adresses : ces pages étaient à la racine avant d'être rangées dans
    des dossiers. Une petite page envoie vers la nouvelle adresse, pour que les
@@ -200,7 +209,7 @@ const cheminsAssets = new Set([
 ]);
 
 pages.forEach((p) => {
-  const dossier = p.chemin.includes("/") ? p.chemin.split("/")[0] + "/" : "";
+  const dossier = posix.dirname(p.chemin); // "." à la racine
   const liens = [...p.html.matchAll(/(?:href|src)="([^"#][^"]*)"/g)].map((m) => m[1]);
 
   liens.forEach((lien) => {
@@ -218,10 +227,8 @@ pages.forEach((p) => {
       return;
     }
     if (/^(https?:|mailto:|data:|#)/.test(lien)) return;
-    const cible = lien.startsWith("../")
-      ? lien.slice(3)
-      : dossier + lien;
-    const propre = cible.split("?")[0];
+    /* Lien relatif : résolu depuis le dossier de la page (../ remonte d'un dossier). */
+    const propre = posix.normalize(posix.join(dossier, lien.split(/[?#]/)[0]));
     if (!fichiersGeneres.has(propre) && !cheminsAssets.has(propre)) {
       erreurs.push(`${p.chemin} → lien cassé : ${lien} (résolu en ${propre})`);
     }

@@ -1,7 +1,7 @@
 /* =========================================================================
    Thème d'Halloween
    Chargé quand `theme: "halloween"` dans tools/data/site.mjs, après
-   themes/commun.css. Tout est rangé sous la classe html.halloween : le bouton
+   themes/commun/commun.css. Tout est rangé sous la classe html.halloween : le bouton
    « Enlever le déguisement » la retire, et la page retrouve son apparence habituelle.
    ========================================================================= */
 
@@ -53,7 +53,7 @@ html.halloween {
 }
 .halloween .logo__empreinte ellipse { fill: var(--citrouille); }
 
-/* ---------- 3. Bandeau (socle dans themes/commun.css) ---------- */
+/* ---------- 3. Bandeau (socle dans themes/commun/commun.css) ---------- */
 html.halloween {
   --theme-bandeau-fond: var(--nuit);
   --theme-bandeau-texte: #fbeedd;

@@ -7,7 +7,7 @@ import { page, esc, aUnePhoto, enLettres } from "../templates.mjs";
 import { listeJeux } from "../data/jeux.mjs";
 import { photos } from "../data/photos.mjs";
 import { pagesRubriqueCinema } from "../data/cinema.mjs";
-import { themeActif } from "../data/themes.mjs";
+import { themeActif } from "../../themes/themes.mjs";
 
 const theme = themeActif(site);
 
