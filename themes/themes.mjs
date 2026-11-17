@@ -9,8 +9,9 @@
 // Pour ajouter un thème : créer son dossier, puis le déclarer ci-dessous.
 
 import halloween from "./halloween/theme.mjs";
+import hiver from "./hiver/theme.mjs";
 
-export const themes = { halloween };
+export const themes = { halloween, hiver };
 
 /** Le thème choisi dans site.mjs, ou null. */
 export function themeActif(site) {

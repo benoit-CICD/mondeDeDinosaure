@@ -229,12 +229,13 @@ ${js}
 </html>`;
 }
 
-/** Réglages du thème pour themes/commun.js. Le thème éteint par le visiteur
-    est retiré avant l'affichage, pour ne pas le voir clignoter. */
+/** Réglages du thème pour themes/commun/commun.js et le script du thème. Le thème
+    éteint par le visiteur est retiré avant l'affichage, pour ne pas le voir clignoter. */
 function scriptTheme() {
-  const { id, nom, deNom, emoji, message, detail } = theme;
+  const { id, nom, deNom, emoji, message, detail, annonce, reglages } = theme;
   const diplome = theme.diplome?.chemin; // absent si le thème n'a pas de diplôme
-  const config = JSON.stringify({ id, nom, deNom, emoji, message, detail, diplome }).replace(/</g, "\\u003c");
+  const durable = theme.memoireDurable?.length ? true : undefined; // mémoire gardée d'une visite à l'autre
+  const config = JSON.stringify({ id, nom, deNom, emoji, message, detail, diplome, annonce, durable, reglages }).replace(/</g, "\\u003c");
   return `window.THEME = ${config};` +
     `try{if(sessionStorage.getItem("theme:${id}:eteint")==="1")document.documentElement.classList.remove("theme-actif","${id}")}catch(e){}`;
 }

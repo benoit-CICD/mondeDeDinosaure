@@ -223,7 +223,7 @@ Le site peut se « déguiser » pour une période de l’année. Le thème affic
 dans `tools/data/site.mjs` :
 
 ```js
-theme: null,          // "halloween" (le nom d’un dossier de themes/), ou null pour aucun thème
+theme: null,          // "halloween", "hiver" (le nom d’un dossier de themes/), ou null pour aucun thème
 ```
 
 Changer la valeur, puis relancer le build. Avec `null`, le site généré redevient exactement celui sans thème :
@@ -239,8 +239,14 @@ ne contient aucune ligne propre à un thème.
 themes/
   themes.mjs             la liste des thèmes (à compléter quand on en ajoute un)
   commun/
-    commun.css           le bandeau sous le menu
-    commun.js            le bandeau, le bouton, la mémoire de la visite (window.Theme)
+    commun.css           le bandeau sous le menu, les fenêtres (annonce des nouveautés…)
+    commun.js            le bandeau, le bouton, la mémoire, l’annonce des nouveautés (window.Theme)
+  hiver/
+    theme.mjs            les réglages : messages, annonce, hauteur et vitesse de la neige…
+    hiver.css            couleurs et décor (html.hiver), touche de Noël (html.hiver.noel)
+    hiver.js             la touche de Noël, en décembre
+    neige.js             la neige qui tombe et s’entasse, et la pelle
+    accueil.mjs          décor de la scène de l’accueil (bonhomme de neige, sapin…)
   halloween/
     theme.mjs            les réglages : nom, message du bandeau, fichiers, décor, diplôme…
     halloween.css        couleurs et décor, rangés sous html.halloween
@@ -257,18 +263,28 @@ themes/
 - le **bandeau** sous le menu, avec le bouton **« Enlever le déguisement »** pour les enfants que ça impressionne ;
 - la **mémoire de la visite** (`sessionStorage`, une clé par thème : `theme:<id>:…`), jamais envoyée,
   effacée à la fermeture de l’onglet ;
-- `window.Theme`, sur lequel se branche le script du thème : `actif()`, `lire()`, `ecrire()`, `annoncer()`,
-  `zone` (le paragraphe du bandeau, pour y ajouter un compteur ou un bouton) et `surBascule()`.
+- la **mémoire durable** (`localStorage`), gardée d’une visite à l’autre sur l’appareil, jamais envoyée :
+  seulement pour un thème qui la déclare (`memoireDurable` dans `theme.mjs`), sinon elle retombe sur la mémoire
+  de la visite. La page Confidentialité dit ainsi toujours la vérité ;
+- l’**annonce des nouveautés** (`annonce` dans `theme.mjs`) : une fenêtre sur la page d’accueil, montrée une seule fois.
+  Elle se ferme avec le bouton, la croix, Échap ou un clic à côté, et ne revient plus : de la visite, ou pour de bon
+  si le thème a une mémoire durable. Pour une prochaine annonce, changer sa clé (`cle`) et son texte ;
+- `window.Theme`, sur lequel se branche le script du thème : `actif()`, `surAccueil()`, `reglages` (les `reglages`
+  de `theme.mjs`), `lire()` / `ecrire()` (mémoire de la visite), `lireDurable()` / `ecrireDurable()` /
+  `effacerDurable()` (mémoire durable), `annoncer()` (pour les lecteurs d’écran), `zone` (le paragraphe du bandeau,
+  pour y ajouter un compteur ou un bouton) et `surBascule()`.
 
 Les pages Confidentialité et Accessibilité s’adaptent toutes seules au thème choisi.
 
-### Ajouter un thème (par exemple l’hiver)
+### Ajouter un thème
 
-1. Créer le dossier `themes/<id>/` et y écrire `theme.mjs`, sur le modèle de `themes/halloween/theme.mjs` :
-   nom, message du bandeau, ce qu’il garde en mémoire, feuilles de style et scripts (`css`, `js`), et si besoin
-   le décor de l’accueil (`accueil`), un diplôme (`diplome`) et des pages en plus (`pages`).
+1. Créer le dossier `themes/<id>/` et y écrire `theme.mjs`, sur le modèle de `themes/halloween/theme.mjs` ou
+   `themes/hiver/theme.mjs` : nom, message du bandeau, ce qu’il garde en mémoire (`memoire`, `memoireDurable`),
+   feuilles de style et scripts (`css`, `js`), et si besoin le décor de l’accueil (`accueil`), l’annonce des
+   nouveautés (`annonce`), des réglages pour ses scripts (`reglages`), un diplôme (`diplome`) et des pages en plus (`pages`).
 2. Écrire sa feuille de style : couleurs et décor, rangés sous `html.<id>` ; les couleurs du bandeau
-   passent par `--theme-bandeau-fond`, `--theme-bandeau-texte` et `--theme-accent`.
+   passent par `--theme-bandeau-fond`, `--theme-bandeau-texte` et `--theme-accent`, le cadre des fenêtres par
+   `--theme-cadre`, et le voile derrière elles par `.dialogue-theme::backdrop`.
 3. Écrire son script : animations et surprises, en s’appuyant sur `window.Theme`.
 4. Le déclarer dans `themes/themes.mjs`.
 5. Mettre `theme: "<id>"` dans `site.mjs` et relancer le build : il signale un fichier manquant.
@@ -296,8 +312,7 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
     `themes/halloween/theme.mjs` (`diplome.prenom`).
     La page n’est liée nulle part, absente du sitemap et marquée `noindex` ; sans les 10 citrouilles, elle reste « sous clé ».
 - **L’annonce des nouveautés** : une petite fenêtre sur la page d’accueil annonce les 10 citrouilles et les nouvelles
-  surprises. Elle se ferme (bouton, croix, Échap ou clic à côté) et ne revient plus de la visite. Pour une prochaine
-  annonce, changer `CLE_ANNONCE` et son texte dans `themes/halloween/halloween.js`.
+  surprises. Elle ne revient plus de la visite. Son texte et sa clé se règlent dans `themes/halloween/theme.mjs` (`annonce`).
 - **Les autres easter eggs** :
   - taper **« bouh »** au clavier, ou toucher **5 fois le fantôme 👻** du bandeau : un T-rex fantôme traverse l’écran ;
   - toucher **la lune** de l’accueil : une nuée de chauves-souris s’envole ;
@@ -310,6 +325,30 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   - un **sans-faute** à un jeu (ou un memory / puzzle terminé) : pluie de bonbons ;
   - le **31 octobre**, des feux follets se promènent sur le site (pour tester un autre jour : ajouter `#31-octobre` à l’adresse).
 - Le décor de nuit de l’accueil est écrit dans `themes/halloween/accueil.mjs` (affiché seulement avec `theme: "halloween"`).
+
+### Le thème d’hiver
+
+- **Couleurs** bleu glacier (clair et sombre), liseré de givre sous le menu, et sur l’accueil un paysage enneigé :
+  sol et sommets blancs, neige sur le volcan et les fougères, bonhomme de neige, écharpe rayée pour le dinosaure.
+- **La neige** (`themes/hiver/neige.js`) tombe dès l’arrivée et **s’entasse en bas de l’écran**, jusqu’à
+  **un tiers** de sa hauteur en **deux minutes** ; sur les pages de jeux (`jeux/…`), elle s’arrête à **10 %** pour ne pas
+  gêner la partie. Ces trois valeurs se règlent dans `themes/hiver/theme.mjs` (`reglages.neige`).
+  - C’est un calque posé devant la page, qui laisse passer les clics. La forme de la neige est gardée dans la mémoire
+    de la visite : on la retrouve d’une page à l’autre. Sur une page de jeu, elle est seulement affichée moins haut
+    (on retrouve toute la couche en sortant du jeu, sauf si on y a déneigé).
+  - **La pelle** : le bouton **« Prendre la pelle »**, en bas à droite, apparaît dès que la neige tient. La pelle suit
+    la souris ou le doigt et déblaie la neige sur son passage, avec de petites gerbes ; elle ne travaille qu’en bas
+    de l’écran, le reste de la page reste utilisable. Échap ou « Poser la pelle » la repose.
+    **Au clavier**, le même bouton déneige tout l’écran d’un coup.
+  - Rien ne reste caché pour de bon : la page gagne en bas une marge de la hauteur de la neige, et un élément atteint
+    avec la touche Tab remonte au-dessus de la neige.
+  - Avec « réduire les animations », il ne neige pas. Pour essayer sans attendre : ajouter `#neige-rapide` à
+    l’adresse (la neige monte dix fois plus vite).
+- **La touche de Noël**, en **décembre** seulement (`themes/hiver/hiver.js`) : bandeau rouge « Joyeux Noël ! »,
+  guirlande lumineuse sous le menu, empreinte du logo en rouge, et sur l’accueil un sapin décoré, des cadeaux et un
+  bonnet de Noël pour le dinosaure. Pour l’essayer un autre mois : ajouter `#noel` à l’adresse de l’accueil.
+- **L’annonce des nouveautés** présente la neige et la pelle ; elle n’apparaît **qu’une seule fois**, même d’une visite
+  à l’autre (mémoire durable).
 
 ## ⚠️ Avant la mise en ligne
 

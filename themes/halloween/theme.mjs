@@ -22,8 +22,8 @@ export default {
   message: "Joyeux Halloween !",
   detail: "Le site s’est déguisé.", // masqué sur téléphone pour garder un bandeau court
   // Ce que le thème garde le temps de la visite, en plus du choix « thème éteint »
-  // (fin d'énumération, avec son « et », affichée sur la page Confidentialité).
-  memoire: "la liste des citrouilles cachées déjà trouvées, et le fait d’avoir déjà lu l’annonce des nouveautés",
+  // (affiché sur la page Confidentialité).
+  memoire: ["la liste des citrouilles cachées déjà trouvées", "le fait d’avoir déjà lu l’annonce des nouveautés"],
   // Ce qui se manipule au clavier (affiché sur la page Accessibilité).
   clavier: "L’araignée et les citrouilles cachées se manipulent aussi au clavier.",
 
@@ -33,6 +33,20 @@ export default {
 
   // Décor ajouté à la scène de l'accueil.
   accueil: { fond, devant, boutons },
+
+  // La fenêtre des nouveautés, une fois par visite sur l'accueil (themes/commun/commun.js).
+  // Pour une prochaine annonce : changer la clé et le texte. 10 = les cachettes de halloween.js.
+  annonce: {
+    cle: "annonce-chasse-10-citrouilles",
+    emoji: "🎃",
+    titre: "Du nouveau pour Halloween !",
+    texte: "<strong>10 nouvelles citrouilles</strong> sont maintenant cachées sur le site… et elles sont bien cachées ! Trouve-les toutes pour gagner ton <strong>diplôme</strong>.",
+    liste: [
+      "🕷️ L’araignée, en haut à droite, te donne des devinettes.",
+      "🌋 De nouvelles surprises se cachent aussi un peu partout : touche, appuie, cherche…",
+    ],
+    bouton: "🎃 C’est parti !",
+  },
 
   diplome,
 

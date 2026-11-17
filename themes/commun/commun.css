@@ -1,5 +1,6 @@
 /* =========================================================================
-   Socle commun aux thèmes saisonniers : le bandeau sous le menu.
+   Socle commun aux thèmes saisonniers : le bandeau sous le menu et les
+   fenêtres (annonce des nouveautés…).
    Chargé seulement quand un thème est choisi (`theme` dans site.mjs).
 
    Le thème personnalise le bandeau avec trois variables, posées sous html.<id> :
@@ -37,4 +38,27 @@
 html:not(.theme-actif) .bandeau-theme__contenu { justify-content: flex-end; }
 html:not(.theme-actif) .bandeau-theme__zone { display: none; }
 
-@media print { .bandeau-theme { display: none !important; } }
+/* ---------- Les fenêtres du thème (annonce des nouveautés, récompenses…) ----------
+   Le cadre prend --theme-cadre. Le voile sombre derrière se règle dans la feuille
+   du thème, avec .dialogue-theme::backdrop : les variables n'y arrivent pas partout. */
+.dialogue-theme {
+  position: relative;
+  max-width: min(420px, calc(100vw - 32px)); padding: 1.6rem 1.4rem;
+  background: var(--fond-carte); color: var(--texte); text-align: center;
+  border: 3px solid var(--theme-cadre, var(--accent)); border-radius: var(--radius-l); box-shadow: var(--ombre-forte);
+}
+.dialogue-theme::backdrop { background: rgba(20, 15, 10, .6); }
+.dialogue-theme__emoji { font-size: 3rem; margin: 0; line-height: 1.1; }
+.dialogue-theme h2 { margin: .3rem 0 .6rem; }
+.dialogue-theme__actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 0; }
+.dialogue-theme__fermer {
+  position: absolute; top: .4rem; right: .4rem; width: 44px; height: 44px;
+  display: grid; place-items: center; padding: 0;
+  font: inherit; font-size: 1.3rem; line-height: 1; color: var(--texte-doux);
+  background: none; border: 0; border-radius: 50%; cursor: pointer;
+}
+.dialogue-theme__fermer:hover { background: var(--fond-doux); color: var(--texte); }
+.dialogue-theme__liste { text-align: left; margin: .2rem auto .9rem; padding-left: 1.2rem; max-width: 30ch; }
+.dialogue-theme__liste li { margin-bottom: .25rem; }
+
+@media print { .bandeau-theme, .dialogue-theme { display: none !important; } }

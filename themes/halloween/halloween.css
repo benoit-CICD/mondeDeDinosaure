@@ -58,6 +58,7 @@ html.halloween {
   --theme-bandeau-fond: var(--nuit);
   --theme-bandeau-texte: #fbeedd;
   --theme-accent: #ffb15c;
+  --theme-cadre: var(--citrouille);
 }
 /* Place pour la guirlande au-dessus, et pour l'araignée qui pend à droite. */
 .halloween .bandeau-theme__contenu { padding: 1rem 56px .45rem 0; }
@@ -336,25 +337,8 @@ html:not(.theme-actif) .feux-follets { display: none; }
 @keyframes luit { from { opacity: .15; } to { opacity: .9; } }
 
 /* La récompense : la fenêtre, le bouton du bandeau et le diplôme */
-.dialogue-halloween {
-  position: relative;
-  max-width: min(420px, calc(100vw - 32px)); padding: 1.6rem 1.4rem;
-  background: var(--fond-carte); color: var(--texte); text-align: center;
-  border: 3px solid var(--citrouille); border-radius: var(--radius-l); box-shadow: var(--ombre-forte);
-}
-.dialogue-halloween::backdrop { background: rgba(20, 10, 30, .65); }
-.dialogue-halloween__emoji { font-size: 3rem; margin: 0; line-height: 1.1; }
-.dialogue-halloween h2 { margin: .3rem 0 .6rem; }
-.dialogue-halloween__actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 0; }
-.dialogue-halloween__fermer {
-  position: absolute; top: .4rem; right: .4rem; width: 44px; height: 44px;
-  display: grid; place-items: center; padding: 0;
-  font: inherit; font-size: 1.3rem; line-height: 1; color: var(--texte-doux);
-  background: none; border: 0; border-radius: 50%; cursor: pointer;
-}
-.dialogue-halloween__fermer:hover { background: var(--fond-doux); color: var(--texte); }
-.dialogue-halloween__liste { text-align: left; margin: .2rem auto .9rem; padding-left: 1.2rem; max-width: 30ch; }
-.dialogue-halloween__liste li { margin-bottom: .25rem; }
+/* Les fenêtres (annonce, diplôme) : socle dans themes/commun/commun.css. */
+.dialogue-theme::backdrop { background: rgba(20, 10, 30, .65); }
 .bandeau-theme .bouton-diplome {
   padding: .3em .95em; font-size: .86rem; font-weight: 800;
   background: var(--theme-accent, var(--ambre)); color: #2a1d33; border: 0;
@@ -430,6 +414,6 @@ html:not(.theme-actif) .feux-follets { display: none; }
 }
 @media print {
   .araignee, .citrouille-cachee, .lune-bouton, .volcan-bouton, .dino-bouton, .chauve-souris-titre,
-  .cimetiere, .bulle-surprise, .feux-follets, .message-surprise, .dialogue-halloween,
+  .cimetiere, .bulle-surprise, .feux-follets, .message-surprise,
   .halloween .entete::after, .halloween .pied::before, .halloween-deco { display: none !important; }
 }
