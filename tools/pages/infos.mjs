@@ -30,7 +30,7 @@ function memoireDuTheme(t) {
     <p>${accorder(durable, "Une autre information est gardée", "D’autres informations sont gardées")} d’une visite à l’autre : ${enumerer(durable)}.
     ${accorder(durable, "Elle est rangée", "Elles sont rangées")} dans la mémoire locale du navigateur (<code>localStorage</code>), sur votre appareil uniquement.
     ${accorder(durable, "Elle n’est jamais envoyée à un serveur et reste", "Elles ne sont jamais envoyées à un serveur et restent")} jusqu’à ce que
-    vous effaciez les données de ce site dans votre navigateur.</p>`;
+    ${t.effacerAvec ? `vous appuyiez sur ${t.effacerAvec}, ou que ` : ""}vous effaciez les données de ce site dans votre navigateur.</p>`;
   }
   return html;
 }

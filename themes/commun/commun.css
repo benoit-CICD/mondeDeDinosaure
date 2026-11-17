@@ -61,4 +61,20 @@ html:not(.theme-actif) .bandeau-theme__zone { display: none; }
 .dialogue-theme__liste { text-align: left; margin: .2rem auto .9rem; padding-left: 1.2rem; max-width: 30ch; }
 .dialogue-theme__liste li { margin-bottom: .25rem; }
 
-@media print { .bandeau-theme, .dialogue-theme { display: none !important; } }
+/* ---------- Les bulles (Theme.bulle) ----------
+   Au-dessus de tout, sauf du menu ouvert. Elles défilent avec la page, sauf
+   celles d'un élément fixé à l'écran (--fixe). Pas de fondu : la bulle reste
+   lisible même si l'animation ne démarre pas. */
+.bulle-theme {
+  position: absolute; z-index: 115; pointer-events: none;
+  max-width: min(300px, calc(100vw - 20px)); padding: .75rem .95rem;
+  background: var(--fond-carte); color: var(--texte);
+  border: 2px solid var(--theme-cadre, var(--accent)); border-radius: 16px; box-shadow: var(--ombre-forte);
+  font-size: .92rem; font-weight: 700; line-height: 1.4;
+  animation: bulle-surgit .3s ease;
+}
+.bulle-theme--fixe { position: fixed; }
+@keyframes bulle-surgit { from { transform: translateY(8px) scale(.96); } }
+html:not(.theme-actif) .bulle-theme { display: none; }
+
+@media print { .bandeau-theme, .dialogue-theme, .bulle-theme { display: none !important; } }
