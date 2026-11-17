@@ -4,6 +4,8 @@
 // décoré, des cadeaux et un bonnet de Noël s'y ajoutent.
 // Le sol, les montagnes et le soleil sont recolorés par hiver.css.
 // Tout est masqué quand le visiteur éteint le thème.
+// Trois boutons invisibles sont posés sur le bonhomme de neige (chasse.js),
+// le volcan et le dinosaure (surprises.js).
 
 /* Le dinosaure de la scène flotte (classe heros__dino) : son écharpe et son
    bonnet sont dessinés dans le même repère et flottent avec lui. */
@@ -76,3 +78,8 @@ export const devant = `
       </g>
     </g>
   </g>`;
+
+/* Après le dessin, dans .heros__scene : les zones à toucher, placées par hiver.css. */
+export const boutons = `<button type="button" class="bonhomme-bouton" aria-label="Le bonhomme de neige"></button>
+      <button type="button" class="volcan-bouton" aria-label="Le volcan enneigé"></button>
+      <button type="button" class="dino-bouton" aria-label="Le dinosaure frileux"></button>`;

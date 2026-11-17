@@ -219,6 +219,7 @@
     if (retiree > 0) {
       modifiee = true;
       projeter(x1, Math.min(y1, H - 4), retiree);
+      deneige(Math.min(x0, x1) - d, Math.max(x0, x1) + d);
     }
   }
 
@@ -249,6 +250,7 @@
     if (balayage.x > L + d) {
       for (var i = 0; i < n; i++) haut[i] = 0;
       modifiee = true;
+      deneige(0, L);
       poser("Tout l’écran est déneigé !");
     }
   }
@@ -472,6 +474,18 @@
     var limite = H - h - 12;
     if (r.bottom > limite && r.top > 90) window.scrollBy(0, Math.min(r.bottom - limite, r.top - 90));
   });
+
+  /* ---------- Pour les autres scripts du thème (chasse.js) ---------- */
+  var ecouteurs = [];
+  function deneige(xMin, xMax) {
+    for (var k = 0; k < ecouteurs.length; k++) ecouteurs[k](xMin, xMax);
+  }
+  window.Neige = {
+    /** Hauteur de la neige (px) à la position x de l'écran. */
+    hauteur: function (x) { return n ? haut[colonne(x)] : 0; },
+    /** Appelle f(xMin, xMax) quand la pelle vient de déneiger entre ces positions. */
+    surDeneige: function (f) { ecouteurs.push(f); },
+  };
 
   dimensionner();
   restaurer();

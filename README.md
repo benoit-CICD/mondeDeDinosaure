@@ -242,11 +242,15 @@ themes/
     commun.css           le bandeau sous le menu, les fenêtres (annonce des nouveautés…)
     commun.js            le bandeau, le bouton, la mémoire, l’annonce des nouveautés (window.Theme)
   hiver/
-    theme.mjs            les réglages : messages, annonce, hauteur et vitesse de la neige…
+    theme.mjs            les réglages : messages, annonce, neige, prénom du diplôme et du cadeau…
     hiver.css            couleurs et décor (html.hiver), touche de Noël (html.hiver.noel)
-    hiver.js             la touche de Noël, en décembre
-    neige.js             la neige qui tombe et s’entasse, et la pelle
+    hiver.js             la touche de Noël en décembre, et le cadeau du 25
+    neige.js             la neige qui tombe et s’entasse, et la pelle (window.Neige)
+    chasse.js            la chasse aux 10 flocons d’or, le manchot qui guide, le diplôme
+    surprises.js         les autres surprises (dinosaure frileux, volcan, boules de neige…)
     accueil.mjs          décor de la scène de l’accueil (bonhomme de neige, sapin…)
+    diplome.mjs          la page du diplôme
+    diplome-flocons.html cette page (GÉNÉRÉE seulement quand le thème est actif)
   halloween/
     theme.mjs            les réglages : nom, message du bandeau, fichiers, décor, diplôme…
     halloween.css        couleurs et décor, rangés sous html.halloween
@@ -271,7 +275,8 @@ themes/
   si le thème a une mémoire durable. Pour une prochaine annonce, changer sa clé (`cle`) et son texte ;
 - `window.Theme`, sur lequel se branche le script du thème : `actif()`, `surAccueil()`, `reglages` (les `reglages`
   de `theme.mjs`), `lire()` / `ecrire()` (mémoire de la visite), `lireDurable()` / `ecrireDurable()` /
-  `effacerDurable()` (mémoire durable), `annoncer()` (pour les lecteurs d’écran), `zone` (le paragraphe du bandeau,
+  `effacerDurable()` (mémoire durable), `annoncer()` (pour les lecteurs d’écran), `bulle(element, texte, durée)`
+  (une bulle de texte près d’un élément, lue aussi par les lecteurs d’écran), `zone` (le paragraphe du bandeau,
   pour y ajouter un compteur ou un bouton) et `surBascule()`.
 
 Les pages Confidentialité et Accessibilité s’adaptent toutes seules au thème choisi.
@@ -279,7 +284,8 @@ Les pages Confidentialité et Accessibilité s’adaptent toutes seules au thèm
 ### Ajouter un thème
 
 1. Créer le dossier `themes/<id>/` et y écrire `theme.mjs`, sur le modèle de `themes/halloween/theme.mjs` ou
-   `themes/hiver/theme.mjs` : nom, message du bandeau, ce qu’il garde en mémoire (`memoire`, `memoireDurable`),
+   `themes/hiver/theme.mjs` : nom, message du bandeau, ce qu’il garde en mémoire (`memoire`, `memoireDurable`,
+   et `effacerAvec` : le bouton qui efface la mémoire durable),
    feuilles de style et scripts (`css`, `js`), et si besoin le décor de l’accueil (`accueil`), l’annonce des
    nouveautés (`annonce`), des réglages pour ses scripts (`reglages`), un diplôme (`diplome`) et des pages en plus (`pages`).
 2. Écrire sa feuille de style : couleurs et décor, rangés sous `html.<id>` ; les couleurs du bandeau
@@ -347,8 +353,35 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
 - **La touche de Noël**, en **décembre** seulement (`themes/hiver/hiver.js`) : bandeau rouge « Joyeux Noël ! »,
   guirlande lumineuse sous le menu, empreinte du logo en rouge, et sur l’accueil un sapin décoré, des cadeaux et un
   bonnet de Noël pour le dinosaure. Pour l’essayer un autre mois : ajouter `#noel` à l’adresse de l’accueil.
-- **L’annonce des nouveautés** présente la neige et la pelle ; elle n’apparaît **qu’une seule fois**, même d’une visite
-  à l’autre (mémoire durable).
+- **La chasse aux 10 flocons d’or** (`themes/hiver/chasse.js`, liste `CACHETTES`). Un compteur dans le bandeau
+  (« ✨ Flocons d’or : 3 / 10 ») ; les flocons trouvés sont gardés **d’une visite à l’autre** (mémoire durable),
+  jusqu’au bouton **↺ « Recommencer la chasse »**, à côté du compteur, qui demande confirmation.
+  - Cachettes, des plus faciles aux plus difficiles : le **bonhomme de neige** de l’accueil (il faut le toucher),
+    la **salle de jeux** (derrière le conseil), le dossier sur l’**ère glaciaire** (près des mammouths), la fiche du
+    **Cryolophosaurus** (derrière ses anecdotes), la **frise du temps** (au climat du Crétacé, « pas de glace aux pôles »),
+    le **glossaire** (« Calotte glaciaire »), la **recherche du catalogue** (écrire « flocon »), la fiche du
+    **Microraptor** (dans ses plumes), la page des **familles** (**enfoui sous la neige** : il n’apparaît qu’une fois
+    la neige déblayée jusqu’au fond à cet endroit) et la fin d’une partie de **memory**.
+  - Sans neige (« réduire les animations »), le flocon enfoui attend simplement tout en bas de la page des familles.
+- **Le manchot**, en bas à gauche, se tient sur la neige et monte avec elle. On le touche (ou Entrée au clavier) :
+  il donne des **devinettes** sur les cachettes (pas d’adresses) et des **anecdotes vérifiées** (les oiseaux sont des
+  dinosaures, le manchot géant Kumimanu, les dinosaures et les bébés dinosaures de l’Alaska, Nanuqsaurus…).
+- **La récompense** : au 10ᵉ flocon, une fenêtre propose le **diplôme de chasseur de flocons d’or**, au prénom réglé
+  dans `themes/hiver/theme.mjs` (`PRENOM`), signé par le Manchot et le Bonhomme de neige. Il s’ouvre dans un nouvel
+  onglet (`themes/hiver/diplome-flocons.html`, à imprimer), hors plan du site et marqué `noindex` ; sans les 10
+  flocons, il reste « sous clé » (pour le voir quand même : ajouter `#bravo` à son adresse).
+- **Les autres surprises** (`themes/hiver/surprises.js`), qui ne comptent pas pour la chasse :
+  - toucher **le dinosaure** de l’accueil : il éternue de la neige ;
+  - toucher **le volcan** de l’accueil : il crache des flocons, avec une anecdote vraie sur le mont Erebus ;
+  - taper **« neige »** au clavier : une bataille de boules de neige traverse l’écran ;
+  - écrire **« neige »**, **« manchot »**, **« pingouin »**, **« bonhomme de neige »** ou **« père noël »** dans la
+    recherche du catalogue.
+- **Le cadeau du 25 décembre** (`themes/hiver/hiver.js`) : une fois par visite, un cadeau tombe à l’écran ; on
+  l’ouvre avec le bouton « Ouvre-le ! » (ou Entrée), le nœud se défait et tombe, le couvercle s’envole, des étoiles
+  jaillissent et un message animé souhaite « Joyeux Noël, Noah ! ». Le texte se règle dans `themes/hiver/theme.mjs`
+  (`reglages.noel.cadeau`). Pour l’essayer un autre jour : ajouter `#25-decembre` à l’adresse.
+- **L’annonce des nouveautés** présente la neige, la pelle, la chasse et le diplôme ; elle n’apparaît **qu’une seule
+  fois**, même d’une visite à l’autre (mémoire durable).
 
 ## ⚠️ Avant la mise en ligne
 

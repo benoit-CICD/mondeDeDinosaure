@@ -138,6 +138,42 @@ window.Theme = (function () {
   }
   annoncerNouveautes();
 
+  /* ---------- Les bulles ----------
+     Une petite bulle de texte au-dessus d'un élément (ou en dessous, près du
+     haut de l'écran), lue aussi par les lecteurs d'écran. Une seule à la fois.
+     Elle défile avec la page, sauf pour un élément fixé à l'écran (le manchot
+     de l'hiver…), qu'elle accompagne sans bouger. */
+  var bulleActive = null, minuterieBulle = 0;
+  function estFixe(element) {
+    for (var el = element; el && el !== document.body; el = el.parentElement) {
+      if (getComputedStyle(el).position === "fixed") return true;
+    }
+    return false;
+  }
+  function bulle(element, texte, duree) {
+    fermerBulle();
+    var fixe = estFixe(element);
+    var b = document.createElement("div");
+    b.className = "bulle-theme" + (fixe ? " bulle-theme--fixe" : "");
+    b.setAttribute("aria-hidden", "true");
+    b.textContent = texte;
+    document.body.appendChild(b);
+    var r = element.getBoundingClientRect();
+    var x = Math.max(10, Math.min(r.left + r.width / 2 - b.offsetWidth / 2, document.documentElement.clientWidth - b.offsetWidth - 10));
+    var y = r.top - b.offsetHeight - 10;
+    if (y < 80) y = r.bottom + 10;
+    b.style.left = x + (fixe ? 0 : window.scrollX) + "px";
+    b.style.top = y + (fixe ? 0 : window.scrollY) + "px";
+    bulleActive = b;
+    annoncer(texte);
+    minuterieBulle = setTimeout(fermerBulle, duree || 7000);
+  }
+  function fermerBulle() {
+    clearTimeout(minuterieBulle);
+    if (bulleActive) { bulleActive.remove(); bulleActive = null; }
+  }
+  auditeurs.push(function (allume) { if (!allume) fermerBulle(); });
+
   return {
     id: config.id,
     actif: actif,
@@ -152,6 +188,9 @@ window.Theme = (function () {
     ecrireDurable: function (cle, valeur) { ecrireDans(true, cle, valeur); },
     effacerDurable: function (cle) { effacerDans(true, cle); },
     annoncer: annoncer,
+    /** Une bulle de texte près d'un élément : bulle(element, texte, duréeEnMs). */
+    bulle: bulle,
+    fermerBulle: fermerBulle,
     /** Le paragraphe du bandeau, où le thème peut ajouter ses boutons et compteurs. */
     zone: zone,
     bandeau: bandeau,
