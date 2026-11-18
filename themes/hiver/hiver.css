@@ -327,6 +327,52 @@ html:not(.hiver) .manchot { display: none; }
   .hiver .fouille__case { background: radial-gradient(circle at 30% 30%, #fff 0 2.5px, transparent 3.5px), linear-gradient(160deg, #e8f1fa, #b9cde0); }
 }
 
+/* La bataille de boules de neige (bataille.js), qui n'existe que l'hiver. */
+.bataille__consigne { margin: .3rem 0 0; text-align: center; font-size: clamp(1.15rem, 1rem + 1vw, 1.5rem); font-weight: 900; color: var(--jungle); }
+.bataille__temps { min-height: 1.6em; margin: .2rem 0 0; text-align: center; font-weight: 800; color: var(--texte-doux); }
+.bataille__terrain {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem;
+  max-width: 560px; margin: .6rem auto 0; padding: 1rem .6rem .5rem;
+  border-radius: 18px; background: linear-gradient(180deg, #cfe3f5, #f4f9fd);
+}
+@media (prefers-color-scheme: dark) { .bataille__terrain { background: linear-gradient(180deg, #1b3550, #2b4a68); } }
+.bataille__tas {
+  position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+  padding: 0; border: 0; border-radius: 12px; background: none; cursor: crosshair;
+}
+/* Le tas de neige, devant le dinosaure. */
+.bataille__tas::after {
+  content: ""; position: absolute; left: -8%; right: -8%; bottom: -34%; height: 74%;
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(ellipse at 50% 18%, #ffffff, #dbe8f4 72%);
+  box-shadow: inset 0 3px 0 rgba(255, 255, 255, .85), 0 -1px 0 rgba(140, 175, 210, .8);
+}
+.bataille__dino {
+  position: absolute; left: 6%; bottom: 10%; width: 88%; height: auto;
+  transform: translateY(90%); transition: transform .18s ease-out; pointer-events: none;
+}
+.bataille__tas--sorti .bataille__dino { transform: translateY(0); }
+.bataille__tas--touche .bataille__dino { transform: translateY(90%) rotate(-14deg); transition-duration: .35s; }
+.bataille__tas:focus-visible { outline: 3px solid var(--ambre); outline-offset: 2px; }
+.bataille__message { min-height: 1.6em; margin: .5rem 0 0; text-align: center; font-weight: 800; }
+.bataille__options { margin: .6rem 0 0; text-align: center; font-size: .92rem; }
+
+/* Les jeux de toute l'année, habillés pour l'hiver. */
+/* Détective des empreintes : la trace est dans la neige, pas dans la roche. */
+.hiver .empreinte-scene img { filter: grayscale(1) brightness(1.6) contrast(.85) sepia(.12) hue-rotate(175deg); }
+/* Memory : des dos de cartes enneigés. */
+.hiver .memory__face--dos {
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, .9) 0 2px, transparent 3px),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .8) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 40% 85%, rgba(255, 255, 255, .7) 0 1.5px, transparent 2.5px),
+    linear-gradient(140deg, #1d4f7a, #5ba3d6);
+  background-size: 34px 34px, 46px 46px, 28px 28px, 100% 100%;
+}
+/* Puzzle : un cadre givré. */
+.hiver .puzzle { padding: 8px; border-radius: 16px; background: linear-gradient(160deg, #e9f3fb, #bcd6ec); box-shadow: inset 0 0 0 2px #fff, var(--ombre); }
+@media (prefers-color-scheme: dark) { .hiver .puzzle { background: linear-gradient(160deg, #24405c, #3d6489); box-shadow: inset 0 0 0 2px #8cc8f0, var(--ombre); } }
+
 /* ---------- 13. Réduire les animations, impression ---------- */
 @media (prefers-reduced-motion: reduce) {
   .hiver *, .hiver *::before, .hiver *::after { animation: none !important; }

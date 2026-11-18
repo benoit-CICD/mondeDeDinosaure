@@ -11,10 +11,12 @@
 //   surprises.js    les autres surprises (dinosaure frileux, volcan, boules de neige…)
 //   accueil.mjs     décor de la scène de l'accueil (bonhomme de neige, sapin…)
 //   diplome.mjs     la page du diplôme
+//   bataille.mjs    la page du jeu d'hiver « La bataille de boules de neige » (jeu : bataille.js)
 //   diplome-flocons.html   cette page (GÉNÉRÉE quand le thème est actif, effacée sinon)
 
 import { fond, devant, boutons } from "./accueil.mjs";
 import { pageDiplome } from "./diplome.mjs";
+import { jeuBataille, pageBataille } from "./bataille.mjs";
 
 // Le prénom du diplôme et du cadeau de Noël.
 const PRENOM = "Noah";
@@ -65,8 +67,11 @@ export default {
 
   diplome,
 
-  // Pages propres au thème, hors plan du site. `outils` : { page, esc, site } (tools/templates.mjs).
-  pages: (outils) => [pageDiplome(outils, diplome)],
+  // Jeux du thème : ils rejoignent la salle de jeux et le menu le temps de l'hiver.
+  jeux: [jeuBataille],
+
+  // Pages propres au thème (effacées quand il est éteint). `outils` : { page, esc, site, pageJeu, entetePartie }.
+  pages: (outils) => [pageDiplome(outils, diplome), pageBataille(outils)],
 
   // Réglages lus par les scripts du thème (window.THEME.reglages).
   reglages: {
