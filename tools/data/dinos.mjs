@@ -2,8 +2,9 @@ import { dinos as p1 } from "./dinos-1.mjs";
 import { dinos as p2 } from "./dinos-2.mjs";
 import { dinos as p3 } from "./dinos-3.mjs";
 import { dinos as p4 } from "./dinos-4.mjs";
+import { dinos as p5 } from "./dinos-5.mjs";
 
-export const dinos = [...p1, ...p2, ...p3, ...p4];
+export const dinos = [...p1, ...p2, ...p3, ...p4, ...p5];
 
 // Contrôles d'intégrité : un slug en double casserait la génération des pages.
 const vus = new Set();
