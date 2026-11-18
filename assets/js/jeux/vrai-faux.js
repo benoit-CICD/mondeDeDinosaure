@@ -1,9 +1,11 @@
-/* Vrai ou faux : 10 affirmations tirées au hasard. */
+/* Vrai ou faux : 10 affirmations tirées au hasard.
+   data-affirmations sur #vf choisit la liste (VRAIFAUX par défaut, VRAIFAUX_FROID…). */
 (function () {
   "use strict";
 
   var zone = document.getElementById("vf");
-  if (!zone || !window.VRAIFAUX) return;
+  var affirmations = zone && window[zone.getAttribute("data-affirmations") || "VRAIFAUX"];
+  if (!zone || !affirmations) return;
 
   var TOTAL = 10;
   var liste = [], index = 0, score = 0, repondu = false;
@@ -20,7 +22,7 @@
   var elAnnonce = document.getElementById("vf-annonce");
 
   function demarrer() {
-    liste = Jeu.melanger(window.VRAIFAUX).slice(0, TOTAL);
+    liste = Jeu.melanger(affirmations).slice(0, TOTAL);
     index = 0; score = 0;
     elFin.hidden = true;
     elJeu.hidden = false;

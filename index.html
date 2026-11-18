@@ -12,9 +12,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Monde des Dinosaures">
-<link rel="stylesheet" href="assets/css/style.css?v=47ca8d75">
+<link rel="stylesheet" href="assets/css/style.css?v=edda9568">
 <link rel="stylesheet" href="themes/commun/commun.css?v=08cf96d6">
-<link rel="stylesheet" href="themes/hiver/hiver.css?v=c0502852">
+<link rel="stylesheet" href="themes/hiver/hiver.css?v=afde4d42">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
 <script>window.BASE = "";window.THEME = {"id":"hiver","nom":"l’hiver","deNom":"d’hiver","emoji":"❄️","message":"Il neige sur le monde des dinosaures !","detail":"Le site a mis son manteau d’hiver.","diplome":"themes/hiver/diplome-flocons.html","annonce":{"cle":"annonce-hiver-chasse","emoji":"❄️","titre":"Il neige sur le site !","texte":"La neige s’entasse en bas de l’écran… et \u003cstrong>10 flocons d’or\u003c/strong> sont cachés sur le site ! Trouve-les tous pour gagner ton \u003cstrong>diplôme\u003c/strong>.","liste":["🐧 Le manchot, en bas à gauche, te donne des devinettes.","🧤 La pelle, en bas à droite, déneige l’écran… et peut-être un trésor.","🦕 « Enlever le déguisement », sous le menu, range la neige et tout le décor."],"bouton":"❄️ C’est parti !"},"durable":true,"reglages":{"neige":{"hauteurMax":0.3333333333333333,"hauteurMaxJeux":0.1,"duree":120},"noel":{"message":"Joyeux Noël !","detail":"Il neige sur le monde des dinosaures.","cadeau":{"message":"Joyeux Noël, Noah !","sousTitre":"Le monde des dinosaures te souhaite de très belles fêtes."}}}};try{if(sessionStorage.getItem("theme:hiver:eteint")==="1")document.documentElement.classList.remove("theme-actif","hiver")}catch(e){}</script>
@@ -70,6 +70,8 @@
             <li><a href="jeux/machine-a-remonter-le-temps.html">⏳ La machine à remonter le temps</a></li>
             <li><a href="jeux/detective-des-empreintes.html">🐾 Détective des empreintes</a></li>
             <li><a href="jeux/quiz-du-cinema.html">🍿 Le quiz du cinéma</a></li>
+            <li><a href="jeux/la-fouille.html">⛏️ La fouille</a></li>
+            <li><a href="jeux/les-dinosaures-et-le-froid.html">🧊 Les dinosaures et le froid</a></li>
           </ul>
         </details></li>
         <li><details class="nav__groupe">
@@ -105,7 +107,7 @@
   <div class="conteneur heros__contenu">
     <div>
       <h1 class="heros__titre">Bienvenue dans <em>le monde des dinosaures !</em></h1>
-      <p class="heros__accroche">Explore 42 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 12 jeux pour devenir un vrai paléontologue.</p>
+      <p class="heros__accroche">Explore 42 créatures géantes, remonte le temps sur 186 millions d’années et amuse-toi avec 14 jeux pour devenir un vrai paléontologue.</p>
       <div class="heros__actions">
         <a class="bouton" href="dinosaures/index.html">🔍 Explorer les dinosaures</a>
         <a class="bouton bouton--ambre" href="jeux/index.html">🎮 Jouer maintenant</a>
@@ -235,7 +237,7 @@
       <div class="chiffre" data-anim><span class="chiffre__valeur" data-compteur="42">0</span><span class="chiffre__libelle">fiches illustrées</span></div>
       <div class="chiffre" data-anim data-delai="1"><span class="chiffre__valeur" data-compteur="186">0</span><span class="chiffre__libelle">millions d’années</span></div>
       <div class="chiffre" data-anim data-delai="2"><span class="chiffre__valeur" data-compteur="43">0</span><span class="chiffre__libelle">questions de quiz</span></div>
-      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="12">0</span><span class="chiffre__libelle">mini-jeux</span></div>
+      <div class="chiffre" data-anim data-delai="3"><span class="chiffre__valeur" data-compteur="14">0</span><span class="chiffre__libelle">mini-jeux</span></div>
     </div>
   </div>
 </section>
@@ -402,7 +404,7 @@
 <section class="section section--doux">
   <div class="conteneur">
     <h2 class="centre" data-anim>🎮 Joue et apprends</h2>
-    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Douze jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
+    <p class="centre" data-anim style="max-width:60ch;margin-inline:auto">Quatorze jeux pour tester ce que tu as appris. Aucun score n’est enregistré : joue autant de fois que tu veux !</p>
     <div class="grille" style="margin-top:2rem">
       <a class="carte" href="jeux/quiz.html" data-anim data-delai="0">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">❓</span>
@@ -474,14 +476,28 @@
           <span class="carte__texte">Les dinosaures des films et des dessins animés : 20 questions en mode facile (27) ou difficile (28).</span>
         </span>
       </a>
-      <a class="carte" href="jeux/duel-de-dinosaures.html" data-anim data-delai="4">
+      <a class="carte" href="jeux/la-fouille.html" data-anim data-delai="4">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">⛏️</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">La fouille</span>
+          <span class="carte__texte">Un dinosaure est caché sous la terre (ou sous la neige, en hiver) : dégage-le case par case et devine qui c’est.</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/les-dinosaures-et-le-froid.html" data-anim data-delai="5">
+        <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🧊</span>
+        <span class="carte__corps">
+          <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Les dinosaures et le froid</span>
+          <span class="carte__texte">Un vrai ou faux sur les dinosaures des pôles, la neige et la glace : 16 affirmations.</span>
+        </span>
+      </a>
+      <a class="carte" href="jeux/duel-de-dinosaures.html" data-anim data-delai="0">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">⚔️</span>
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Duel de dinosaures</span>
           <span class="carte__texte">Deux dinosaures face à face : lequel gagne le combat ? Cinq duels, et une explication à chaque fois.</span>
         </span>
       </a>
-      <a class="carte" href="jeux/le-roi-de-la-tour.html" data-anim data-delai="5">
+      <a class="carte" href="jeux/le-roi-de-la-tour.html" data-anim data-delai="1">
         <span class="carte__media" style="padding:1.4rem;text-align:center;font-size:2.6rem" aria-hidden="true">🏰</span>
         <span class="carte__corps">
           <span class="carte__titre" style="font-weight:800;font-size:1.16rem">Le roi de la tour</span>
@@ -583,6 +599,8 @@
           <li><a href="jeux/machine-a-remonter-le-temps.html">La machine à remonter le temps</a></li>
           <li><a href="jeux/detective-des-empreintes.html">Détective des empreintes</a></li>
           <li><a href="jeux/quiz-du-cinema.html">Le quiz du cinéma</a></li>
+          <li><a href="jeux/la-fouille.html">La fouille</a></li>
+          <li><a href="jeux/les-dinosaures-et-le-froid.html">Les dinosaures et le froid</a></li>
           <li><a href="jeux/duel-de-dinosaures.html">Duel de dinosaures</a></li>
           <li><a href="jeux/le-roi-de-la-tour.html">Le roi de la tour</a></li>
         </ul>

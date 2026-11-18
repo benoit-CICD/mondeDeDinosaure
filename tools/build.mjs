@@ -17,13 +17,13 @@ import { illustration } from "./svg.mjs";
 import { oeufSvg, empreinteSvg } from "./svg-traces.mjs";
 import { oeufs } from "./data/oeufs.mjs";
 import { empreintes } from "./data/empreintes.mjs";
-import { listeJeux } from "./data/jeux.mjs";
+import { listeJeux, cheminScript } from "./data/jeux.mjs";
 import { themes, themeActif, fichiersDuTheme } from "../themes/themes.mjs";
 import { verifierBareme } from "./data/affrontements.mjs";
 import { pageAccueil } from "./pages/accueil.mjs";
 import { pageCatalogue, pagesFamilles, pagesPeriodes, pageFrise } from "./pages/listes.mjs";
 import { pagesFiches } from "./pages/fiche.mjs";
-import { pagesJeux, fichierDonnees } from "./pages/jeux.mjs";
+import { pagesJeux, fichierDonnees, pageJeu, entetePartie } from "./pages/jeux.mjs";
 import { pagesInfos, pagePlan, page404 } from "./pages/infos.mjs";
 import { pagesDossiers } from "./pages/dossiers.mjs";
 import { pagesCinema } from "./pages/cinema.mjs";
@@ -41,7 +41,7 @@ const { css: cssTheme, js: jsTheme } = fichiersDuTheme(theme);
 const fichiersTheme = [...cssTheme, ...jsTheme];
 
 /* Ce que le générateur prête aux pages des thèmes (themes/<id>/theme.mjs). */
-const outilsTheme = { page, esc, site };
+const outilsTheme = { page, esc, site, pageJeu, entetePartie };
 
 let compteFichiers = 0;
 function ecrire(chemin, contenu) {
@@ -199,7 +199,7 @@ const cheminsAssets = new Set([
   "assets/js/jeux/commun.js",
   "assets/js/jeux/affrontement.js",
   ...fichiersTheme,
-  ...listeJeux.map((j) => `assets/js/jeux/${j.script}`),
+  ...listeJeux.map(cheminScript),
   "assets/img/favicon.svg",
   ...oeufs.map((o) => `assets/img/oeufs/${o.id}.svg`),
   ...empreintes.map((e) => `assets/img/empreintes/${e.id}.svg`),
@@ -251,7 +251,7 @@ Object.entries(redirections).forEach(([ancien, nouveau]) => {
 
 /* Les scripts des jeux sont écrits à la main : chacun doit exister. */
 listeJeux.forEach((j) => {
-  if (!existsSync(join(RACINE, "assets/js/jeux", j.script))) erreurs.push(`assets/js/jeux/${j.script} → script de jeu introuvable`);
+  if (!existsSync(join(RACINE, cheminScript(j)))) erreurs.push(`${cheminScript(j)} → script de jeu introuvable`);
 });
 
 /* Une seule balise h1 par page. */

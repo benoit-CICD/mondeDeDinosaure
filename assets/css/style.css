@@ -581,6 +581,35 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
 .puzzle__piece[data-place="true"] { border-color: #4fa96f; }
 .puzzle__piece > div { width: 100%; height: 100%; background-repeat: no-repeat; }
 
+/* La fouille : des cases de terre posées sur l'illustration plein cadre
+   (de neige avec le thème d'hiver, voir themes/hiver/hiver.css). */
+.fouille__consigne { text-align: center; font-weight: 700; margin: .2rem 0 .7rem; }
+.fouille__plateau {
+  position: relative; max-width: 480px; margin: 0 auto; aspect-ratio: 10 / 7;
+  border-radius: 16px; overflow: hidden; box-shadow: var(--ombre);
+}
+.fouille__image { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.fouille__cases {
+  position: absolute; inset: 0;
+  display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(4, 1fr);
+}
+.fouille__case {
+  margin: 0; padding: 0; border: 0; cursor: pointer;
+  background:
+    radial-gradient(circle at 28% 34%, rgba(40, 22, 8, .28) 0 3px, transparent 4px),
+    radial-gradient(circle at 72% 68%, rgba(255, 236, 205, .28) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 60% 22%, rgba(40, 22, 8, .2) 0 2px, transparent 3px),
+    linear-gradient(160deg, #9a6b43, #7a4f2c);
+  box-shadow: inset 0 0 0 1px rgba(60, 35, 15, .45);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.fouille__case:nth-child(even) { background-position: 6px 4px, -5px 3px, 3px -4px, 0 0; }
+.fouille__case:hover:not(:disabled) { filter: brightness(1.15); }
+.fouille__case:focus-visible { position: relative; z-index: 1; outline: 3px solid var(--ambre); outline-offset: -3px; }
+.fouille__case--degagee, .fouille__plateau--revele .fouille__case { opacity: 0; transform: scale(.6); cursor: default; }
+.fouille__outils { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4rem .9rem; margin: .8rem 0 0; }
+.fouille__compte { font-size: .9rem; font-weight: 700; color: var(--texte-doux); }
+
 /* Qui suis-je */
 .indices { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .55rem; }
 .indices li {

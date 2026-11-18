@@ -314,7 +314,20 @@ html:not(.hiver) .manchot { display: none; }
   .diplome .diplome__signe { width: 100%; }
 }
 
-/* ---------- 12. Réduire les animations, impression ---------- */
+/* ---------- 12. Les jeux en hiver ---------- */
+/* La fouille : des cases de neige au lieu de la terre (fouille.js parle alors de déneiger). */
+.hiver .fouille__case {
+  background:
+    radial-gradient(circle at 30% 30%, #fff 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 66% 70%, rgba(150, 185, 220, .55) 0 2px, transparent 3px),
+    linear-gradient(160deg, #ffffff, #d9e7f4);
+  box-shadow: inset 0 0 0 1px rgba(140, 175, 210, .65);
+}
+@media (prefers-color-scheme: dark) {
+  .hiver .fouille__case { background: radial-gradient(circle at 30% 30%, #fff 0 2.5px, transparent 3.5px), linear-gradient(160deg, #e8f1fa, #b9cde0); }
+}
+
+/* ---------- 13. Réduire les animations, impression ---------- */
 @media (prefers-reduced-motion: reduce) {
   .hiver *, .hiver *::before, .hiver *::after { animation: none !important; }
   .cadeau__etincelle { display: none; }
