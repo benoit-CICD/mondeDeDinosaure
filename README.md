@@ -11,19 +11,19 @@ Conçu **mobile-first** : la lecture sur tablette et smartphone est le cas d’u
 
 | Rubrique | Détail |
 |---|---|
-| **38 fiches** de créatures | Illustration, carte d’identité, textes, anecdotes, comparaison de taille |
+| **42 fiches** de créatures | Illustration, carte d’identité, textes, anecdotes, comparaison de taille |
 | **3 périodes** | Trias, Jurassique, Crétacé |
 | **10 familles** | Théropodes, sauropodes, cératopsiens… dont 2 groupes de *cousins* (ptérosaures, reptiles marins) |
 | **1 frise du temps** | 186 millions d’années, chaque créature placée à son époque |
 | **4 dossiers** | La grande extinction · Le métier de paléontologue · Œufs et bébés dinosaures · L’ère glaciaire |
 | **1 rubrique Cinéma** | Un siècle de dinosaures à l’écran · Les effets spéciaux · Film ou réalité ? (les erreurs des films) |
-| **12 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes · Le quiz du cinéma (niveau facile ou difficile) · Duel de dinosaures · Le roi de la tour |
+| **14 mini-jeux** | Quiz · Vrai ou faux · Qui suis-je ? · Memory · Puzzle · Retrouve la maman · Plus grand ou plus petit ? · La machine à remonter le temps · Détective des empreintes · Le quiz du cinéma (niveau facile ou difficile) · La fouille · Les dinosaures et le froid · Duel de dinosaures · Le roi de la tour (+ la bataille de boules de neige, pendant le thème d’hiver) |
 | **1 rubrique Affrontement de dinos** | Les deux jeux de duels, et comment le jeu décide du vainqueur |
 | **Pages légales** | Mentions légales, confidentialité, accessibilité, plan du site |
 
-**87 pages HTML** au total (88 avec le thème d’Halloween, qui ajoute son diplôme hors plan du site), plus 12 petites pages qui redirigent les anciennes adresses.
+**93 pages HTML** au total sans thème (94 avec Halloween et son diplôme, 95 avec l’hiver, son diplôme et sa bataille de boules de neige), plus 12 petites pages qui redirigent les anciennes adresses.
 
-Les idées pour les prochaines mises à jour (dont le jeu de la fouille) sont notées dans [`IDEES.md`](IDEES.md).
+Les idées pour les prochaines mises à jour sont notées dans [`IDEES.md`](IDEES.md).
 
 ---
 
@@ -55,7 +55,7 @@ index.html                                   l'accueil
 404.html, a-propos.html, mentions-legales.html, confidentialite.html,
 accessibilite.html, credits.html, plan-du-site.html
                                              pages pratiques, restées à la racine
-dinosaures/index.html, dinosaures/<slug>.html   le catalogue et les 38 fiches
+dinosaures/index.html, dinosaures/<slug>.html   le catalogue et les 42 fiches
 familles/index.html, familles/<slug>.html
 periodes/index.html, periodes/<slug>.html, periodes/frise.html
 jeux/index.html, jeux/<slug>.html            la salle de jeux et les mini-jeux
@@ -287,7 +287,9 @@ Les pages Confidentialité et Accessibilité s’adaptent toutes seules au thèm
    `themes/hiver/theme.mjs` : nom, message du bandeau, ce qu’il garde en mémoire (`memoire`, `memoireDurable`,
    et `effacerAvec` : le bouton qui efface la mémoire durable),
    feuilles de style et scripts (`css`, `js`), et si besoin le décor de l’accueil (`accueil`), l’annonce des
-   nouveautés (`annonce`), des réglages pour ses scripts (`reglages`), un diplôme (`diplome`) et des pages en plus (`pages`).
+   nouveautés (`annonce`), des réglages pour ses scripts (`reglages`), un diplôme (`diplome`), des pages en plus (`pages`)
+   et des jeux qui n’existent que le temps du thème (`jeux` : ils rejoignent la salle de jeux et le menu ; leur page,
+   générée par `pages` avec l’outil `pageJeu`, est effacée quand le thème est éteint).
 2. Écrire sa feuille de style : couleurs et décor, rangés sous `html.<id>` ; les couleurs du bandeau
    passent par `--theme-bandeau-fond`, `--theme-bandeau-texte` et `--theme-accent`, le cadre des fenêtres par
    `--theme-cadre`, et le voile derrière elles par `.dialogue-theme::backdrop`.
@@ -382,6 +384,16 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   (`reglages.noel.cadeau`). Pour l’essayer un autre jour : ajouter `#25-decembre` à l’adresse.
 - **L’annonce des nouveautés** présente la neige, la pelle, la chasse et le diplôme ; elle n’apparaît **qu’une seule
   fois**, même d’une visite à l’autre (mémoire durable).
+- **Les jeux** :
+  - **La bataille de boules de neige** (`themes/hiver/bataille.mjs` et `bataille.js`), qui n’existe que pendant
+    l’hiver : quatre manches de 15 secondes, une consigne par manche (herbivores, carnivores, Crétacé, Jurassique,
+    « pas des dinosaures »), des dinosaures qui surgissent de six tas de neige ; +1 pour un bon lancer, −1 pour un
+    mauvais. Un mode tranquille ralentit le jeu ; il se joue aussi au clavier.
+  - **La fouille** (jeu de toute l’année, `assets/js/jeux/fouille.js`) se joue dans la **neige** au lieu de la terre.
+  - **Habillages** : la trace du Détective des empreintes est dans la neige, les cartes du memory ont un dos enneigé,
+    le puzzle a un cadre givré.
+- **Les dinosaures du froid** ont leur fiche toute l’année (`tools/data/dinos-5.mjs`) : Pachyrhinosaurus,
+  Edmontosaurus, Nanuqsaurus et Leaellynasaura, comme le vrai ou faux « Les dinosaures et le froid ».
 
 ## ⚠️ Avant la mise en ligne
 

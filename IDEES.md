@@ -6,9 +6,14 @@ Une liste d'idées validées ou à creuser. Rien ici n'est encore développé.
 
 ## Mini-jeux
 
-### ⛏️ La fouille — *prévue pour une prochaine mise à jour*
+### ⛏️ La fouille — *réalisée : `jeux/la-fouille.html`*
 
-Le joueur dégage un fossile enfoui, puis l'identifie.
+Le joueur dégage un fossile enfoui, puis l'identifie. Le jeu existe désormais (des cases de terre, ou de neige
+pendant le thème d'hiver, sur les illustrations plein cadre du puzzle). Il reste à faire :
+- des squelettes simplifiés à la place des illustrations, pour une vraie fouille d'os ;
+- la variante du plâtre, ci-dessous.
+
+Les notes de départ :
 
 - **Principe** : une grille de cases de terre recouvre un squelette. Chaque coup de pinceau dégage une case.
   Quand assez d'os apparaissent, on devine de quelle créature il s'agit.
