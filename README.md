@@ -339,13 +339,14 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
 - **Couleurs** bleu glacier (clair et sombre), liseré de givre sous le menu, et sur l’accueil un paysage enneigé :
   sol et sommets blancs, neige sur le volcan et les fougères, bonhomme de neige, écharpe rayée pour le dinosaure.
 - **La neige** (`themes/hiver/neige.js`) tombe dès l’arrivée et **s’entasse en bas de l’écran**, jusqu’à
-  **un tiers** de sa hauteur en **deux minutes** ; sur les pages de jeux (`jeux/…`), elle s’arrête à **10 %** pour ne pas
+  **un tiers** de sa hauteur en **cinq minutes** ; sur les pages de jeux (`jeux/…`), elle s’arrête à **10 %** pour ne pas
   gêner la partie. Ces trois valeurs se règlent dans `themes/hiver/theme.mjs` (`reglages.neige`).
   - C’est un calque posé devant la page, qui laisse passer les clics. La forme de la neige est gardée dans la mémoire
     de la visite : on la retrouve d’une page à l’autre. Sur une page de jeu, elle est seulement affichée moins haut
     (on retrouve toute la couche en sortant du jeu, sauf si on y a déneigé).
-  - **La pelle** : le bouton **« Prendre la pelle »**, en bas à droite, apparaît dès que la neige tient. La pelle suit
-    la souris ou le doigt et déblaie la neige sur son passage, avec de petites gerbes ; elle ne travaille qu’en bas
+  - **La pelle** : le bouton **« Prendre la pelle »**, en bas à droite, apparaît dès que la neige tient. La pelle
+    (une vraie pelle à neige dessinée : lame rouge bordée d’acier, manche en bois, poignée en D) suit la souris ou
+    le doigt, penche dans le sens du geste et déblaie la neige sur son passage, avec de petites gerbes ; elle ne travaille qu’en bas
     de l’écran, le reste de la page reste utilisable. Échap ou « Poser la pelle » la repose.
     **Au clavier**, le même bouton déneige tout l’écran d’un coup.
   - Rien ne reste caché pour de bon : la page gagne en bas une marge de la hauteur de la neige, et un élément atteint
@@ -386,9 +387,16 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   fois**, même d’une visite à l’autre (mémoire durable).
 - **Les jeux** :
   - **La bataille de boules de neige** (`themes/hiver/bataille.mjs` et `bataille.js`), qui n’existe que pendant
-    l’hiver : quatre manches de 15 secondes, une consigne par manche (herbivores, carnivores, Crétacé, Jurassique,
-    « pas des dinosaures »), des dinosaures qui surgissent de six tas de neige ; +1 pour un bon lancer, −1 pour un
-    mauvais. Un mode tranquille ralentit le jeu ; il se joue aussi au clavier.
+    l’hiver. Des dinosaures surgissent de six tas de neige ; la boule de neige vole jusqu’à eux, et c’est à son
+    arrivée qu’ils sont touchés et retombent. Trois niveaux :
+    - **facile** : une manche de 60 secondes avec compte à rebours, tous les dinosaures comptent ;
+    - **moyen** : deux manches de 20 secondes, seulement les **raptors** (montrés au-dessus du terrain). À la
+      première, un autre dinosaure ne rapporte rien ; à la seconde, il fait perdre un point. Des pièges sortent
+      souvent : Oviraptor et Eoraptor ont « raptor » dans leur nom sans être des raptors ;
+    - **difficile** : quatre manches de 15 secondes, une consigne par manche (herbivores, carnivores, Crétacé,
+      Jurassique, « pas des dinosaures »), +1 pour un bon lancer, −1 pour un mauvais.
+
+    Un mode tranquille laisse les dinosaures plus longtemps à découvert ; le jeu se joue aussi au clavier.
   - **La fouille** (jeu de toute l’année, `assets/js/jeux/fouille.js`) se joue dans la **neige** au lieu de la terre.
   - **Habillages** : la trace du Détective des empreintes est dans la neige, les cartes du memory ont un dos enneigé,
     le puzzle a un cadre givré.

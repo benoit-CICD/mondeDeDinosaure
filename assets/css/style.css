@@ -753,7 +753,7 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
 .resultat__note { font-size: clamp(2.4rem, 2rem + 3vw, 3.6rem); font-weight: 900; color: var(--jungle); line-height: 1; }
 .resultat__medaille { font-size: 3.4rem; animation: sautille 1s ease; }
 
-/* Quiz du cinéma : choix du niveau */
+/* Choix du niveau (quiz du cinéma, bataille de boules de neige) */
 .niveaux__choix { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: 1rem; }
 .niveau {
   display: flex; flex-direction: column; align-items: flex-start; gap: .45rem;
@@ -766,6 +766,8 @@ a.carte:hover .carte__media img { animation: sautille .7s cubic-bezier(.34,1.56,
 .niveau--difficile { border-top-color: var(--volcan); }
 .niveau:hover { transform: translateY(-3px); border-color: var(--jungle); }
 .niveau--difficile:hover { border-color: var(--volcan); }
+.niveau--moyen { border-top-color: var(--ambre); }
+.niveau--moyen:hover { border-color: var(--ambre); }
 .niveau__emoji { font-size: 2.4rem; line-height: 1; }
 .niveau__nom { font-size: 1.35rem; font-weight: 900; }
 .niveau__texte { font-weight: 600; color: var(--texte-doux); }

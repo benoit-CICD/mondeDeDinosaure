@@ -79,7 +79,7 @@ export default {
     neige: {
       hauteurMax: 1 / 3,     // part de la hauteur de l'écran que la neige peut couvrir
       hauteurMaxJeux: 0.1,   // sur les pages de jeux (jeux/…), pour ne pas gêner la partie
-      duree: 120,            // secondes pour atteindre la hauteur maximale
+      duree: 300,            // secondes pour atteindre la hauteur maximale (5 minutes)
     },
     // La touche de Noël, en décembre (hiver.js). Pour l'essayer un autre mois :
     // ajouter #noel au bout de l'adresse ; pour le cadeau du 25 : #25-decembre.

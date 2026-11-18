@@ -125,13 +125,17 @@ html.hiver.noel {
   color: #12324f; background: #fff; border: 2px solid #8dbfe6; border-radius: 999px;
   box-shadow: 0 4px 16px rgba(18, 50, 79, .28); cursor: pointer;
 }
-.pelle-bouton svg { width: 22px; height: 22px; flex: none; }
+.pelle-bouton svg { width: 30px; height: 30px; margin: -4px 0; flex: none; }
+.pelle-icone__poignee { stroke: #2b2f33; }
+.pelle-bouton[aria-pressed="true"] .pelle-icone__poignee { stroke: #fff; }
 .pelle-bouton:hover { border-color: var(--jungle); }
 .pelle-bouton[aria-pressed="true"] { color: #fff; background: #1d4f7a; border-color: #1d4f7a; }
 .pelle-bouton:focus-visible { outline: 3px solid var(--ambre); outline-offset: 3px; }
 @media (prefers-color-scheme: dark) {
   .pelle-bouton { color: var(--texte); background: var(--fond-carte); border-color: #4d7aa3; }
   .pelle-bouton[aria-pressed="true"] { color: #0b1824; background: #8cc8f0; border-color: #8cc8f0; }
+  .pelle-icone__poignee { stroke: #e6edf3; }
+  .pelle-bouton[aria-pressed="true"] .pelle-icone__poignee { stroke: #0b1824; }
 }
 html:not(.theme-actif) .neige, html:not(.theme-actif) .neige-zone, html:not(.theme-actif) .pelle-bouton { display: none !important; }
 
@@ -328,10 +332,39 @@ html:not(.hiver) .manchot { display: none; }
 }
 
 /* La bataille de boules de neige (bataille.js), qui n'existe que l'hiver. */
+/* Le choix du niveau : vert, orange, rouge (le thème change l'ambre et le vert en bleu). */
+#bataille .niveaux__choix { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+#bataille .niveau { --couleur-niveau: #2f8a4c; border-top-color: var(--couleur-niveau); }
+#bataille .niveau--moyen { --couleur-niveau: #d9821c; }
+#bataille .niveau--difficile { --couleur-niveau: var(--volcan); }
+#bataille .niveau:hover { border-color: var(--couleur-niveau); }
+@media (prefers-color-scheme: dark) {
+  #bataille .niveau { --couleur-niveau: #5cc27a; }
+  #bataille .niveau--moyen { --couleur-niveau: #f0a64a; }
+  #bataille .niveau--difficile { --couleur-niveau: var(--volcan); }
+}
 .bataille__consigne { margin: .3rem 0 0; text-align: center; font-size: clamp(1.15rem, 1rem + 1vw, 1.5rem); font-weight: 900; color: var(--jungle); }
-.bataille__temps { min-height: 1.6em; margin: .2rem 0 0; text-align: center; font-weight: 800; color: var(--texte-doux); }
+.bataille__regle { margin: .2rem 0 0; text-align: center; font-weight: 700; color: var(--texte-doux); }
+/* Au niveau moyen : les raptors à viser. */
+.bataille__modeles { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1.1rem; margin: .5rem 0 0; padding: 0; list-style: none; }
+.bataille__modeles li { display: flex; flex-direction: column; align-items: center; font-size: .82rem; font-weight: 800; }
+.bataille__modeles img { width: 78px; height: auto; }
+/* Le chronomètre : une barre qui se vide, et les secondes. */
+.bataille__chrono { display: flex; align-items: center; gap: .7rem; max-width: 560px; margin: .6rem auto 0; }
+.bataille__chrono-barre {
+  flex: 1; height: 12px; overflow: hidden; border-radius: 999px;
+  background: var(--fond-doux); box-shadow: inset 0 0 0 1px rgba(77, 122, 163, .35);
+}
+.bataille__chrono-barre span {
+  display: block; width: 100%; height: 100%; border-radius: inherit;
+  background: linear-gradient(90deg, #4c9ad6, #8cc8f0); transition: width .1s linear;
+}
+.bataille__chrono-texte { min-width: 4.4em; text-align: right; font-size: 1.2rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+.bataille__chrono--fin .bataille__chrono-barre span { background: linear-gradient(90deg, var(--volcan), #e8735f); }
+.bataille__chrono--fin .bataille__chrono-texte { color: var(--volcan); animation: bataille-pouls .5s ease-in-out infinite alternate; }
+@keyframes bataille-pouls { to { transform: scale(1.14); } }
 .bataille__terrain {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem;
+  position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem;
   max-width: 560px; margin: .6rem auto 0; padding: 1rem .6rem .5rem;
   border-radius: 18px; background: linear-gradient(180deg, #cfe3f5, #f4f9fd);
 }
@@ -352,9 +385,26 @@ html:not(.hiver) .manchot { display: none; }
   transform: translateY(90%); transition: transform .18s ease-out; pointer-events: none;
 }
 .bataille__tas--sorti .bataille__dino { transform: translateY(0); }
-.bataille__tas--touche .bataille__dino { transform: translateY(90%) rotate(-14deg); transition-duration: .35s; }
+.bataille__tas--touche .bataille__dino { transform: translateY(90%) rotate(-14deg); animation: bataille-touche .5s ease-in; }
+/* Touché : le dinosaure recule sous le choc, puis retombe derrière son tas. */
+@keyframes bataille-touche {
+  0% { transform: translateY(0); }
+  25% { transform: translate(-4%, -4%) rotate(-10deg); }
+  100% { transform: translateY(90%) rotate(-14deg); }
+}
+/* Le grand compte à rebours (3, 2, 1…), au milieu du terrain. */
+.bataille__decompte {
+  position: absolute; inset: 0; z-index: 2; display: grid; place-items: center;
+  margin: 0; padding: 0 1rem; pointer-events: none; text-align: center;
+  font-size: clamp(3.2rem, 2rem + 6vw, 5.5rem); font-weight: 900; line-height: 1.1; color: #fff;
+  text-shadow: 0 3px 0 #1d4f7a, 0 6px 18px rgba(18, 50, 79, .45);
+}
+.bataille__decompte[hidden] { display: none; }
+.bataille__decompte--texte { font-size: clamp(1.9rem, 1.3rem + 3vw, 2.9rem); }
 .bataille__tas:focus-visible { outline: 3px solid var(--ambre); outline-offset: 2px; }
 .bataille__message { min-height: 1.6em; margin: .5rem 0 0; text-align: center; font-weight: 800; }
+.bataille__message--bon { color: var(--jungle); }
+.bataille__message--faux { color: var(--volcan); }
 .bataille__options { margin: .6rem 0 0; text-align: center; font-size: .92rem; }
 
 /* Les jeux de toute l'année, habillés pour l'hiver. */
