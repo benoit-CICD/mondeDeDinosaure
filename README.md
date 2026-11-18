@@ -271,8 +271,11 @@ themes/
   seulement pour un thème qui la déclare (`memoireDurable` dans `theme.mjs`), sinon elle retombe sur la mémoire
   de la visite. La page Confidentialité dit ainsi toujours la vérité ;
 - l’**annonce des nouveautés** (`annonce` dans `theme.mjs`) : une fenêtre sur la page d’accueil, montrée une seule fois.
-  Elle se ferme avec le bouton, la croix, Échap ou un clic à côté, et ne revient plus : de la visite, ou pour de bon
-  si le thème a une mémoire durable. Pour une prochaine annonce, changer sa clé (`cle`) et son texte ;
+  Son contenu : `emoji`, `titre`, `texte`, `bouton`, puis soit une `liste`, soit des `rubriques` (`{ titre, liste }`,
+  sur deux colonnes quand il y a la place, avec le bouton toujours visible en bas) suivies d’un `pied`.
+  Elle se ferme avec le bouton, la croix, Échap ou un clic à côté (suivre un de ses liens compte aussi), et ne revient
+  plus : de la visite, ou pour de bon si le thème a une mémoire durable. Pour une prochaine annonce, changer sa clé
+  (`cle`) et son texte ;
 - `window.Theme`, sur lequel se branche le script du thème : `actif()`, `surAccueil()`, `reglages` (les `reglages`
   de `theme.mjs`), `lire()` / `ecrire()` (mémoire de la visite), `lireDurable()` / `ecrireDurable()` /
   `effacerDurable()` (mémoire durable), `annoncer()` (pour les lecteurs d’écran), `bulle(element, texte, durée)`
@@ -383,8 +386,10 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   l’ouvre avec le bouton « Ouvre-le ! » (ou Entrée), le nœud se défait et tombe, le couvercle s’envole, des étoiles
   jaillissent et un message animé souhaite « Joyeux Noël, Noah ! ». Le texte se règle dans `themes/hiver/theme.mjs`
   (`reglages.noel.cadeau`). Pour l’essayer un autre jour : ajouter `#25-decembre` à l’adresse.
-- **L’annonce des nouveautés** présente la neige, la pelle, la chasse et le diplôme ; elle n’apparaît **qu’une seule
-  fois**, même d’une visite à l’autre (mémoire durable).
+- **L’annonce des nouveautés** présente tout l’hiver en cinq rubriques : partout sur le site (neige, pelle, manchot,
+  surprises), la chasse aux flocons d’or et le diplôme, les nouveaux jeux (avec leurs liens), les dinosaures du froid
+  (liens vers les 4 fiches) et Noël (décembre, cadeau du 25). Elle n’apparaît **qu’une seule fois**, même d’une visite
+  à l’autre (mémoire durable, clé `annonce-hiver-nouveautes`).
 - **Les jeux** :
   - **La bataille de boules de neige** (`themes/hiver/bataille.mjs` et `bataille.js`), qui n’existe que pendant
     l’hiver. Des dinosaures surgissent de six tas de neige ; la boule de neige vole jusqu’à eux, et c’est à son

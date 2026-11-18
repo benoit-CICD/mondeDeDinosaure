@@ -96,24 +96,36 @@ window.Theme = (function () {
   majInterrupteur();
 
   /* ---------- L'annonce des nouveautés ----------
-     Réglée dans theme.mjs (annonce : cle, emoji, titre, texte, liste, bouton).
+     Réglée dans theme.mjs (annonce : cle, emoji, titre, texte, bouton, et au
+     choix une liste, ou des rubriques {titre, liste} suivies d'un pied).
      Une seule fois, sur l'accueil : la fermer (bouton, croix, Échap ou clic à
-     côté) la range dans la mémoire, durable si le thème en a une. Pour annoncer
-     de nouvelles nouveautés, changer la clé dans theme.mjs. */
+     côté) ou suivre un de ses liens la range dans la mémoire, durable si le
+     thème en a une. Pour annoncer de nouvelles nouveautés, changer la clé
+     dans theme.mjs. */
+  function listeAnnonce(liste, classe) {
+    return '<ul class="dialogue-theme__liste' + (classe || "") + '">' +
+      liste.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul>";
+  }
   function annoncerNouveautes() {
     var a = config.annonce;
     if (!a || !actif() || !surAccueil() || lireDans(true, a.cle) === "vue") return;
+    var longue = !!(a.rubriques && a.rubriques.length);
     var d = document.createElement("dialog");
-    d.className = "dialogue-theme";
+    d.className = "dialogue-theme" + (longue ? " dialogue-theme--rubriques" : "");
     d.setAttribute("aria-labelledby", "annonce-titre");
     d.innerHTML =
       '<button type="button" class="dialogue-theme__fermer" aria-label="Fermer l’annonce" data-fermer>✕</button>' +
       '<p class="dialogue-theme__emoji" aria-hidden="true">' + a.emoji + "</p>" +
-      '<h2 id="annonce-titre">' + a.titre + "</h2>" +
+      '<h2 id="annonce-titre" tabindex="-1">' + a.titre + "</h2>" +
       "<p>" + a.texte + "</p>" +
-      (a.liste && a.liste.length
-        ? '<ul class="dialogue-theme__liste">' + a.liste.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul>"
+      (a.liste && a.liste.length ? listeAnnonce(a.liste) : "") +
+      (longue
+        ? '<div class="dialogue-theme__rubriques">' + a.rubriques.map(function (r) {
+            return '<section><h3 class="dialogue-theme__rubrique">' + r.titre + "</h3>" +
+              listeAnnonce(r.liste, " dialogue-theme__liste--rubrique") + "</section>";
+          }).join("") + "</div>"
         : "") +
+      (a.pied ? '<p class="dialogue-theme__pied">' + a.pied + "</p>" : "") +
       '<p class="dialogue-theme__actions"><button type="button" class="bouton" data-fermer>' + a.bouton + "</button></p>";
     document.body.appendChild(d);
     var fermer = function () {
@@ -122,6 +134,9 @@ window.Theme = (function () {
       d.remove();
     };
     Array.prototype.forEach.call(d.querySelectorAll("[data-fermer]"), function (b) { b.addEventListener("click", fermer); });
+    Array.prototype.forEach.call(d.querySelectorAll("a[href]"), function (lien) {
+      lien.addEventListener("click", function () { ecrireDans(true, a.cle, "vue"); });
+    });
     d.addEventListener("cancel", function (e) { e.preventDefault(); fermer(); });
     /* Clic sur le fond sombre, autour de la fenêtre : on ferme aussi. */
     d.addEventListener("click", function (e) {
@@ -133,7 +148,11 @@ window.Theme = (function () {
       if (!actif()) { d.remove(); return; }
       if (typeof d.showModal === "function") d.showModal();
       else d.setAttribute("open", "");
-      d.querySelector(".bouton").focus();
+      /* Une longue annonce se lit depuis le haut : le titre prend le focus. */
+      if (longue) {
+        d.querySelector("h2").focus({ preventScroll: true });
+        d.scrollTop = 0;
+      } else d.querySelector(".bouton").focus();
     }, 700);
   }
   annoncerNouveautes();

@@ -52,16 +52,55 @@ export default {
 
   // La fenêtre des nouveautés, une seule fois sur l'accueil (gardée d'une visite à l'autre).
   // Pour une prochaine annonce : changer la clé et le texte. 10 = les cachettes de chasse.js.
+  // Les liens partent de l'accueil (la fenêtre ne s'ouvre que là).
   annonce: {
-    cle: "annonce-hiver-chasse",
+    cle: "annonce-hiver-nouveautes",
     emoji: "❄️",
     titre: "Il neige sur le site !",
-    texte: "La neige s’entasse en bas de l’écran… et <strong>10 flocons d’or</strong> sont cachés sur le site ! Trouve-les tous pour gagner ton <strong>diplôme</strong>.",
-    liste: [
-      "🐧 Le manchot, en bas à gauche, te donne des devinettes.",
-      "🧤 La pelle, en bas à droite, déneige l’écran… et peut-être un trésor.",
-      "🦕 « Enlever le déguisement », sous le menu, range la neige et tout le décor.",
+    texte: "Le monde des dinosaures a mis son manteau d’hiver. Voici tout ce qui t’attend :",
+    rubriques: [
+      {
+        titre: "Partout sur le site",
+        liste: [
+          "🌨️ La <strong>neige</strong> tombe et s’entasse en bas de l’écran.",
+          "🧤 Enfile tes gants : la <strong>pelle</strong>, en bas à droite, déneige l’écran… et cache peut-être un trésor.",
+          "🐧 Le <strong>manchot</strong>, en bas à gauche, te pose des devinettes.",
+          "🤫 Et des <strong>surprises</strong> un peu partout : clique, tape, explore !",
+        ],
+      },
+      {
+        titre: "La chasse aux flocons d’or",
+        liste: [
+          "✨ <strong>10 flocons d’or</strong> sont cachés sur le site.",
+          "🎓 Trouve-les tous pour gagner ton <strong>diplôme</strong> ! Ta chasse est gardée sur cet appareil : tu peux la continuer un autre jour.",
+        ],
+      },
+      {
+        titre: "De nouveaux jeux",
+        liste: [
+          "☃️ <a href=\"jeux/bataille-de-boules-de-neige.html\">La bataille de boules de neige</a>, seulement l’hiver : trois niveaux, du plus simple au plus malin.",
+          "⛏️ <a href=\"jeux/la-fouille.html\">La fouille</a> : déneige les cases pour découvrir le dinosaure caché dessous.",
+          "🧊 <a href=\"jeux/les-dinosaures-et-le-froid.html\">Les dinosaures et le froid</a> : un vrai ou faux tout neuf.",
+          "🐾 Des jeux en tenue d’hiver : empreintes dans la neige, memory enneigé, puzzle givré.",
+        ],
+      },
+      {
+        titre: "Les dinosaures du froid",
+        liste: [
+          "📖 Quatre nouvelles fiches sur des dinosaures du froid, dont certains vivaient tout près des pôles : " +
+            "<a href=\"dinosaures/pachyrhinosaurus.html\">Pachyrhinosaurus</a>, <a href=\"dinosaures/edmontosaurus.html\">Edmontosaurus</a>, " +
+            "<a href=\"dinosaures/nanuqsaurus.html\">Nanuqsaurus</a> et <a href=\"dinosaures/leaellynasaura.html\">Leaellynasaura</a>.",
+        ],
+      },
+      {
+        titre: "Pour Noël",
+        liste: [
+          "🎄 En décembre, le site se met aux couleurs de <strong>Noël</strong>.",
+          "🎁 Le 25 décembre, un <strong>cadeau</strong> t’attend sur le site !",
+        ],
+      },
     ],
+    pied: "🦕 Le bouton « Enlever le déguisement », sous le menu, range la neige et tout le décor.",
     bouton: "❄️ C’est parti !",
   },
 
