@@ -30,7 +30,7 @@ export const site = {
   // ("halloween"…), ou null pour aucun thème. Changer la valeur puis relancer le build :
   // feuilles de style, scripts, bandeau, décor de l'accueil et paragraphes de
   // confidentialité et d'accessibilité suivent automatiquement.
-  theme: null,
+  theme: "hiver",
 };
 
 export const periodes = [
@@ -106,9 +106,9 @@ export const familles = [
   { slug: "ceratopsiens", nom: "Cératopsiens", emoji: "🐃", couleur: "#c95a3c",
     resume: "Cornes sur le nez, collerette derrière la tête et bec de perroquet.",
     detail: "Ces herbivores à quatre pattes vivaient en troupeaux. Leur collerette osseuse et leurs cornes servaient à se défendre, mais surtout à se reconnaître et à parader." },
-  { slug: "hadrosaures", nom: "Hadrosaures", emoji: "🎺", couleur: "#e08a2f",
-    resume: "Les « dinosaures à bec de canard », champions de la mastication.",
-    detail: "Leur bouche contenait des centaines de dents empilées pour broyer les plantes les plus dures. Beaucoup portaient des crêtes creuses servant à produire des sons." },
+  { slug: "hadrosaures", nom: "Hadrosaures et cousins", emoji: "🎺", couleur: "#e08a2f",
+    resume: "Les « dinosaures à bec de canard », champions de la mastication, et leurs cousins à bec.",
+    detail: "Leur bouche contenait des centaines de dents empilées pour broyer les plantes les plus dures. Beaucoup portaient des crêtes creuses servant à produire des sons. Ils font partie des ornithopodes, les herbivores à bec : leurs cousins, comme l’Iguanodon ou le petit Leaellynasaura, sont rangés ici avec eux." },
   { slug: "pachycephalosaures", nom: "Pachycéphalosaures", emoji: "⛑️", couleur: "#b07a3c",
     resume: "Un crâne en dôme épais comme un casque de chantier.",
     detail: "Ces herbivores bipèdes se servaient de leur tête blindée pour se pousser et s’affronter, probablement pour choisir le chef du groupe." },

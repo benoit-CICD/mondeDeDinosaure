@@ -241,6 +241,30 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/pachyrhinosaurus.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/edmontosaurus.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/nanuqsaurus.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/dinosaures/leaellynasaura.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/familles/index.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
@@ -350,6 +374,18 @@
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/vrai-ou-faux.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/les-dinosaures-et-le-froid.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/la-fouille.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -506,6 +542,12 @@
   </url>
   <url>
     <loc>https://benoit-cicd.github.io/mondeDeDinosaure/cinema/film-ou-realite.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://benoit-cicd.github.io/mondeDeDinosaure/jeux/bataille-de-boules-de-neige.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

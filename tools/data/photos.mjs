@@ -106,6 +106,13 @@ export const photos = {
     "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Diplodocus_carnegii.jpg"
   },
+  "edmontosaurus": {
+    "fichier": "Edmontosaurus sp. reconstruction.PNG",
+    "auteur": "Paleoart by Natee Puttapipat. Published by Stephanie K. Drumheller, Clint A. Boyd, Becky M. S. Barnes, and Mindy L. Householder",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Edmontosaurus_sp._reconstruction.PNG"
+  },
   "eoraptor": {
     "fichier": "Eoraptor lunensis.png",
     "auteur": "w:en:user:Debivort",
@@ -155,6 +162,13 @@ export const photos = {
     "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Kentrosaurus_aethiopicus.png"
   },
+  "leaellynasaura": {
+    "fichier": "Leaellynasaura.jpg",
+    "auteur": "Danny Cicchetti",
+    "licence": "CC BY-SA 3.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Leaellynasaura.jpg"
+  },
   "maiasaura": {
     "fichier": "Maiasaura peeblesorum.png",
     "auteur": "Connor Ashbridge",
@@ -176,6 +190,13 @@ export const photos = {
     "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Mosasaurus_hoffmanni_life.jpg"
   },
+  "nanuqsaurus": {
+    "fichier": "Life reconstruction of Nanuqsaurus hoglundi.png",
+    "auteur": "Connor Ashbridge",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Nanuqsaurus_hoglundi.png"
+  },
   "oviraptor": {
     "fichier": "Oviraptor Restoration.png",
     "auteur": "PaleoNeolitic",
@@ -189,6 +210,13 @@ export const photos = {
     "licence": "CC BY 4.0",
     "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Pachycephalosaurus_Reconstruction.jpg"
+  },
+  "pachyrhinosaurus": {
+    "fichier": "Pachyrhinosaurus TD.png",
+    "auteur": "TotalDino",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Pachyrhinosaurus_TD.png"
   },
   "parasaurolophus": {
     "fichier": "Life reconstruction of Parasaurolophus walkeri.png",

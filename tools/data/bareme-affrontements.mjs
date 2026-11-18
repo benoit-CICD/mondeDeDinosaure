@@ -457,4 +457,47 @@ export const bareme = [
     protection: null,
     atout: "Plateosaurus a une queue très souple, peut-être utile pour fouetter les petits prédateurs.",
   },
+  // --- Les dinosaures du froid (fiches de tools/data/dinos-5.mjs) ---
+  // Pas de corne sur le nez mais une grosse bosse d'os, sans doute utilisée pour se pousser tête contre tête
+  // entre rivaux : une arme moins dangereuse qu'une corne, d'où 5, sous Styracosaurus (8). Sa collerette porte
+  // deux petites cornes recourbées vers l'arrière, mais elle reste moins massive que celle du Triceratops : 6.
+  // Les gisements de Grande Prairie (plus de 1 265 os) montrent qu'il vivait en troupeaux.
+  //   https://en.wikipedia.org/wiki/Pachyrhinosaurus
+  {
+    slug: "pachyrhinosaurus", attaque: 5, defense: 6,
+    arme: "sa grosse bosse d’os sur le nez",
+    protection: "sa collerette d’os",
+    atout: "Pachyrhinosaurus vit en troupeaux : au Canada, plus de mille de ses os ont été trouvés au même endroit.",
+  },
+  // Comme Parasaurolophus, aucune arme connue : bec et dents pour mâcher, coups de queue (2). Il est plus grand
+  // (jusqu'à 12 m, environ 4 t) et vivait en groupes : 3 en défense. Une queue d'Edmontosaurus porte une morsure
+  // de T-rex guérie (Carpenter 1997) : il pouvait survivre à une attaque.
+  //   https://en.wikipedia.org/wiki/Edmontosaurus
+  {
+    slug: "edmontosaurus", attaque: 2, defense: 3,
+    arme: "sa longue queue lourde et musclée",
+    protection: "sa grande taille, longue comme un bus",
+    atout: "Edmontosaurus peut survivre à un T-rex : une de ses queues porte une morsure guérie.",
+  },
+  // Un tyrannosaure, avec la mâchoire de la famille, mais bien plus petit que le T-rex (environ 6 m, peut-être
+  // 500 kg ; il n'est connu que par trois morceaux de crâne) : 11, sous les grands théropodes à 12. Pas
+  // d'armure : 2.
+  //   https://en.wikipedia.org/wiki/Nanuqsaurus
+  //   https://www.livescience.com/44090-mini-trex-discovered.html
+  {
+    slug: "nanuqsaurus", attaque: 11, defense: 2,
+    arme: "sa mâchoire de tyrannosaure",
+    protection: null,
+    atout: "Nanuqsaurus est un tyrannosaure du Grand Nord, où l’hiver dure des mois de nuit.",
+  },
+  // Petit herbivore bipède à bec, sans arme connue : 1. Sa défense, c'était sans doute la fuite et la discrétion
+  // dans la pénombre polaire (grandes orbites et gros lobes optiques, interprétation discutée) : 2.
+  //   https://en.wikipedia.org/wiki/Leaellynasaura
+  //   https://australian.museum/learn/dinosaurs/fact-sheets/leaellynasaura-amicagraphica/
+  {
+    slug: "leaellynasaura", attaque: 1, defense: 2,
+    arme: "ses petits coups de pattes",
+    protection: null,
+    atout: "Leaellynasaura voit peut-être bien dans la pénombre des longues nuits polaires.",
+  },
 ];

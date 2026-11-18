@@ -2,6 +2,8 @@
 // le tirage les mélange au moment du jeu.
 
 import { quizCinema } from "./cinema.mjs";
+import { site } from "./site.mjs";
+import { themeActif } from "../../themes/themes.mjs";
 
 export const quiz = [
   { n: 1, q: "Quel dinosaure avait trois cornes sur la tête ?", r: ["Le Tricératops", "Le Stégosaure", "Le Diplodocus", "Le Ptérodactyle"], e: "Deux grandes cornes au-dessus des yeux et une plus petite sur le nez : c’est la signature du Tricératops !" },
@@ -98,9 +100,34 @@ export const reperes = [
     note: "Le mammouth laineux est arrivé plus de 65 millions d’années après les derniers dinosaures : ils ne se sont jamais croisés !" },
 ];
 
+
+/* Vrai ou faux « Les dinosaures et le froid » : faits vérifiés en novembre 2026
+   (dinosaures de l'Alaska, Druckenmiller et al. 2021 ; Cryolophosaurus ; Leaellynasaura ;
+   Nanuqsaurus ; mont Erebus). Mêmes champs que vraiFaux. */
+export const vraiFauxFroid = [
+  { a: "Des dinosaures vivaient tout près du pôle Nord.", v: true, e: "En Alaska, il y a environ 70 millions d’années, des dinosaures vivaient près du pôle Nord : Pachyrhinosaurus, Edmontosaurus, Nanuqsaurus…" },
+  { a: "En Alaska, on a trouvé des os de bébés dinosaures.", v: true, e: "Des dents et des os de tout petits dinosaures, à peine sortis de l’œuf : ils naissaient là-bas, près du pôle Nord." },
+  { a: "Près des pôles, l’hiver, il pouvait faire nuit pendant des mois.", v: true, e: "En Alaska, au temps des dinosaures, la nuit d’hiver durait jusqu’à quatre mois. En été, au contraire, le soleil ne se couchait pas." },
+  { a: "Tous les dinosaures fuyaient le froid en partant vers le sud chaque hiver.", v: false, e: "Les bébés dinosaures trouvés en Alaska montrent que beaucoup d’espèces passaient l’hiver sur place, dans le froid et la neige." },
+  { a: "Au temps des dinosaures, les pôles étaient couverts d’immenses calottes de glace.", v: false, e: "Le climat était bien plus doux : il n’y avait pas de grandes calottes de glace aux pôles, même si les hivers pouvaient être froids." },
+  { a: "Le Cryolophosaurus a été découvert en Antarctique.", v: true, e: "C’est même le seul grand carnivore découvert sur le continent de glace." },
+  { a: "Quand le Cryolophosaurus vivait, l’Antarctique était couvert de glace.", v: false, e: "À son époque, il n’y avait pas de glace : des forêts poussaient en Antarctique. La glace est arrivée des dizaines de millions d’années plus tard." },
+  { a: "Le Nanuqsaurus, cousin du T-rex qui vivait en Alaska, était plus grand que lui.", v: false, e: "Il était bien plus petit : environ 6 mètres de long, à peu près la moitié du T-rex." },
+  { a: "Il y a environ 110 millions d’années, l’Australie était collée à l’Antarctique.", v: true, e: "C’est là, tout près du pôle Sud, que vivait le petit Leaellynasaura. Depuis, l’Australie a glissé vers le nord." },
+  { a: "Les dinosaures ont connu les mammouths laineux.", v: false, e: "Plus de 65 millions d’années les séparent : les mammouths laineux sont arrivés bien après la disparition des dinosaures." },
+  { a: "Les oiseaux, qui sont des dinosaures, ont connu les glaciations.", v: true, e: "Les oiseaux descendent des dinosaures théropodes. Eux seuls ont survécu… et connu les grandes glaciations !" },
+  { a: "Le manchot est un oiseau, donc un dinosaure.", v: true, e: "Tous les oiseaux sont des dinosaures, y compris les manchots qui plongent dans l’eau glacée." },
+  { a: "Le petit pingouin et le manchot sont le même oiseau.", v: false, e: "Le petit pingouin vit dans le Nord et sait voler. Le manchot vit surtout dans le Sud et ne vole pas." },
+  { a: "Le Microraptor avait des plumes sur les bras et sur les jambes.", v: true, e: "Un dinosaure à quatre ailes ! Les plumes aidaient sans doute les petits dinosaures à garder leur chaleur." },
+  { a: "Un volcan peut être entouré de glace.", v: true, e: "En Antarctique, le mont Erebus est un volcan actif, avec un lac de lave au sommet, au milieu de la glace." },
+  { a: "C’est une ère glaciaire qui a fait disparaître les dinosaures.", v: false, e: "C’est la chute d’un astéroïde, il y a 66 millions d’années, qui a provoqué leur disparition. Pas une ère glaciaire !" },
+];
+
 /* Tous les mini-jeux, dans l'ordre d'affichage. Ce tableau alimente le menu,
-   le pied de page, l'accueil, la salle de jeux, le plan du site et le build. */
-export const listeJeux = [
+   le pied de page, l'accueil, la salle de jeux, le plan du site et le build.
+   Les jeux du thème saisonnier actif (`jeux` dans themes/<id>/theme.mjs)
+   s'ajoutent à la fin, le temps du thème. */
+const jeuxDuSite = [
   { slug: "quiz", script: "quiz.js", emoji: "❓", nom: "Le grand quiz", court: `10 questions tirées au hasard parmi ${quiz.length}, réparties sur trois niveaux.`, duree: "5 min" },
   { slug: "vrai-ou-faux", script: "vrai-faux.js", emoji: "⚖️", nom: "Vrai ou faux", court: `${vraiFaux.length} affirmations sur les dinosaures. Sauras-tu démêler le vrai du faux ?`, duree: "4 min" },
   { slug: "qui-suis-je", script: "qui-suis-je.js", emoji: "🔍", nom: "Qui suis-je ?", court: "Une silhouette mystère et des indices. Moins tu en demandes, plus tu marques de points.", duree: "6 min" },
@@ -111,6 +138,15 @@ export const listeJeux = [
   { slug: "machine-a-remonter-le-temps", script: "machine-temps.js", emoji: "⏳", nom: "La machine à remonter le temps", court: "Range les dinosaures du plus ancien au plus récent. Le T-rex et le Stégosaure se sont-ils croisés ?", duree: "5 min" },
   { slug: "detective-des-empreintes", script: "empreintes.js", emoji: "🐾", nom: "Détective des empreintes", court: "Une trace dans la roche : qui est passé par là ? Compte les doigts et mène l’enquête.", duree: "4 min" },
   { slug: "quiz-du-cinema", script: "quiz-cinema.js", emoji: "🍿", nom: "Le quiz du cinéma", court: `Les dinosaures des films et des dessins animés : 20 questions en mode facile (${quizCinema.facile.length}) ou difficile (${quizCinema.difficile.length}).`, duree: "8 min" },
+  { slug: "la-fouille", script: "fouille.js", emoji: "⛏️", nom: "La fouille", court: "Un dinosaure est caché sous la terre (ou sous la neige, en hiver) : dégage-le case par case et devine qui c’est.", duree: "5 min" },
+  { slug: "les-dinosaures-et-le-froid", script: "vrai-faux.js", emoji: "🧊", nom: "Les dinosaures et le froid", court: `Un vrai ou faux sur les dinosaures des pôles, la neige et la glace : ${vraiFauxFroid.length} affirmations.`, duree: "4 min" },
   { slug: "duel-de-dinosaures", rubrique: "affrontement", script: "duel.js", emoji: "⚔️", nom: "Duel de dinosaures", court: "Deux dinosaures face à face : lequel gagne le combat ? Cinq duels, et une explication à chaque fois.", duree: "4 min" },
   { slug: "le-roi-de-la-tour", rubrique: "affrontement", script: "tour.js", emoji: "🏰", nom: "Le roi de la tour", court: "Un tournoi sur 10 étages : devine chaque vainqueur, garde tes 3 vies et découvre le roi de la tour !", duree: "8 min" },
 ];
+
+export const listeJeux = [...jeuxDuSite, ...(themeActif(site)?.jeux ?? [])];
+
+/** Le script d'un jeu, depuis la racine du site : assets/js/jeux/<script>, ou le
+    chemin complet pour un jeu de thème (themes/<id>/…). */
+export const cheminScript = (j) => (j.script.includes("/") ? j.script : `assets/js/jeux/${j.script}`);
+

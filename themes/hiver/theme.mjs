@@ -11,10 +11,12 @@
 //   surprises.js    les autres surprises (dinosaure frileux, volcan, boules de neige…)
 //   accueil.mjs     décor de la scène de l'accueil (bonhomme de neige, sapin…)
 //   diplome.mjs     la page du diplôme
+//   bataille.mjs    la page du jeu d'hiver « La bataille de boules de neige » (jeu : bataille.js)
 //   diplome-flocons.html   cette page (GÉNÉRÉE quand le thème est actif, effacée sinon)
 
 import { fond, devant, boutons } from "./accueil.mjs";
 import { pageDiplome } from "./diplome.mjs";
+import { jeuBataille, pageBataille } from "./bataille.mjs";
 
 // Le prénom du diplôme et du cadeau de Noël.
 const PRENOM = "Noah";
@@ -50,23 +52,65 @@ export default {
 
   // La fenêtre des nouveautés, une seule fois sur l'accueil (gardée d'une visite à l'autre).
   // Pour une prochaine annonce : changer la clé et le texte. 10 = les cachettes de chasse.js.
+  // Les liens partent de l'accueil (la fenêtre ne s'ouvre que là).
   annonce: {
-    cle: "annonce-hiver-chasse",
+    cle: "annonce-hiver-nouveautes",
     emoji: "❄️",
     titre: "Il neige sur le site !",
-    texte: "La neige s’entasse en bas de l’écran… et <strong>10 flocons d’or</strong> sont cachés sur le site ! Trouve-les tous pour gagner ton <strong>diplôme</strong>.",
-    liste: [
-      "🐧 Le manchot, en bas à gauche, te donne des devinettes.",
-      "🧤 La pelle, en bas à droite, déneige l’écran… et peut-être un trésor.",
-      "🦕 « Enlever le déguisement », sous le menu, range la neige et tout le décor.",
+    texte: "Le monde des dinosaures a mis son manteau d’hiver. Voici tout ce qui t’attend :",
+    rubriques: [
+      {
+        titre: "Partout sur le site",
+        liste: [
+          "🌨️ La <strong>neige</strong> tombe et s’entasse en bas de l’écran.",
+          "🧤 Enfile tes gants : la <strong>pelle</strong>, en bas à droite, déneige l’écran… et cache peut-être un trésor.",
+          "🐧 Le <strong>manchot</strong>, en bas à gauche, te pose des devinettes.",
+          "🤫 Et des <strong>surprises</strong> un peu partout : clique, tape, explore !",
+        ],
+      },
+      {
+        titre: "La chasse aux flocons d’or",
+        liste: [
+          "✨ <strong>10 flocons d’or</strong> sont cachés sur le site.",
+          "🎓 Trouve-les tous pour gagner ton <strong>diplôme</strong> ! Ta chasse est gardée sur cet appareil : tu peux la continuer un autre jour.",
+        ],
+      },
+      {
+        titre: "De nouveaux jeux",
+        liste: [
+          "☃️ <a href=\"jeux/bataille-de-boules-de-neige.html\">La bataille de boules de neige</a>, seulement l’hiver : trois niveaux, du plus simple au plus malin.",
+          "⛏️ <a href=\"jeux/la-fouille.html\">La fouille</a> : déneige les cases pour découvrir le dinosaure caché dessous.",
+          "🧊 <a href=\"jeux/les-dinosaures-et-le-froid.html\">Les dinosaures et le froid</a> : un vrai ou faux tout neuf.",
+          "🐾 Des jeux en tenue d’hiver : empreintes dans la neige, memory enneigé, puzzle givré.",
+        ],
+      },
+      {
+        titre: "Les dinosaures du froid",
+        liste: [
+          "📖 Quatre nouvelles fiches sur des dinosaures du froid, dont certains vivaient tout près des pôles : " +
+            "<a href=\"dinosaures/pachyrhinosaurus.html\">Pachyrhinosaurus</a>, <a href=\"dinosaures/edmontosaurus.html\">Edmontosaurus</a>, " +
+            "<a href=\"dinosaures/nanuqsaurus.html\">Nanuqsaurus</a> et <a href=\"dinosaures/leaellynasaura.html\">Leaellynasaura</a>.",
+        ],
+      },
+      {
+        titre: "Pour Noël",
+        liste: [
+          "🎄 En décembre, le site se met aux couleurs de <strong>Noël</strong>.",
+          "🎁 Le 25 décembre, un <strong>cadeau</strong> t’attend sur le site !",
+        ],
+      },
     ],
+    pied: "🦕 Le bouton « Enlever le déguisement », sous le menu, range la neige et tout le décor.",
     bouton: "❄️ C’est parti !",
   },
 
   diplome,
 
-  // Pages propres au thème, hors plan du site. `outils` : { page, esc, site } (tools/templates.mjs).
-  pages: (outils) => [pageDiplome(outils, diplome)],
+  // Jeux du thème : ils rejoignent la salle de jeux et le menu le temps de l'hiver.
+  jeux: [jeuBataille],
+
+  // Pages propres au thème (effacées quand il est éteint). `outils` : { page, esc, site, pageJeu, entetePartie }.
+  pages: (outils) => [pageDiplome(outils, diplome), pageBataille(outils)],
 
   // Réglages lus par les scripts du thème (window.THEME.reglages).
   reglages: {
@@ -74,7 +118,7 @@ export default {
     neige: {
       hauteurMax: 1 / 3,     // part de la hauteur de l'écran que la neige peut couvrir
       hauteurMaxJeux: 0.1,   // sur les pages de jeux (jeux/…), pour ne pas gêner la partie
-      duree: 120,            // secondes pour atteindre la hauteur maximale
+      duree: 300,            // secondes pour atteindre la hauteur maximale (5 minutes)
     },
     // La touche de Noël, en décembre (hiver.js). Pour l'essayer un autre mois :
     // ajouter #noel au bout de l'adresse ; pour le cadeau du 25 : #25-decembre.
