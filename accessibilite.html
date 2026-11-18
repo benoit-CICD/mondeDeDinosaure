@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="fr" class="no-js theme-actif hiver">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +13,11 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Monde des Dinosaures">
 <link rel="stylesheet" href="assets/css/style.css?v=47ca8d75">
+<link rel="stylesheet" href="themes/commun/commun.css?v=08cf96d6">
+<link rel="stylesheet" href="themes/hiver/hiver.css?v=c0502852">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
-<script>window.BASE = "";</script>
+<script>window.BASE = "";window.THEME = {"id":"hiver","nom":"l’hiver","deNom":"d’hiver","emoji":"❄️","message":"Il neige sur le monde des dinosaures !","detail":"Le site a mis son manteau d’hiver.","diplome":"themes/hiver/diplome-flocons.html","annonce":{"cle":"annonce-hiver-chasse","emoji":"❄️","titre":"Il neige sur le site !","texte":"La neige s’entasse en bas de l’écran… et \u003cstrong>10 flocons d’or\u003c/strong> sont cachés sur le site ! Trouve-les tous pour gagner ton \u003cstrong>diplôme\u003c/strong>.","liste":["🐧 Le manchot, en bas à gauche, te donne des devinettes.","🧤 La pelle, en bas à droite, déneige l’écran… et peut-être un trésor.","🦕 « Enlever le déguisement », sous le menu, range la neige et tout le décor."],"bouton":"❄️ C’est parti !"},"durable":true,"reglages":{"neige":{"hauteurMax":0.3333333333333333,"hauteurMaxJeux":0.1,"duree":120},"noel":{"message":"Joyeux Noël !","detail":"Il neige sur le monde des dinosaures.","cadeau":{"message":"Joyeux Noël, Noah !","sousTitre":"Le monde des dinosaures te souhaite de très belles fêtes."}}}};try{if(sessionStorage.getItem("theme:hiver:eteint")==="1")document.documentElement.classList.remove("theme-actif","hiver")}catch(e){}</script>
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -115,6 +117,8 @@
       <li>Une structure de titres cohérente (un seul <code>h1</code> par page, puis h2 et h3).</li>
       <li>Des contrastes de couleurs conformes au niveau AA des règles WCAG 2.1.</li>
       <li>Le respect du réglage système « réduire les animations » : toutes les animations sont alors désactivées.</li>
+      <li>Pendant l’hiver, un bouton placé sous le menu retire tout le thème (couleurs, décor, animations).
+      La neige se déblaie aussi au clavier : le bouton « Prendre la pelle » déneige alors tout l’écran d’un coup. Le manchot et les flocons d’or se manipulent aussi au clavier.</li>
       <li>Un thème sombre automatique si votre appareil est réglé ainsi.</li>
       <li>Des textes redimensionnables jusqu’à 200 % sans perte d’information.</li>
       <li>Des messages annoncés aux lecteurs d’écran dans les jeux (bonne ou mauvaise réponse).</li>
@@ -199,5 +203,10 @@
   </div>
 </footer>
 <script src="assets/js/site.js?v=79defcf0" defer></script>
+<script src="themes/commun/commun.js?v=0025c03c" defer></script>
+<script src="themes/hiver/hiver.js?v=68d1aec2" defer></script>
+<script src="themes/hiver/neige.js?v=736e94d2" defer></script>
+<script src="themes/hiver/chasse.js?v=845a8797" defer></script>
+<script src="themes/hiver/surprises.js?v=71f2fb95" defer></script>
 </body>
 </html>

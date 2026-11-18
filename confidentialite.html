@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="fr" class="no-js theme-actif hiver">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +13,11 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Monde des Dinosaures">
 <link rel="stylesheet" href="assets/css/style.css?v=47ca8d75">
+<link rel="stylesheet" href="themes/commun/commun.css?v=08cf96d6">
+<link rel="stylesheet" href="themes/hiver/hiver.css?v=c0502852">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
-<script>window.BASE = "";</script>
+<script>window.BASE = "";window.THEME = {"id":"hiver","nom":"l’hiver","deNom":"d’hiver","emoji":"❄️","message":"Il neige sur le monde des dinosaures !","detail":"Le site a mis son manteau d’hiver.","diplome":"themes/hiver/diplome-flocons.html","annonce":{"cle":"annonce-hiver-chasse","emoji":"❄️","titre":"Il neige sur le site !","texte":"La neige s’entasse en bas de l’écran… et \u003cstrong>10 flocons d’or\u003c/strong> sont cachés sur le site ! Trouve-les tous pour gagner ton \u003cstrong>diplôme\u003c/strong>.","liste":["🐧 Le manchot, en bas à gauche, te donne des devinettes.","🧤 La pelle, en bas à droite, déneige l’écran… et peut-être un trésor.","🦕 « Enlever le déguisement », sous le menu, range la neige et tout le décor."],"bouton":"❄️ C’est parti !"},"durable":true,"reglages":{"neige":{"hauteurMax":0.3333333333333333,"hauteurMaxJeux":0.1,"duree":120},"noel":{"message":"Joyeux Noël !","detail":"Il neige sur le monde des dinosaures.","cadeau":{"message":"Joyeux Noël, Noah !","sousTitre":"Le monde des dinosaures te souhaite de très belles fêtes."}}}};try{if(sessionStorage.getItem("theme:hiver:eteint")==="1")document.documentElement.classList.remove("theme-actif","hiver")}catch(e){}</script>
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -118,12 +120,20 @@
     <p>Le site ne dépose aucun cookie, ni technique ni publicitaire. Il n’utilise aucun outil de mesure d’audience
     (Google Analytics, Matomo ou équivalent), aucun bouton de réseau social et aucune régie publicitaire.</p>
     <p>Conformément à l’article 82 de la loi Informatique et Libertés, aucun bandeau de consentement n’est nécessaire
-    puisque aucune information n’est lue ou écrite dans votre terminal.</p>
+    puisque les seules informations écrites dans votre terminal sont celles du thème d’hiver décrites ci-dessous, strictement nécessaires au jeu que vous avez demandé.</p>
 
     <h2>3. Les scores des jeux</h2>
     <p>Les scores obtenus dans les mini-jeux existent uniquement dans la mémoire vive de votre navigateur, le temps de la partie.
     Ils ne sont enregistrés nulle part, ni sur votre appareil, ni sur un serveur. Ils disparaissent dès que la page est
     rechargée ou fermée.</p>
+    <p><strong>Pendant l’hiver</strong>, quelques petites informations peuvent être gardées le temps de la visite :
+    le choix d’éteindre le thème d’hiver, la hauteur de la neige tombée sur l’écran et le fait d’avoir déjà vu le cadeau de Noël. Elles sont rangées
+    dans la mémoire de session du navigateur (<code>sessionStorage</code>), sur votre appareil uniquement.
+    Elles ne sont jamais envoyées à un serveur et s’effacent dès que l’onglet est fermé.</p>
+    <p>D’autres informations sont gardées d’une visite à l’autre : la liste des flocons d’or déjà trouvés et le fait d’avoir déjà lu l’annonce des nouveautés.
+    Elles sont rangées dans la mémoire locale du navigateur (<code>localStorage</code>), sur votre appareil uniquement.
+    Elles ne sont jamais envoyées à un serveur et restent jusqu’à ce que
+    vous appuyiez sur le bouton « Recommencer la chasse », sous le menu, ou que vous effaciez les données de ce site dans votre navigateur.</p>
 
     <h2>4. Aucune ressource tierce</h2>
     <p>Toutes les ressources du site (feuilles de style, scripts, images, polices) sont hébergées sur le même
@@ -211,5 +221,10 @@
   </div>
 </footer>
 <script src="assets/js/site.js?v=79defcf0" defer></script>
+<script src="themes/commun/commun.js?v=0025c03c" defer></script>
+<script src="themes/hiver/hiver.js?v=68d1aec2" defer></script>
+<script src="themes/hiver/neige.js?v=736e94d2" defer></script>
+<script src="themes/hiver/chasse.js?v=845a8797" defer></script>
+<script src="themes/hiver/surprises.js?v=71f2fb95" defer></script>
 </body>
 </html>
