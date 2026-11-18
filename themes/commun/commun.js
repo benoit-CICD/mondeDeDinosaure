@@ -98,20 +98,38 @@ window.Theme = (function () {
   /* ---------- L'annonce des nouveautés ----------
      Réglée dans theme.mjs (annonce : cle, emoji, titre, texte, bouton, et au
      choix une liste, ou des rubriques {titre, liste} suivies d'un pied).
-     Une seule fois, sur l'accueil : la fermer (bouton, croix, Échap ou clic à
-     côté) ou suivre un de ses liens la range dans la mémoire, durable si le
-     thème en a une. Pour annoncer de nouvelles nouveautés, changer la clé
-     dans theme.mjs. */
+     Elle s'ouvre toute seule une fois, sur l'accueil : la fermer (bouton,
+     croix, Échap ou clic à côté) ou suivre un de ses liens la range dans la
+     mémoire, durable si le thème en a une. Le bouton « Quoi de neuf ? » du
+     bandeau la rouvre quand on veut, sur n'importe quelle page. Pour annoncer
+     de nouvelles nouveautés, changer la clé dans theme.mjs. */
+  var boutonNouveautes = null;
+  if (config.annonce) {
+    boutonNouveautes = document.createElement("button");
+    boutonNouveautes.type = "button";
+    boutonNouveautes.className = "bandeau-theme__nouveautes";
+    boutonNouveautes.innerHTML = '<span aria-hidden="true">' + config.annonce.emoji + "</span> " +
+      '<span class="bandeau-theme__court">Nouveautés</span><span class="bandeau-theme__large">Quoi de neuf ?</span>';
+    boutonNouveautes.setAttribute("aria-haspopup", "dialog");
+    boutonNouveautes.addEventListener("click", function () { ouvrirAnnonce(true); });
+    /* Les deux boutons du bandeau restent ensemble, à droite (sur téléphone : sur la deuxième ligne). */
+    var boutons = document.createElement("span");
+    boutons.className = "bandeau-theme__boutons";
+    interrupteur.parentNode.insertBefore(boutons, interrupteur);
+    boutons.appendChild(boutonNouveautes);
+    boutons.appendChild(interrupteur);
+  }
+
   function listeAnnonce(liste, classe) {
     return '<ul class="dialogue-theme__liste' + (classe || "") + '">' +
       liste.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul>";
   }
-  function annoncerNouveautes() {
+  function ouvrirAnnonce(demandee) {
     var a = config.annonce;
-    if (!a || !actif() || !surAccueil() || lireDans(true, a.cle) === "vue") return;
+    if (!a || document.querySelector(".dialogue-theme--annonce")) return;
     var longue = !!(a.rubriques && a.rubriques.length);
     var d = document.createElement("dialog");
-    d.className = "dialogue-theme" + (longue ? " dialogue-theme--rubriques" : "");
+    d.className = "dialogue-theme dialogue-theme--annonce" + (longue ? " dialogue-theme--rubriques" : "");
     d.setAttribute("aria-labelledby", "annonce-titre");
     d.innerHTML =
       '<button type="button" class="dialogue-theme__fermer" aria-label="Fermer l’annonce" data-fermer>✕</button>' +
@@ -127,16 +145,20 @@ window.Theme = (function () {
         : "") +
       (a.pied ? '<p class="dialogue-theme__pied">' + a.pied + "</p>" : "") +
       '<p class="dialogue-theme__actions"><button type="button" class="bouton" data-fermer>' + a.bouton + "</button></p>";
+    /* Les liens sont écrits depuis l'accueil : ailleurs, on remonte jusqu'à lui. */
+    Array.prototype.forEach.call(d.querySelectorAll("a[href]"), function (lien) {
+      var h = lien.getAttribute("href");
+      if (!/^([a-z]+:|\/|#)/i.test(h)) lien.setAttribute("href", (window.BASE || "") + h);
+      lien.addEventListener("click", function () { ecrireDans(true, a.cle, "vue"); });
+    });
     document.body.appendChild(d);
     var fermer = function () {
       ecrireDans(true, a.cle, "vue");
       if (d.open) d.close();
       d.remove();
+      if (demandee && boutonNouveautes) boutonNouveautes.focus();
     };
     Array.prototype.forEach.call(d.querySelectorAll("[data-fermer]"), function (b) { b.addEventListener("click", fermer); });
-    Array.prototype.forEach.call(d.querySelectorAll("a[href]"), function (lien) {
-      lien.addEventListener("click", function () { ecrireDans(true, a.cle, "vue"); });
-    });
     d.addEventListener("cancel", function (e) { e.preventDefault(); fermer(); });
     /* Clic sur le fond sombre, autour de la fenêtre : on ferme aussi. */
     d.addEventListener("click", function (e) {
@@ -144,8 +166,7 @@ window.Theme = (function () {
       var r = d.getBoundingClientRect();
       if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) fermer();
     });
-    setTimeout(function () {
-      if (!actif()) { d.remove(); return; }
+    function montrer() {
       if (typeof d.showModal === "function") d.showModal();
       else d.setAttribute("open", "");
       /* Une longue annonce se lit depuis le haut : le titre prend le focus. */
@@ -153,9 +174,15 @@ window.Theme = (function () {
         d.querySelector("h2").focus({ preventScroll: true });
         d.scrollTop = 0;
       } else d.querySelector(".bouton").focus();
+    }
+    if (demandee) { montrer(); return; }
+    setTimeout(function () {
+      if (!actif()) { d.remove(); return; }
+      montrer();
     }, 700);
   }
-  annoncerNouveautes();
+  /* La première fois sur l'accueil, l'annonce s'ouvre toute seule. */
+  if (config.annonce && actif() && surAccueil() && lireDans(true, config.annonce.cle) !== "vue") ouvrirAnnonce(false);
 
   /* ---------- Les bulles ----------
      Une petite bulle de texte au-dessus d'un élément (ou en dessous, près du
@@ -206,6 +233,8 @@ window.Theme = (function () {
     lireDurable: function (cle) { return lireDans(true, cle); },
     ecrireDurable: function (cle, valeur) { ecrireDans(true, cle, valeur); },
     effacerDurable: function (cle) { effacerDans(true, cle); },
+    /** Oublie que l'annonce a été lue : elle se rouvrira toute seule sur l'accueil. */
+    oublierAnnonce: function () { if (config.annonce) effacerDans(true, config.annonce.cle); },
     annoncer: annoncer,
     /** Une bulle de texte près d'un élément : bulle(element, texte, duréeEnMs). */
     bulle: bulle,

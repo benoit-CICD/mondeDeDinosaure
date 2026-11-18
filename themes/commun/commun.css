@@ -28,15 +28,25 @@
   font: inherit; cursor: pointer; color: inherit;
   min-height: 44px; border-radius: 999px;
 }
-.bandeau-theme__interrupteur {
+.bandeau-theme__interrupteur, .bandeau-theme__nouveautes {
   padding: .3em .95em; font-size: .86rem !important; background: transparent;
   border: 2px solid color-mix(in srgb, var(--theme-accent, var(--bordure)) 70%, transparent);
 }
-.bandeau-theme__interrupteur:hover { background: color-mix(in srgb, var(--theme-accent, var(--bordure)) 15%, transparent); }
+.bandeau-theme__interrupteur:hover, .bandeau-theme__nouveautes:hover { background: color-mix(in srgb, var(--theme-accent, var(--bordure)) 15%, transparent); }
+/* « Quoi de neuf ? » (« Nouveautés » sur téléphone) rouvre l'annonce, à côté de l'interrupteur. */
+.bandeau-theme__boutons { display: flex; flex-wrap: wrap; gap: .4rem .5rem; }
+.bandeau-theme__large { display: none; }
+@media (max-width: 47.99rem) {
+  .bandeau-theme__interrupteur, .bandeau-theme__nouveautes { padding-inline: .75em; }
+}
+@media (min-width: 48rem) {
+  .bandeau-theme__court { display: none; }
+  .bandeau-theme__large { display: inline; }
+}
 
 /* Thème éteint : le bandeau ne garde que le bouton pour le rallumer. */
 html:not(.theme-actif) .bandeau-theme__contenu { justify-content: flex-end; }
-html:not(.theme-actif) .bandeau-theme__zone { display: none; }
+html:not(.theme-actif) .bandeau-theme__zone, html:not(.theme-actif) .bandeau-theme__nouveautes { display: none; }
 
 /* ---------- Les fenêtres du thème (annonce des nouveautés, récompenses…) ----------
    Le cadre prend --theme-cadre. Le voile sombre derrière se règle dans la feuille

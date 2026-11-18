@@ -298,12 +298,13 @@
     var d = fenetre(
       '<p class="dialogue-theme__emoji" aria-hidden="true">❄️</p>' +
       '<h2 id="recommencer-titre">Recommencer la chasse ?</h2>' +
-      "<p>Les flocons d’or déjà trouvés retourneront dans leurs cachettes.</p>" +
+      "<p>Les flocons d’or déjà trouvés retourneront dans leurs cachettes, et l’annonce des nouveautés reviendra sur l’accueil.</p>" +
       '<p class="dialogue-theme__actions"><button type="button" class="bouton" data-oui>Oui, recommencer</button> ' +
       '<button type="button" class="bouton bouton--secondaire" data-fermer>Non</button></p>',
       "recommencer-titre");
     d.querySelector("[data-oui]").addEventListener("click", function () {
       Theme.effacerDurable("flocons");
+      Theme.oublierAnnonce(); // tout ce que le thème garde est effacé (voir la page Confidentialité)
       location.reload();
     });
     d.querySelector("[data-fermer]").focus();

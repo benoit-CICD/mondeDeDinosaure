@@ -274,11 +274,12 @@ themes/
   Son contenu : `emoji`, `titre`, `texte`, `bouton`, puis soit une `liste`, soit des `rubriques` (`{ titre, liste }`,
   sur deux colonnes quand il y a la place, avec le bouton toujours visible en bas) suivies d’un `pied`.
   Elle se ferme avec le bouton, la croix, Échap ou un clic à côté (suivre un de ses liens compte aussi), et ne revient
-  plus : de la visite, ou pour de bon si le thème a une mémoire durable. Pour une prochaine annonce, changer sa clé
-  (`cle`) et son texte ;
+  plus toute seule : de la visite, ou pour de bon si le thème a une mémoire durable. Le bouton **« Quoi de neuf ? »**
+  du bandeau (« Nouveautés » sur téléphone) la rouvre quand on veut, sur n’importe quelle page ; ses liens, écrits
+  depuis l’accueil, sont corrigés tout seuls. Pour une prochaine annonce, changer sa clé (`cle`) et son texte ;
 - `window.Theme`, sur lequel se branche le script du thème : `actif()`, `surAccueil()`, `reglages` (les `reglages`
   de `theme.mjs`), `lire()` / `ecrire()` (mémoire de la visite), `lireDurable()` / `ecrireDurable()` /
-  `effacerDurable()` (mémoire durable), `annoncer()` (pour les lecteurs d’écran), `bulle(element, texte, durée)`
+  `effacerDurable()` (mémoire durable), `oublierAnnonce()` (l’annonce se rouvrira sur l’accueil), `annoncer()` (pour les lecteurs d’écran), `bulle(element, texte, durée)`
   (une bulle de texte près d’un élément, lue aussi par les lecteurs d’écran), `zone` (le paragraphe du bandeau,
   pour y ajouter un compteur ou un bouton) et `surBascule()`.
 
@@ -361,7 +362,8 @@ Garder les règles d’Halloween : couper les animations avec « réduire les an
   bonnet de Noël pour le dinosaure. Pour l’essayer un autre mois : ajouter `#noel` à l’adresse de l’accueil.
 - **La chasse aux 10 flocons d’or** (`themes/hiver/chasse.js`, liste `CACHETTES`). Un compteur dans le bandeau
   (« ✨ Flocons d’or : 3 / 10 ») ; les flocons trouvés sont gardés **d’une visite à l’autre** (mémoire durable),
-  jusqu’au bouton **↺ « Recommencer la chasse »**, à côté du compteur, qui demande confirmation.
+  jusqu’au bouton **↺ « Recommencer la chasse »**, à côté du compteur, qui demande confirmation. Il efface tout ce que
+  le thème garde : les flocons, et le fait d’avoir lu l’annonce (elle revient alors sur l’accueil).
   - Cachettes, des plus faciles aux plus difficiles : le **bonhomme de neige** de l’accueil (il faut le toucher),
     la **salle de jeux** (derrière le conseil), le dossier sur l’**ère glaciaire** (près des mammouths), la fiche du
     **Cryolophosaurus** (derrière ses anecdotes), la **frise du temps** (au climat du Crétacé, « pas de glace aux pôles »),
