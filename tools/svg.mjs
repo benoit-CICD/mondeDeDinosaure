@@ -259,8 +259,17 @@ function ceratopsien(p, o = {}) {
       couronne += `<path d="M${x1 - 7} ${y1 + 5} L${x2} ${y2} L${x1 + 7} ${y1 - 5} Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>`;
     });
   }
+  /* Pachyrhinosaurus : deux petites cornes recourbées vers l'arrière en haut de la collerette. */
+  if (o.bosse) {
+    couronne += `<path d="M316 116 Q296 100 268 102 Q290 110 302 124 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>
+       <path d="M340 108 Q322 84 292 84 Q316 94 326 114 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>`;
+  }
   const cornes = o.couronne
     ? `<path d="M352 150 q22 -6 30 6 q-16 8 -30 6 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>`
+    : o.bosse
+    /* Pas de corne sur le nez : une grosse bosse d'os, plate et rugueuse. */
+    ? `<path d="M346 162 Q348 140 368 138 Q390 138 390 156 Q384 166 346 162 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>
+       <path d="M356 148 l6 -3 M368 145 l6 -2 M378 148 l5 -1" stroke="${c3}" stroke-width="2.5" stroke-linecap="round"/>`
     : `<path d="M332 140 q22 -46 48 -56 q-2 24 -22 64 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>
        <path d="M352 146 q26 -42 54 -48 q-8 24 -30 62 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>
        <path d="M374 168 q18 -20 32 -14 q-8 16 -22 26 Z" fill="${c2}" stroke="${c3}" stroke-width="4.5" stroke-linejoin="round"/>`;
@@ -433,6 +442,8 @@ function reptileMarin(p) {
 const ARCHETYPES = {
   "theropode-grand": (p) => theropode(p),
   "theropode-petit": (p) => theropode(p, { petit: true }),
+  /* Petit herbivore bipède à bec (Leaellynasaura) : la silhouette du petit théropode, sans dents. */
+  "ornithopode-petit": (p) => theropode(p, { petit: true, museauBec: true }),
   "theropode-cornu": (p) => theropode(p, { cornes: true }),
   "theropode-autruche": (p) => theropode(p, { museauBec: true }),
   "theropode-crete": (p) => theropode(p, { creteDouble: true }),
@@ -448,6 +459,7 @@ const ARCHETYPES = {
   "ankylosaure": (p) => ankylosaure(p),
   "ceratopsien": (p) => ceratopsien(p),
   "ceratopsien-couronne": (p) => ceratopsien(p, { couronne: true }),
+  "ceratopsien-bosse": (p) => ceratopsien(p, { bosse: true }),
   "hadrosaure": (p) => hadrosaure(p),
   "hadrosaure-crete": (p) => hadrosaure(p, { crete: true }),
   "hadrosaure-bosse": (p) => hadrosaure(p, { bosse: true }),

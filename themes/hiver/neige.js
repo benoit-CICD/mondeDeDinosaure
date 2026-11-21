@@ -1,7 +1,7 @@
 /* La neige du thème d'hiver.
 
    Des flocons tombent sur la page et s'entassent en bas de l'écran, jusqu'à un
-   tiers de sa hauteur en deux minutes, moins haut sur les pages de jeux pour ne
+   tiers de sa hauteur en cinq minutes, moins haut sur les pages de jeux pour ne
    pas gêner la partie (reglages.neige dans theme.mjs).
    La neige est dessinée sur un <canvas> posé devant la page, qui laisse passer
    les clics. Sa forme est gardée dans la mémoire de la visite : on la retrouve
@@ -34,7 +34,7 @@
   var R = Theme.reglages.neige || {};
   var surJeux = /\/jeux\//.test(location.pathname);
   var PART_MAX = surJeux ? R.hauteurMaxJeux || 0.1 : R.hauteurMax || 1 / 3;
-  var DUREE = (R.duree || 120) / (location.hash === "#neige-rapide" ? 10 : 1); // secondes
+  var DUREE = (R.duree || 300) / (location.hash === "#neige-rapide" ? 10 : 1); // secondes
   var COLONNE = 4;        // largeur d'une colonne de neige (px)
   var TALUS = 3;          // écart de hauteur toléré entre deux colonnes voisines (px)
   var ECHANTILLONS = 96;  // points gardés en mémoire pour la page suivante
@@ -42,11 +42,17 @@
   var ETALEMENT = 10;     // un dépôt s'étale sur 10 colonnes de chaque côté
   var sombre = window.matchMedia("(prefers-color-scheme: dark)");
 
+  /* L'icône du bouton : une pelle à neige rouge, lame bordée d'acier, poignée en D. */
   var PELLE_SVG =
-    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
-    '<path d="M15 3l6 6M18 6l-7.5 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>' +
-    '<path d="M11.8 10.8l2.4 2.4a1 1 0 0 1 0 1.4l-5 5a3.2 3.2 0 0 1-4.5 0l-.8-.8a3.2 3.2 0 0 1 0-4.5l5-5a1 1 0 0 1 1.4 0z" fill="currentColor"/>' +
-    "</svg>";
+    '<svg class="pelle-icone" viewBox="0 0 32 32" aria-hidden="true" focusable="false">' +
+    '<g transform="translate(0 -.6) rotate(35 16 16)">' +
+    '<path class="pelle-icone__poignee" d="M14.6 7.6Q10.6 6.6 11 2.4H21Q21.4 6.6 17.4 7.6" fill="none" stroke-width="2.2" stroke-linejoin="round"/>' +
+    '<rect x="15" y="7" width="2" height="12" rx=".9" fill="#b98049"/>' +
+    '<path d="M14.4 17.8h3.2l1.3 3.6h-5.8z" fill="#8f2a1e"/>' +
+    '<path d="M10.2 21.6Q16 19.8 21.8 21.6L23.2 29.2Q23.3 30 22.5 30H9.5Q8.7 30 8.8 29.2Z" fill="#e0533f" stroke="#7d2216" stroke-width=".9"/>' +
+    '<path d="M8.95 28.1H23.05L23.2 29.2Q23.3 30 22.5 30H9.5Q8.7 30 8.8 29.2Z" fill="#cfd7de"/>' +
+    '<path d="M14.6 22.9l-1.4 4.4M16 22.5v4.8M17.4 22.9l1.4 4.4" stroke="#fff" stroke-opacity=".5" stroke-width=".8" stroke-linecap="round"/>' +
+    "</g></svg>";
 
   /* ---------- Éléments ---------- */
   var racine = document.documentElement;
@@ -84,6 +90,7 @@
   var tenue = false;                  // la pelle est en main
   var pelle = null;                   // position de la pelle {x, y}, ou null
   var balayage = null;                // déneigement automatique (clavier)
+  var elan = 0, inclinaison = 0;      // la pelle penche dans le sens où on la pousse
   var temps = 0, avant = 0, idImage = 0, enMarche = false;
 
   function colonne(x) { return Math.max(0, Math.min(n - 1, Math.round(x / COLONNE))); }
@@ -247,6 +254,7 @@
     balayage.x += (L + 2 * d) / 1.4 * dt; // tout l'écran en 1,4 s
     creuser(x0, y, balayage.x, y);
     pelle = { x: balayage.x, y: y };
+    elan = 14;
     if (balayage.x > L + d) {
       for (var i = 0; i < n; i++) haut[i] = 0;
       modifiee = true;
@@ -303,6 +311,7 @@
   zone.addEventListener("pointermove", function (e) {
     var avantPelle = pelle || { x: e.clientX, y: e.clientY };
     pelle = { x: e.clientX, y: e.clientY };
+    elan += pelle.x - avantPelle.x;
     creuser(avantPelle.x, avantPelle.y, pelle.x, pelle.y);
   });
   zone.addEventListener("pointerup", function (e) { if (e.pointerType !== "mouse") pelle = null; });
@@ -310,24 +319,130 @@
   zone.addEventListener("pointerleave", function () { pelle = null; });
 
   /* ---------- Dessin ---------- */
-  function dessinerPelle(x, y) {
-    var d = demiLame();
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(-0.12);
-    ctx.lineCap = "round";
-    ctx.strokeStyle = "#8a5a32";
-    ctx.lineWidth = 6;
-    ctx.beginPath(); ctx.moveTo(d * 0.15, -10); ctx.lineTo(d * 0.9, -78); ctx.stroke();
-    ctx.lineWidth = 5;
-    ctx.beginPath(); ctx.moveTo(d * 0.9 - 9, -81); ctx.lineTo(d * 0.9 + 9, -76); ctx.stroke();
-    ctx.fillStyle = "#a9bfd4";
-    ctx.strokeStyle = "#4f6b85";
-    ctx.lineWidth = 2;
+  /* Une pelle à neige : lame rouge creusée de nervures, bordée d'une bande d'acier,
+     manche en bois et poignée en D. Le bas de la lame est 12 px sous le pointeur,
+     là où creuser() retire la neige. Le dessin est fait pour une lame de 60 unités
+     de large, puis mis à l'échelle de demiLame(). */
+  function contourLame() {
     ctx.beginPath();
-    ctx.moveTo(-d, -12); ctx.lineTo(d, -12); ctx.lineTo(d * 0.9, 12);
-    ctx.quadraticCurveTo(0, 18, -d * 0.9, 12);
-    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.moveTo(-25, -35);
+    ctx.quadraticCurveTo(0, -44, 25, -35);
+    ctx.quadraticCurveTo(27.2, -34.4, 27.4, -32);
+    ctx.lineTo(30, -3.5);
+    ctx.quadraticCurveTo(30.4, 0, 27, 0);
+    ctx.lineTo(-27, 0);
+    ctx.quadraticCurveTo(-30.4, 0, -30, -3.5);
+    ctx.lineTo(-27.4, -32);
+    ctx.quadraticCurveTo(-27.2, -34.4, -25, -35);
+    ctx.closePath();
+  }
+  function trait(couleur, epaisseur, x0, y0, x1, y1) {
+    ctx.strokeStyle = couleur;
+    ctx.lineWidth = epaisseur;
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+  }
+  function degrade(x0, y0, x1, y1, couleurs) {
+    var g = ctx.createLinearGradient(x0, y0, x1, y1);
+    for (var k = 0; k < couleurs.length; k++) g.addColorStop(couleurs[k][0], couleurs[k][1]);
+    return g;
+  }
+
+  function dessinerPelle(x, y) {
+    var s = demiLame() / 30, k;
+    elan *= 0.8;
+    inclinaison += (Math.max(-0.2, Math.min(0.2, -elan * 0.012)) - inclinaison) * 0.25;
+
+    ctx.save();
+    ctx.translate(x, y + 12);
+    ctx.scale(s, s);
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    /* Son ombre sur la neige. */
+    ctx.fillStyle = "rgba(40, 80, 120, .18)";
+    ctx.beginPath();
+    ctx.ellipse(0, 1, 34, 4.5, 0, 0, 6.2832);
+    ctx.fill();
+    ctx.rotate(inclinaison - 0.04);
+
+    /* Le manche, penché vers la droite, qui sort de derrière la lame. */
+    ctx.save();
+    ctx.translate(0, -36);
+    ctx.rotate(0.36);
+    ctx.fillStyle = degrade(-3.2, 0, 3.2, 0, [[0, "#e2b47a"], [0.45, "#b9834c"], [1, "#7a4f2c"]]);
+    ctx.strokeStyle = "#5e3b1f";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.rect(-3.2, -96, 6.4, 84);
+    ctx.fill();
+    ctx.stroke();
+    trait("rgba(255, 240, 215, .45)", 1, -1.3, -92, -1.3, -16); // la veine du bois
+
+    /* La poignée en D, au bout du manche, avec un liseré clair pour se voir
+       aussi sur une page sombre. */
+    ctx.fillStyle = "#3a3f45";
+    ctx.fillRect(-4, -101, 8, 7);
+    for (k = 0; k < 2; k++) {
+      ctx.strokeStyle = k ? "#2b2f33" : "rgba(255, 255, 255, .55)";
+      ctx.lineWidth = k ? 4.2 : 6.6;
+      ctx.beginPath();
+      ctx.moveTo(-3, -100);
+      ctx.quadraticCurveTo(-13, -104, -11.5, -118);
+      ctx.lineTo(11.5, -118);
+      ctx.quadraticCurveTo(13, -104, 3, -100);
+      ctx.stroke();
+      trait(ctx.strokeStyle, k ? 6.5 : 8.9, -10.5, -118, 10.5, -118);
+    }
+    trait("rgba(255, 255, 255, .28)", 1.4, -8.5, -119.6, 8.5, -119.6);
+
+    /* La douille, qui fixe le manche à la lame. */
+    ctx.fillStyle = degrade(-7, 0, 7, 0, [[0, "#c9463a"], [1, "#7d2216"]]);
+    ctx.strokeStyle = "#5c170e";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(-7.5, 4); ctx.lineTo(7.5, 4); ctx.lineTo(4.2, -18); ctx.lineTo(-4.2, -18);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = "#d9dee3";
+    ctx.beginPath(); ctx.arc(0, -9, 1.5, 0, 6.2832); ctx.fill();
+    ctx.restore();
+
+    /* La lame : rouge, creuse (plus claire à gauche, plus sombre à droite). */
+    contourLame();
+    ctx.fillStyle = degrade(0, -44, 0, 0, [[0, "#f2735c"], [0.5, "#dc4532"], [1, "#b02f20"]]);
+    ctx.fill();
+    ctx.fillStyle = degrade(-30, 0, 30, 0, [[0, "rgba(255, 255, 255, .22)"], [0.35, "rgba(255, 255, 255, 0)"], [0.7, "rgba(0, 0, 0, 0)"], [1, "rgba(60, 0, 0, .25)"]]);
+    ctx.fill();
+    for (k = -1; k <= 1; k++) { // les nervures
+      trait("rgba(110, 20, 10, .35)", 2.6, k * 4 + 1, -36, k * 15 + 1, -8);
+      trait("rgba(255, 210, 200, .45)", 1.5, k * 4, -36.5, k * 15, -8.5);
+    }
+    ctx.strokeStyle = "#9e2a1b"; // le bord replié, en haut
+    ctx.lineWidth = 3.4;
+    ctx.beginPath(); ctx.moveTo(-25, -35); ctx.quadraticCurveTo(0, -44, 25, -35); ctx.stroke();
+    ctx.strokeStyle = "rgba(255, 220, 210, .55)";
+    ctx.lineWidth = 1.1;
+    ctx.beginPath(); ctx.moveTo(-23, -32.6); ctx.quadraticCurveTo(0, -40.6, 23, -32.6); ctx.stroke();
+    contourLame();
+    ctx.strokeStyle = "#6e1d12";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    /* La bande d'acier qui racle le sol, et ses rivets. */
+    ctx.beginPath();
+    ctx.moveTo(-29.7, -6.5); ctx.lineTo(29.7, -6.5); ctx.lineTo(30, -3.5);
+    ctx.quadraticCurveTo(30.4, 0, 27, 0); ctx.lineTo(-27, 0);
+    ctx.quadraticCurveTo(-30.4, 0, -30, -3.5);
+    ctx.closePath();
+    ctx.fillStyle = degrade(0, -6.5, 0, 0, [[0, "#f4f7f9"], [1, "#98a4af"]]);
+    ctx.fill();
+    ctx.strokeStyle = "#56616b";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = "#56616b";
+    for (k = -1; k <= 1; k++) { ctx.beginPath(); ctx.arc(k * 18, -3.3, 1.1, 0, 6.2832); ctx.fill(); }
+
     ctx.restore();
   }
 

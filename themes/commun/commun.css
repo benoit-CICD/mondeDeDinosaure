@@ -28,15 +28,25 @@
   font: inherit; cursor: pointer; color: inherit;
   min-height: 44px; border-radius: 999px;
 }
-.bandeau-theme__interrupteur {
+.bandeau-theme__interrupteur, .bandeau-theme__nouveautes {
   padding: .3em .95em; font-size: .86rem !important; background: transparent;
   border: 2px solid color-mix(in srgb, var(--theme-accent, var(--bordure)) 70%, transparent);
 }
-.bandeau-theme__interrupteur:hover { background: color-mix(in srgb, var(--theme-accent, var(--bordure)) 15%, transparent); }
+.bandeau-theme__interrupteur:hover, .bandeau-theme__nouveautes:hover { background: color-mix(in srgb, var(--theme-accent, var(--bordure)) 15%, transparent); }
+/* « Quoi de neuf ? » (« Nouveautés » sur téléphone) rouvre l'annonce, à côté de l'interrupteur. */
+.bandeau-theme__boutons { display: flex; flex-wrap: wrap; gap: .4rem .5rem; }
+.bandeau-theme__large { display: none; }
+@media (max-width: 47.99rem) {
+  .bandeau-theme__interrupteur, .bandeau-theme__nouveautes { padding-inline: .75em; }
+}
+@media (min-width: 48rem) {
+  .bandeau-theme__court { display: none; }
+  .bandeau-theme__large { display: inline; }
+}
 
 /* Thème éteint : le bandeau ne garde que le bouton pour le rallumer. */
 html:not(.theme-actif) .bandeau-theme__contenu { justify-content: flex-end; }
-html:not(.theme-actif) .bandeau-theme__zone { display: none; }
+html:not(.theme-actif) .bandeau-theme__zone, html:not(.theme-actif) .bandeau-theme__nouveautes { display: none; }
 
 /* ---------- Les fenêtres du thème (annonce des nouveautés, récompenses…) ----------
    Le cadre prend --theme-cadre. Le voile sombre derrière se règle dans la feuille
@@ -60,6 +70,27 @@ html:not(.theme-actif) .bandeau-theme__zone { display: none; }
 .dialogue-theme__fermer:hover { background: var(--fond-doux); color: var(--texte); }
 .dialogue-theme__liste { text-align: left; margin: .2rem auto .9rem; padding-left: 1.2rem; max-width: 30ch; }
 .dialogue-theme__liste li { margin-bottom: .25rem; }
+/* Une annonce en rubriques (annonce.rubriques) : plus large, sur deux colonnes
+   quand il y a la place, et chaque ligne commence par son emoji, en retrait
+   comme une puce. */
+.dialogue-theme--rubriques { max-width: min(780px, calc(100vw - 32px)); }
+.dialogue-theme__rubriques { columns: 300px 2; column-gap: 1.8rem; }
+.dialogue-theme__rubriques section { break-inside: avoid; padding-top: .1rem; }
+.dialogue-theme--rubriques .dialogue-theme__emoji { font-size: 2.4rem; }
+/* Le bouton reste en bas de la fenêtre pendant qu'on fait défiler l'annonce. */
+.dialogue-theme--rubriques .dialogue-theme__actions {
+  position: sticky; bottom: -1.6rem; z-index: 1; /* -1.6rem : jusque dans la marge du bas de la fenêtre */
+  margin: 0 -1.4rem -1.6rem; padding: .8rem 1.4rem 1rem;
+  background: var(--fond-carte); box-shadow: 0 -10px 14px -12px rgba(0, 0, 0, .5);
+}
+.dialogue-theme h2[tabindex="-1"]:focus { outline: none; }
+.dialogue-theme__rubrique {
+  margin: 1.1rem 0 .4rem; padding-bottom: .2rem; text-align: left; font-size: 1.05rem;
+  border-bottom: 2px solid var(--theme-cadre, var(--accent));
+}
+.dialogue-theme__liste--rubrique { max-width: none; margin: 0; padding-left: 0; list-style: none; }
+.dialogue-theme__liste--rubrique li { padding-left: 1.75em; text-indent: -1.75em; }
+.dialogue-theme__pied { margin: 1.1rem 0 .9rem; font-size: .92rem; color: var(--texte-doux); }
 
 /* ---------- Les bulles (Theme.bulle) ----------
    Au-dessus de tout, sauf du menu ouvert. Elles défilent avec la page, sauf

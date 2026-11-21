@@ -1,14 +1,14 @@
 // Salle de jeux et pages des mini-jeux.
 
 import { dinos } from "../data/dinos.mjs";
-import { quiz, vraiFaux, reperes, listeJeux } from "../data/jeux.mjs";
+import { quiz, vraiFaux, vraiFauxFroid, reperes, listeJeux, cheminScript } from "../data/jeux.mjs";
 import { oeufs, sansOeuf } from "../data/oeufs.mjs";
 import { empreintes, traceurs } from "../data/empreintes.mjs";
 import { quizCinema } from "../data/cinema.mjs";
 import { combattants, JEUX_AFFRONTEMENT } from "../data/affrontements.mjs";
 import { page, esc, enLettres, majuscule } from "../templates.mjs";
 
-const entetePartie = (id, libelleGauche) => `
+export const entetePartie = (id, libelleGauche) => `
   <div class="jeu__entete">
     <p id="${id}-numero" style="margin:0;font-weight:800">${libelleGauche}</p>
     <p class="jeu__score" style="margin:0"><span id="${id}-score">⭐ 0 point</span></p>
@@ -17,8 +17,10 @@ const entetePartie = (id, libelleGauche) => `
   <p id="${id}-annonce" class="visuellement-cache" role="status" aria-live="polite"></p>`;
 
 /* parent : rubrique intermédiaire dans le fil d'Ariane (ex. « Affrontement de dinos »).
-   scriptsEnPlus : scripts partagés, chargés avant celui du jeu. */
-function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description, parent = null, scriptsEnPlus = [] }) {
+   scriptsEnPlus : scripts partagés, chargés avant celui du jeu.
+   script : un fichier de assets/js/jeux/, ou le chemin complet d'un script de thème.
+   Exportée pour les jeux des thèmes saisonniers (outils du générateur). */
+export function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description, parent = null, scriptsEnPlus = [] }) {
   const corps = `
 <div class="conteneur section">
   <h1>${emoji} ${esc(titre)}</h1>
@@ -35,7 +37,7 @@ function pageJeu({ slug, titre, emoji, intro, corpsJeu, script, description, par
       base: "../",
       actif: "jeux",
       corps,
-      scripts: ["assets/js/donnees.js", "assets/js/jeux/commun.js", ...scriptsEnPlus.map((s) => `assets/js/jeux/${s}`), `assets/js/jeux/${script}`],
+      scripts: ["assets/js/donnees.js", "assets/js/jeux/commun.js", ...scriptsEnPlus.map((s) => `assets/js/jeux/${s}`), cheminScript({ script })],
       filAriane: [
         { nom: "Accueil", href: "index.html" },
         { nom: "Les jeux", href: "jeux/index.html" },
@@ -70,7 +72,7 @@ export function pagesJeux() {
       <span class="carte__corps">
         <span class="carte__titre" style="font-weight:800;font-size:1.2rem">${esc(j.nom)}</span>
         <span class="carte__texte">${esc(j.court)}</span>
-        <span class="carte__pastilles"><span class="pastille">⏱️ environ ${j.duree}</span></span>
+        <span class="carte__pastilles"><span class="pastille">⏱️ environ ${j.duree}</span>${j.saison ? `<span class="pastille">${esc(j.saison)}</span>` : ""}</span>
       </span>
     </a>`
     ).join("\n    ")}
@@ -143,6 +145,70 @@ export function pagesJeux() {
     </div>
     <div id="vf-fin" hidden></div>
     <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+  </div>`,
+    })
+  );
+
+  /* --- Les dinosaures et le froid : le vrai ou faux, avec d'autres affirmations --- */
+  pages.push(
+    pageJeu({
+      slug: "les-dinosaures-et-le-froid",
+      titre: "Les dinosaures et le froid",
+      emoji: "🧊",
+      description: "Vrai ou faux : les dinosaures connaissaient-ils la neige et la nuit polaire ? 10 affirmations et leurs explications, pour les enfants.",
+      intro: `Des dinosaures près des pôles, de la neige, de la glace… et quelques pièges.
+      Dix affirmations : à toi de dire si c’est vrai ou faux !`,
+      script: "vrai-faux.js",
+      corpsJeu: `
+  <div class="jeu" id="vf" data-affirmations="VRAIFAUX_FROID">
+    <div id="vf-jeu">
+      ${entetePartie("vf", "Affirmation 1 / 10")}
+      <h2 class="question" id="vf-affirmation" tabindex="-1">Chargement…</h2>
+      <div class="reponses">
+        <button type="button" class="reponse" data-reponse="vrai"><span class="reponse__lettre" aria-hidden="true">👍</span> C’est vrai</button>
+        <button type="button" class="reponse" data-reponse="faux"><span class="reponse__lettre" aria-hidden="true">👎</span> C’est faux</button>
+      </div>
+      <div class="retour" id="vf-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="vf-suivant" hidden>Suivant →</button></p>
+    </div>
+    <div id="vf-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire le dossier
+    <a href="../comprendre/glaciations.html">Les dinosaures et l’ère glaciaire</a>.</p></noscript>
+  </div>`,
+    })
+  );
+
+  /* --- La fouille : de la terre, ou de la neige avec le thème d'hiver (fouille.js) --- */
+  pages.push(
+    pageJeu({
+      slug: "la-fouille",
+      titre: "La fouille",
+      emoji: "⛏️",
+      description: "Un jeu de fouille pour les enfants : dégage un dinosaure caché case par case et devine qui c’est, avec le moins de coups possible.",
+      intro: `Un dinosaure est caché sous la terre (et en hiver, sous la neige !). Dégage les cases une à une,
+      puis devine qui c’est. Comme un vrai paléontologue, essaie d’en dégager le moins possible.`,
+      script: "fouille.js",
+      corpsJeu: `
+  <div class="jeu" id="fouille">
+    <div id="fouille-jeu">
+      ${entetePartie("fouille", "Fouille 1 / 5")}
+      <p class="fouille__consigne" id="fouille-consigne" tabindex="-1">Chargement…</p>
+      <div class="fouille__plateau" id="fouille-plateau">
+        <img class="fouille__image" id="fouille-image" alt="" width="400" height="280">
+        <div class="fouille__cases" id="fouille-cases"></div>
+      </div>
+      <p class="fouille__outils">
+        <button type="button" class="bouton bouton--secondaire bouton--petit" id="fouille-hasard">🎲 Dégager une case au hasard</button>
+        <span class="fouille__compte" id="fouille-compte"></span>
+      </p>
+      <h2 class="question" style="font-size:1.15rem;margin-top:1rem">Qui est caché là-dessous ?</h2>
+      <div class="reponses" id="fouille-reponses"></div>
+      <div class="retour" id="fouille-retour" hidden role="status"></div>
+      <p style="margin:1.2rem 0 0"><button type="button" class="bouton" id="fouille-suivant" hidden>Fouille suivante →</button></p>
+    </div>
+    <div id="fouille-fin" hidden></div>
+    <noscript><p class="retour">Ce jeu a besoin de JavaScript pour fonctionner. Tu peux quand même lire le dossier sur
+    <a href="../comprendre/metier.html">le métier de paléontologue</a>.</p></noscript>
   </div>`,
     })
   );
@@ -577,6 +643,7 @@ export function fichierDonnees() {
 window.DINOS = ${JSON.stringify(legers)};
 window.QUIZ = ${JSON.stringify(quiz)};
 window.VRAIFAUX = ${JSON.stringify(vraiFaux)};
+window.VRAIFAUX_FROID = ${JSON.stringify(vraiFauxFroid)};
 window.OEUFS = ${JSON.stringify(oeufs.map(({ id, parent, indices, aide, explication }) => ({ id, parent, indices, aide, explication })))};
 window.SANS_OEUF = ${JSON.stringify(sansOeuf)};
 window.EMPREINTES = ${JSON.stringify(empreintes.map(({ id, auteur, taille, indice, explication }) => ({ id, auteur, taille, indice, explication })))};
